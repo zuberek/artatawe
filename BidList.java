@@ -27,7 +27,7 @@ public class BidList {
 		try {
 			ResultSet rs = db.select("SELECT * from `bids` WHERE `bidderID` = '" + userId + "'");
 			while (rs.next()) {
-				Bid bid = new Bid(rs.getInt("bidID"), rs.getInt("bidderID"), rs.getDouble("amount"), rs.getLong("created_at"));
+				Bid bid = new Bid(rs.getInt("bidID"));
 				bidList.add(bid);
 	        }
 		} catch (SQLException ex) {
