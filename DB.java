@@ -41,8 +41,9 @@ public class DB {
 					"CREATE TABLE IF NOT EXISTS `bids` (\r\n" + 
 						" `bidID` INTEGER PRIMARY KEY,\r\n" + 
 						" `bidderID` int(11) NOT NULL,\r\n" + 
+						" `auctionID` int(11) NOT NULL,\r\n" + 
 						" `amount` double NOT NULL,\r\n" + 
-						" `created_at` int NOT NULL\r\n" + 
+						" `timePlaced` float NOT NULL\r\n" + 
 					");";
 		
 		query(sql);
