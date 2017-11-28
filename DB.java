@@ -29,16 +29,21 @@ public class DB {
 	 * This method sets up all the tables
 	 */
 	private void init() {
-		String sql = "CREATE TABLE IF NOT EXISTS `user` (\r\n" + 
-				" `userID` INTEGER PRIMARY KEY,\r\n" + 
-				" `userName` text NOT NULL,\r\n" + 
-				" `firstName` text NOT NULL,\r\n" + 
-				" `lastName` text NOT NULL,\r\n" + 
-				" `phoneNo` int(11) NOT NULL,\r\n" + 
-				" `userAddress` text NOT NULL,\r\n" + 
-				" `lastLogin` int(11) NOT NULL\r\n" + 
-				");";
-		
+		String sql = "CREATE TABLE IF NOT EXISTS `users` (\r\n" + 
+					" `userID` INTEGER PRIMARY KEY,\r\n" + 
+					" `userName` text NOT NULL,\r\n" + 
+					" `firstName` text NOT NULL,\r\n" + 
+					" `lastName` text NOT NULL,\r\n" + 
+					" `phoneNo` int(11) NOT NULL,\r\n" + 
+					" `userAddress` text NOT NULL,\r\n" + 
+					" `lastLogin` int(11) NOT NULL\r\n" + 
+					");\r\n" +
+					"CREATE TABLE IF NOT EXISTS `bids` (\r\n" + 
+						" `bidID` INTEGER PRIMARY KEY,\r\n" + 
+						" `bidderID` int(11) NOT NULL,\r\n" + 
+						" `amount` double NOT NULL,\r\n" + 
+						" `created_at` int NOT NULL\r\n" + 
+					");";
 		
 		query(sql);
 	}
@@ -62,9 +67,16 @@ public class DB {
 	 * 
 	 * @return ArrayList of objects from the select query
 	 */
-	public ArrayList<Object> select() {
-		return null;
-		
+	public ResultSet select(String sql) {
+	     Statement stmt;
+	     ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException ex) {
+			ex.getMessage();
+		}  
+	    return rs;
 	}
 
     
