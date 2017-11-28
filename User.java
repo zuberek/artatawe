@@ -2,6 +2,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * @author 916434
+ *
+ */
 public class User {
 	
 	private DB db;
@@ -14,8 +18,6 @@ public class User {
 	private int lastLogin;
 	private Avatar profilePicture;
 	private ArrayList<User>  favouriteUser;
-	
-	
 	
 	/**
 	 * @param userName
@@ -37,7 +39,27 @@ public class User {
 		saveUser();
 	}
 	
-	
+	/**
+	 * @param userID
+	 */
+	public User(int userID){
+		db = new DB();
+		try{
+			ResultSet rs = db.select("SELECT * FROM `users` WHERE userID = '" + userID + "'");
+			while (rs.next()) {
+				this.setUserID(rs.getInt("userID"));
+				this.setUserName(rs.getString("userName"));
+				this.setFirstName(rs.getString("firstName"));
+				this.setLastName(rs.getString("lastName"));
+				this.setPhoneNo(rs.getString("phoneNo"));
+				this.setUserAddress(rs.getString("userAddress"));
+				this.setLastLogin(rs.getInt("timePlaced"));
+
+	        }
+		} catch(SQLException ex){
+			ex.getMessage();
+		}
+	}
 	
 	/**
 	 * @param bid
