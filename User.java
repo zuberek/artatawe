@@ -199,5 +199,10 @@ public class User {
 		this.lastLogin = lastLogin;
 	}
 	
-	
+	@Override
+	public String toString(){
+		String result = "";
+		result += "User name: " + this.getFirstName() + " " + this.getLastName();
+		return result;
+	}
 }
