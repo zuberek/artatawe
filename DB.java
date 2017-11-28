@@ -1,3 +1,7 @@
+/*
+ * @author Joshua Blackman
+ */
+
 import java.sql.*;
 
 public class DB {
