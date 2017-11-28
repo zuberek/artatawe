@@ -1,15 +1,17 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class User {
 	
+	private DB db;
 	private String userName;	
 	private String firstName;
 	private String lastName;
 	private String phoneNo;
 	private String userAddress;
 	private int userID;
-	private int unixLoginTStamp;
-	private int unixLogoutTstamp;
+	private int lastLogin;
 	private Avatar profilePicture;
 	private ArrayList<User>  favouriteUser;
 	
@@ -21,15 +23,28 @@ public class User {
 	 * @param lastName
 	 * @param phoneNo
 	 * @param userAddress
+	 * @param lastLogin
 	 */
-	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress) {
-		super();
+	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, int lastLogin) {
+		db = new DB();
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNo = phoneNo;
 		this.userAddress = userAddress;
+		this.lastLogin = lastLogin;
 		//this.profilePicture = default pircture???????????
+		saveUser();
+	}
+	
+	
+	
+	/**
+	 * @param bid
+	 */
+	private void saveUser(){
+		// Insert bid into database
+		db.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`, `lastLogin`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" + this.getLastLogin() + "'); ");
 	}
 
 	public User(){
@@ -110,7 +125,7 @@ public class User {
 	 * @return the userID
 	 */
 	public int getUserID() {
-		return userID;
+		return this.userID;
 	}
 
 	/**
@@ -118,34 +133,6 @@ public class User {
 	 */
 	public void setUserID(int userID) {
 		this.userID = userID;
-	}
-
-	/**
-	 * @return the unixLoginTStamp
-	 */
-	public int getUnixLoginTStamp() {
-		return unixLoginTStamp;
-	}
-
-	/**
-	 * @param unixLoginTStamp the unixLoginTStamp to set
-	 */
-	public void setUnixLoginTStamp(int unixLoginTStamp) {
-		this.unixLoginTStamp = unixLoginTStamp;
-	}
-
-	/**
-	 * @return the unixLogoutTstamp
-	 */
-	public int getUnixLogoutTstamp() {
-		return unixLogoutTstamp;
-	}
-
-	/**
-	 * @param unixLogoutTstamp the unixLogoutTstamp to set
-	 */
-	public void setUnixLogoutTstamp(int unixLogoutTstamp) {
-		this.unixLogoutTstamp = unixLogoutTstamp;
 	}
 
 	/**
@@ -174,6 +161,20 @@ public class User {
 	 */
 	public void setFavouriteUser(ArrayList<User> favouriteUser) {
 		this.favouriteUser = favouriteUser;
+	}
+
+	/**
+	 * @return the lastLogin
+	 */
+	public int getLastLogin() {
+		return lastLogin;
+	}
+
+	/**
+	 * @param lastLogin the lastLogin to set
+	 */
+	public void setLastLogin(int lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 	
 	
