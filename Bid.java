@@ -2,6 +2,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * 
  * @author Joshua Blackman
  *
  */
@@ -26,7 +27,7 @@ public class Bid {
 		setAuctionID(auctionID);
 		setAmount(amount);
 		setTimePlaced(timePlaced);
-		saveBid(this);
+		saveBid();
 	}
 	
 	public int getAuctionID() {
@@ -60,9 +61,9 @@ public class Bid {
 	/**
 	 * @param bid
 	 */
-	public void saveBid(Bid bid){
+	private void saveBid(){
 		// Insert bid into database
-		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + bid.getBidderID() + ", " + bid.getBidderID() + ", " + bid.getAmount() + ", " + bid.getBidderID() + "); ");
+		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + this.getBidderID() + ", " + this.getBidderID() + ", " + this.getAmount() + ", " + this.getBidderID() + "); ");
 	}
 	
 	/**
