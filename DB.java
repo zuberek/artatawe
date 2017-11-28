@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DB {
 	
@@ -13,8 +11,8 @@ public class DB {
 	
 	public void connect() {        
         try {
-            String url = "jdbc:sqlite:artatawe.db";
-            conn = DriverManager.getConnection(url);
+            String connectionUrl = "jdbc:sqlite:artatawe.db";
+            conn = DriverManager.getConnection(connectionUrl);
             
             System.out.println("Connected to SQLLite DB.");
             
@@ -31,7 +29,15 @@ public class DB {
         }
     }
 	
-	
+	public void query(String query) {
+		try {
+			Statement statement = conn.createStatement();
+			statement.executeUpdate(query);
+			statement.close();
+		} catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
 
     
 }
