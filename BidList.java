@@ -42,7 +42,17 @@ public class BidList {
 	 * @param auctionId
 	 * @return an ArrayList of all bids made on a specified auction.
 	 */
-	public ArrayList<Bid> getAuctionBidList(int auctionId){
+	public ArrayList<Bid> getAuctionBidList(int auctionID){
+		bidList = new ArrayList<Bid>();
+		try {
+			ResultSet rs = db.select("SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'");
+			while (rs.next()) {
+				Bid bid = new Bid(rs.getInt("bidID"));
+				bidList.add(bid);
+	        }
+		} catch (SQLException ex) {
+			ex.getMessage();
+		}
 		return bidList;
 	}
 }
