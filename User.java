@@ -15,6 +15,6 @@ public class User {
 	private ArrayList<User>  favouriteUser;
 
 	public User(){
-		
+		System.out.println("test");
 	}
 }
