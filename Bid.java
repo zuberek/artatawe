@@ -2,7 +2,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * 
+ * This class stores/handles bids.
  * @author Joshua Blackman
  *
  */
@@ -16,10 +16,11 @@ public class Bid {
 	private long timePlaced;
 	
 	/**
-	 * @param bidID
-	 * @param bidderID
-	 * @param amount
-	 * @param timePlaced
+	 * This constructor is used for when you want to create a new bid
+	 * @param bidderID the userID of who made this bid.
+	 * @param auctionID  the auctionID of the auction this bid was made on.
+	 * @param amount the amount that was placed on the bid
+	 * @param timePlaced a unix timestamp of when this bid was placed.
 	 */
 	public Bid(int bidderID, int auctionID, float amount, long timePlaced){
 		db = new DB();
@@ -30,16 +31,9 @@ public class Bid {
 		saveBid();
 	}
 	
-	public int getAuctionID() {
-		return auctionID;
-	}
-
-	public void setAuctionID(int auctionID) {
-		this.auctionID = auctionID;
-	}
-
 	/**
-	 * @param bidID
+	 * This constructor is used when you want to retrieve the information about a bid.
+	 * @param bidID the bidID of the bid you want to retrieve.
 	 */
 	public Bid(int bidID){
 		db = new DB();
@@ -59,67 +53,93 @@ public class Bid {
 	}
 	
 	/**
-	 * @param bid
+	 * This method the current bid into the database
 	 */
 	private void saveBid(){
 		// Insert bid into database
+		// TODO: need to make sure these inputs are sanitized to avoid sql injection
 		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + this.getBidderID() + ", " + this.getBidderID() + ", " + this.getAmount() + ", " + this.getBidderID() + "); ");
 	}
 	
 	/**
-	 * @return
+	 * Gets the current BidID
+	 * @return the bid id of current object
 	 */
 	public int getBidID() {
 		return bidID;
 	}
 	
 	/**
-	 * @param bidID
+	 * Sets the id of the bid
+	 * @param bidID set the bidID
 	 */
 	public void setBidID(int bidID) {
 		this.bidID = bidID;
 	}
 	
 	/**
-	 * @return
+	 * Returns the bidderID of the bid
+	 * @return an int id of the bidder who made this bid
 	 */
 	public int getBidderID() {
 		return bidderID;
 	}
 	
 	/**
-	 * @param bidderID
+	 * Sets the bidderID to the id of the user that made the bid
+	 * @param bidderID bidderID to set
 	 */
 	public void setBidderID(int bidderID) {
 		this.bidderID = bidderID;
 	}
 	
 	/**
-	 * @return
+	 * Returns the amount placed on a bid
+	 * @return amount
 	 */
 	public float getAmount() {
 		return amount;
 	}
 	
 	/**
-	 * @param amount
+	 * Sets amount of money placed on the auction
+	 * @param amount 
 	 */
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 	
 	/**
-	 * @return
+	 * Returns the time placed
+	 * @return  the unix timestamp of when the bid was made
 	 */
 	public long getTimePlaced() {
 		return timePlaced;
 	}
 	
 	/**
-	 * @param timePlaced
+	 * Sets the unix timestamp of when the bid was placed
+	 * @param timePlaced 
 	 */
 	public void setTimePlaced(long timePlaced) {
 		this.timePlaced = timePlaced;
 	}
+	
+	/**
+	 * Returns the auctionID
+	 * @return the auctionID as an int
+	 */
+	public int getAuctionID() {
+		return auctionID;
+	}
+
+	/**
+	 * Sets the auctionID of the bid
+	 * @param auctionID
+	 */
+	public void setAuctionID(int auctionID) {
+		this.auctionID = auctionID;
+	}
+
 	
 }
