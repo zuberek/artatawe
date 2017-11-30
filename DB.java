@@ -16,6 +16,9 @@ public class DB {
 		init();
 	}
 	
+	/**
+	 * Connects to the database. 
+	 */
 	private void connect() {        
         try {
             String connectionUrl = "jdbc:sqlite:artatawe.db";
@@ -27,6 +30,7 @@ public class DB {
 	
 	/**
 	 * This method sets up all the tables
+	 * TODO: Move to external file to make cleaner
 	 */
 	private void init() {
 		String sql = "CREATE TABLE IF NOT EXISTS `users` (\r\n" + 
@@ -65,7 +69,7 @@ public class DB {
 	
 	
 	/**
-	 * 
+	 * This method exectues a query on the database and returns the ResultSet of the query
 	 * @return ArrayList of objects from the select query
 	 */
 	public ResultSet select(String sql) {
