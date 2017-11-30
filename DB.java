@@ -1,7 +1,5 @@
-
-
 import java.sql.*;
-import java.util.ArrayList;
+
 
 /**
  * This class handles connecting to the database and retrieving data.
@@ -55,7 +53,7 @@ public class DB {
 	
 	/**
 	 * This method is used for executing a query on the database.
-	 * @param query
+	 * @param query SQL query to be executed on database
 	 */
 	public void query(String query) {
 		try {
