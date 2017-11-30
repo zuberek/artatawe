@@ -12,6 +12,9 @@ public class BidList {
 	ArrayList<Bid> bidList;
 	DB db;
 	
+	/**
+	 * This constructor just intializes the database object.
+	 */
 	public BidList() {
 		db = new DB();
 	}
