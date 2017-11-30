@@ -8,6 +8,9 @@ public class DB {
 	
 	Connection conn = null;
 	
+	/**
+	 * Constructor create DB connection and calls init
+	 */
 	public DB() {
 		connect();
 		init();
