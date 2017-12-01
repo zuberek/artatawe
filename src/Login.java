@@ -1,3 +1,5 @@
+package src;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,11 +26,12 @@ public class Login extends Application {
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
+
 		Parent root = FXMLLoader.load(getClass().getResource("Scenes/Login.fxml"));
 	    
         Scene scene = new Scene(root);
 
-        stage.setTitle("Artatawe | Login");
+        stage.setTitle("Artatawe | src.Login");
         stage.setScene(scene);
         stage.show();		
 	}

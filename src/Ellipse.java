@@ -1,3 +1,5 @@
+package src;
+
 public class Ellipse extends ShapeElement{
     private int width;
     private int height;    

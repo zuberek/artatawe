@@ -1,10 +1,11 @@
+package src;
 
 /**
  * @author Borislav Koynin
  *
  */
 public class AuctionList {
-	//private Artwork artwork = new Artwork;
+	//private src.Artwork artwork = new src.Artwork;
 	private int maxBids;
 	private double reservePrice;
 	private int auctionID;

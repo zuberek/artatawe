@@ -1,3 +1,5 @@
+package src;
+
 import java.sql.*;
 
 /**
@@ -9,7 +11,7 @@ public class DB {
 	Connection conn = null;
 	
 	/**
-	 * Constructor create DB connection and calls init
+	 * Constructor create src.DB connection and calls init
 	 */
 	public DB() {
 		connect();

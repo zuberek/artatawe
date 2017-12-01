@@ -1,3 +1,5 @@
+package src;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -202,7 +204,7 @@ public class User {
 	@Override
 	public String toString(){
 		String result = "";
-		result += "User name: " + this.getFirstName() + " " + this.getLastName();
+		result += "src.User name: " + this.getFirstName() + " " + this.getLastName();
 		return result;
 	}
 }

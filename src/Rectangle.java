@@ -1,5 +1,7 @@
+package src;
+
 /**
- * creates a Rectangle object
+ * creates a src.Rectangle object
  * @author David 
  */
 public class Rectangle extends ShapeElement{

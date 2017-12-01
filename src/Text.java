@@ -1,16 +1,20 @@
+package src;
+
+import src.DrawingElement;
+
 /**
- * Creates a Text object
+ * Creates a src.Text object
  * @author Hefin Johnson
  */
 
-public class Text extends DrawingElement{
+public class Text extends DrawingElement {
     private int width;
     private int height;
 
     /**
      *
-     * @param Width will set the width of the Text
-     * @param Height will set the height of the Text
+     * @param Width will set the width of the src.Text
+     * @param Height will set the height of the src.Text
      */
 
     public Text(int width, int height){

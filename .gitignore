@@ -29,4 +29,6 @@ hs_err_pid*
 .idea
 *.db
 
+Main.java
+FXMLexample
 out/

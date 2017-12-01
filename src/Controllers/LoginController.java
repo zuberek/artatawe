@@ -1,4 +1,4 @@
-package Controllers;
+package src.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -6,7 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
 /**
- * This class is the controller for the Login screen
+ * This class is the controller for the src.Login screen
  * It will handle all inputs and validation
  * 
  * @author Joshua Blackman
@@ -27,7 +27,7 @@ public class LoginController {
 			alert.showAndWait();
 		} else {
 			System.out.println(loginUserName.getText());
-			//User user  = new User();
+			//src.User user  = new src.User();
 		}
 		
 	}

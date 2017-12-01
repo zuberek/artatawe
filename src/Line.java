@@ -1,5 +1,7 @@
+package src;
+
 /**
- * Creates a Line object
+ * Creates a src.Line object
  * @author Hefin Johnson
  */
 
@@ -9,8 +11,8 @@ public class Line extends LinearElement{
 
     /**
      *
-     * @param Width will set the width of the Line
-     * @param Height will set the height of the Line
+     * @param Width will set the width of the src.Line
+     * @param Height will set the height of the src.Line
      */
     
     public Line(int width, int height){
