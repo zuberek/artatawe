@@ -13,7 +13,7 @@ public class Text extends DrawingElement{
      * @param Height will set the height of the Text
      */
 
-    Public Text(int width, int height){
+    public Text(int width, int height){
         this.width = width;
         this.height = height;
 

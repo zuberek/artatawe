@@ -13,7 +13,7 @@ public class Line extends LinearElement{
      * @param Height will set the height of the Line
      */
     
-    Public Line(int width, int height){
+    public Line(int width, int height){
         this.width = width;
         this.height = height;
         
