@@ -34,5 +34,7 @@
             <Image url="@../Pictures/swanLogo.png" />
          </image>
       </ImageView>
+      <Button fx:id="picEditButton" layoutX="408.0" layoutY="280.0" mnemonicParsing="false" onAction="#picEditButtonClicked" text="Change" />
+      <Button fx:id="backLoginButton" layoutX="248.0" layoutY="330.0" mnemonicParsing="false" onAction="#backLoginButtonClicked" text="Back To Login" />
    </children>
 </AnchorPane>

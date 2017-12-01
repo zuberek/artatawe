@@ -11,6 +11,13 @@ import src.User;
 
 import java.io.IOException;
 
+/**
+ * This class is the controller for the Register screen
+ * It will handle all inputs and validation
+ *
+ * @author Jan Dabrowski
+ *
+ */
 public class RegisterController {
 
 
@@ -53,6 +60,29 @@ public class RegisterController {
             System.out.println("Sth went wrong with bringing the log in view");
             e.printStackTrace();
         }
+
+    }
+
+    public void backLoginButtonClicked(){
+        //this part brings back the log in scene
+        try{
+
+            Stage stage = (Stage) registerButton.getScene().getWindow();
+            Login log = new Login();
+
+            log.start(stage);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Quit the program (with an error code)
+            System.exit(-1);
+        } catch (Exception e) {
+            System.out.println("Sth went wrong with bringing the log in view");
+            e.printStackTrace();
+        }
+    }
+
+    public void picEditButtonClicked(){
 
     }
 }

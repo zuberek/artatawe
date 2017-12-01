@@ -33,7 +33,7 @@ public class Login extends Application {
 
 		Scene scene = new Scene(root);
 
-		stage.setTitle("Artatawe | src.Login");
+		stage.setTitle("Artatawe | Login");
 		stage.setScene(scene);
 		stage.show();
 

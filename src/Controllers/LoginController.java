@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 /**
- * This class is the controller for the src.Login screen
+ * This class is the controller for the Login screen
  * It will handle all inputs and validation
  * 
  * @author Joshua Blackman and Jan Dabrowski

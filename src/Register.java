@@ -34,6 +34,7 @@ public class Register extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             // Quit the program (with an error code)
+            System.out.println("You broke here");
             System.exit(-1);
         }
     }
