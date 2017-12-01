@@ -14,16 +14,16 @@
    <children>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="root" stylesheets="@../Styles/login.css" VBox.vgrow="ALWAYS">
          <children>
-            <Label id="welcome-text" layoutX="240.0" layoutY="113.0" text="Welcome" />
-            <Button fx:id="registerButton" layoutX="331.0" layoutY="214.0" mnemonicParsing="false" onAction="#registerButtonClicked" prefHeight="27.0" prefWidth="95.0" text="Register" />
-            <Button layoutX="215.0" layoutY="214.0" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="27.0" prefWidth="95.0" text="Login" />
-            <TextField fx:id="loginUserName" layoutX="215.0" layoutY="177.0" prefHeight="25.0" prefWidth="211.0" promptText="Username" />
+            <Label id="welcome-text" layoutX="175.0" layoutY="91.0" text="Welcome" />
+            <Button fx:id="registerButton" layoutX="346.0" layoutY="241.0" mnemonicParsing="false" onAction="#registerButtonClicked" prefHeight="27.0" prefWidth="95.0" text="Register" />
+            <Button layoutX="230.0" layoutY="241.0" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="27.0" prefWidth="95.0" text="Login" />
+            <TextField fx:id="loginUserName" layoutX="230.0" layoutY="204.0" prefHeight="25.0" prefWidth="211.0" promptText="Username" />
             <ImageView fitHeight="70.0" fitWidth="80.0" layoutX="548.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Pictures/swanLogo.png" />
                </image>
             </ImageView>
-            <Label layoutX="220.0" layoutY="160.0" text="UserName" />
+            <Label layoutX="235.0" layoutY="187.0" text="UserName" />
          </children>
       </AnchorPane>
    </children>

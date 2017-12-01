@@ -23,13 +23,13 @@
          </image>
       </ImageView>
       <Label layoutX="394.0" layoutY="258.0" text="Default Picture" />
-      <Button fx:id="registerButton" layoutX="261.0" layoutY="305.0" mnemonicParsing="false" onAction="#registerButtonClicked" text="Register!" />
+      <Button fx:id="registerButton" layoutX="261.0" layoutY="292.0" mnemonicParsing="false" onAction="#registerButtonClicked" text="Register!" />
       <ImageView fitHeight="70.0" fitWidth="80.0" layoutX="510.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/swanLogo.png" />
          </image>
       </ImageView>
-      <Button fx:id="picEditButton" layoutX="408.0" layoutY="280.0" mnemonicParsing="false" onAction="#picEditButtonClicked" text="Change" />
+      <Button fx:id="picEditButton" layoutX="410.0" layoutY="281.0" mnemonicParsing="false" onAction="#picEditButtonClicked" text="Change" />
       <Button fx:id="backLoginButton" layoutX="248.0" layoutY="330.0" mnemonicParsing="false" onAction="#backLoginButtonClicked" text="Back To Login" />
    </children>
 </AnchorPane>
