@@ -3,10 +3,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
+/**
+ * This class is the controller for the Login screen
+ * It will handle all inputs and validation
+ * 
+ * @author Joshua Blackman
+ *
+ */
 public class LoginController {
 	
 	@FXML TextField loginUserName;
 	
+	/**
+	 * Event handler for when user clicks the login button
+	 */
 	public void loginButtonClicked() {
 		if(loginUserName.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.WARNING);
