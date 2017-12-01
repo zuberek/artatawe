@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
       <MenuBar VBox.vgrow="NEVER">
          <menus>
@@ -28,8 +28,8 @@
          <children>
             <Label layoutX="215.0" layoutY="160.0" text="Username" />
             <Button layoutX="331.0" layoutY="214.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Register" />
-            <Button layoutX="215.0" layoutY="214.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Login" />
-            <TextField layoutX="215.0" layoutY="177.0" prefHeight="25.0" prefWidth="211.0" />
+            <Button layoutX="215.0" layoutY="214.0" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="27.0" prefWidth="95.0" text="Login" />
+            <TextField fx:id="loginUserName" layoutX="215.0" layoutY="177.0" prefHeight="25.0" prefWidth="211.0" />
          </children>
       </AnchorPane>
    </children>
