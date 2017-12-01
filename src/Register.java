@@ -8,6 +8,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This class takes input from the user and creates new profile.
+ * Also allows to pick default avatar or go to drawing tool
+ * @author Jan Dabrowski
+ *
+ */
+
 public class Register extends Application {
 
     /**
