@@ -42,10 +42,10 @@ public class User {
 	/**
 	 * @param userID
 	 */
-	public User(int userID){
+	public User(String userName){
 		db = new DB();
 		try{
-			ResultSet rs = db.select("SELECT * FROM `users` WHERE userID = '" + userID + "'");
+			ResultSet rs = db.select("SELECT * FROM `users` WHERE userName = '" + userName + "'");
 			while (rs.next()) {
 				this.setUserID(rs.getInt("userID"));
 				this.setUserName(rs.getString("userName"));
