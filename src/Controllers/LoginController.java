@@ -1,10 +1,16 @@
 package src.Controllers;
+
 import src.User;
+import src.Register;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 /**
  * This class is the controller for the src.Login screen
@@ -16,6 +22,7 @@ import javafx.scene.control.TextField;
 public class LoginController {
 	
 	@FXML TextField loginUserName;
+    @FXML private Button registerButton;
 	
 	/**
 	 * Event handler for when user clicks the login button
@@ -32,4 +39,25 @@ public class LoginController {
 		}
 		
 	}
+
+	/**
+	 * Event handler for when user clicks the register button
+	 */
+	public void registerButtonClicked() {
+	    try{
+
+            Stage stage = (Stage) registerButton.getScene().getWindow();
+            Register reg = new Register();
+
+            reg.start(stage);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Quit the program (with an error code)
+            System.exit(-1);
+        } catch (Exception e) {
+            System.out.println("Sth went wrong with bringing the register view");
+            e.printStackTrace();
+        }
+    }
 }

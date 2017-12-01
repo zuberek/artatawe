@@ -29,7 +29,7 @@
                <font>
                   <Font name="Arial Black" size="40.0" />
                </font></Label>
-            <Button layoutX="331.0" layoutY="214.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Register">
+            <Button fx:id="registerButton" layoutX="331.0" layoutY="214.0" mnemonicParsing="false" onAction="#registerButtonClicked" prefHeight="27.0" prefWidth="95.0" text="Register">
                <font>
                   <Font name="Arial Black" size="13.0" />
                </font></Button>
@@ -38,7 +38,7 @@
                   <Font name="Arial Black" size="13.0" />
                </font></Button>
             <TextField fx:id="loginUserName" layoutX="215.0" layoutY="177.0" prefHeight="25.0" prefWidth="211.0" promptText="Username" />
-            <ImageView fitHeight="75.0" fitWidth="78.0" layoutX="542.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="70.0" fitWidth="80.0" layoutX="548.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Pictures/swanLogo.png" />
                </image>

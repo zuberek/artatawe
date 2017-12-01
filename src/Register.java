@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Register extends Application {
 
     /**
@@ -20,6 +22,7 @@ public class Register extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+        try{
         Parent root = FXMLLoader.load(getClass().getResource("Scenes/Register.fxml"));
 
         Scene scene = new Scene(root);
@@ -27,5 +30,11 @@ public class Register extends Application {
         stage.setTitle("Artatawe | Register");
         stage.setScene(scene);
         stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Quit the program (with an error code)
+            System.exit(-1);
+        }
     }
 }

@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * This the main class, first  point of contact for the user.
  * It is used to open u
@@ -26,14 +28,20 @@ public class Login extends Application {
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
-
+		try {
 		Parent root = FXMLLoader.load(getClass().getResource("Scenes/Login.fxml"));
-	    
-        Scene scene = new Scene(root);
 
-        stage.setTitle("Artatawe | src.Login");
-        stage.setScene(scene);
-        stage.show();		
+		Scene scene = new Scene(root);
+
+		stage.setTitle("Artatawe | src.Login");
+		stage.setScene(scene);
+		stage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			// Quit the program (with an error code)
+			System.exit(-1);
+		}
 	}
 
 }
