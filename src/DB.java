@@ -35,7 +35,16 @@ public class DB {
 	 * TODO: Move to external file to make cleaner
 	 */
 	private void init() {
-		String sql = "CREATE TABLE IF NOT EXISTS `users` (\r\n" + 
+		String sql =
+				"CREATE TABLE IF NOT EXISTS `auctions` (\r\n" +
+						" `auctionID` INTEGER PRIMARY KEY,\r\n" +
+						" `sellerID` int(11) NOT NULL,\r\n" +
+						" `maxBids` int(11) NOT NULL,\r\n" +
+						" `reservePrice` double NOT NULL,\r\n" +
+						" `timeAdded` float NOT NULL,\r\n" +
+						" `lastBidID` int(11) NOT NULL\r\n" +
+						");\r\n" +
+				"CREATE TABLE IF NOT EXISTS `users` (\r\n" +
 					" `userID` INTEGER PRIMARY KEY,\r\n" + 
 					" `userName` text NOT NULL,\r\n" + 
 					" `firstName` text NOT NULL,\r\n" + 
@@ -44,14 +53,15 @@ public class DB {
 					" `userAddress` text NOT NULL,\r\n" + 
 					" `lastLogin` int(11) NOT NULL\r\n" + 
 					");\r\n" +
-					"CREATE TABLE IF NOT EXISTS `bids` (\r\n" + 
-						" `bidID` INTEGER PRIMARY KEY,\r\n" + 
-						" `bidderID` int(11) NOT NULL,\r\n" + 
-						" `auctionID` int(11) NOT NULL,\r\n" + 
-						" `amount` double NOT NULL,\r\n" + 
-						" `timePlaced` float NOT NULL\r\n" + 
-					");";
-		
+				"CREATE TABLE IF NOT EXISTS `bids` (\r\n" +
+				" `bidID` INTEGER PRIMARY KEY,\r\n" +
+				" `bidderID` int(11) NOT NULL,\r\n" +
+				" `auctionID` int(11) NOT NULL,\r\n" +
+				" `amount` double NOT NULL,\r\n" +
+				" `timePlaced` float NOT NULL\r\n" +
+				");";
+		//for debugging
+		//System.out.println(sql);
 		query(sql);
 	}
 	

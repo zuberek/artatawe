@@ -17,10 +17,9 @@ public class Auction {
 	private int timeAdded;
 	private int lastBidID;
 	
-	public Auction(int auctionID, int sellerID, int maxBids,
+	public Auction(int sellerID, int maxBids,
 			double reservePrice, int timeAdded, int lastBidID){
 		db = new DB();
-		setAuctionID(auctionID);
 		setSellerID(sellerID);
 		setMaxBids(maxBids);
 		setReservePrice(reservePrice);
@@ -32,7 +31,7 @@ public class Auction {
 	public Auction(int auctionID) {
 		db = new DB();
 		try {
-			ResultSet rs = db.select("SELECT * FROM `bids` WHERE bidID = `" + auctionID + "`");
+			ResultSet rs = db.select("SELECT * FROM `auctions` WHERE auctionID = '" + auctionID + "'");
 			while (rs.next()) {
 				setAuctionID(rs.getInt("auctionID"));
 				setSellerID(rs.getInt("sellerID"));
@@ -47,8 +46,18 @@ public class Auction {
 	}
 	
 	private void saveAuction(){
-		// Insert bid into database
-		db.query("INSERT INTO `bids` (`auctionID`, `sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getAuctionID() + ", " + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ");
+		// Insert user into database
+		String query = "INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ";
+		System.out.println(query);
+		db.query(query);
+	}
+
+	/**
+	 * Get a short description of the auction that is suitable for use in a ListView.
+	 * @return A short description of the auction.
+	 */
+	public String getDescriptionForList() {
+		return auctionID + " - " + sellerID + " - " + lastBidID + " million";
 	}
 	
 	
