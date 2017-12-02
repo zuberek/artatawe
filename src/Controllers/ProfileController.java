@@ -8,6 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * This class is the controller for the Profile edition screen
+ * It will handle all inputs and validation
+ * @author  Jan Dabrowski
+ *
+ */
 public class ProfileController {
     @FXML Button cancelButton;
     @FXML Button confirmButton;

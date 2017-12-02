@@ -2,6 +2,7 @@ package src.Controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import src.Login;
@@ -69,19 +70,22 @@ public class LoginController {
 	 */
 	public void registerButtonClicked() {
 	    try{
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Register.fxml"));
+			AnchorPane editRoot = (AnchorPane) fxmlLoader.load();
 
-            Stage stage = (Stage) registerButton.getScene().getWindow();
-            ViewRegister reg = new ViewRegister();
 
-            reg.start(stage);
+			Scene newScene = new Scene(editRoot, Login.MAIN_WINDOW_WIDTH, Login.MAIN_WINDOW_HEIGHT);
+			Stage editStagee = new Stage();
+			editStagee.setScene(newScene);
+			editStagee.setTitle("Artatawe | Register");
 
+			editStagee.initModality(Modality.APPLICATION_MODAL);
+
+			editStagee.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
             // Quit the program (with an error code)
             System.exit(-1);
-        } catch (Exception e) {
-            System.out.println("Sth went wrong with bringing the register view");
-            e.printStackTrace();
         }
     }
 }
