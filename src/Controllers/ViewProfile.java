@@ -1,4 +1,4 @@
-package src;
+package src.Controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +27,7 @@ public class ViewProfile extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Scenes/Profile.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../Scenes/Profile.fxml"));
 
             Scene scene = new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
 

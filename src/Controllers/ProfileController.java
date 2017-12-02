@@ -19,16 +19,7 @@ public class ProfileController {
     @FXML Pane rootPane;
 
     // The user being edited.
-    User userBeingEdited = new User("Jasiudab");
-
-    public void initialize(){
-        // Update the GUI to show the existing data.
-        userNameTextField.setText(userBeingEdited.getUserName());
-        firstNameTextField.setText(userBeingEdited.getFirstName());
-        lastNameTextField.setText(userBeingEdited.getLastName());
-        phoneNoTextField.setText(userBeingEdited.getPhoneNo());
-        addressTextField.setText(userBeingEdited.getUserAddress());
-    }
+    User userBeingEdited;
 
     /**
      * Set the user that is being edited.
@@ -66,7 +57,7 @@ public class ProfileController {
         userBeingEdited.setLastName(lastNameTextField.getText());
         userBeingEdited.setPhoneNo(phoneNoTextField.getText());
         userBeingEdited.setUserAddress(addressTextField.getText());
-        userBeingEdited.saveEditedUser();
+        //userBeingEdited.saveEditedUser();
         closeWindow();
     }
 

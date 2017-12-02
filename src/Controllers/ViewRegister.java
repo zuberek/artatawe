@@ -1,4 +1,4 @@
-package src;
+package src.Controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ import java.io.IOException;
  *
  */
 
-public class Register extends Application {
+public class ViewRegister extends Application {
 
     /**
      * @param args
@@ -30,7 +30,7 @@ public class Register extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try{
-        Parent root = FXMLLoader.load(getClass().getResource("Scenes/Register.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../Scenes/Register.fxml"));
 
         Scene scene = new Scene(root);
 

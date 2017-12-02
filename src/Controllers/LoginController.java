@@ -1,7 +1,6 @@
 package src.Controllers;
 
 import src.User;
-import src.Register;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -47,7 +46,7 @@ public class LoginController {
 	    try{
 
             Stage stage = (Stage) registerButton.getScene().getWindow();
-            Register reg = new Register();
+            ViewRegister reg = new ViewRegister();
 
             reg.start(stage);
 
