@@ -15,9 +15,15 @@
    <left>
       <VBox prefHeight="274.0" prefWidth="129.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Your Auctions" />
+            <Label text="Your Auctions">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin></Label>
             <ListView fx:id="auctionList" prefHeight="200.0" prefWidth="155.0" />
-            <Label prefHeight="17.0" prefWidth="98.0" text="Add aucition:" />
+            <Label prefHeight="17.0" prefWidth="98.0" text="Add aucition:">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding></Label>
             <TextField alignment="CENTER_RIGHT" promptText="AuctionID" />
          </children>
          <padding>
@@ -47,10 +53,25 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="274.0" prefWidth="393.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Your bids on this auction" />
+            <Label text="Your bid history">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin></Label>
             <ListView fx:id="bidList" prefHeight="200.0" prefWidth="200.0" />
-            <Label text="Place a bid" />
-            <TextField alignment="CENTER_RIGHT" promptText="Amount" />
+            <Label text="Place a bid">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding></Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="357.0">
+               <children>
+                  <TextField fx:id="newBidAmountTextField" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="271.0" promptText="Amount" />
+                  <Button mnemonicParsing="false" onAction="#handleBidButtonAction" prefHeight="35.0" prefWidth="63.0" text="Bid!">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -74,6 +95,9 @@
          <padding>
             <Insets bottom="10.0" top="10.0" />
          </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </VBox>
    </right>
    <opaqueInsets>

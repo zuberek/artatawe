@@ -46,7 +46,7 @@ public class LoginController {
 				BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
 				MenuController menuController = fxmlLoader.getController();
-				menuController.setCurrentUser(currentUser);
+				menuController.initialize(currentUser);
 
 				Scene newScene = new Scene(editRoot);
 				Stage stage = (Stage) loginButton.getScene().getWindow();

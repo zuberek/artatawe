@@ -3,6 +3,8 @@ package src.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -19,23 +21,26 @@ public class MenuController {
     @FXML TextField currentUserTextField;
     @FXML ListView<String> bidList;
 
+    @FXML TextField newBidAmountTextField;
+
     User currentUser;
 
     // The main list that will store all auctions for this user.
     private ArrayList<Bid> bids;
 
+    public void initialize(User userToSet){
+        setCurrentUser(userToSet);
+        currentUserTextField.setText(currentUser.getUserName());
+        refreshCountryList();
+    }
+
     /**
-     * Set the current user
+     * Set the current user, will do some validity checking here
      * @param userToSet The user in the current session
      */
     public void setCurrentUser(User userToSet) {
         // Keep a reference to the user that we are editing.
         this.currentUser = userToSet;
-        System.out.println(currentUser.getFirstName());
-
-        // Update the GUI to show the existing data.
-        currentUserTextField.setText(currentUser.getUserName());
-        refreshCountryList();
     }
 
     /**
@@ -46,11 +51,25 @@ public class MenuController {
         bidList.getItems().clear();
 
         BidList list = new BidList();
-        System.out.println(currentUser.getUserID());
         bids = list.getUserBidList(currentUser.getUserID());
         // Add each country to the displayed list
         for (Bid b : bids) {
             bidList.getItems().add(b.getDescriptionForList());
+        }
+    }
+
+    /**
+     * TODO: Places all the bids to the auction with ID = 1, implement some choosing in GUI, database locked problem
+     */
+    public void handleBidButtonAction(){
+        int amount = Integer.parseInt(newBidAmountTextField.getText());
+        if(amount <= 0 ) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setContentText("Please place a valid bid");
+            alert.showAndWait();
+        }else {
+            Bid newBid = new Bid(currentUser.getUserID(), 1, Integer.parseInt(newBidAmountTextField.getText()), 123);
         }
     }
 
