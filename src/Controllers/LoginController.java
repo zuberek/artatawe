@@ -27,7 +27,7 @@ import java.io.IOException;
 public class LoginController {
 	
 	@FXML TextField loginUserName;
-    @FXML private Button registerButton;
+    @FXML private Button loginButton;
 	
 	/**
 	 * Event handler for when user clicks the login button
@@ -42,20 +42,16 @@ public class LoginController {
 			try {
 				User currentUser = new User(loginUserName.getText());
 
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Profile.fxml"));
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Menu.fxml"));
 				BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
-				ProfileController profileController = fxmlLoader.getController();
-				profileController.setUserForEditing(currentUser);
+				MenuController menuController = fxmlLoader.getController();
+				menuController.setCurrentUser(currentUser);
 
-				Scene newScene = new Scene(editRoot, Login.MAIN_WINDOW_WIDTH, Login.MAIN_WINDOW_HEIGHT);
-				Stage editStagee = new Stage();
-				editStagee.setScene(newScene);
-				editStagee.setTitle("Artatawe | Edit User");
+				Scene newScene = new Scene(editRoot);
+				Stage stage = (Stage) loginButton.getScene().getWindow();
 
-				editStagee.initModality(Modality.APPLICATION_MODAL);
-
-				editStagee.showAndWait();
+				stage.setScene(newScene);
 			} catch (IOException e) {
 					e.printStackTrace();
 					// Quit the program (with an error code)
