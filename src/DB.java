@@ -4,7 +4,7 @@ import java.sql.*;
 
 /**
  * This class handles connecting to the database and retrieving data.
- * @author Joshua Blackman
+ * @author Joshua Blackman and Jan Dabrowski
  */
 public class DB {
 	

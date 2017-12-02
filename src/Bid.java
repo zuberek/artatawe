@@ -143,5 +143,12 @@ public class Bid {
 		this.auctionID = auctionID;
 	}
 
+	/**
+	 * Get a short description of the auction that is suitable for use in a ListView.
+	 * @return A short description of the auction.
+	 */
+	public String getDescriptionForList() {
+		return bidderID + " - " + auctionID + " - amount: " + amount;
+	}
 	
 }

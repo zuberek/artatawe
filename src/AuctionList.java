@@ -1,17 +1,46 @@
 package src;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
- * @author Borislav Koynin
+ * @author Borislav Koynin and Jan Dabrowski
  *
  */
 public class AuctionList {
-	//private src.Artwork artwork = new src.Artwork;
+	//private Artwork artwork = new Artwork;
 	private int maxBids;
 	private double reservePrice;
 	private int auctionID;
 	private int sellerID;
 	private int unixTimeAdded;
-	
+
+	ArrayList<Auction> auctionList;
+	DB db;
+
+	/**
+	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
+	 *
+	 * @param userId the user who created the auctions
+	 * @return an ArrayList of all auctions specified user has created
+	 */
+	public ArrayList<Auction> getUserAuctionList(int userId) {
+		auctionList = new ArrayList<Auction>();
+		try {
+			ResultSet rs = db.select("SELECT * from `auctions` WHERE `sellerID` = '" + userId + "'");
+			while (rs.next()) {
+				Auction auction = new Auction(rs.getInt("auctionID"));
+				auctionList.add(auction);
+			}
+		} catch (SQLException ex) {
+			ex.getMessage();
+		}
+		return auctionList;
+	}
+
+
+
 	/**
 	 * @return the maxBids
 	 */
