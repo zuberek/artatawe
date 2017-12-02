@@ -22,7 +22,7 @@ public class BidList {
 	}
 	
 	/**
-	 * Returns an ArrayList of src.Bid objects that then can be used to populate a listview.
+	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
 	 * @param userId
 	 * @return an ArrayList of all bids specified user has made
@@ -42,7 +42,7 @@ public class BidList {
 	}
 	
 	/**
-	 * Returns an ArrayList of src.Bid objects that then can be used to populate a listview.
+	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
 	 * @param auctionId
 	 * @return an ArrayList of all bids made on a specified auction.

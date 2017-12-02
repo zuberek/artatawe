@@ -3,32 +3,55 @@ package src.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import src.Login;
-import src.User;
+import src.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class MenuController {
 
     @FXML TextField currentUserTextField;
+    @FXML ListView<String> bidList;
 
     User currentUser;
 
+    // The main list that will store all auctions for this user.
+    private ArrayList<Bid> bids;
+
     /**
      * Set the current user
-     * @param The user in the current session
+     * @param userToSet The user in the current session
      */
     public void setCurrentUser(User userToSet) {
         // Keep a reference to the user that we are editing.
         this.currentUser = userToSet;
+        System.out.println(currentUser.getFirstName());
 
         // Update the GUI to show the existing data.
         currentUserTextField.setText(currentUser.getUserName());
+        refreshCountryList();
+    }
+
+    /**
+     * Refresh the displayed auctions.
+     */
+    private void refreshCountryList() {
+        // Clear the displayed list
+        bidList.getItems().clear();
+
+        BidList list = new BidList();
+        System.out.println(currentUser.getUserID());
+        bids = list.getUserBidList(currentUser.getUserID());
+        // Add each country to the displayed list
+        for (Bid b : bids) {
+            bidList.getItems().add(b.getDescriptionForList());
+        }
     }
 
     public void editProfileButonClicked(){

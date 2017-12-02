@@ -16,7 +16,7 @@
       <VBox prefHeight="274.0" prefWidth="129.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Your Auctions" />
-            <ListView prefHeight="200.0" prefWidth="155.0" />
+            <ListView fx:id="auctionList" prefHeight="200.0" prefWidth="155.0" />
             <Label prefHeight="17.0" prefWidth="98.0" text="Add aucition:" />
             <TextField alignment="CENTER_RIGHT" promptText="AuctionID" />
          </children>
@@ -48,7 +48,7 @@
       <VBox alignment="TOP_CENTER" prefHeight="274.0" prefWidth="393.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Your bids on this auction" />
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="bidList" prefHeight="200.0" prefWidth="200.0" />
             <Label text="Place a bid" />
             <TextField alignment="CENTER_RIGHT" promptText="Amount" />
          </children>
