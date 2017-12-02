@@ -38,13 +38,14 @@ public class BidList {
 		} catch (SQLException ex) {
 			ex.getMessage();
 		}
+		db.closeQuietly();
 		return bidList;
 	}
 	
 	/**
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
-	 * @param auctionId
+	 * @param auctionID
 	 * @return an ArrayList of all bids made on a specified auction.
 	 */
 	public ArrayList<Bid> getAuctionBidList(int auctionID){
@@ -58,6 +59,7 @@ public class BidList {
 		} catch (SQLException ex) {
 			ex.getMessage();
 		}
+		db.closeQuietly();
 		return bidList;
 	}
 }

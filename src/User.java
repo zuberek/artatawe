@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author 916434
+ * @author Jan Dabrowski 916434
  *
  */
 public class User {
@@ -39,6 +39,7 @@ public class User {
 		this.lastLogin = lastLogin;
 		//this.profilePicture = default pircture???????????
 		saveUser();
+
 	}
 	
 	/**
@@ -56,11 +57,11 @@ public class User {
 				this.setPhoneNo(rs.getString("phoneNo"));
 				this.setUserAddress(rs.getString("userAddress"));
 				this.setLastLogin(rs.getInt("timePlaced"));
-
 	        }
 		} catch(SQLException ex){
 			ex.getMessage();
 		}
+		db.closeQuietly();
 	}
 	
 	/**
@@ -69,17 +70,18 @@ public class User {
 	private void saveUser(){
 		// Insert user into database
 		db.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`, `lastLogin`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" + this.getLastLogin() + "'); ");
+		db.closeQuietly();
 	}
 
 	/**
 	 * Updating the edited user to the database
-	 * TODO: resolve the problem with locked database
 	 */
 	public void saveEditedUser(){
 		// Update edited user into database
 		String query = "UPDATE `users` SET `userName` = '" + this.getUserName() + "', `firstName` = '" + this.firstName + "' WHERE `userID` = " + this.getUserID();
 		//System.out.println(query);
 		db.query(query);
+		db.closeQuietly();
 	}
 
 	/**

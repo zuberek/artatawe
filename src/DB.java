@@ -25,7 +25,8 @@ public class DB {
         try {
             String connectionUrl = "jdbc:sqlite:artatawe.db";
             conn = DriverManager.getConnection(connectionUrl);        
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -85,16 +86,25 @@ public class DB {
 	 * @return ArrayList of objects from the select query
 	 */
 	public ResultSet select(String sql) {
-	     Statement stmt;
 	     ResultSet rs = null;
 		try {
-			stmt = conn.createStatement();
+			Statement stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 		} catch (SQLException ex) {
 			ex.getMessage();
-		}  
+		}
 	    return rs;
 	}
 
+	public void closeQuietly() {
+		try {
+			if (conn != null) {
+				//System.out.println("Closing the connection");
+				conn.close();
+			}
+		} catch( Exception ex ) {
+			System.out.println(( "Exception during connection.close()"));
+		}
+	}
     
 }

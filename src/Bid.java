@@ -47,11 +47,11 @@ public class Bid {
 				setAuctionID(rs.getInt("auctionID"));
 				setAmount(rs.getFloat("amount"));
 				setTimePlaced(rs.getInt("timePlaced"));
-
 	        }
 		} catch(SQLException ex){
 			ex.getMessage();
 		}
+		db.closeQuietly();
 	}
 	
 	/**
@@ -61,6 +61,7 @@ public class Bid {
 		// Insert bid into database
 		// TODO: need to make sure these inputs are sanitized to avoid sql injection
 		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + this.getBidderID() + ", " + this.getBidderID() + ", " + this.getAmount() + ", " + this.getBidderID() + "); ");
+		db.closeQuietly();
 	}
 	
 	/**
