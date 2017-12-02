@@ -49,13 +49,15 @@ public class MenuController {
      * Refresh the displayed auctions.
      */
     private void refreshLists() {
-        // Clear the displayed lists auctions auctionList
+        refreshAuctionList();
+        refreshBidList();
+    }
+
+    private void refreshBidList(){
+        // Clear the displayed lists
         bidList.getItems().clear();
-        auctionList.getItems().clear();
 
         //Get new lists from database
-        AuctionList auctionsData = new AuctionList();
-        auctions = auctionsData.getUserAuctionList(currentUser.getUserID());
         BidList list = new BidList();
         bids = list.getUserBidList(currentUser.getUserID());
 
@@ -63,6 +65,14 @@ public class MenuController {
         for (Bid b : bids) {
             bidList.getItems().add(b.getDescriptionForList());
         }
+    }
+
+    private void refreshAuctionList(){
+        auctionList.getItems().clear();
+
+        AuctionList auctionsData = new AuctionList();
+        auctions = auctionsData.getUserAuctionList(currentUser.getUserID());
+
         for (Auction a : auctions) {
             auctionList.getItems().add(a.getDescriptionForList());
         }
@@ -80,6 +90,7 @@ public class MenuController {
             alert.showAndWait();
         }else {
             Bid newBid = new Bid(currentUser.getUserID(), 1, Integer.parseInt(newBidAmountTextField.getText()), 123);
+            refreshBidList();
         }
     }
 

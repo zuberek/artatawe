@@ -1,7 +1,5 @@
 package src.DrawingTool;
 
-import src.DrawingElement;
-
 /**
  * Creates a src.Text object
  * @author Hefin Johnson
