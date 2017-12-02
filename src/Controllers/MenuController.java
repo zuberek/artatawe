@@ -20,6 +20,7 @@ public class MenuController {
 
     @FXML TextField currentUserTextField;
     @FXML ListView<String> bidList;
+    @FXML ListView<String> auctionList;
 
     @FXML TextField newBidAmountTextField;
 
@@ -27,11 +28,12 @@ public class MenuController {
 
     // The main list that will store all auctions for this user.
     private ArrayList<Bid> bids;
+    private ArrayList<Auction> auctions;
 
     public void initialize(User userToSet){
         setCurrentUser(userToSet);
         currentUserTextField.setText(currentUser.getUserName());
-        refreshCountryList();
+        refreshLists();
     }
 
     /**
@@ -46,15 +48,23 @@ public class MenuController {
     /**
      * Refresh the displayed auctions.
      */
-    private void refreshCountryList() {
-        // Clear the displayed list
+    private void refreshLists() {
+        // Clear the displayed lists auctions auctionList
         bidList.getItems().clear();
+        auctionList.getItems().clear();
 
+        //Get new lists from database
+        AuctionList auctionsData = new AuctionList();
+        auctions = auctionsData.getUserAuctionList(currentUser.getUserID());
         BidList list = new BidList();
         bids = list.getUserBidList(currentUser.getUserID());
-        // Add each country to the displayed list
+
+        // Add new elements to the displayed lists
         for (Bid b : bids) {
             bidList.getItems().add(b.getDescriptionForList());
+        }
+        for (Auction a : auctions) {
+            auctionList.getItems().add(a.getDescriptionForList());
         }
     }
 

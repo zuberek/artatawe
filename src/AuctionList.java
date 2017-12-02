@@ -20,6 +20,11 @@ public class AuctionList {
 	DB db;
 
 	/**
+	 * Initialise the connection
+	 */
+	public AuctionList(){db = new DB();}
+
+	/**
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 *
 	 * @param userId the user who created the auctions

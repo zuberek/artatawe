@@ -83,7 +83,7 @@ public class Auction {
 	 * @return A short description of the auction.
 	 */
 	public String getDescriptionForList() {
-		return auctionID + " - " + sellerID + " - " + lastBidID + " million";
+		return auctionID + " - " + lastBidID + " amount: " + new Bid(lastBidID).getAmount();
 	}
 	
 	
