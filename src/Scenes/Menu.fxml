@@ -40,7 +40,7 @@
             <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="currentUserTextField" promptText="CurrentUser" />
-                  <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="logoutButton" fitHeight="24.0" fitWidth="29.0" onMouseClicked="#handleLogoutButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Pictures/logout.png" />
                      </image>
@@ -81,7 +81,7 @@
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#editProfileButonClicked" text="Edit profile">
+            <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileButonClicked" text="Edit profile">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

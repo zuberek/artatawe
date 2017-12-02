@@ -21,6 +21,7 @@ public class MenuController {
     @FXML TextField currentUserTextField;
     @FXML ListView<String> bidList;
     @FXML ListView<String> auctionList;
+    @FXML Button editProfileButton;
 
     @FXML TextField newBidAmountTextField;
 
@@ -114,6 +115,21 @@ public class MenuController {
             e.printStackTrace();
             // Quit the program (with an error code)
             System.exit(-1);
+        }
+    }
+
+    public void handleLogoutButtonClicked(){
+        try {
+            Stage stage = (Stage)editProfileButton.getScene().getWindow();
+
+            Login login = new Login();
+            login.start(stage);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Quit the program (with an error code)
+            System.exit(-1);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
