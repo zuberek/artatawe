@@ -57,7 +57,7 @@ public class ProfileController {
         userBeingEdited.setLastName(lastNameTextField.getText());
         userBeingEdited.setPhoneNo(phoneNoTextField.getText());
         userBeingEdited.setUserAddress(addressTextField.getText());
-        //userBeingEdited.saveEditedUser();
+        userBeingEdited.saveEditedUser();
         closeWindow();
     }
 

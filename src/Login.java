@@ -16,6 +16,12 @@ import java.io.IOException;
  *
  */
 public class Login extends Application {
+
+	// Constants for the main window
+	public static final int MAIN_WINDOW_WIDTH = 600;
+	public static final int MAIN_WINDOW_HEIGHT = 400;
+	private static final String WINDOW_TITLE = "Artatawe | Login";
+
 	/**
 	 * @param args
 	 */
@@ -31,9 +37,9 @@ public class Login extends Application {
 		try {
 		Parent root = FXMLLoader.load(getClass().getResource("Scenes/Login.fxml"));
 
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root,MAIN_WINDOW_WIDTH,MAIN_WINDOW_HEIGHT);
 
-		stage.setTitle("Artatawe | Login");
+		stage.setTitle(WINDOW_TITLE);
 		stage.setScene(scene);
 		stage.show();
 

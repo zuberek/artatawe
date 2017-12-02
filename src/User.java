@@ -73,16 +73,13 @@ public class User {
 
 	/**
 	 * Updating the edited user to the database
+	 * TODO: resolve the problem with locked database
 	 */
 	public void saveEditedUser(){
 		// Update edited user into database
 		String query = "UPDATE `users` SET `userName` = '" + this.getUserName() + "', `firstName` = '" + this.firstName + "' WHERE `userID` = " + this.getUserID();
-		System.out.println(query);
+		//System.out.println(query);
 		db.query(query);
-	}
-
-	public User(){
-		System.out.println("test");
 	}
 
 	/**

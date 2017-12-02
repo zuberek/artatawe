@@ -1,5 +1,10 @@
 package src.Controllers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import src.Login;
 import src.User;
 
 import javafx.fxml.FXML;
@@ -33,8 +38,28 @@ public class LoginController {
 			alert.setContentText("Please fill in the username field.");
 			alert.showAndWait();
 		} else {
-			User user = new User(loginUserName.getText());
-			System.out.println("Hello " + user.getFirstName());
+			try {
+				User currentUser = new User(loginUserName.getText());
+
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Profile.fxml"));
+				BorderPane editRoot = (BorderPane) fxmlLoader.load();
+
+				ProfileController profileController = fxmlLoader.getController();
+				profileController.setUserForEditing(currentUser);
+
+				Scene newScene = new Scene(editRoot, Login.MAIN_WINDOW_WIDTH, Login.MAIN_WINDOW_HEIGHT);
+				Stage editStagee = new Stage();
+				editStagee.setScene(newScene);
+				editStagee.setTitle("Artatawe | Edit User");
+
+				editStagee.initModality(Modality.APPLICATION_MODAL);
+
+				editStagee.showAndWait();
+			} catch (IOException e) {
+					e.printStackTrace();
+					// Quit the program (with an error code)
+					System.exit(-1);
+				}
 		}
 		
 	}
