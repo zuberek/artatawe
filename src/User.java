@@ -42,7 +42,7 @@ public class User {
 	}
 	
 	/**
-	 * @param userID
+	 * @param userName
 	 */
 	public User(String userName){
 		db = new DB();
@@ -64,11 +64,21 @@ public class User {
 	}
 	
 	/**
-	 * @param bid
+	 * Saving the new user to the database
 	 */
 	private void saveUser(){
-		// Insert bid into database
+		// Insert user into database
 		db.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`, `lastLogin`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" + this.getLastLogin() + "'); ");
+	}
+
+	/**
+	 * Updating the edited user to the database
+	 */
+	public void saveEditedUser(){
+		// Update edited user into database
+		String query = "UPDATE `users` SET `userName` = '" + this.getUserName() + "', `firstName` = '" + this.firstName + "' WHERE `userID` = " + this.getUserID();
+		System.out.println(query);
+		db.query(query);
 	}
 
 	public User(){
@@ -155,7 +165,7 @@ public class User {
 	/**
 	 * @param userID the userID to set
 	 */
-	public void setUserID(int userID) {
+	private void setUserID(int userID) {
 		this.userID = userID;
 	}
 
@@ -204,7 +214,7 @@ public class User {
 	@Override
 	public String toString(){
 		String result = "";
-		result += "src.User name: " + this.getFirstName() + " " + this.getLastName();
+		result += "User name: " + this.getFirstName() + " " + this.getLastName();
 		return result;
 	}
 }
