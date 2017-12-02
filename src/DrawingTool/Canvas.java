@@ -1,4 +1,4 @@
-package src;
+package src.DrawingTool;
 
 public class Canvas {
 
