@@ -60,7 +60,7 @@ public class Bid {
 	private void saveBid(){
 		// Insert bid into database
 		// TODO: need to make sure these inputs are sanitized to avoid sql injection
-		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + this.getBidderID() + ", " + this.getBidderID() + ", " + this.getAmount() + ", " + this.getBidderID() + "); ");
+		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", " + this.getAmount() + ", " + this.getTimePlaced() + "); ");
 		db.closeQuietly();
 	}
 	
@@ -145,11 +145,11 @@ public class Bid {
 	}
 
 	/**
-	 * Get a short description of the auction that is suitable for use in a ListView.
-	 * @return A short description of the auction.
+	 * Get a short description of the bid that is suitable for use in a ListView.
+	 * @return A short description of the bid.
 	 */
 	public String getDescriptionForList() {
-		return bidderID + " - " + auctionID + " - amount: " + amount;
+		return "BidderID " + bidderID + " - AuctionID " + auctionID + " - amount: " + amount;
 	}
 	
 }

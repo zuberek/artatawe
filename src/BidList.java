@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public class BidList {
 
-	private ArrayList<Bid> bidList;
-	private DB db;
+	ArrayList<Bid> bidList;
+	DB db;
 	
 	/**
 	 * This constructor just intializes the database object.
@@ -24,41 +24,58 @@ public class BidList {
 	/**
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
-	 * @param userId the unique userID being used to search for specific bids made by the corresponding user
+	 * @param userId
 	 * @return an ArrayList of all bids specified user has made
 	 */
 	public ArrayList<Bid> getUserBidList(int userId) {
-		bidList = new ArrayList<>();
-		try {
-			ResultSet rs = db.select("SELECT * from `bids` WHERE `bidderID` = '" + userId + "'");
-			while (rs.next()) {
-				Bid bid = new Bid(rs.getInt("bidID"));
-				bidList.add(bid);
-	        }
-		} catch (SQLException ex) {
-			ex.getMessage();
-		}
-		db.closeQuietly();
+		bidList = new ArrayList<Bid>();
+
+		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'";
+		populateArray(query, bidList);
 		return bidList;
 	}
 	
 	/**
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
-	 * @param auctionID the unique id of the auction, used to search through the corresponding auction for certain bids
-	 * @return an ArrayList of all bids made on a specified auction.
+	 * @param auctionID
+	 * @return an ArrayList of all highest bids made on a specified auction.
 	 */
 	public ArrayList<Bid> getAuctionBidList(int auctionID){
-		bidList = new ArrayList<>();
+		bidList = new ArrayList<Bid>();
+
+		String query = "SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'  ORDER BY (`amount`) DESC";
+		populateArray(query, bidList);
+
+		return bidList;
+	}
+
+	/**
+	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
+	 *
+	 * @param userId
+	 * @return an ArrayList of all bids specified user has made
+	 */
+	public ArrayList<Bid> getUserHighestBids(int userId) {
+		bidList = new ArrayList<Bid>();
+
+		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'" +
+				"GROUP BY `bidderID` HAVING MAX(`amount`) ORDER BY (`amount`)";
+		populateArray(query, bidList);
+
+		return bidList;
+	}
+
+	private ArrayList<Bid> populateArray(String query, ArrayList<Bid> bidList) {
 		try {
-			ResultSet rs = db.select("SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'");
+			ResultSet rs = db.select(query);
 			while (rs.next()) {
-				Bid bid = new Bid(rs.getInt("bidID"));
-				bidList.add(bid);
-	        }
+					Bid bid = new Bid(rs.getInt("bidID"));
+					bidList.add(bid);
+			}
 		} catch (SQLException ex) {
-			ex.getMessage();
-		}
+				ex.getMessage();
+			}
 		db.closeQuietly();
 		return bidList;
 	}

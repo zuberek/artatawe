@@ -74,7 +74,7 @@ public class Auction {
 	private void saveAuction(){
 		// Insert user into database
 		String query = "INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ";
-		System.out.println(query);
+		//System.out.println(query);
 		db.query(query);
 	}
 
