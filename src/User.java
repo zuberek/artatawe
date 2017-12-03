@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Jan Dabrowski 916434
+ * @author Jan Dabrowski 916434 and Bryn Waterhouse 871706
  *
  */
 public class User {
@@ -22,12 +22,12 @@ public class User {
 	private ArrayList<User>  favouriteUser;
 	
 	/**
-	 * @param userName
-	 * @param firstName
-	 * @param lastName
-	 * @param phoneNo
-	 * @param userAddress
-	 * @param lastLogin
+	 * @param userName the user's username, used to login
+	 * @param firstName the user's legal forename
+	 * @param lastName the user's legal surname
+	 * @param phoneNo the user's phone number
+	 * @param userAddress the user's full address
+	 * @param lastLogin the user's last login time, used to create a dashboard "since last login" summary
 	 */
 	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, int lastLogin) {
 		db = new DB();
@@ -37,13 +37,13 @@ public class User {
 		this.phoneNo = phoneNo;
 		this.userAddress = userAddress;
 		this.lastLogin = lastLogin;
-		//this.profilePicture = default pircture???????????
+		//this.profilePicture = default picture???????????
 		saveUser();
 
 	}
 	
 	/**
-	 * @param userName
+	 * @param userName username used by SQL to edit a user in the database, along with all of its extra user details
 	 */
 	public User(String userName){
 		db = new DB();

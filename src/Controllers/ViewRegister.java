@@ -17,9 +17,6 @@ import java.io.IOException;
 
 public class ViewRegister extends Application {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         launch(args);
     }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  */
 public class AuctionList {
-	//private Artwork artwork = new Artwork;
+	private Artwork artwork;
 	private int maxBids;
 	private double reservePrice;
 	private int auctionID;
@@ -31,7 +31,7 @@ public class AuctionList {
 	 * @return an ArrayList of all auctions specified user has created
 	 */
 	public ArrayList<Auction> getUserAuctionList(int userId) {
-		auctionList = new ArrayList<Auction>();
+		auctionList = new ArrayList<>();
 		try {
 			ResultSet rs = db.select("SELECT * from `auctions` WHERE `sellerID` = '" + userId + "'");
 			while (rs.next()) {

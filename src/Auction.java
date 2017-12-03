@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class Auction {
 	private DB db;
-	//private Artwork artwork = new Artwork;
+	private Artwork artwork;
 	private int auctionID;
 	private int sellerID;
 	private int maxBids;
@@ -85,74 +85,77 @@ public class Auction {
 	public String getDescriptionForList() {
 		return auctionID + " - " + lastBidID + " amount: " + new Bid(lastBidID).getAmount();
 	}
-	
-	
-	/**
-	 * @return the auctionID
-	 */
-	public int getAuctionID() {
-		return auctionID;
-	}
+
 	/**
 	 * @param auctionID the auctionID to set
 	 */
 	public void setAuctionID(int auctionID) {
 		this.auctionID = auctionID;
 	}
+
 	/**
 	 * @return the sellerID
 	 */
 	public int getSellerID() {
 		return sellerID;
 	}
+
 	/**
 	 * @param sellerID the sellerID to set
 	 */
 	public void setSellerID(int sellerID) {
 		this.sellerID = sellerID;
 	}
+
 	/**
 	 * @return the maxBids
 	 */
 	public int getMaxBids() {
 		return maxBids;
 	}
+
 	/**
 	 * @param maxBids the maxBids to set
 	 */
 	public void setMaxBids(int maxBids) {
 		this.maxBids = maxBids;
 	}
+
 	/**
 	 * @return the reservePrice
 	 */
 	public double getReservePrice() {
 		return reservePrice;
 	}
+
 	/**
 	 * @param reservePrice the reservePrice to set
 	 */
 	public void setReservePrice(double reservePrice) {
 		this.reservePrice = reservePrice;
 	}
+
 	/**
 	 * @return the timeAdded
 	 */
 	public int getTimeAdded() {
 		return timeAdded;
 	}
+
 	/**
 	 * @param timeAdded the timeAdded to set
 	 */
 	public void setTimeAdded(int timeAdded) {
 		this.timeAdded = timeAdded;
 	}
+
 	/**
 	 * @return the lastBidID
 	 */
 	public int getLastBidID() {
 		return lastBidID;
 	}
+
 	/**
 	 * @param lastBidID the lastBidID to set
 	 */
