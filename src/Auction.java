@@ -81,6 +81,14 @@ public class Auction {
 		db.closeQuietly();
 	}
 
+	private void saveAuctionAfterBidding(){
+		// Insert user into database
+		String query = "UPDATE `auctions` SET `lastBidID` = '" + this.getLastBidID() + "' WHERE `auctionID` = " + this.getAuctionID();
+		//System.out.println(query);
+		db.query(query);
+		db.closeQuietly();
+	}
+
 	public float getAuctionLastBidAmount(){
 		Bid lastAuctionBid = new Bid(this.getLastBidID());
 		float lastAuctionBidAmount = lastAuctionBid.getAmount();
@@ -92,7 +100,7 @@ public class Auction {
 	 * @return A short description of the auction.
 	 */
 	public String getDescriptionForList() {
-		return auctionID + " - " + lastBidID + " amount: " + new Bid(lastBidID).getAmount();
+		return auctionID + " lastBid: " + lastBidID + " - " + new Bid(lastBidID).getAmount();
 	}
 	
 	
@@ -163,10 +171,12 @@ public class Auction {
 		return lastBidID;
 	}
 	/**
+	 * Sets a new ID for the last bid saves it to the database
 	 * @param lastBidID the lastBidID to set
 	 */
 	public void setLastBidID(int lastBidID) {
 		this.lastBidID = lastBidID;
+		saveAuctionAfterBidding();
 	}	
 
 }
