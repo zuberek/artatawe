@@ -1,7 +1,6 @@
 package src;
 
 import java.sql.*;
-import java.util.Date;
 
 /**
  * This class handles connecting to the database and retrieving data.
@@ -49,10 +48,11 @@ public class DB {
 				"CREATE TABLE IF NOT EXISTS `users` (\r\n" +
 					" `userID` INTEGER PRIMARY KEY,\r\n" + 
 					" `userName` text NOT NULL,\r\n" + 
-					" `firstName` text NOT NULL,\r\n" + 
-					" `lastName` text NOT NULL,\r\n" + 
-					" `phoneNo` int(11) NOT NULL,\r\n" + 
-					" `userAddress` text NOT NULL,\r\n" + 
+					" `firstName` text,\r\n" +
+					" `lastName` text,\r\n" +
+					" `phoneNo` int(11),\r\n" +
+					" `userAddress` text,\r\n" +
+					" `avatarPath` text,\r\n" +
 					" `lastLogin` int(11) NOT NULL\r\n" + 
 					");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `bids` (\r\n" +

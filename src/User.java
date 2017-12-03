@@ -18,9 +18,15 @@ public class User {
 	private String userAddress;
 	private int userID;
 	private int lastLogin;
+	private String avatarPath;
 	private Avatar profilePicture;
 	private ArrayList<User>  favouriteUser;
-	
+
+	//Default constructor to initialise the object
+	public User() {
+
+	}
+
 	/**
 	 * @param userName
 	 * @param firstName
@@ -29,7 +35,7 @@ public class User {
 	 * @param userAddress
 	 * @param lastLogin
 	 */
-	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, int lastLogin) {
+	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, String avatarPath, int lastLogin) {
 		db = new DB();
 		this.userName = userName;
 		this.firstName = firstName;
@@ -37,9 +43,8 @@ public class User {
 		this.phoneNo = phoneNo;
 		this.userAddress = userAddress;
 		this.lastLogin = lastLogin;
-		//this.profilePicture = default pircture???????????
+		this.avatarPath = avatarPath;
 		saveUser();
-
 	}
 	
 	/**
@@ -56,6 +61,7 @@ public class User {
 				this.setLastName(rs.getString("lastName"));
 				this.setPhoneNo(rs.getString("phoneNo"));
 				this.setUserAddress(rs.getString("userAddress"));
+				this.setDefaultAvatar(rs.getString("avatarPath"));
 				this.setLastLogin(rs.getInt("timePlaced"));
 	        }
 		} catch(SQLException ex){
@@ -69,7 +75,7 @@ public class User {
 	 */
 	private void saveUser(){
 		// Insert user into database
-		db.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`, `lastLogin`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" + this.getLastLogin() + "'); ");
+		db.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`,`avatarPath`, `lastLogin`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" +this.getDefaultAvatar() + "', '" + this.getLastLogin() + "'); ");
 		db.closeQuietly();
 	}
 
@@ -78,7 +84,7 @@ public class User {
 	 */
 	public void saveEditedUser(){
 		// Update edited user into database
-		String query = "UPDATE `users` SET `userName` = '" + this.getUserName() + "', `firstName` = '" + this.firstName + "' WHERE `userID` = " + this.getUserID();
+		String query = "UPDATE `users` SET `userName` = '" + this.getUserName() + "', `firstName` = '" + this.firstName + "', `lastName` = '" + this.lastName + "', `phoneNo` = '" + this.phoneNo + "', `userAddress` = '" + this.userAddress + "', `avatarPath` = '" + this.avatarPath + "' WHERE `userID` = " + this.getUserID();
 		//System.out.println(query);
 		db.query(query);
 		db.closeQuietly();
@@ -208,6 +214,14 @@ public class User {
 	 */
 	public void setLastLogin(int lastLogin) {
 		this.lastLogin = lastLogin;
+	}
+
+	public String getDefaultAvatar() {
+		return avatarPath;
+	}
+
+	public void setDefaultAvatar(String defaultAvatar) {
+		this.avatarPath = defaultAvatar;
 	}
 	
 	@Override
