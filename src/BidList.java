@@ -39,14 +39,14 @@ public class BidList {
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
 	 * @param auctionID
-	 * @return an ArrayList of all bids made on a specified auction.
+	 * @return an ArrayList of all highest bids made on a specified auction.
 	 */
 	public ArrayList<Bid> getAuctionBidList(int auctionID){
 		bidList = new ArrayList<Bid>();
 
-		String query = "SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'";
+		String query = "SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'  ORDER BY (`amount`) DESC";
 		populateArray(query, bidList);
-		
+
 		return bidList;
 	}
 

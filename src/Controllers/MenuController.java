@@ -3,10 +3,7 @@ package src.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,6 +11,7 @@ import src.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class MenuController {
@@ -22,6 +20,8 @@ public class MenuController {
     @FXML ListView<String> bidList;
     @FXML ListView<String> auctionList;
     @FXML Button editProfileButton;
+    @FXML Label bidListLabel;
+    @FXML TextField addAuctionTextField;
 
     @FXML TextField newBidAmountTextField;
 
@@ -68,21 +68,45 @@ public class MenuController {
         }
     }
 
+    private void refreshBidListAfterAuctionSelection(int selectedAuction){
+        // Clear the displayed lists
+        bidList.getItems().clear();
+
+        //Get new lists from database
+        BidList list = new BidList();
+        bids = list.getAuctionBidList(selectedAuction);
+
+        // Add new elements to the displayed lists
+        for (Bid b : bids) {
+            bidList.getItems().add(b.getDescriptionForList());
+        }
+    }
+
     private void refreshAuctionList(){
         auctionList.getItems().clear();
 
         AuctionList auctionsData = new AuctionList();
-        auctions = auctionsData.getUserAuctionList(currentUser.getUserID());
+        auctions = auctionsData.getUserBuyingAuctionList(currentUser.getUserID());
 
         for (Auction a : auctions) {
             auctionList.getItems().add(a.getDescriptionForList());
         }
     }
 
+    public void viewAuctionButtonClicked(){
+        String selectedRow = auctionList.getSelectionModel().getSelectedItems().toString();
+        int selectedAuction = Integer.parseInt(selectedRow.substring(1,2));
+
+        refreshBidListAfterAuctionSelection(selectedAuction);
+        //Change the label above the list
+        bidListLabel.setText("All bids in this auction, No: " + selectedAuction);
+    }
+
     /**
      * TODO: Places all the bids to the auction with ID = 1, implement some choosing in GUI, database locked problem
      */
     public void handleBidButtonAction(){
+        int selectedAuction = auctionList.getSelectionModel().getSelectedIndex()+1;
         int amount = Integer.parseInt(newBidAmountTextField.getText());
         if(amount <= 0 ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -90,8 +114,21 @@ public class MenuController {
             alert.setContentText("Please place a valid bid");
             alert.showAndWait();
         }else {
-            Bid newBid = new Bid(currentUser.getUserID(), 1, Integer.parseInt(newBidAmountTextField.getText()), 123);
+            Bid newBid = new Bid(currentUser.getUserID(), selectedAuction, Integer.parseInt(newBidAmountTextField.getText()), 123);
             refreshBidList();
+        }
+    }
+
+    public void addAuctionButtonClicked(){
+        int auctionID = Integer.parseInt(addAuctionTextField.getText());
+        if(auctionID <= 0 ) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setContentText("Please place a valid auction");
+            alert.showAndWait();
+        }else {
+            Bid newBid = new Bid(currentUser.getUserID(), auctionID, 20, 123);
+            refreshLists();
         }
     }
 
