@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.defautAvatarController">
    <top>
       <Label id="welcome-text" text="Pick Avatar" BorderPane.alignment="CENTER" />
@@ -19,33 +18,33 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImageClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImage1Clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Pictures/userDefault.png" />
+                        <Image url="@../Pictures/avatar1.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImageClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImage2Clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Pictures/skyrimAvatar.png" />
+                        <Image url="@../Pictures/avatar2.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImageClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImage3Clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Pictures/avatarStupid.png" />
+                        <Image url="@../Pictures/avatar3.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImageClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImage4Clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Pictures/avatar.png" />
+                        <Image url="@../Pictures/avatar4.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImageClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#profileImage5Clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Pictures/businessman-310819_1280.png" />
+                        <Image url="@../Pictures/avatar5.png" />
                      </image>
                   </ImageView>
                </children>

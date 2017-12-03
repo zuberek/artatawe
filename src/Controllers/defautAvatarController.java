@@ -7,9 +7,35 @@ import javafx.stage.Stage;
 public class defautAvatarController {
 
     @FXML Pane rootPane;
+    RegisterController controller;
 
-    public void profileImageClicked(){
+    public void initialize(RegisterController controller){
+        this.controller = controller;
+    }
 
+    public void profileImage1Clicked(){
+        finishPicking("../Pictures/avatar1.png");
+    }
+
+    public void profileImage2Clicked(){
+        finishPicking("../Pictures/avatar2.png");
+    }
+
+    public void profileImage3Clicked(){
+        finishPicking("../Pictures/avatar3.png");
+    }
+
+    public void profileImage4Clicked(){
+        finishPicking("../Pictures/avatar4.png");
+    }
+
+    public void profileImage5Clicked(){
+        finishPicking("../Pictures/avatar5.png");
+    }
+
+    private void finishPicking(String imagePath){
+        controller.setCurrentProfileImagePath(imagePath);
+        closeWindow();
     }
 
     public void cancelButtonClicked(){

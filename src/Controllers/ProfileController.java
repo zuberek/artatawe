@@ -1,5 +1,7 @@
 package src.Controllers;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import src.User;
 
 import javafx.fxml.FXML;
@@ -7,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.InputStream;
 
 /**
  * This class is the controller for the Profile edition screen
@@ -23,6 +27,7 @@ public class ProfileController {
     @FXML TextField phoneNoTextField;
     @FXML TextField addressTextField;
     @FXML Pane rootPane;
+    @FXML ImageView profileImage;
 
     // The user being edited.
     User userBeingEdited;
@@ -42,6 +47,10 @@ public class ProfileController {
         lastNameTextField.setText(userBeingEdited.getLastName());
         phoneNoTextField.setText(userBeingEdited.getPhoneNo());
         addressTextField.setText(userBeingEdited.getUserAddress());
+
+        InputStream stream = getClass().getResourceAsStream(userBeingEdited.getDefaultAvatar());
+        Image newImage = new Image(stream);
+        profileImage.setImage(newImage);
     }
 
     /**
@@ -65,6 +74,10 @@ public class ProfileController {
         userBeingEdited.setUserAddress(addressTextField.getText());
         userBeingEdited.saveEditedUser();
         closeWindow();
+    }
+
+    public void editProfileImageButtonClicked(){
+
     }
 
     /**

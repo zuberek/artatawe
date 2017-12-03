@@ -35,12 +35,12 @@ public class RegisterController {
 
     @FXML Pane rootPane;
 
-    private String profileImagePath = "../Pictures/userDefault.png";
+    public String profileImagePath = "../Pictures/avatar1.png";
 
     //User to be added to the database
     User userToCreate;
 
-    public void setCurrentProfileImage(String filePath){
+    public void setCurrentProfileImagePath(String filePath){
         this.profileImagePath = filePath;
     }
 
@@ -93,6 +93,8 @@ public class RegisterController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/DefaultAvatar.fxml"));
             BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
+            defautAvatarController controller = fxmlLoader.getController();
+            controller.initialize(this);
 
             Scene newScene = new Scene(editRoot);
             Stage editStagee = new Stage();
@@ -102,6 +104,8 @@ public class RegisterController {
             editStagee.initModality(Modality.APPLICATION_MODAL);
 
             editStagee.showAndWait();
+            System.out.println(profileImagePath);
+            initialize();
         } catch (IOException e) {
             e.printStackTrace();
             // Quit the program (with an error code)
