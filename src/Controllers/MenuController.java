@@ -111,7 +111,7 @@ public class MenuController {
 
         float amount = Float.valueOf(newBidAmountTextField.getText());
 
-        if(amount <= 0 ) {
+        if(amount <= selected.getReservePrice() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("Please place a valid bid");
@@ -121,7 +121,8 @@ public class MenuController {
             alert.setTitle("Error");
             alert.setContentText("You need place a higher bid!");
             alert.showAndWait();
-        }else {
+        }
+        else {
             Bid newBid = new Bid(currentUser.getUserID(), selected.getAuctionID(), amount);
             selected.setLastBidID(newBid.getBidID());
             refreshBidListAfterAuctionSelection(selected.getAuctionID());
