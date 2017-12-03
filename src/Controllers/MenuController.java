@@ -11,7 +11,6 @@ import src.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class MenuController {
@@ -103,31 +102,46 @@ public class MenuController {
     }
 
     /**
-     * TODO: Places all the bids to the auction with ID = 1, implement some choosing in GUI, database locked problem
+     * Handles the place auction action, using the selected auction and input as an amount
      */
     public void handleBidButtonAction(){
-        int selectedAuction = auctionList.getSelectionModel().getSelectedIndex()+1;
-        int amount = Integer.parseInt(newBidAmountTextField.getText());
+        //TODO: make it more efficient, store amount of the last bid in auction table?
+        Auction selected = getSelectedAuctionFromList(auctionList);
+        float lastAuctionBidAmount = selected.getAuctionLastBidAmount();
+
+        float amount = Float.valueOf(newBidAmountTextField.getText());
+
         if(amount <= 0 ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("Please place a valid bid");
             alert.showAndWait();
+        } else if(amount <= lastAuctionBidAmount ) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setContentText("You need place a higher bid!");
+            alert.showAndWait();
         }else {
-            Bid newBid = new Bid(currentUser.getUserID(), selectedAuction, Integer.parseInt(newBidAmountTextField.getText()), 123);
-            refreshBidList();
+            Bid newBid = new Bid(currentUser.getUserID(), selected.getAuctionID(), amount);
+            selected.setLastBidID(newBid.getBidID());
+            refreshBidListAfterAuctionSelection(selected.getAuctionID());
+
         }
     }
 
     public void addAuctionButtonClicked(){
-        int auctionID = Integer.parseInt(addAuctionTextField.getText());
+        Auction auction = new Auction(Integer.parseInt(addAuctionTextField.getText()));
+        int auctionID = auction.getAuctionID();
+
+        float amountToBid = auction.getAuctionLastBidAmount() + CONSTANTS.BID_INCREASE ;
         if(auctionID <= 0 ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("Please place a valid auction");
             alert.showAndWait();
         }else {
-            Bid newBid = new Bid(currentUser.getUserID(), auctionID, 20, 123);
+            Bid newBid = new Bid(currentUser.getUserID(), auctionID, amountToBid);
+            auction.setLastBidID(newBid.getBidID());
             refreshLists();
         }
     }
@@ -168,5 +182,12 @@ public class MenuController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private Auction getSelectedAuctionFromList(ListView<String> auctionList){
+        String selectedRow = auctionList.getSelectionModel().getSelectedItems().toString();
+        int selectedAuction = Integer.parseInt(selectedRow.substring(1,2));
+        Auction selected = new Auction(selectedAuction);
+        return selected;
     }
 }

@@ -49,6 +49,7 @@ public class Auction {
 		} catch(SQLException ex) {
 			ex.getMessage();
 		}
+		db.closeQuietly();
 	}
 
 	/**
@@ -69,6 +70,7 @@ public class Auction {
 		} catch(SQLException ex) {
 			ex.getMessage();
 		}
+		db.closeQuietly();
 	}
 	
 	private void saveAuction(){
@@ -76,6 +78,13 @@ public class Auction {
 		String query = "INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ";
 		//System.out.println(query);
 		db.query(query);
+		db.closeQuietly();
+	}
+
+	public float getAuctionLastBidAmount(){
+		Bid lastAuctionBid = new Bid(this.getLastBidID());
+		float lastAuctionBidAmount = lastAuctionBid.getAmount();
+		return lastAuctionBidAmount;
 	}
 
 	/**

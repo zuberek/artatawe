@@ -20,7 +20,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin></Label>
             <ListView fx:id="auctionList" prefHeight="200.0" prefWidth="117.0" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewAuctionButtonClicked" text="View Auction">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewAuctionButtonClicked" text="View Auction">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

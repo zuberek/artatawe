@@ -36,7 +36,7 @@ public class RegisterController {
             alert.showAndWait();
         } else {
             User user = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText(),123123);
-            System.out.println(user.getFirstName());
+            //System.out.println(user.getFirstName());
         }
 
         closeWindow();
