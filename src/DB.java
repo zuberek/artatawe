@@ -1,6 +1,7 @@
 package src;
 
 import java.sql.*;
+import java.util.Date;
 
 /**
  * This class handles connecting to the database and retrieving data.
@@ -59,7 +60,7 @@ public class DB {
 				" `bidderID` int(11) NOT NULL,\r\n" +
 				" `auctionID` int(11) NOT NULL,\r\n" +
 				" `amount` double NOT NULL,\r\n" +
-				" `timePlaced` float NOT NULL\r\n" +
+				" `timePlaced` DATETIME DEFAULT CURRENT_TIMESTAMP\r\n" +
 				");";
 		//for debugging
 		//System.out.println(sql);
@@ -106,5 +107,4 @@ public class DB {
 			System.out.println(( "Exception during connection.close()"));
 		}
 	}
-    
 }

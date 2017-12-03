@@ -25,12 +25,12 @@ public class BidList {
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
 	 * @param userId
-	 * @return an ArrayList of all bids specified user has made
+	 * @return an ArrayList of all bids specified user has made, ordered by timePlaced.
 	 */
 	public ArrayList<Bid> getUserBidList(int userId) {
 		bidList = new ArrayList<Bid>();
 
-		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'";
+		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'  ORDER BY (`timePlaced`) DESC";
 		populateArray(query, bidList);
 		return bidList;
 	}
@@ -39,12 +39,12 @@ public class BidList {
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
 	 * @param auctionID
-	 * @return an ArrayList of all highest bids made on a specified auction.
+	 * @return an ArrayList of all highest bids made on a specified auction, ordered by timePlaced.
 	 */
 	public ArrayList<Bid> getAuctionBidList(int auctionID){
 		bidList = new ArrayList<Bid>();
 
-		String query = "SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'  ORDER BY (`amount`) DESC";
+		String query = "SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'  ORDER BY (`timePlaced`) DESC";
 		populateArray(query, bidList);
 
 		return bidList;

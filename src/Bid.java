@@ -3,6 +3,8 @@ package src;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.Date;
+
 /**
  * This class stores/handles bids.
  * @author Joshua Blackman
@@ -15,21 +17,19 @@ public class Bid {
 	private int bidderID;
 	private int auctionID;
 	private float amount;
-	private long timePlaced;
+	private Date timePlaced;
 	
 	/**
 	 * This constructor is used for when you want to create a new bid
 	 * @param bidderID the userID of who made this bid.
 	 * @param auctionID  the auctionID of the auction this bid was made on.
 	 * @param amount the amount that was placed on the bid
-	 * @param timePlaced a unix timestamp of when this bid was placed.
 	 */
-	public Bid(int bidderID, int auctionID, float amount, long timePlaced){
+	public Bid(int bidderID, int auctionID, float amount){
 		db = new DB();
 		setBidderID(bidderID);
 		setAuctionID(auctionID);
 		setAmount(amount);
-		setTimePlaced(timePlaced);
 		saveBid();
 	}
 	
@@ -46,7 +46,7 @@ public class Bid {
 				setBidderID(rs.getInt("bidderID"));
 				setAuctionID(rs.getInt("auctionID"));
 				setAmount(rs.getFloat("amount"));
-				setTimePlaced(rs.getInt("timePlaced"));
+				setTimePlaced((Date)rs.getTimestamp("timePlaced"));
 	        }
 		} catch(SQLException ex){
 			ex.getMessage();
@@ -60,7 +60,7 @@ public class Bid {
 	private void saveBid(){
 		// Insert bid into database
 		// TODO: need to make sure these inputs are sanitized to avoid sql injection
-		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", " + this.getAmount() + ", " + this.getTimePlaced() + "); ");
+		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", "  + this.getAmount() + "); ");
 		db.closeQuietly();
 	}
 	
@@ -116,7 +116,7 @@ public class Bid {
 	 * Returns the time placed
 	 * @return  the unix timestamp of when the bid was made
 	 */
-	public long getTimePlaced() {
+	public Date getTimePlaced() {
 		return timePlaced;
 	}
 	
@@ -124,7 +124,7 @@ public class Bid {
 	 * Sets the unix timestamp of when the bid was placed
 	 * @param timePlaced 
 	 */
-	public void setTimePlaced(long timePlaced) {
+	public void setTimePlaced(Date timePlaced) {
 		this.timePlaced = timePlaced;
 	}
 	
