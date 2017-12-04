@@ -47,7 +47,7 @@ public class DB {
 						");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `users` (\r\n" +
 					" `userID` INTEGER PRIMARY KEY,\r\n" + 
-					" `userName` text NOT NULL,\r\n" + 
+					" `userName` text UNIQUE NOT NULL,\r\n" + 
 					" `firstName` text,\r\n" +
 					" `lastName` text,\r\n" +
 					" `phoneNo` int(11),\r\n" +
