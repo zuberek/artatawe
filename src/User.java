@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 /**
  * @author Jan Dabrowski 916434
+ * @author Joshua Blackman
  *
  */
 public class User {
@@ -234,20 +235,32 @@ public class User {
 		this.lastLogin = lastLogin;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getDefaultAvatar() {
 		return avatarPath;
 	}
 
+	/**
+	 * @param defaultAvatar
+	 */
 	public void setDefaultAvatar(String defaultAvatar) {
 		this.avatarPath = defaultAvatar;
 	}
 	
 	
 	
+	/**
+	 * @return
+	 */
 	public String getAvatarPath() {
 		return avatarPath;
 	}
 
+	/**
+	 * @param avatarPath
+	 */
 	public void setAvatarPath(String avatarPath) {
 		this.avatarPath = avatarPath;
 	}
