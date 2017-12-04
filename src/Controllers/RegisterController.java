@@ -73,10 +73,11 @@ public class RegisterController {
             alert.showAndWait();
     	} else {
             User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText(), profileImagePath,123123);
+            closeWindow();
             //System.out.println(user.getFirstName());
         }
 
-        closeWindow();
+        
     }
 
     public void backLoginButtonClicked(){
