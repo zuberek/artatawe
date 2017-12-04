@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author Borislav Koynin and Jan Dabrowski
+ * @author Borislav Koynin 
+ * @author Jan Dabrowski
  *
  */
 public class Auction {
@@ -20,11 +21,10 @@ public class Auction {
 	 * This constructor is used for when you want to create a new bid
 	 */
 	public Auction(int sellerID, int maxBids,
-			double reservePrice, int timeAdded, int lastBidID){
+			double reservePrice, int lastBidID){
 		setSellerID(sellerID);
 		setMaxBids(maxBids);
 		setReservePrice(reservePrice);
-		setTimeAdded(timeAdded);
 		setLastBidID(lastBidID);
 		saveAuction();
 	}
@@ -51,7 +51,7 @@ public class Auction {
 	
 	private void saveAuction(){
 		// Insert user into database
-		DB.query("INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ");
+		DB.query("INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() +  "); ");
 	}
 
 	private void saveAuctionAfterBidding(){
