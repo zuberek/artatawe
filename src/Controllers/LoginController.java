@@ -40,18 +40,26 @@ public class LoginController {
 			alert.showAndWait();
 		} else {
 			try {
-				User currentUser = new User(loginUserName.getText());
-
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Menu.fxml"));
-				BorderPane editRoot = (BorderPane) fxmlLoader.load();
-
-				MenuController menuController = fxmlLoader.getController();
-				menuController.initialize(currentUser);
-
-				Scene newScene = new Scene(editRoot);
-				Stage stage = (Stage) loginButton.getScene().getWindow();
-
-				stage.setScene(newScene);
+				User user = new User();
+				if(user.userExists(loginUserName.getText())) {
+					User currentUser = new User(loginUserName.getText());
+	
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Menu.fxml"));
+					BorderPane editRoot = (BorderPane) fxmlLoader.load();
+	
+					MenuController menuController = fxmlLoader.getController();
+					menuController.initialize(currentUser);
+	
+					Scene newScene = new Scene(editRoot);
+					Stage stage = (Stage) loginButton.getScene().getWindow();
+	
+					stage.setScene(newScene);
+				} else {
+					Alert alert = new Alert(Alert.AlertType.WARNING);
+		            alert.setTitle("Error");
+		            alert.setContentText("That user does not exist.");
+		            alert.showAndWait();
+				}
 			} catch (IOException e) {
 					e.printStackTrace();
 					// Quit the program (with an error code)
