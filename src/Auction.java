@@ -52,32 +52,11 @@ public class Auction {
 		db.closeQuietly();
 	}
 
-	/**
-	 * This constructor is used when you want to generate new object from raw data from database.
-	 * @param rs raw data from database about a specific auction
-	 */
-	public Auction(ResultSet rs) {
-		db = new DB();
-		try {
-			while (rs.next()) {
-				setAuctionID(rs.getInt("auctionID"));
-				setSellerID(rs.getInt("sellerID"));
-				setMaxBids(rs.getInt("maxBids"));
-				setReservePrice(rs.getDouble("reservePrice"));
-				setTimeAdded(rs.getInt("timeAdded"));
-				setLastBidID(rs.getInt("lastBidID"));
-			}
-		} catch(SQLException ex) {
-			ex.getMessage();
-		}
-		db.closeQuietly();
-	}
 	
 	private void saveAuction(){
 		// Insert user into database
-		String query = "INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ";
-		//System.out.println(query);
-		db.query(query);
+		db = new DB();
+		db.query("INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ");
 		db.closeQuietly();
 	}
 
