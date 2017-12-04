@@ -104,6 +104,14 @@ public class Auction {
 	}
 
 	/**
+	 * @param auctionID
+	 * @return the auction ID of the current auction object
+	 */
+	public int getAuctionID() {
+		return this.auctionID;
+	}
+	
+	/**
 	 * @param auctionID the auctionID to set
 	 */
 	public void setAuctionID(int auctionID) {
