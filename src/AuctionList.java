@@ -25,15 +25,39 @@ public class AuctionList {
 	public AuctionList(){db = new DB();}
 
 	/**
-	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
+	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
 	 *
 	 * @param userId the user who created the auctions
 	 * @return an ArrayList of all auctions specified user has created
 	 */
-	public ArrayList<Auction> getUserAuctionList(int userId) {
+	public ArrayList<Auction> getUserSellingAuctionList(int userId) {
 		auctionList = new ArrayList<Auction>();
+
+		String query = "SELECT * from `auctions` WHERE `sellerID` = '" + userId + "'";
+		populateArray(query, auctionList);
+
+		return auctionList;
+	}
+
+	/**
+	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
+	 *
+	 * @param userId the user who is searched
+	 * @return an ArrayList of all auctions that specified user is involved in
+	 */
+	public ArrayList<Auction> getUserBuyingAuctionList(int userId) {
+		auctionList = new ArrayList<Auction>();
+
+		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'" +
+				"GROUP BY `auctionID` HAVING MAX(`amount`) ORDER BY (`amount`)";
+		populateArray(query, auctionList);
+
+		return auctionList;
+	}
+
+	private ArrayList<Auction> populateArray(String query, ArrayList<Auction> auctionList) {
 		try {
-			ResultSet rs = db.select("SELECT * from `auctions` WHERE `sellerID` = '" + userId + "'");
+			ResultSet rs = db.select(query);
 			while (rs.next()) {
 				Auction auction = new Auction(rs.getInt("auctionID"));
 				auctionList.add(auction);
@@ -41,10 +65,9 @@ public class AuctionList {
 		} catch (SQLException ex) {
 			ex.getMessage();
 		}
+		db.closeQuietly();
 		return auctionList;
 	}
-
-
 
 	/**
 	 * @return the maxBids
