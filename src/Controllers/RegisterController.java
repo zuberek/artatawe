@@ -21,6 +21,7 @@ import java.io.InputStream;
  * It will handle all inputs and validation
  *
  * @author Jan Dabrowski
+ * @author Joshua Blackman
  *
  */
 public class RegisterController {
@@ -56,12 +57,12 @@ public class RegisterController {
      */
     public void registerButtonClicked() {
     	User user = new User();
-        if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerLastName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || ! registerUserAddress.getText().isEmpty()) {
+        if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerLastName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddress.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("Please fill in all fields.");
             alert.showAndWait();
-        } else if(isNumeric(registerPhoneNo.getText())) {
+        } else if(!isNumeric(registerPhoneNo.getText())) {
         	Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("Please input a valid phone number.");
