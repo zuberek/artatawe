@@ -48,10 +48,11 @@ public class DB {
 				"CREATE TABLE IF NOT EXISTS `users` (\r\n" +
 					" `userID` INTEGER PRIMARY KEY,\r\n" + 
 					" `userName` text NOT NULL,\r\n" + 
-					" `firstName` text NOT NULL,\r\n" + 
-					" `lastName` text NOT NULL,\r\n" + 
-					" `phoneNo` int(11) NOT NULL,\r\n" + 
-					" `userAddress` text NOT NULL,\r\n" + 
+					" `firstName` text,\r\n" +
+					" `lastName` text,\r\n" +
+					" `phoneNo` int(11),\r\n" +
+					" `userAddress` text,\r\n" +
+					" `avatarPath` text,\r\n" +
 					" `lastLogin` int(11) NOT NULL\r\n" + 
 					");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `bids` (\r\n" +
@@ -59,7 +60,7 @@ public class DB {
 				" `bidderID` int(11) NOT NULL,\r\n" +
 				" `auctionID` int(11) NOT NULL,\r\n" +
 				" `amount` double NOT NULL,\r\n" +
-				" `timePlaced` float NOT NULL\r\n" +
+				" `timePlaced` DATETIME DEFAULT CURRENT_TIMESTAMP\r\n" +
 				");";
 		//for debugging
 		//System.out.println(sql);
@@ -106,5 +107,4 @@ public class DB {
 			System.out.println(( "Exception during connection.close()"));
 		}
 	}
-    
 }
