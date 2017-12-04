@@ -24,7 +24,7 @@ public class User {
 
 	//Default constructor to initialise the object
 	public User() {
-
+		db = new DB();
 	}
 
 	/**
@@ -37,13 +37,13 @@ public class User {
 	 */
 	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, String avatarPath, int lastLogin) {
 		db = new DB();
-		this.userName = userName;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNo = phoneNo;
-		this.userAddress = userAddress;
-		this.lastLogin = lastLogin;
-		this.avatarPath = avatarPath;
+		setUserName(userName);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setPhoneNo(phoneNo);
+		setUserAddress(userAddress);
+		setLastLogin(lastLogin);
+		setAvatarPath(avatarPath);
 		saveUser();
 	}
 	
@@ -68,6 +68,24 @@ public class User {
 			ex.getMessage();
 		}
 		db.closeQuietly();
+	}
+	
+	/**
+	 * @param userName
+	 * @return boolean value if the user exists, true if exists, false if not
+	 */
+	public boolean userExists(String userName) {
+		ResultSet rs = db.select("SELECT * FROM `users` WHERE userName = '" + userName + "'");
+		try {
+			if (rs.next()){    
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db.closeQuietly();
+		return false;
 	}
 	
 	/**
@@ -224,6 +242,16 @@ public class User {
 		this.avatarPath = defaultAvatar;
 	}
 	
+	
+	
+	public String getAvatarPath() {
+		return avatarPath;
+	}
+
+	public void setAvatarPath(String avatarPath) {
+		this.avatarPath = avatarPath;
+	}
+
 	@Override
 	public String toString(){
 		String result = "";
