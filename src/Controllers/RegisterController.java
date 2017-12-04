@@ -39,13 +39,14 @@ public class RegisterController {
     public String profileImagePath = "../Pictures/avatar1.png";
 
     //User to be added to the database
-    User userToCreate;
+    private User userToCreate = new User();
 
     public void setCurrentProfileImagePath(String filePath){
         this.profileImagePath = filePath;
     }
 
     public void initialize(){
+    	User userToCreate = new User();
         InputStream stream = getClass().getResourceAsStream(profileImagePath);
 
         Image newImage = new Image(stream);
@@ -56,7 +57,6 @@ public class RegisterController {
      * Event handler for when user clicks the register button
      */
     public void registerButtonClicked() {
-    	User user = new User();
         if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerLastName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddress.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
@@ -67,7 +67,7 @@ public class RegisterController {
             alert.setTitle("Error");
             alert.setContentText("Please input a valid phone number.");
             alert.showAndWait();
-        } else if(user.userExists(registerUserName.getText())) {      
+        } else if(userToCreate.userExists(registerUserName.getText())) {      
         	Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("That username is already taken.");
@@ -76,9 +76,7 @@ public class RegisterController {
             User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText(), profileImagePath,123123);
             closeWindow();
             //System.out.println(user.getFirstName());
-        }
-
-        
+        }       
     }
 
     public void backLoginButtonClicked(){
@@ -87,20 +85,13 @@ public class RegisterController {
     }
 
     public void picEditButtonClicked(){
-        User userToCreate = new User();
         userToCreate.setUserName(registerUserName.getText());
         userToCreate.setFirstName(registerFirstName.getText());
         userToCreate.setLastName(registerLastName.getText());
         userToCreate.setPhoneNo(registerPhoneNo.getText());
         userToCreate.setUserAddress(registerUserAddress.getText());
         userToCreate.setDefaultAvatar(profileImagePath);
-
-        registerUserName.setText(registerUserName.getText());
-        registerUserName.setText(registerFirstName.getText());
-        registerUserName.setText(registerLastName.getText());
-        registerUserName.setText(registerPhoneNo.getText());
-        registerUserName.setText(registerUserAddress.getText());
-
+        
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/DefaultAvatar.fxml"));
             BorderPane editRoot = (BorderPane) fxmlLoader.load();
@@ -116,7 +107,7 @@ public class RegisterController {
             editStagee.initModality(Modality.APPLICATION_MODAL);
 
             editStagee.showAndWait();
-            System.out.println(profileImagePath);
+            
             initialize();
         } catch (IOException e) {
             e.printStackTrace();
