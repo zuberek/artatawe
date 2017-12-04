@@ -47,8 +47,8 @@ public class DB {
 						" `sellerID` int(11) NOT NULL,\r\n" +
 						" `maxBids` int(11) NOT NULL,\r\n" +
 						" `reservePrice` double NOT NULL,\r\n" +
-						" `timeAdded` DATETIME DEFAULT CURRENT_TIMESTAMP,\r\n" +
-						" `lastBidID` int(11) NOT NULL\r\n" +
+						" `lastBidID` int(11),\r\n" +
+						" `timeAdded` DATETIME DEFAULT CURRENT_TIMESTAMP\r\n" +
 						");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `users` (\r\n" +
 					" `userID` INTEGER PRIMARY KEY,\r\n" + 

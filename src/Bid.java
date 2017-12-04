@@ -8,16 +8,17 @@ import java.util.Date;
 /**
  * This class stores/handles bids.
  * @author Joshua Blackman
+ * @author Jan Dabrowski
  *
  */
 public class Bid {
-	
+
 	private int bidID;
 	private int bidderID;
 	private int auctionID;
 	private float amount;
 	private Date timePlaced;
-	
+
 	/**
 	 * This constructor is used for when you want to create a new bid
 	 * @param bidderID the userID of who made this bid.
@@ -28,9 +29,10 @@ public class Bid {
 		setBidderID(bidderID);
 		setAuctionID(auctionID);
 		setAmount(amount);
+
 		saveBid();
 	}
-	
+
 	/**
 	 * This constructor is used when you want to retrieve the information about a bid.
 	 * @param bidID the bidID of the bid you want to retrieve.
@@ -44,12 +46,12 @@ public class Bid {
 				setAuctionID(rs.getInt("auctionID"));
 				setAmount(rs.getFloat("amount"));
 				setTimePlaced((Date)rs.getTimestamp("timePlaced"));
-	        }
+			}
 		} catch(SQLException ex){
 			ex.getMessage();
 		}
 	}
-	
+
 	/**
 	 * This method the current bid into the database
 	 */
@@ -57,8 +59,24 @@ public class Bid {
 		// Insert bid into database
 		// TODO: need to make sure these inputs are sanitized to avoid sql injection
 		DB.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", "  + this.getAmount() + "); ");
-	}
-	
+		
+		//Updating last bid for the auction we're bidding on
+		//TODO: Find some smarter way of doing it
+		ResultSet rs = DB.select("SELECT `bidID` FROM `bids` WHERE `bidID` = (SELECT MAX(`bidID`) FROM `bids`)");
+		
+		int lastBidID = 0;
+		
+		try{
+			lastBidID = rs.getInt("bidID");
+		} catch(SQLException ex){
+			ex.getMessage();
+		}
+		
+		Auction biddedAuction = new Auction(this.auctionID);
+		biddedAuction.setLastBidID(lastBidID);
+		biddedAuction.saveAuctionAfterBidding();
+		}
+
 	/**
 	 * Gets the current BidID
 	 * @return the bid id of current object
@@ -66,7 +84,7 @@ public class Bid {
 	public int getBidID() {
 		return bidID;
 	}
-	
+
 	/**
 	 * Sets the id of the bid
 	 * @param bidID set the bidID
@@ -74,7 +92,7 @@ public class Bid {
 	public void setBidID(int bidID) {
 		this.bidID = bidID;
 	}
-	
+
 	/**
 	 * Returns the bidderID of the bid
 	 * @return an int id of the bidder who made this bid
@@ -82,7 +100,7 @@ public class Bid {
 	public int getBidderID() {
 		return bidderID;
 	}
-	
+
 	/**
 	 * Sets the bidderID to the id of the user that made the bid
 	 * @param bidderID bidderID to set
@@ -90,7 +108,7 @@ public class Bid {
 	public void setBidderID(int bidderID) {
 		this.bidderID = bidderID;
 	}
-	
+
 	/**
 	 * Returns the amount placed on a bid
 	 * @return amount
@@ -98,7 +116,7 @@ public class Bid {
 	public float getAmount() {
 		return amount;
 	}
-	
+
 	/**
 	 * Sets amount of money placed on the auction
 	 * @param amount 
@@ -106,7 +124,7 @@ public class Bid {
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-	
+
 	/**
 	 * Returns the time placed
 	 * @return  the unix timestamp of when the bid was made
@@ -114,7 +132,7 @@ public class Bid {
 	public Date getTimePlaced() {
 		return timePlaced;
 	}
-	
+
 	/**
 	 * Sets the unix timestamp of when the bid was placed
 	 * @param timePlaced 
@@ -122,7 +140,7 @@ public class Bid {
 	public void setTimePlaced(Date timePlaced) {
 		this.timePlaced = timePlaced;
 	}
-	
+
 	/**
 	 * Returns the auctionID
 	 * @return the auctionID as an int
@@ -146,5 +164,5 @@ public class Bid {
 	public String getDescriptionForList() {
 		return "BidderID " + bidderID + " - AuctionID " + auctionID + " - amount: " + amount;
 	}
-	
+
 }

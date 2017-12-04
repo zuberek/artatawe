@@ -3,6 +3,8 @@ package src;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.Date;
+
 /**
  * @author Borislav Koynin 
  * @author Jan Dabrowski
@@ -14,18 +16,17 @@ public class Auction {
 	private int sellerID;
 	private int maxBids;
 	private double reservePrice;
-	private int timeAdded;
+	private Date timeAdded;
 	private int lastBidID;
 
 	/**
 	 * This constructor is used for when you want to create a new bid
 	 */
-	public Auction(int sellerID, int maxBids,
-			double reservePrice, int lastBidID){
+	public Auction(int sellerID, int maxBids, double reservePrice){
 		setSellerID(sellerID);
 		setMaxBids(maxBids);
 		setReservePrice(reservePrice);
-		setLastBidID(lastBidID);
+		setLastBidID(-1);
 		saveAuction();
 	}
 	/**
@@ -40,8 +41,8 @@ public class Auction {
 				setSellerID(rs.getInt("sellerID"));
 				setMaxBids(rs.getInt("maxBids"));
 				setReservePrice(rs.getDouble("reservePrice"));
-				setTimeAdded(rs.getInt("timeAdded"));
 				setLastBidID(rs.getInt("lastBidID"));
+				setTimeAdded(rs.getTimestamp(("timeAdded")));							
 			}
 		} catch(SQLException ex) {
 			ex.getMessage();
@@ -51,10 +52,10 @@ public class Auction {
 	
 	private void saveAuction(){
 		// Insert user into database
-		DB.query("INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() +  "); ");
+		DB.query("INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() + "); ");
 	}
 
-	private void saveAuctionAfterBidding(){
+	public void saveAuctionAfterBidding(){
 		// Insert user into database
 		String query = "UPDATE `auctions` SET `lastBidID` = '" + this.getLastBidID() + "' WHERE `auctionID` = " + this.getAuctionID();
 		//System.out.println(query);
@@ -133,14 +134,14 @@ public class Auction {
 	/**
 	 * @return the timeAdded
 	 */
-	public int getTimeAdded() {
+	public Date getTimeAdded() {
 		return timeAdded;
 	}
 
 	/**
 	 * @param timeAdded the timeAdded to set
 	 */
-	public void setTimeAdded(int timeAdded) {
+	public void setTimeAdded(Date timeAdded) {
 		this.timeAdded = timeAdded;
 	}
 
@@ -152,12 +153,11 @@ public class Auction {
 	}
 
 	/**
-	 * Sets a new ID for the last bid saves it to the database
+	 * Sets a new ID for the last bid 
 	 * @param lastBidID the lastBidID to set
 	 */
 	public void setLastBidID(int lastBidID) {
 		this.lastBidID = lastBidID;
-		saveAuctionAfterBidding();
 	}	
 
 }
