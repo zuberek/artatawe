@@ -55,13 +55,18 @@ public class RegisterController {
      * Event handler for when user clicks the register button
      */
     public void registerButtonClicked() {
-
+    	User user = new User();
         if(registerUserName.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("Please fill in the username field.");
             alert.showAndWait();
-        } else {
+        } else if(user.userExists("Jhawsh")) {
+        	Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setContentText("That username is already taken.");
+            alert.showAndWait();
+    	} else {
             User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText(), profileImagePath,123123);
             //System.out.println(user.getFirstName());
         }
