@@ -13,3 +13,11 @@ You can get the latest jar from: https://bitbucket.org/xerial/sqlite-jdbc/downlo
 # JavaFX
 
 You must make sure that your IDE supports JavaFX 2 for the GUI classes to work. For Eclipse it involves downloading "e(fx)clipse" plug in: https://marketplace.eclipse.org/content/efxclipse, for IntelliJ it's included.
+
+# ToDo
+
+- Main menu UI
+- Browse Auction UI
+- Bid UI
+- Browse Favourite Users UI
+- View Auction UI (Borislav)
