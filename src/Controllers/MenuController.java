@@ -88,7 +88,7 @@ public class MenuController {
         auctions = auctionsData.getUserBuyingAuctionList(currentUser.getUserID());
 
         for (Auction a : auctions) {
-            auctionList.getItems().add(a.getDescriptionForList());
+           auctionList.getItems().add(a.getDescriptionForList());
         }
     }
 

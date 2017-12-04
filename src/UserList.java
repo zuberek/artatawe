@@ -13,10 +13,8 @@ import java.util.ArrayList;
 public class UserList {
 	
 	ArrayList<Bid> userList;
-	DB db;
 	
 	public UserList() {
-		db = new DB();
 	}
 	
 //	/**

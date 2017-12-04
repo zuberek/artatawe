@@ -12,7 +12,6 @@ import java.util.Date;
  */
 public class Bid {
 	
-	private DB db;
 	private int bidID;
 	private int bidderID;
 	private int auctionID;
@@ -26,7 +25,6 @@ public class Bid {
 	 * @param amount the amount that was placed on the bid
 	 */
 	public Bid(int bidderID, int auctionID, float amount){
-		db = new DB();
 		setBidderID(bidderID);
 		setAuctionID(auctionID);
 		setAmount(amount);
@@ -38,9 +36,8 @@ public class Bid {
 	 * @param bidID the bidID of the bid you want to retrieve.
 	 */
 	public Bid(int bidID){
-		db = new DB();
 		try{
-			ResultSet rs = db.select("SELECT * FROM `bids` WHERE bidID = '" + bidID + "'");
+			ResultSet rs = DB.select("SELECT * FROM `bids` WHERE bidID = '" + bidID + "'");
 			while (rs.next()) {
 				setBidID(rs.getInt("bidID"));
 				setBidderID(rs.getInt("bidderID"));
@@ -51,7 +48,6 @@ public class Bid {
 		} catch(SQLException ex){
 			ex.getMessage();
 		}
-		db.closeQuietly();
 	}
 	
 	/**
@@ -60,8 +56,7 @@ public class Bid {
 	private void saveBid(){
 		// Insert bid into database
 		// TODO: need to make sure these inputs are sanitized to avoid sql injection
-		db.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", "  + this.getAmount() + "); ");
-		db.closeQuietly();
+		DB.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", "  + this.getAmount() + "); ");
 	}
 	
 	/**

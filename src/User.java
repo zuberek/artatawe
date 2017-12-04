@@ -10,8 +10,7 @@ import java.util.ArrayList;
  *
  */
 public class User {
-	
-	private DB db;
+
 	private String userName;	
 	private String firstName;
 	private String lastName;
@@ -25,7 +24,7 @@ public class User {
 
 	//Default constructor to initialise the object
 	public User() {
-		db = new DB();
+		
 	}
 
 	/**
@@ -37,7 +36,6 @@ public class User {
 	 * @param lastLogin
 	 */
 	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, String avatarPath, int lastLogin) {
-		db = new DB();
 		setUserName(userName);
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -52,9 +50,8 @@ public class User {
 	 * @param userName
 	 */
 	public User(String userName){
-		db = new DB();
 		try{
-			ResultSet rs = db.select("SELECT * FROM `users` WHERE userName = '" + userName + "'");
+			ResultSet rs = DB.select("SELECT * FROM `users` WHERE userName = '" + userName + "'");
 			while (rs.next()) {
 				this.setUserID(rs.getInt("userID"));
 				this.setUserName(rs.getString("userName"));
@@ -68,7 +65,6 @@ public class User {
 		} catch(SQLException ex){
 			ex.getMessage();
 		}
-		db.closeQuietly();
 	}
 	
 	/**
@@ -76,7 +72,7 @@ public class User {
 	 * @return boolean value if the user exists, true if exists, false if not
 	 */
 	public boolean userExists(String userName) {
-		ResultSet rs = db.select("SELECT * FROM `users` WHERE userName = '" + userName + "'");
+		ResultSet rs = DB.select("SELECT * FROM `users` WHERE userName = '" + userName + "'");
 		try {
 			if (rs.next()){    
 				return true;
@@ -85,7 +81,6 @@ public class User {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		db.closeQuietly();
 		return false;
 	}
 	
@@ -94,8 +89,7 @@ public class User {
 	 */
 	private void saveUser(){
 		// Insert user into database
-		db.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`,`avatarPath`, `lastLogin`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" +this.getDefaultAvatar() + "', '" + this.getLastLogin() + "'); ");
-		db.closeQuietly();
+		DB.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`,`avatarPath`, `lastLogin`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" +this.getDefaultAvatar() + "', '" + this.getLastLogin() + "'); ");
 	}
 
 	/**
@@ -105,8 +99,7 @@ public class User {
 		// Update edited user into database
 		String query = "UPDATE `users` SET `userName` = '" + this.getUserName() + "', `firstName` = '" + this.firstName + "', `lastName` = '" + this.lastName + "', `phoneNo` = '" + this.phoneNo + "', `userAddress` = '" + this.userAddress + "', `avatarPath` = '" + this.avatarPath + "' WHERE `userID` = " + this.getUserID();
 		//System.out.println(query);
-		db.query(query);
-		db.closeQuietly();
+		DB.query(query);
 	}
 
 	/**

@@ -17,12 +17,13 @@ public class AuctionList {
 	private int unixTimeAdded;
 
 	ArrayList<Auction> auctionList;
-	DB db;
 
 	/**
 	 * Initialise the connection
 	 */
-	public AuctionList(){db = new DB();}
+	public AuctionList(){
+		
+	}
 
 	/**
 	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
@@ -57,7 +58,7 @@ public class AuctionList {
 
 	private ArrayList<Auction> populateArray(String query, ArrayList<Auction> auctionList) {
 		try {
-			ResultSet rs = db.select(query);
+			ResultSet rs = DB.select(query);
 			while (rs.next()) {
 				Auction auction = new Auction(rs.getInt("auctionID"));
 				auctionList.add(auction);
@@ -65,7 +66,6 @@ public class AuctionList {
 		} catch (SQLException ex) {
 			ex.getMessage();
 		}
-		db.closeQuietly();
 		return auctionList;
 	}
 

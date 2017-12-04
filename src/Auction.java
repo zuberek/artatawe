@@ -8,7 +8,7 @@ import java.sql.SQLException;
  *
  */
 public class Auction {
-	private DB db;
+
 	private Artwork artwork;
 	private int auctionID;
 	private int sellerID;
@@ -22,7 +22,6 @@ public class Auction {
 	 */
 	public Auction(int sellerID, int maxBids,
 			double reservePrice, int timeAdded, int lastBidID){
-		db = new DB();
 		setSellerID(sellerID);
 		setMaxBids(maxBids);
 		setReservePrice(reservePrice);
@@ -35,9 +34,8 @@ public class Auction {
 	 * @param auctionID the bidID of the bid you want to retrieve.
 	 */
 	public Auction(int auctionID) {
-		db = new DB();
 		try {
-			ResultSet rs = db.select("SELECT * FROM `auctions` WHERE auctionID = '" + auctionID + "'");
+			ResultSet rs = DB.select("SELECT * FROM `auctions` WHERE auctionID = '" + auctionID + "'");
 			while (rs.next()) {
 				setAuctionID(rs.getInt("auctionID"));
 				setSellerID(rs.getInt("sellerID"));
@@ -49,23 +47,19 @@ public class Auction {
 		} catch(SQLException ex) {
 			ex.getMessage();
 		}
-		db.closeQuietly();
 	}
 
 	
 	private void saveAuction(){
 		// Insert user into database
-		db = new DB();
-		db.query("INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ");
-		db.closeQuietly();
+		DB.query("INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `timeAdded`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getTimeAdded() + ", " + this.getLastBidID() +  "); ");
 	}
 
 	private void saveAuctionAfterBidding(){
 		// Insert user into database
 		String query = "UPDATE `auctions` SET `lastBidID` = '" + this.getLastBidID() + "' WHERE `auctionID` = " + this.getAuctionID();
 		//System.out.println(query);
-		db.query(query);
-		db.closeQuietly();
+		DB.query(query);
 	}
 
 	public float getAuctionLastBidAmount(){

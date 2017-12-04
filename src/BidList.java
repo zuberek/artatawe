@@ -12,13 +12,13 @@ import java.util.ArrayList;
 public class BidList {
 
 	ArrayList<Bid> bidList;
-	DB db;
+
 	
 	/**
 	 * This constructor just intializes the database object.
 	 */
 	public BidList() {
-		db = new DB();
+		
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class BidList {
 
 	private ArrayList<Bid> populateArray(String query, ArrayList<Bid> bidList) {
 		try {
-			ResultSet rs = db.select(query);
+			ResultSet rs = DB.select(query);
 			while (rs.next()) {
 					Bid bid = new Bid(rs.getInt("bidID"));
 					bidList.add(bid);
@@ -76,7 +76,6 @@ public class BidList {
 		} catch (SQLException ex) {
 				ex.getMessage();
 			}
-		db.closeQuietly();
 		return bidList;
 	}
 }

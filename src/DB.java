@@ -8,7 +8,7 @@ import java.sql.*;
  */
 public class DB {
 	
-	Connection conn = null;
+	static Connection conn = null;
 	
 	/**
 	 * Constructor create src.DB connection and calls init
@@ -21,12 +21,16 @@ public class DB {
 	/**
 	 * Connects to the database. 
 	 */
-	private void connect() {        
+	public void connect() {
         try {
-            String connectionUrl = "jdbc:sqlite:artatawe.db";
-            conn = DriverManager.getConnection(connectionUrl);        
-        }
-        catch (SQLException e) {
+            // db parameters
+            String url = "jdbc:sqlite:artatawe.db";
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
+            
+            System.out.println("Connection to SQLite has been established.");
+            
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -71,7 +75,7 @@ public class DB {
 	 * This method is used for executing a query on the database.
 	 * @param query SQL query to be executed on database
 	 */
-	public void query(String query) {
+	public static void query(String query) {
 		try {
 			Statement statement = conn.createStatement();
 			statement.executeUpdate(query);
@@ -86,7 +90,7 @@ public class DB {
 	 * This method exectues a query on the database and returns the ResultSet of the query
 	 * @return ArrayList of objects from the select query
 	 */
-	public ResultSet select(String sql) {
+	public static ResultSet select(String sql) {
 	     ResultSet rs = null;
 		try {
 			Statement stmt = conn.createStatement();
