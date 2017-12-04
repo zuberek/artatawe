@@ -56,12 +56,12 @@ public class RegisterController {
      */
     public void registerButtonClicked() {
     	User user = new User();
-        if(registerUserName.getText().isEmpty()) {
+        if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerLastName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || isNumeric(registerPhoneNo.getText()) || registerUserAddress.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
-            alert.setContentText("Please fill in the username field.");
+            alert.setContentText("Please fill in all fields.");
             alert.showAndWait();
-        } else if(user.userExists("Jhawsh")) {
+        } else if(user.userExists(registerUserName.getText())) {
         	Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("That username is already taken.");
@@ -116,6 +116,11 @@ public class RegisterController {
             // Quit the program (with an error code)
             System.exit(-1);
         }
+    }
+    
+    private boolean isNumeric(String str)
+    {
+      return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
 
     /**
