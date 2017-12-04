@@ -56,12 +56,17 @@ public class RegisterController {
      */
     public void registerButtonClicked() {
     	User user = new User();
-        if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerLastName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || isNumeric(registerPhoneNo.getText()) || registerUserAddress.getText().isEmpty()) {
+        if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerLastName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || ! registerUserAddress.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("Please fill in all fields.");
             alert.showAndWait();
-        } else if(user.userExists(registerUserName.getText())) {
+        } else if(isNumeric(registerPhoneNo.getText())) {
+        	Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setContentText("Please input a valid phone number.");
+            alert.showAndWait();
+        } else if(user.userExists(registerUserName.getText())) {      
         	Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setContentText("That username is already taken.");
