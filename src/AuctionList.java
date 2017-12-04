@@ -9,14 +9,15 @@ import java.util.ArrayList;
  *
  */
 public class AuctionList {
-	//private Artwork artwork = new Artwork;
+	private Artwork artwork;
 	private int maxBids;
 	private double reservePrice;
 	private int auctionID;
 	private int sellerID;
 	private int unixTimeAdded;
+	private int lastBidId;
 
-	ArrayList<Auction> auctionList;
+	private ArrayList<Auction> auctionList;
 
 	/**
 	 * Initialise the connection
@@ -69,6 +70,18 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	/**
+	 * @return the artwork object being sold
+	 */
+	public Artwork getArtwork() {
+		return artwork;
+	}
+	/**
+	 * @param artwork the artwork object to be set
+	 */
+	public void setArtwork(Artwork artwork) {
+		this.artwork = artwork;
+	}
 	/**
 	 * @return the maxBids
 	 */
@@ -141,6 +154,5 @@ public class AuctionList {
 	public void setLastBidId(int lastBidId) {
 		this.lastBidId = lastBidId;
 	}
-	private int lastBidId;
 
 }

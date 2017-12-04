@@ -8,7 +8,6 @@ import java.sql.SQLException;
  *
  */
 public class Auction {
-
 	private Artwork artwork;
 	private int auctionID;
 	private int sellerID;
@@ -64,8 +63,7 @@ public class Auction {
 
 	public float getAuctionLastBidAmount(){
 		Bid lastAuctionBid = new Bid(this.getLastBidID());
-		float lastAuctionBidAmount = lastAuctionBid.getAmount();
-		return lastAuctionBidAmount;
+		return lastAuctionBid.getAmount();
 	}
 
 	/**
@@ -77,7 +75,6 @@ public class Auction {
 	}
 
 	/**
-	 * @param auctionID
 	 * @return the auction ID of the current auction object
 	 */
 	public int getAuctionID() {

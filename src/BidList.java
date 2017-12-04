@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class BidList {
 
-	ArrayList<Bid> bidList;
+	private ArrayList<Bid> bidList;
 
 	
 	/**
@@ -24,11 +24,11 @@ public class BidList {
 	/**
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
-	 * @param userId
+	 * @param userId id of user used to get all corresponding bids
 	 * @return an ArrayList of all bids specified user has made, ordered by timePlaced.
 	 */
 	public ArrayList<Bid> getUserBidList(int userId) {
-		bidList = new ArrayList<Bid>();
+		bidList = new ArrayList<>();
 
 		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'  ORDER BY (`timePlaced`) DESC";
 		populateArray(query, bidList);
@@ -38,11 +38,11 @@ public class BidList {
 	/**
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 * 
-	 * @param auctionID
+	 * @param auctionID id of auction used to get all relevant bids
 	 * @return an ArrayList of all highest bids made on a specified auction, ordered by timePlaced.
 	 */
 	public ArrayList<Bid> getAuctionBidList(int auctionID){
-		bidList = new ArrayList<Bid>();
+		bidList = new ArrayList<>();
 
 		String query = "SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'  ORDER BY (`timePlaced`) DESC";
 		populateArray(query, bidList);
@@ -53,11 +53,11 @@ public class BidList {
 	/**
 	 * Returns an ArrayList of Bid objects that then can be used to populate a listview.
 	 *
-	 * @param userId
+	 * @param userId id of user used to get all currently-highest bids that user still holds
 	 * @return an ArrayList of all bids specified user has made
 	 */
 	public ArrayList<Bid> getUserHighestBids(int userId) {
-		bidList = new ArrayList<Bid>();
+		bidList = new ArrayList<>();
 
 		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'" +
 				"GROUP BY `bidderID` HAVING MAX(`amount`) ORDER BY (`amount`)";
@@ -66,6 +66,12 @@ public class BidList {
 		return bidList;
 	}
 
+	/**
+	 *
+	 * @param query SQL db-search in standard format
+	 * @param bidList
+	 * @return list of bids for other bid-retrieval methods through SQL queries
+	 */
 	private ArrayList<Bid> populateArray(String query, ArrayList<Bid> bidList) {
 		try {
 			ResultSet rs = DB.select(query);
