@@ -66,11 +66,6 @@ public class BidList {
 		return bidList;
 	}
 
-	/**
-	 * @param query
-	 * @param bidList
-	 * @return
-	 */
 	private ArrayList<Bid> populateArray(String query, ArrayList<Bid> bidList) {
 		try {
 			ResultSet rs = db.select(query);
@@ -85,4 +80,3 @@ public class BidList {
 		return bidList;
 	}
 }
-
