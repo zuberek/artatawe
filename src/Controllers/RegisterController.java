@@ -39,15 +39,11 @@ public class RegisterController {
     public String profileImagePath = "../Pictures/avatar1.png";
 
     //User to be added to the database
-    private User userToCreate = new User();
+    private User userToCreate;
 
-    public void setCurrentProfileImagePath(String filePath){
-        this.profileImagePath = filePath;
-    }
-
-    public void initialize(){
-    	User userToCreate = new User();
-        InputStream stream = getClass().getResourceAsStream(profileImagePath);
+    public void initialize(User newUser){
+    	userToCreate = newUser;
+        InputStream stream = getClass().getResourceAsStream(newUser.getDefaultAvatar());
 
         Image newImage = new Image(stream);
         profileImage.setImage(newImage);
@@ -97,7 +93,7 @@ public class RegisterController {
             BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
             defautAvatarController controller = fxmlLoader.getController();
-            controller.initialize(this);
+            controller.initialize(userToCreate);
 
             Scene newScene = new Scene(editRoot);
             Stage editStagee = new Stage();
@@ -108,7 +104,7 @@ public class RegisterController {
 
             editStagee.showAndWait();
             
-            initialize();
+            initialize(userToCreate);
         } catch (IOException e) {
             e.printStackTrace();
             // Quit the program (with an error code)
