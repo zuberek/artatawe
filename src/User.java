@@ -70,7 +70,6 @@ public class User {
 				this.setPhoneNo(rs.getString("phoneNo"));
 				this.setUserAddress(rs.getString("userAddress"));
 				this.setDefaultAvatar(rs.getString("avatarPath"));
-				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 				this.setLastLogin(rs.getTimestamp("lastLogin"));
 	        }
 		} catch(SQLException ex){
@@ -109,6 +108,16 @@ public class User {
 	public void saveEditedUser(){
 		// Update edited user into database
 		String query = "UPDATE `users` SET `userName` = '" + this.getUserName() + "', `firstName` = '" + this.firstName + "', `lastName` = '" + this.lastName + "', `phoneNo` = '" + this.phoneNo + "', `userAddress` = '" + this.userAddress + "', `avatarPath` = '" + this.avatarPath + "' WHERE `userID` = " + this.getUserID();
+		//System.out.println(query);
+		DB.query(query);
+	}
+
+	/**
+	 * Updating the edited user to the database
+	 */
+	public void saveUserLogout(){
+		// Update last logout of the user
+		String query = "UPDATE `users` SET `lastLogin` = '" + this.getLastLogin() + "' WHERE `userID` = " + this.getUserID();
 		//System.out.println(query);
 		DB.query(query);
 	}
