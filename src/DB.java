@@ -66,6 +66,10 @@ public class DB {
 				" `auctionID` int(11) NOT NULL,\r\n" +
 				" `amount` double NOT NULL,\r\n" +
 				" `timePlaced` DATETIME DEFAULT CURRENT_TIMESTAMP\r\n" +
+				");\r\n" +
+				"CREATE TABLE IF NOT EXISTS `favourites` (\r\n" +
+				"`userID` int(11) NOT NULL,\r\n"+
+				"`favouriteID` int(11) NOT NULL\r\n" +
 				");";
 		//for debugging
 		//System.out.println(sql);
