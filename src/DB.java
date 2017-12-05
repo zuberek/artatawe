@@ -4,7 +4,8 @@ import java.sql.*;
 
 /**
  * This class handles connecting to the database and retrieving data.
- * @author Joshua Blackman and Jan Dabrowski
+ * @author Joshua Blackman 
+ * @author Jan Dabrowski
  */
 public class DB {
 	
@@ -46,8 +47,8 @@ public class DB {
 						" `sellerID` int(11) NOT NULL,\r\n" +
 						" `maxBids` int(11) NOT NULL,\r\n" +
 						" `reservePrice` double NOT NULL,\r\n" +
-						" `timeAdded` float NOT NULL,\r\n" +
-						" `lastBidID` int(11) NOT NULL\r\n" +
+						" `lastBidID` int(11),\r\n" +
+						" `timeAdded` DATETIME DEFAULT CURRENT_TIMESTAMP\r\n" +
 						");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `users` (\r\n" +
 					" `userID` INTEGER PRIMARY KEY,\r\n" + 
@@ -57,7 +58,7 @@ public class DB {
 					" `phoneNo` int(11),\r\n" +
 					" `userAddress` text,\r\n" +
 					" `avatarPath` text,\r\n" +
-					" `lastLogin` int(11) NOT NULL\r\n" + 
+					" `lastLogin` DATETIME DEFAULT CURRENT_TIMESTAMP\r\n" +
 					");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `bids` (\r\n" +
 				" `bidID` INTEGER PRIMARY KEY,\r\n" +

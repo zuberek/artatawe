@@ -3,6 +3,7 @@ package src;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * @author Jan Dabrowski 916434
@@ -17,14 +18,25 @@ public class User {
 	private String phoneNo;
 	private String userAddress;
 	private int userID;
-	private int lastLogin;
+	private Date lastLogin;
 	private String avatarPath;
 	private Avatar profilePicture;
 	private ArrayList<User>  favouriteUser;
 
 	//Default constructor to initialise the object
 	public User() {
-		
+		this.setDefaultAvatar("../Pictures/avatar1.png");
+	}
+	
+	public User(User newUser){
+		this.userName = newUser.getUserName();
+		this.firstName = newUser.getFirstName();
+		this.lastName = newUser.getLastName();
+		this.phoneNo = newUser.getPhoneNo();
+		this.userAddress = newUser.getUserAddress();
+		this.avatarPath = newUser.getAvatarPath();
+		this.lastLogin = newUser.getLastLogin();
+		saveUser();
 	}
 
 	/**
@@ -33,16 +45,14 @@ public class User {
 	 * @param lastName
 	 * @param phoneNo
 	 * @param userAddress
-	 * @param lastLogin
 	 */
-	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, String avatarPath, int lastLogin) {
+	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress) {
 		setUserName(userName);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setPhoneNo(phoneNo);
 		setUserAddress(userAddress);
-		setLastLogin(lastLogin);
-		setAvatarPath(avatarPath);
+		setAvatarPath("../Pictures/avatar1.png");
 		saveUser();
 	}
 	
@@ -60,7 +70,7 @@ public class User {
 				this.setPhoneNo(rs.getString("phoneNo"));
 				this.setUserAddress(rs.getString("userAddress"));
 				this.setDefaultAvatar(rs.getString("avatarPath"));
-				this.setLastLogin(rs.getInt("timePlaced"));
+				this.setLastLogin(rs.getTimestamp("lastLogin"));
 	        }
 		} catch(SQLException ex){
 			ex.getMessage();
@@ -83,13 +93,13 @@ public class User {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Saving the new user to the database
 	 */
 	private void saveUser(){
 		// Insert user into database
-		DB.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`,`avatarPath`, `lastLogin`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" +this.getDefaultAvatar() + "', '" + this.getLastLogin() + "'); ");
+		DB.query("INSERT INTO `users` (`userName`, `firstName`, `lastName`, `phoneNo`, `userAddress`,`avatarPath`) VALUES ('" + this.getUserName() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "', '" + this.getPhoneNo() +"', '" + this.getUserAddress() + "', '" +this.getDefaultAvatar() + "'); ");
 	}
 
 	/**
@@ -98,6 +108,16 @@ public class User {
 	public void saveEditedUser(){
 		// Update edited user into database
 		String query = "UPDATE `users` SET `userName` = '" + this.getUserName() + "', `firstName` = '" + this.firstName + "', `lastName` = '" + this.lastName + "', `phoneNo` = '" + this.phoneNo + "', `userAddress` = '" + this.userAddress + "', `avatarPath` = '" + this.avatarPath + "' WHERE `userID` = " + this.getUserID();
+		//System.out.println(query);
+		DB.query(query);
+	}
+
+	/**
+	 * Updating the edited user to the database
+	 */
+	public void saveUserLogout(){
+		// Update last logout of the user
+		String query = "UPDATE `users` SET `lastLogin` = '" + this.getLastLogin() + "' WHERE `userID` = " + this.getUserID();
 		//System.out.println(query);
 		DB.query(query);
 	}
@@ -217,14 +237,14 @@ public class User {
 	/**
 	 * @return the lastLogin
 	 */
-	public int getLastLogin() {
+	public Date getLastLogin() {
 		return lastLogin;
 	}
 
 	/**
 	 * @param lastLogin the lastLogin to set
 	 */
-	public void setLastLogin(int lastLogin) {
+	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
 

@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import src.CONSTANTS;
 import src.User;
 
 import java.io.IOException;
@@ -36,17 +37,12 @@ public class RegisterController {
 
     @FXML Pane rootPane;
 
-    public String profileImagePath = "../Pictures/avatar1.png";
-
     //User to be added to the database
-    User userToCreate;
+    private User userToCreate;
 
-    public void setCurrentProfileImagePath(String filePath){
-        this.profileImagePath = filePath;
-    }
-
-    public void initialize(){
-        InputStream stream = getClass().getResourceAsStream(profileImagePath);
+    public void initialize(User newUser){
+    	userToCreate = newUser;
+        InputStream stream = getClass().getResourceAsStream(newUser.getDefaultAvatar());
 
         Image newImage = new Image(stream);
         profileImage.setImage(newImage);
@@ -56,29 +52,24 @@ public class RegisterController {
      * Event handler for when user clicks the register button
      */
     public void registerButtonClicked() {
-    	User user = new User();
-        if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerLastName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddress.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Error");
-            alert.setContentText("Please fill in all fields.");
-            alert.showAndWait();
-        } else if(!isNumeric(registerPhoneNo.getText())) {
-        	Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Error");
-            alert.setContentText("Please input a valid phone number.");
-            alert.showAndWait();
-        } else if(user.userExists(registerUserName.getText())) {      
-        	Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Error");
-            alert.setContentText("That username is already taken.");
-            alert.showAndWait();
+    	userToCreate.setUserName((registerUserName.getText()));
+    	userToCreate.setFirstName(registerFirstName.getText());
+    	userToCreate.setLastName(registerLastName.getText());
+    	userToCreate.setPhoneNo(registerPhoneNo.getText());
+    	userToCreate.setUserAddress(registerUserAddress.getText());
+    	userToCreate.saveEditedUser();
+    	
+		if(userToCreate.getUserName().isEmpty() || userToCreate.getFirstName().isEmpty() || userToCreate.getLastName().isEmpty() || userToCreate.getPhoneNo().isEmpty() || userToCreate.getUserAddress().isEmpty()) {
+            CONSTANTS.makeAlertWindow("Please fill in all fields.");
+        } else if(!isNumeric(userToCreate.getPhoneNo())) {
+            CONSTANTS.makeAlertWindow("Please input a valid phone number.");
+        } else if(userToCreate.userExists(userToCreate.getUserName())) {      
+            CONSTANTS.makeAlertWindow("That username is already taken.");
     	} else {
-            User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText(), profileImagePath,123123);
+            User createdUser = new User(userToCreate);
             closeWindow();
             //System.out.println(user.getFirstName());
-        }
-
-        
+        } 
     }
 
     public void backLoginButtonClicked(){
@@ -87,26 +78,12 @@ public class RegisterController {
     }
 
     public void picEditButtonClicked(){
-        User userToCreate = new User();
-        userToCreate.setUserName(registerUserName.getText());
-        userToCreate.setFirstName(registerFirstName.getText());
-        userToCreate.setLastName(registerLastName.getText());
-        userToCreate.setPhoneNo(registerPhoneNo.getText());
-        userToCreate.setUserAddress(registerUserAddress.getText());
-        userToCreate.setDefaultAvatar(profileImagePath);
-
-        registerUserName.setText(registerUserName.getText());
-        registerUserName.setText(registerFirstName.getText());
-        registerUserName.setText(registerLastName.getText());
-        registerUserName.setText(registerPhoneNo.getText());
-        registerUserName.setText(registerUserAddress.getText());
-
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/DefaultAvatar.fxml"));
             BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
             defautAvatarController controller = fxmlLoader.getController();
-            controller.initialize(this);
+            controller.initialize(userToCreate);
 
             Scene newScene = new Scene(editRoot);
             Stage editStagee = new Stage();
@@ -116,8 +93,8 @@ public class RegisterController {
             editStagee.initModality(Modality.APPLICATION_MODAL);
 
             editStagee.showAndWait();
-            System.out.println(profileImagePath);
-            initialize();
+            
+            initialize(userToCreate);
         } catch (IOException e) {
             e.printStackTrace();
             // Quit the program (with an error code)

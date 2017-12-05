@@ -3,14 +3,17 @@ package src.Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import src.User;
 
 public class defautAvatarController {
 
+	//TODO:really need to come up with better idea for this
     @FXML Pane rootPane;
-    RegisterController controller;
+    
+    User user;
 
-    public void initialize(RegisterController controller){
-        this.controller = controller;
+    public void initialize(User user){
+        this.user = user;
     }
 
     public void profileImage1Clicked(){
@@ -34,7 +37,8 @@ public class defautAvatarController {
     }
 
     private void finishPicking(String imagePath){
-        controller.setCurrentProfileImagePath(imagePath);
+    	user.setDefaultAvatar(imagePath);
+    	
         closeWindow();
     }
 

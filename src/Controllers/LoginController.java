@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
+import src.CONSTANTS;
 import src.Login;
 import src.User;
 
@@ -21,7 +22,8 @@ import java.io.IOException;
  * This class is the controller for the Login screen
  * It will handle all inputs and validation
  * 
- * @author Joshua Blackman and Jan Dabrowski
+ * @author Joshua Blackman 
+ * @author Jan Dabrowski
  *
  */
 public class LoginController {
@@ -34,10 +36,7 @@ public class LoginController {
 	 */
 	public void loginButtonClicked() {
 		if(loginUserName.getText().isEmpty()) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Error");
-			alert.setContentText("Please fill in the username field.");
-			alert.showAndWait();
+			 CONSTANTS.makeAlertWindow("Please fill in the username field.");
 		} else {
 			try {
 				User user = new User();
@@ -55,10 +54,7 @@ public class LoginController {
 	
 					stage.setScene(newScene);
 				} else {
-					Alert alert = new Alert(Alert.AlertType.WARNING);
-		            alert.setTitle("Error");
-		            alert.setContentText("That user does not exist.");
-		            alert.showAndWait();
+		            CONSTANTS.makeAlertWindow("That user does not exist.");
 				}
 			} catch (IOException e) {
 					e.printStackTrace();
@@ -80,6 +76,10 @@ public class LoginController {
 
 			Scene newScene = new Scene(editRoot, Login.MAIN_WINDOW_WIDTH, Login.MAIN_WINDOW_HEIGHT);
 			Stage editStagee = new Stage();
+			
+			RegisterController registerController = fxmlLoader.getController();
+			registerController.initialize(new User());
+			
 			editStagee.setScene(newScene);
 			editStagee.setTitle("Artatawe | Register");
 
