@@ -5,8 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Borislav Koynin and Jan Dabrowski
- *
+ * @author Borislav Koynin
+ * @author Jan Dabrowski
+ * @author Joshua Blackman
  */
 public class AuctionList {
 	private Artwork artwork;
@@ -54,6 +55,31 @@ public class AuctionList {
 				"GROUP BY `auctionID` HAVING MAX(`amount`) ORDER BY (`amount`)";
 		populateArray(query, auctionList);
 
+		return auctionList;
+	}
+	
+	/**
+	 * @param userList
+	 * @return list of auctions created by user in lists
+	 */
+	public ArrayList<Auction> getUserFavouriteAuctions(ArrayList<User> userList){
+		auctionList = new ArrayList<Auction>();
+		if(!userList.isEmpty()) {
+		String whereClause = "";
+		for(int i = 0; i < userList.size();i++) {
+			whereClause += " `sellerID` = '" + userList.get(i).getUserID() + "'";
+			if(i == 0 && userList.size() > 0) {
+				whereClause += " OR ";
+			} else if(i < userList.size()-1) {
+				whereClause += " OR ";
+			}
+		}
+		
+		String query = "SELECT * from `auctions` WHERE" + whereClause;
+		System.out.println(query);
+		populateArray(query, auctionList);
+		}
+		
 		return auctionList;
 	}
 
