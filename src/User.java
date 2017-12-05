@@ -24,7 +24,17 @@ public class User {
 
 	//Default constructor to initialise the object
 	public User() {
-		
+		this.setDefaultAvatar("../Pictures/avatar1.png");
+	}
+	
+	public User(User newUser){
+		this.userName = newUser.getUserName();
+		this.firstName = newUser.getFirstName();
+		this.lastName = newUser.getLastName();
+		this.phoneNo = newUser.getPhoneNo();
+		this.userAddress = newUser.getUserAddress();
+		this.avatarPath = newUser.getAvatarPath();
+		saveUser();
 	}
 
 	/**

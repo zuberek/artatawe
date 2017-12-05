@@ -152,7 +152,7 @@ public class MenuController {
             BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
             ProfileController profileController = fxmlLoader.getController();
-            profileController.setUserForEditing(currentUser);
+            profileController.initialize(currentUser);
 
             Scene newScene = new Scene(editRoot, Login.MAIN_WINDOW_WIDTH, Login.MAIN_WINDOW_HEIGHT);
             Stage editStagee = new Stage();
