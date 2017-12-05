@@ -23,7 +23,7 @@ import java.io.InputStream;
  * This class is the controller for the Profile edition screen
  * It will handle all inputs and validation
  * @author  Jan Dabrowski
- *
+ * @author Joshua Blackman
  */
 public class ProfileController {
 	@FXML Button cancelButton;
@@ -89,7 +89,7 @@ public class ProfileController {
 			userBeingEdited.setUserAddress(addressTextField.getText());
 			userBeingEdited.saveEditedUser();
 			closeWindow();
-			//System.out.println(user.getFirstName());
+			//System.out.println(user.getFirstName()); 
 		}
 	}
 
