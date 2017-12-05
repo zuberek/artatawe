@@ -121,6 +121,14 @@ public class User {
 		//System.out.println(query);
 		DB.query(query);
 	}
+	
+	/**
+	 * Marks an user as a favourite
+	 * @param favouriteID   the id of the user to favourite
+	 */
+	public void favouriteUser(int favouriteID) {
+		DB.query("INSERT INTO `favourite` (`userID`, `favouriteID`) VALUES ('" + this.getUserID() + "', '" + favouriteID + "'); ");
+	}
 
 	/**
 	 * @return the userName
