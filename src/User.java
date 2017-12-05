@@ -77,6 +77,28 @@ public class User {
 		}
 	}
 	
+
+	/**
+	 * @param userID
+	 */
+	public User(int userID){
+		try{
+			ResultSet rs = DB.select("SELECT * FROM `users` WHERE userID = '" + userID + "'");
+			while (rs.next()) {
+				this.setUserID(rs.getInt("userID"));
+				this.setUserName(rs.getString("userName"));
+				this.setFirstName(rs.getString("firstName"));
+				this.setLastName(rs.getString("lastName"));
+				this.setPhoneNo(rs.getString("phoneNo"));
+				this.setUserAddress(rs.getString("userAddress"));
+				this.setDefaultAvatar(rs.getString("avatarPath"));
+				this.setLastLogin(rs.getTimestamp("lastLogin"));
+	        }
+		} catch(SQLException ex){
+			ex.getMessage();
+		}
+	}
+	
 	/**
 	 * @param userName
 	 * @return boolean value if the user exists, true if exists, false if not
@@ -127,7 +149,7 @@ public class User {
 	 * @param favouriteID   the id of the user to favourite
 	 */
 	public void favouriteUser(int favouriteID) {
-		DB.query("INSERT INTO `favourite` (`userID`, `favouriteID`) VALUES ('" + this.getUserID() + "', '" + favouriteID + "'); ");
+		DB.query("INSERT INTO `favourites` (`userID`, `favouriteID`) VALUES ('" + this.getUserID() + "', '" + favouriteID + "'); ");
 	}
 
 	/**
@@ -204,6 +226,15 @@ public class User {
 	 * @return the userID
 	 */
 	public int getUserID() {
+		ResultSet rs = DB.select("SELECT userID FROM `users` WHERE `userName` = '" + this.getUserName() + "'");
+		try {
+			if(rs.next()) {
+				setUserID(rs.getInt("userID"));
+				return this.userID;
+			}
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		return this.userID;
 	}
 
