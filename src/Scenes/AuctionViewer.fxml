@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.ProfileController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.ViewAuctionController">
    <top>
       <Label id="welcome-text" alignment="CENTER" text="Auction" BorderPane.alignment="CENTER" />
    </top>
@@ -119,50 +118,38 @@
       </HBox>
    </right>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="328.0" prefWidth="382.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="85.0" prefWidth="382.0">
+            <VBox alignment="CENTER" prefHeight="258.0" prefWidth="382.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="315.0">
+                  <VBox alignment="CENTER" prefHeight="290.0" prefWidth="382.0">
                      <children>
-                        <HBox prefHeight="86.0" prefWidth="71.0" />
-                        <HBox prefHeight="100.0" prefWidth="190.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <VBox prefHeight="66.0" prefWidth="260.0">
-                                 <children>
-                                    <VBox prefHeight="86.0" prefWidth="260.0">
-                                       <children>
-                                          <VBox prefHeight="37.0" prefWidth="260.0">
-                                             <children>
-                                                <Label text="Artwork name:  " />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="19.0" prefWidth="260.0">
-                                             <children>
-                                                <Label text="Artwork creator:  " />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="30.0" prefWidth="260.0">
-                                             <children>
-                                                <Label prefHeight="30.0" prefWidth="61.0" text="Details:" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </VBox>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="106.0" text="Auction ID:" />
+                              <Label fx:id="artworkNameLabel" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Artwork creator:  " />
+                              <Label text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="61.0" text="Details:" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="243.0" prefWidth="382.0">
+                           <children>
+                              <TextArea prefHeight="172.0" prefWidth="274.0" text="Robert Norman Ross (October 29, 1942 – July 4, 1995) was an American painter, art instructor, and television host. He was the creator and host of The Joy of Painting, an instructional television program that aired from 1983 to 1994 on PBS in the United States, and also aired in Canada, Latin America, and Europe. With a soft voice and a permed afro, Ross went from being a public-television personality in the 1980s and 1990s to being an Internet celebrity in the 21st century, popular with fans on YouTube and many other websites." wrapText="true" />
                            </children>
                         </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
             </VBox>
-            <HBox prefHeight="164.0" prefWidth="382.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="71.0" />
-                  <TextArea prefHeight="164.0" prefWidth="234.0" text="Robert Norman Ross (October 29, 1942 – July 4, 1995) was an American painter, art instructor, and television host. He was the creator and host of The Joy of Painting, an instructional television program that aired from 1983 to 1994 on PBS in the United States, and also aired in Canada, Latin America, and Europe. With a soft voice and a permed afro, Ross went from being a public-television personality in the 1980s and 1990s to being an Internet celebrity in the 21st century, popular with fans on YouTube and many other websites." wrapText="true" />
-               </children>
-            </HBox>
          </children>
       </VBox>
    </center>
