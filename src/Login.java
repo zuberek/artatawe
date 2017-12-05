@@ -12,7 +12,8 @@ import java.io.IOException;
 /**
  * This the main class, first  point of contact for the user.
  * It asks for user log in or links to registration scene.
- * @author  Joshua Blackman and Jan Dabrowski
+ * @author  Joshua Blackman 
+ * @author Jan Dabrowski
  *
  */
 public class Login extends Application {

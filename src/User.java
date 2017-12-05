@@ -153,6 +153,28 @@ public class User {
 	}
 
 	/**
+	 * Check if user has favourited another user
+	 * @param favouriteID
+	 * @return boolean is user has favourited user
+	 */
+	public boolean isFavourite(int favouriteID) {
+		ResultSet rs = DB.select("SELECT * FROM `favourites` WHERE `userID` = '" + this.getUserID() + "' AND `favouriteID` = '" + favouriteID + "'");
+		try {
+			if (rs.next()){    
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public void unfavouriteUser(int favouriteID) {
+		DB.query("DELETE FROM `favourites` WHERE `userID` = '" + this.getUserID() + "' AND `favouriteID` = '" + favouriteID + "'");
+	}
+	
+	/**
 	 * @return the userName
 	 */
 	public String getUserName() {
