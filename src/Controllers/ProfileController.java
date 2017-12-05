@@ -83,11 +83,11 @@ public class ProfileController {
 		userBeingEdited.saveEditedUser();
 		
 		if(userBeingEdited.getUserName().isEmpty() || userBeingEdited.getFirstName().isEmpty() || userBeingEdited.getLastName().isEmpty() || userBeingEdited.getPhoneNo().isEmpty() || userBeingEdited.getUserAddress().isEmpty()) {
-			CONSTANTS.makeAlertWindow("Please fill in all fields.");
+			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
 		} else if (!(userNameTextField.getText().equals(oldUserName)) &&  userBeingEdited.userExists(userBeingEdited.getUserName())){
-			CONSTANTS.makeAlertWindow("this username is already used!");
+			CONSTANTS.makeAlertWindow("warning", "this username is already used!");
 		} else if(!isNumeric(userBeingEdited.getPhoneNo())) {			
-			CONSTANTS.makeAlertWindow("Please input a valid phone number.");			
+			CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");			
 		} else {
 			userBeingEdited.saveEditedUser();
 			closeWindow();
