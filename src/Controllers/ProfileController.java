@@ -74,21 +74,19 @@ public class ProfileController {
 	 */
 	public void handleConfirmButtonAction() {
 		String oldUserName = userBeingEdited.getUserName();
-
-		userBeingEdited.setUserName((userNameTextField.getText()));
-		userBeingEdited.setFirstName(firstNameTextField.getText());
-		userBeingEdited.setLastName(lastNameTextField.getText());
-		userBeingEdited.setPhoneNo(phoneNoTextField.getText());
-		userBeingEdited.setUserAddress(addressTextField.getText());
-		userBeingEdited.saveEditedUser();
 		
 		if(userBeingEdited.getUserName().isEmpty() || userBeingEdited.getFirstName().isEmpty() || userBeingEdited.getLastName().isEmpty() || userBeingEdited.getPhoneNo().isEmpty() || userBeingEdited.getUserAddress().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-		} else if (userNameTextField.getText().equals(oldUserName) &&  userBeingEdited.userExists(userBeingEdited.getUserName())){
+		} else if (!userBeingEdited.getUserName().equals(userNameTextField.getText()) && userBeingEdited.userExists(userNameTextField.getText())){
 			CONSTANTS.makeAlertWindow("warning", "this username is already used!");
 		} else if(!isNumeric(userBeingEdited.getPhoneNo())) {			
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");			
 		} else {
+			userBeingEdited.setUserName((userNameTextField.getText()));
+			userBeingEdited.setFirstName(firstNameTextField.getText());
+			userBeingEdited.setLastName(lastNameTextField.getText());
+			userBeingEdited.setPhoneNo(phoneNoTextField.getText());
+			userBeingEdited.setUserAddress(addressTextField.getText());
 			userBeingEdited.saveEditedUser();
 			closeWindow();
 			//System.out.println(user.getFirstName());

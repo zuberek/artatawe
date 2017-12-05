@@ -57,7 +57,7 @@ public class RegisterController {
 		if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddress.getText().isEmpty() || registerLastName.getText().isEmpty()) {
             CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
         } else if(!isNumeric(registerPhoneNo.getText()) || registerPhoneNo.getLength() != 11 ) {
-            CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
+            CONSTANTS.makeAlertWindow("warnin g", "Please input a valid phone number.");
         } else if(userToCreate.userExists(registerUserName.getText())) {      
             CONSTANTS.makeAlertWindow("warning", "That username is already taken.");
     	} else {
