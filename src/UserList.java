@@ -1,20 +1,40 @@
 package src;
 
-import src.Bid;
 import src.DB;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * This class is used to generate ArrayList's of src.User objects
+ * This class is used to generate ArrayList's of User objects
  * @author Joshua Blackman
  *
  */
 public class UserList {
 	
-	ArrayList<Bid> userList;
+	ArrayList<User> userList;
 	
 	public UserList() {
+		
+	}
+	
+	/**
+	 * @param userID
+	 * @return  arraylist of user objects that the given user has favourited
+	 */
+	public ArrayList<User> getFavouriteUsers(int userID){
+		userList = new ArrayList<>();
+		try {
+			ResultSet rs = DB.select("SELECT * from `favourites` WHERE `userID` = '" + userID + "'");
+			while(rs.next()) {
+				User user  = new User(rs.getInt("favouriteID"));
+				userList.add(user);
+			}
+		} catch (SQLException ex) {
+			ex.getMessage();
+		}
+		
+		return userList;
 	}
 	
 //	/**
