@@ -21,7 +21,7 @@ public class DB {
 	/**
 	 * Connects to the database. 
 	 */
-	public void connect() {
+	private void connect() {
         try {
             // db parameters
             String url = "jdbc:sqlite:artatawe.db";
