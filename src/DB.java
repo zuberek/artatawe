@@ -58,7 +58,7 @@ public class DB {
 					" `phoneNo` int(11),\r\n" +
 					" `userAddress` text,\r\n" +
 					" `avatarPath` text,\r\n" +
-					" `lastLogin` int(11) NOT NULL\r\n" + 
+					" `lastLogin` DATETIME DEFAULT CURRENT_TIMESTAMP\r\n" +
 					");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `bids` (\r\n" +
 				" `bidID` INTEGER PRIMARY KEY,\r\n" +
