@@ -36,7 +36,7 @@ public class LoginController {
 	 */
 	public void loginButtonClicked() {
 		if(loginUserName.getText().isEmpty()) {
-			 CONSTANTS.makeAlertWindow("Please fill in the username field.");
+			 CONSTANTS.makeAlertWindow("warning", "Please fill in the username field.");
 		} else {
 			try {
 				User user = new User();
@@ -54,7 +54,7 @@ public class LoginController {
 	
 					stage.setScene(newScene);
 				} else {
-		            CONSTANTS.makeAlertWindow("That user does not exist.");
+		            CONSTANTS.makeAlertWindow("warning", "That user does not exist.");
 				}
 			} catch (IOException e) {
 					e.printStackTrace();
