@@ -62,7 +62,7 @@ public class AuctionList {
 	 * @param userList
 	 * @return list of auctions created by user in lists
 	 */
-	public ArrayList<Auction> getUserFavouriteAuctions(ArrayList<User> userList){
+	public ArrayList<Auction> getUsersAuctions(ArrayList<User> userList){
 		auctionList = new ArrayList<Auction>();
 		if(!userList.isEmpty()) {
 		String whereClause = "";
