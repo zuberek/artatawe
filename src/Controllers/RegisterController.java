@@ -52,23 +52,18 @@ public class RegisterController {
      * Event handler for when user clicks the register button
      */
     public void registerButtonClicked() {
-    	userToCreate.setUserName((registerUserName.getText()));
-    	userToCreate.setFirstName(registerFirstName.getText());
-    	userToCreate.setLastName(registerLastName.getText());
-    	userToCreate.setPhoneNo(registerPhoneNo.getText());
-    	userToCreate.setUserAddress(registerUserAddress.getText());
-    	userToCreate.saveEditedUser();
     	
-		if(userToCreate.getUserName().isEmpty() || userToCreate.getFirstName().isEmpty() || userToCreate.getLastName().isEmpty() || userToCreate.getPhoneNo().isEmpty() || userToCreate.getUserAddress().isEmpty()) {
+    	
+		if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddress.getText().isEmpty() || registerLastName.getText().isEmpty()) {
             CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-        } else if(!isNumeric(userToCreate.getPhoneNo())) {
+        } else if(!isNumeric(registerPhoneNo.getText()) || registerPhoneNo.getLength() != 11 ) {
             CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
-        } else if(userToCreate.userExists(userToCreate.getUserName())) {      
+        } else if(userToCreate.userExists(registerUserName.getText())) {      
             CONSTANTS.makeAlertWindow("warning", "That username is already taken.");
     	} else {
-            User createdUser = new User(userToCreate);
-            CONSTANTS.makeAlertWindow("success", "Your account has been registered.");
-            closeWindow();
+    		User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText());
+    		CONSTANTS.makeAlertWindow("success", "Your account has been registered.");
+    		closeWindow();
             //System.out.println(user.getFirstName());
         } 
     }
