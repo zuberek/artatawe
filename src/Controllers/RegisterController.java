@@ -56,12 +56,12 @@ public class RegisterController {
     	
 		if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddress.getText().isEmpty() || registerLastName.getText().isEmpty()) {
             CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-        } else if(!isNumeric(registerPhoneNo.getText()) || registerPhoneNo.getLength() != 11 ) {
+        } else if(!isNumeric(registerPhoneNo.getText()) || registerPhoneNo.getLength() != 11) {
             CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
         } else if(userToCreate.userExists(registerUserName.getText())) {      
             CONSTANTS.makeAlertWindow("warning", "That username is already taken.");
     	} else {
-    		User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText());
+    		User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText(), userToCreate.getDefaultAvatar());
     		CONSTANTS.makeAlertWindow("success", "Your account has been registered.");
     		closeWindow();
             //System.out.println(user.getFirstName());

@@ -42,7 +42,7 @@ public class ProfileController {
 	/**
 	 * Set the user that is being edited.
 	 * When this window is closed, the changes will be set in this user object.
-	 * @param The user to be edited.
+	 * @param userToEdit The user to be edited.
 	 */
 	public void initialize(User userToEdit) {
 		// Keep a reference to the user that we are editing.
@@ -73,14 +73,17 @@ public class ProfileController {
 	 * Save the changes and close the window.
 	 */
 	public void handleConfirmButtonAction() {
-		String oldUserName = userBeingEdited.getUserName();
 		
-		if(userBeingEdited.getUserName().isEmpty() || userBeingEdited.getFirstName().isEmpty() || userBeingEdited.getLastName().isEmpty() || userBeingEdited.getPhoneNo().isEmpty() || userBeingEdited.getUserAddress().isEmpty()) {
+		if(userNameTextField.getText().isEmpty() || firstNameTextField.getText().isEmpty() ||lastNameTextField.getText().isEmpty() || phoneNoTextField.getText().isEmpty() || addressTextField.getText().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-		} else if (!userBeingEdited.getUserName().equals(userNameTextField.getText()) && userBeingEdited.userExists(userNameTextField.getText())){
+		} 	//first checks if the username was changed,then check if the new user name is already used
+		else if (!userBeingEdited.getUserName().equals(userNameTextField.getText()) && userBeingEdited.userExists(userNameTextField.getText())){
 			CONSTANTS.makeAlertWindow("warning", "this username is already used!");
-		} else if(!isNumeric(userBeingEdited.getPhoneNo())) {			
-			CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");			
+			//goes back to previous username
+			userNameTextField.setText(userBeingEdited.getUserName());
+		} else if(!isNumeric(phoneNoTextField.getText()) || phoneNoTextField.getLength() != 11) {
+			CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
+			phoneNoTextField.setText(userBeingEdited.getPhoneNo());
 		} else {
 			userBeingEdited.setUserName((userNameTextField.getText()));
 			userBeingEdited.setFirstName(firstNameTextField.getText());

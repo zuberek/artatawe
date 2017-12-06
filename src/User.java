@@ -46,13 +46,13 @@ public class User {
 	 * @param phoneNo
 	 * @param userAddress
 	 */
-	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress) {
+	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, String avatarPath) {
 		setUserName(userName);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setPhoneNo(phoneNo);
 		setUserAddress(userAddress);
-		setAvatarPath("../Pictures/avatar1.png");
+		setAvatarPath(avatarPath);
 		saveUser();
 	}
 	
