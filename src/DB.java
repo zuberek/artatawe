@@ -47,6 +47,7 @@ public class DB {
 						" `userID` int(11) NOT NULL,\r\n" +
 						" `artist` text NOT NULL,\r\n" + 
 						" `title` text NOT NULL,\r\n" + 
+						" `type` text NOT NULL,\r\n" + 
 						" `material` text,\r\n" + 
 						" `paintingType` text,\r\n" + 
 						" `width` double NOT NULL,\r\n" +
