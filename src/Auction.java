@@ -22,11 +22,18 @@ public class Auction {
 	/**
 	 * This constructor is used for when you want to create a new bid
 	 */
-	public Auction(int sellerID, int maxBids, double reservePrice){
+	public Auction(int sellerID, int artworkID, int maxBids, double reservePrice){
+		Artwork painting = null;
+		if(Artwork.checkType(artworkID) == "painting") {
+			painting = new Painting(artworkID);
+		} else  {
+			//Sculpture painting = new Sculpture(artworkID);
+		}
 		setSellerID(sellerID);
 		setMaxBids(maxBids);
 		setReservePrice(reservePrice);
 		setLastBidID(-1);
+		setArtwork(painting);
 		saveAuction();
 	}
 	/**
@@ -34,20 +41,39 @@ public class Auction {
 	 * @param auctionID the bidID of the bid you want to retrieve.
 	 */
 	public Auction(int auctionID) {
+		
 		try {
 			ResultSet rs = DB.select("SELECT * FROM `auctions` WHERE auctionID = '" + auctionID + "'");
+			int artworkID = 0;
 			while (rs.next()) {
+
 				setAuctionID(rs.getInt("auctionID"));
 				setSellerID(rs.getInt("sellerID"));
 				setDescription(rs.getString("description"));
 				setMaxBids(rs.getInt("maxBids"));
 				setReservePrice(rs.getDouble("reservePrice"));
-				setLastBidID(rs.getInt("lastBidID"));
-				setTimeAdded(rs.getTimestamp(("timeAdded")));							
+				//setLastBidID(rs.getInt("lastBidID"));
+				//setTimeAdded(rs.getDate(("timeAdded")));		
+				
+				artworkID = rs.getInt("artworkID");
+				
 			}
+			
+			
+			
+			Artwork artwork = null;
+			if(Artwork.checkType(artworkID).equals("painting")) {
+				artwork = new Painting(artworkID);
+			} else  {
+				//Sculpture painting = new Sculpture(artworkID);
+				
+			}
+			setArtwork(artwork);
 		} catch(SQLException ex) {
 			ex.getMessage();
 		}
+		
+		
 	}
 	
 	private String description;
@@ -178,5 +204,13 @@ public class Auction {
 	public void setLastBidID(int lastBidID) {
 		this.lastBidID = lastBidID;
 	}	
+	
+	/**
+	 * @param artwork the artwork to set
+	 */
+	public void setArtwork(Artwork artwork) {
+		this.artwork = artwork;
+	}
+
 
 }
