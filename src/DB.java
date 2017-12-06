@@ -42,6 +42,19 @@ public class DB {
 	 */
 	private void init() {
 		String sql =
+				"CREATE TABLE IF NOT EXISTS `artwork` (\r\n" +
+						" `artworkID` INTEGER PRIMARY KEY,\r\n" +
+						" `userID` int(11) NOT NULL,\r\n" +
+						" `artist` text NOT NULL,\r\n" + 
+						" `title` text NOT NULL,\r\n" + 
+						" `description` text NOT NULL,\r\n" + 
+						" `material` text,\r\n" + 
+						" `paintingType` text,\r\n" + 
+						" `width` double NOT NULL,\r\n" +
+						" `height` double NOT NULL,\r\n" +
+						" `depth` double,\r\n" +
+						" `dateCreated` int(11)\r\n" +
+						");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `auctions` (\r\n" +
 						" `auctionID` INTEGER PRIMARY KEY,\r\n" +
 						" `sellerID` int(11) NOT NULL,\r\n" +
@@ -106,7 +119,7 @@ public class DB {
 	    return rs;
 	}
 
-	public void closeQuietly() {
+	public void close() {
 		try {
 			if (conn != null) {
 				//System.out.println("Closing the connection");
