@@ -1,17 +1,27 @@
 package src;
 
+/**
+ * @author Joshua Blackman
+ *
+ */
 public class Sculpture extends Artwork{
     private double depth;
     private String material;
 
-    public Sculpture(String title, String artist, String description, String photographPath, String dateCreated, double height, double width, double depth, String material) {
-        setTitle(title);
+    public Sculpture(int userID, String title, String artist, String description, String photographPath, String dateCreated, double height, double width, double depth, String material) {
+        setUserID(userID);
+    	setTitle(title);
         setArtist(artist);
         setDescription(description);
         setPhotographPath(photographPath);
         setDateCreated(dateCreated);
         setDimensions(height, width, depth);
         setMaterial(material);
+        saveSculpture();
+    }
+    
+    public void saveSculpture() {
+    	DB.query("INSERT INTO `artwork` (`userID`, `artist`, `title`, `material`, `width`, `height`, `depth`, `dateCreated`) VALUES ('"+ this.getUserID() + "',  '" + this.getArtist() + "', '" + this.getMaterial() + "', '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getDimensions()[2] + "', '" + this.getDateCreated() +"');");
     }
 
     /**
