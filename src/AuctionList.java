@@ -18,7 +18,7 @@ public class AuctionList {
 	private int unixTimeAdded;
 	private int lastBidId;
 
-	private ArrayList<Auction> auctionList;
+	private static ArrayList<Auction> auctionList;
 
 	/**
 	 * Initialise the connection
@@ -33,7 +33,7 @@ public class AuctionList {
 	 * @param userId the user who created the auctions
 	 * @return an ArrayList of all auctions specified user has created
 	 */
-	public ArrayList<Auction> getUserSellingAuctionList(int userId) {
+	public static ArrayList<Auction> getUserSellingAuctionList(int userId) {
 		auctionList = new ArrayList<Auction>();
 
 		String query = "SELECT * from `auctions` WHERE `sellerID` = '" + userId + "'";
@@ -42,13 +42,23 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	public static ArrayList<Auction> getAuctions() {
+		auctionList = new ArrayList<Auction>();
+
+		String query = "SELECT * from `auctions`";
+		populateArray(query, auctionList);
+
+		return auctionList;
+	}
+
+	
 	/**
 	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
 	 *
 	 * @param userId the user who is searched
 	 * @return an ArrayList of all auctions that specified user is involved in
 	 */
-	public ArrayList<Auction> getUserBuyingAuctionList(int userId) {
+	public static ArrayList<Auction> getUserBuyingAuctionList(int userId) {
 		auctionList = new ArrayList<Auction>();
 
 		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'" +
@@ -62,28 +72,28 @@ public class AuctionList {
 	 * @param userList
 	 * @return list of auctions created by user in lists
 	 */
-	public ArrayList<Auction> getUsersAuctions(ArrayList<User> userList){
+	public static ArrayList<Auction> getUsersAuctions(ArrayList<User> userList){
 		auctionList = new ArrayList<Auction>();
 		if(!userList.isEmpty()) {
-		String whereClause = "";
-		for(int i = 0; i < userList.size();i++) {
-			whereClause += " `sellerID` = '" + userList.get(i).getUserID() + "'";
-			if(i == 0 && userList.size() > 0) {
-				whereClause += " OR ";
-			} else if(i < userList.size()-1) {
-				whereClause += " OR ";
+			String whereClause = "";
+			for(int i = 0; i < userList.size();i++) {
+				whereClause += " `sellerID` = '" + userList.get(i).getUserID() + "'";
+				if(i == 0 && userList.size() > 0) {
+					whereClause += " OR ";
+				} else if(i < userList.size()-1) {
+					whereClause += " OR ";
+				}
 			}
-		}
-		
-		String query = "SELECT * from `auctions` WHERE" + whereClause;
-		System.out.println(query);
-		populateArray(query, auctionList);
+			
+			String query = "SELECT * from `auctions` WHERE" + whereClause;
+			System.out.println(query);
+			populateArray(query, auctionList);
 		}
 		
 		return auctionList;
 	}
 
-	private ArrayList<Auction> populateArray(String query, ArrayList<Auction> auctionList) {
+	private static ArrayList<Auction> populateArray(String query, ArrayList<Auction> auctionList) {
 		try {
 			ResultSet rs = DB.select(query);
 			while (rs.next()) {
