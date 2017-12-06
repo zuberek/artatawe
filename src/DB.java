@@ -47,7 +47,6 @@ public class DB {
 						" `userID` int(11) NOT NULL,\r\n" +
 						" `artist` text NOT NULL,\r\n" + 
 						" `title` text NOT NULL,\r\n" + 
-						" `description` text NOT NULL,\r\n" + 
 						" `material` text,\r\n" + 
 						" `paintingType` text,\r\n" + 
 						" `width` double NOT NULL,\r\n" +
@@ -58,6 +57,7 @@ public class DB {
 				"CREATE TABLE IF NOT EXISTS `auctions` (\r\n" +
 						" `auctionID` INTEGER PRIMARY KEY,\r\n" +
 						" `sellerID` int(11) NOT NULL,\r\n" +
+						" `description` text NOT NULL,\r\n" + 
 						" `artworkID` int(11) NOT NULL,\r\n" +
 						" `maxBids` int(11) NOT NULL,\r\n" +
 						" `reservePrice` double NOT NULL,\r\n" +
