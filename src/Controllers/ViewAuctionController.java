@@ -40,7 +40,7 @@ public class ViewAuctionController {
 		this.auction = auction;
 		
 		auctionNameLabel.setText(auction.getArtwork().getTitle());
-		auctionDescriptionTextBox.setText(auction.getDescriptionForList());
+		auctionDescriptionTextBox.setText(auction.getDescription());
 		
 		Bid currentBid = new Bid(auction.getLastBidID());
 		currentBidLabel.setText(String.valueOf(currentBid.getAmount()));
