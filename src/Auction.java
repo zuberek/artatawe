@@ -14,6 +14,20 @@ public class Auction {
 	private Artwork artwork;
 	private int auctionID;
 	private int sellerID;
+	private String description;
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	private int maxBids;
 	private double reservePrice;
 	private Date timeAdded;
@@ -39,6 +53,7 @@ public class Auction {
 			while (rs.next()) {
 				setAuctionID(rs.getInt("auctionID"));
 				setSellerID(rs.getInt("sellerID"));
+				setDescription(rs.getString("description"));
 				setMaxBids(rs.getInt("maxBids"));
 				setReservePrice(rs.getDouble("reservePrice"));
 				setLastBidID(rs.getInt("lastBidID"));
@@ -75,6 +90,10 @@ public class Auction {
 		return auctionID + " lastBid: " + lastBidID + " - " + new Bid(lastBidID).getAmount();
 	}
 
+	public Artwork getArtwork() {
+		return this.artwork;
+	}
+	
 	/**
 	 * @return the auction ID of the current auction object
 	 */
