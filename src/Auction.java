@@ -14,20 +14,6 @@ public class Auction {
 	private Artwork artwork;
 	private int auctionID;
 	private int sellerID;
-	private String description;
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	private int maxBids;
 	private double reservePrice;
 	private Date timeAdded;
@@ -62,6 +48,20 @@ public class Auction {
 		} catch(SQLException ex) {
 			ex.getMessage();
 		}
+	}
+	
+	private String description;
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	
