@@ -2,6 +2,7 @@ package src;
 
 /**
  * @author Bryn Waterhouse
+ * @author Joshua Blackman
  */
 
 public abstract class Artwork {
@@ -10,9 +11,25 @@ public abstract class Artwork {
     private String description;
     private String photographPath;
     private String dateCreated;
-    protected double height;
+    private int UserID;
+
+	protected double height;
     protected double width;
 
+    /**
+	 * @return the userID
+	 */
+	public int getUserID() {
+		return UserID;
+	}
+
+	/**
+	 * @param userID the userID to set
+	 */
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+    
     /**
      *
      * @return the title of the artwork
