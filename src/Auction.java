@@ -23,17 +23,17 @@ public class Auction {
 	 * This constructor is used for when you want to create a new bid
 	 */
 	public Auction(int sellerID, int artworkID, int maxBids, double reservePrice){
-		Artwork painting = null;
+		Artwork artwork = null;
 		if(Artwork.checkType(artworkID) == "painting") {
-			painting = new Painting(artworkID);
+			artwork = new Painting(artworkID);
 		} else  {
-			//Sculpture painting = new Sculpture(artworkID);
+			artwork = new Sculpture(artworkID);
 		}
 		setSellerID(sellerID);
 		setMaxBids(maxBids);
 		setReservePrice(reservePrice);
 		setLastBidID(-1);
-		setArtwork(painting);
+		setArtwork(artwork);
 		saveAuction();
 	}
 	/**
@@ -63,7 +63,7 @@ public class Auction {
 			if(Artwork.checkType(artworkID).equals("painting")) {
 				artwork = new Painting(artworkID);
 			} else  {
-				//Sculpture painting = new Sculpture(artworkID);
+				artwork = new Sculpture(artworkID);
 				
 			}
 			setArtwork(artwork);
@@ -104,7 +104,7 @@ public class Auction {
 	
 	private void saveAuction(){
 		// Insert user into database
-		DB.query("INSERT INTO `auctions` (`sellerID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() + "); ");
+		DB.query("INSERT INTO `auctions` (`sellerID`, `artworkID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getArtwork().getArtworkID() + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() + "); ");
 	}
 
 	public void saveAuctionAfterBidding(){
