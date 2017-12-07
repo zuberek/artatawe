@@ -41,7 +41,7 @@ public class Sculpture extends Artwork{
     }
     
     public void saveSculpture() {
-    	DB.query("INSERT INTO `artworks` (`userID`, `type`, `artist`, `title`, `material`, `width`, `height`, `depth`, `dateCreated`) VALUES ('"+ this.getUserID() + "',  'sculpture', '" + this.getArtist() + "', '" + this.getMaterial() + "', '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getDimensions()[2] + "', '" + this.getDateCreated() +"');");
+    	DB.query("INSERT INTO `artworks` (`userID`, `type`, `artist`, `title`, `material`, `width`, `height`, `depth`, `dateCreated`, `description`) VALUES ('"+ this.getUserID() + "',  'sculpture', '" + this.getArtist() + "', '"  + this.getTitle() + "', '" + this.getMaterial() + "', '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getDimensions()[2] + "', '" + this.getDateCreated() + "', '" + this.getDescription() + "');");
     }
 
     /**
