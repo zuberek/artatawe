@@ -58,7 +58,7 @@ public class AddAuctionController {
 	public void addAuctionButonClicked(){
 		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-		} else if(CONSTANTS.isNumeric(yearTextField.getText()) || CONSTANTS.isNumeric(reservePriceTextField.getText()) || CONSTANTS.isNumeric(maxBidsTextField.getText())) {
+		} else if(!CONSTANTS.isNumeric(yearTextField.getText()) || !CONSTANTS.isNumeric(reservePriceTextField.getText()) || !CONSTANTS.isNumeric(maxBidsTextField.getText())) {
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid number.");
 		} else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
