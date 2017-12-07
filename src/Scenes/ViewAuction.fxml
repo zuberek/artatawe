@@ -15,11 +15,11 @@
             <Label fx:id="auctionNameLabel" layoutX="154.0" layoutY="71.0" text="Auction Name" />
             <TextArea fx:id="auctionDescriptionTextBox" editable="false" layoutX="154.0" layoutY="104.0" prefHeight="90.0" prefWidth="255.0" />
             <ImageView fx:id="auctionImage" fitHeight="110.0" fitWidth="111.0" layoutX="21.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="closeButton" onAction="#close" layoutX="475.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Close" />
+            <Button fx:id="closeButton" layoutX="475.0" layoutY="361.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="111.0" text="Close" />
             <Label layoutX="154.0" layoutY="215.0" text="Current Bid:" />
             <Label fx:id="currentBidLabel" layoutX="219.0" layoutY="215.0" prefHeight="17.0" prefWidth="111.0" text="£10" />
-            <TextField layoutX="156.0" layoutY="247.0" prefHeight="25.0" prefWidth="255.0" />
-            <Button layoutX="154.0" layoutY="286.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="255.0" text="Submit Bid" />
+            <TextField fx:id="bidAmount" layoutX="156.0" layoutY="247.0" prefHeight="25.0" prefWidth="255.0" />
+            <Button fx:id="submitBidButton" layoutX="154.0" layoutY="286.0" mnemonicParsing="false" onAction="#submitBid" prefHeight="25.0" prefWidth="255.0" text="Submit Bid" />
          </children>
       </AnchorPane>
    </children>
