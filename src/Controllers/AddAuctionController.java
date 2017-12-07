@@ -1,6 +1,9 @@
 package src.Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import src.CONSTANTS;
@@ -8,6 +11,9 @@ import src.User;
 
 public class AddAuctionController {
 	
+	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("Painting", "Sculpture");
+	
+	@FXML private ChoiceBox artworkTypeChoiceBox;
 	@FXML TextField titleTextField;
 	@FXML TextField artistTextField;
 	@FXML TextField yearTextField;
@@ -20,6 +26,8 @@ public class AddAuctionController {
 	public void initialize(User currentUser) {
 		// TODO Auto-generated method stub
 		this.currentUser = currentUser;
+		artworkTypeChoiceBox.setValue("Painting");
+		artworkTypeChoiceBox.setItems(artworkChoiceList);
 	}
 
 	public void addAuctionButonClicked(){
