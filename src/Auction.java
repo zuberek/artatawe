@@ -104,7 +104,7 @@ public class Auction {
 	
 	private void saveAuction(){
 		// Insert user into database
-		DB.query("INSERT INTO `auctions` (`sellerID`, `artworkID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getArtwork().getArtworkID() + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() + "); ");
+		DB.query("INSERT INTO `auctions` (`sellerID`, `artworkID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getArtwork().getArtworkID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() + "); ");
 	}
 
 	public void saveAuctionAfterBidding(){
