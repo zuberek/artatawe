@@ -9,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import src.CONSTANTS;
+import src.Painting;
 import src.User;
 
 public class AddAuctionController {
@@ -16,14 +17,18 @@ public class AddAuctionController {
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("Painting", "Sculpture");
 
 	@FXML ComboBox artworkTypeComboBox;
+	
 	@FXML TextField titleTextField;
 	@FXML TextField artistTextField;
 	@FXML TextField yearTextField;
 	@FXML TextArea descriptionTextField;
 	@FXML TextField reservePriceTextField;
 	@FXML TextField maxBidsTextField;
-	@FXML Label depthLabel;
+	@FXML TextField heightTextField;
+	@FXML TextField widthTextField;
 	@FXML TextField depthTextField;
+	
+	@FXML Label depthLabel;	
 	@FXML Label typeSpecificLabel;
 
 	User currentUser;
@@ -56,6 +61,7 @@ public class AddAuctionController {
 		} else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
 			case "Painting":
+				Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()));
 				closeWindow();
 				break;
             case "Sculpture":
