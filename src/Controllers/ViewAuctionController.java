@@ -93,10 +93,10 @@ public class ViewAuctionController {
 			CONSTANTS.makeAlertWindow("warning", "Please enter a numerical value");
 		} else {
 			bid = Double.parseDouble(bidAmount.getText());
-			if(auction.getMaxBids() != auction.getCurrentBids()) {
+			if(auction.getMaxBids() >= auction.getCurrentBids(auction.getAuctionID())) {
 				if(bid < auction.getReservePrice()) {
 					CONSTANTS.makeAlertWindow("warning", "Please enter a bid above the reserve price");
-				} else if(bid < new Bid(auction.getLastBidID()).getAmount()) {
+				} else if(bid <= new Bid(auction.getLastBidID()).getAmount()) {
 					CONSTANTS.makeAlertWindow("warning", "Please enter a bid higher than the previous bid");
 				} else if(currentUser.getUserName().equals(new User(auction.getSellerID()).getUserName())){
 					CONSTANTS.makeAlertWindow("warning", "You can not bid on your own auction.");					
