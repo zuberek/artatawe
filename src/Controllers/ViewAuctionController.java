@@ -15,6 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.Auction;
@@ -29,6 +30,7 @@ import src.User;
  */
 public class ViewAuctionController {
 	
+	@FXML VBox rootPane;
 	@FXML Label auctionNameLabel;
 	@FXML TextArea auctionDescriptionTextBox;
 	@FXML Label currentBidLabel;
@@ -77,6 +79,11 @@ public class ViewAuctionController {
             // Quit the program (with an error code)
             System.exit(-1);
         }
+	}
+	
+	public void close() {
+		Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
 	}
 
 }
