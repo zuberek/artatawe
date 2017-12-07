@@ -58,9 +58,7 @@ public class Auction {
 				artworkID = rs.getInt("artworkID");
 				
 			}
-			
-			
-			
+
 			Artwork artwork = null;
 			if(Artwork.checkType(artworkID).equals("painting")) {
 				artwork = new Painting(artworkID);
@@ -73,12 +71,19 @@ public class Auction {
 			ex.getMessage();
 		}
 		
-		
 	}
 	
-	public int getCurrentBids() {
-		return 0;
-		
+	public int getCurrentBids(int auctionID) {
+		int counter = 0;
+		try {
+			ResultSet rs = DB.select("SELECT * FROM `bids` WHERE auctionID = '" + auctionID + "'");
+			while (rs.next()) {
+				counter++;
+			}
+		} catch(SQLException ex) {
+			ex.getMessage();
+		}
+		return counter;
 	}
 	
 	private String description;
