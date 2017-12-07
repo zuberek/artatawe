@@ -1,5 +1,8 @@
 package src;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * @author Joshua Blackman
  *
@@ -18,6 +21,23 @@ public class Sculpture extends Artwork{
         setDimensions(height, width, depth);
         setMaterial(material);
         saveSculpture();
+    }
+    
+    public Sculpture(int artworkID) {
+    	try{
+			ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
+			while (rs.next()) {
+				super.setArtworkID(rs.getInt("artworkID"));
+				this.setUserID(rs.getInt("userID"));
+				this.setArtist(rs.getString("artist"));
+				this.setTitle(rs.getString("title"));
+				this.setDimensions(rs.getDouble("height"), rs.getDouble("width"), rs.getDouble("depth"));
+				this.setMaterial((rs.getString("material")));
+				this.setDateCreated(rs.getString("dateCreated"));
+	        }
+		} catch(SQLException ex){
+			ex.getMessage();
+		}
     }
     
     public void saveSculpture() {
