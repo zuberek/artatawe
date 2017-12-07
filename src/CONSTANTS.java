@@ -31,4 +31,9 @@ public class CONSTANTS {
 	        break;
     	}
     }
+    
+    public static boolean isNumerical(String str) {
+    	return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+    }
+    
 }
