@@ -7,10 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import src.User;
 
 public class ViewProfileController{
 
+	
+	@FXML BorderPane rootPane;
 	@FXML Label userLabel;
 	@FXML ImageView userImage;
 	@FXML Button favouriteButton;
@@ -50,7 +54,10 @@ public class ViewProfileController{
 			favouriteButton.setText("Unfavourite");
 			favourited = true;
 		}
-		
-		
+	}
+	
+	public void close() {
+		Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
 	}
 }
