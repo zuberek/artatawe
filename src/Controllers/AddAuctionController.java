@@ -3,7 +3,8 @@ package src.Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -14,21 +15,37 @@ public class AddAuctionController {
 
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("Painting", "Sculpture");
 
-	@FXML ChoiceBox artworkTypeChoiceBox;
+	@FXML ComboBox artworkTypeComboBox;
 	@FXML TextField titleTextField;
 	@FXML TextField artistTextField;
 	@FXML TextField yearTextField;
 	@FXML TextArea descriptionTextField;
 	@FXML TextField reservePriceTextField;
 	@FXML TextField maxBidsTextField;
+	@FXML Label depthLabel;
+	@FXML TextField depthTextField;
+	@FXML Label typeSpecificLabel;
 
 	User currentUser;
-
+	
 	public void initialize(User currentUser) {
 		// TODO Auto-generated method stub
 		this.currentUser = currentUser;
-		artworkTypeChoiceBox.setValue("Painting");
-		artworkTypeChoiceBox.setItems(artworkChoiceList);
+		artworkTypeComboBox.setValue("Sculpture");
+		artworkTypeComboBox.setItems(artworkChoiceList);
+	}
+	
+	@FXML
+	private void artworkTypeComboBox() {
+		if(artworkTypeComboBox.getValue().equals("Sculpture")) {
+			depthLabel.setVisible(true);
+			depthTextField.setVisible(true);
+			typeSpecificLabel.setText("Material");
+		} else {
+			depthLabel.setVisible(false);
+			depthTextField.setVisible(false);
+			typeSpecificLabel.setText("Painting Type");
+		}
 	}
 
 	public void addAuctionButonClicked(){
@@ -37,7 +54,7 @@ public class AddAuctionController {
 		} else if(CONSTANTS.isNumeric(yearTextField.getText()) || CONSTANTS.isNumeric(reservePriceTextField.getText()) || CONSTANTS.isNumeric(maxBidsTextField.getText())) {
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid number.");
 		} else {
-			switch(artworkTypeChoiceBox.getSelectionModel().getSelectedItem().toString()) {
+			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
 			case "Painting":
 				closeWindow();
 				break;
