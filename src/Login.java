@@ -34,7 +34,7 @@ public class Login extends Application {
 		try {
 		Parent root = FXMLLoader.load(getClass().getResource("Scenes/Login.fxml"));
 
-		Scene scene = new Scene(root,CONSTANTS.SMALL_WINDOW_WIDTH,CONSTANTS.SMALL_WINDOW_HEIGHT);
+		Scene scene = new Scene(root);
 
 		stage.setTitle(WINDOW_TITLE);
 		stage.setScene(scene);

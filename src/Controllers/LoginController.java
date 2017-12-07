@@ -50,7 +50,7 @@ public class LoginController {
 					DashboardController dc = fxmlLoader.getController();
 					dc.initialize(currentUser);
 	
-					Scene newScene = new Scene(editRoot, CONSTANTS.BIG_WINDOW_WIDTH,CONSTANTS.BIG_WINDOW_HEIGHT);
+					Scene newScene = new Scene(editRoot);
 					Stage stage = (Stage) loginButton.getScene().getWindow();
 	
 					stage.setScene(newScene);
