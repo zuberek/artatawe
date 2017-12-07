@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import src.Auction;
+import src.Bid;
 import src.CONSTANTS;
 import src.User;
 
@@ -21,12 +22,12 @@ import src.User;
 public class ViewAuctionController {
 	
 	@FXML private Button placeBidButton;
-	@FXML private TextField bidAmount;
+	@FXML private TextField newBidAmountTextField;
 	@FXML private Label artworkNameLabel;
 	
 	
 	Auction auctionViewed;
-	User userLoggedIn;
+	User currentUser;
 	
 	/**
 	 * Set the user that is being edited.
@@ -47,11 +48,21 @@ public class ViewAuctionController {
 	}
 	
 	public void placeBidButtonClicked() {
-		String amount = bidAmount.getText();
-		if(amount.isEmpty()) {
-			CONSTANTS.makeAlertWindow("warning", "Please fill field amount");
-		} else if(!isNumeric(amount)) {
+		
+		String bidString = newBidAmountTextField.getText();
+		float lastAuctionBidAmount = this.auctionViewed.getAuctionLastBidAmount();
+		if(!isNumeric(bidString)) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill field amount with numbers");
+		} else {
+			float amount = Float.valueOf(bidString);
+			if(amount <= 0) {
+				CONSTANTS.makeAlertWindow("warning", "Please fill field amount");
+			} else if(amount <= lastAuctionBidAmount){
+				CONSTANTS.makeAlertWindow("warning", "Please fill field amount that is bigger than the last bid");
+			} else {
+				Bid newBid = new Bid(currentUser.getUserID(), auctionViewed.getAuctionID(), amount);
+				auctionViewed.setLastBidID(newBid.getBidID());				
+			}
 		}
 	}
 	
