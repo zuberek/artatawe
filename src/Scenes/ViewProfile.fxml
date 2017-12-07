@@ -22,7 +22,7 @@
    <bottom>
       <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="cancelButton" text="Close" />
+            <Button fx:id="cancelButton" onAction="#close" text="Close" />
             <Button id="favouriteButton" fx:id="favouriteButton" mnemonicParsing="false" onAction="#favouriteUser" text="Favourite" />
          </children>
          <padding>
