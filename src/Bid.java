@@ -29,7 +29,6 @@ public class Bid {
 		setBidderID(bidderID);
 		setAuctionID(auctionID);
 		setAmount(amount);
-
 		saveBid();
 	}
 
@@ -75,7 +74,7 @@ public class Bid {
 		Auction biddedAuction = new Auction(this.auctionID);
 		biddedAuction.setLastBidID(lastBidID);
 		biddedAuction.saveAuctionAfterBidding();
-		}
+	}
 
 	/**
 	 * Gets the current BidID
