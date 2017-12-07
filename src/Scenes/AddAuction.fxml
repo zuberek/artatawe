@@ -31,13 +31,13 @@
                </image>
             </ImageView>
             <Label fx:id="typeSpecificLabel" layoutX="39.0" layoutY="370.0" text="Material" />
-            <TextField layoutX="138.0" layoutY="428.0" prefHeight="26.0" prefWidth="61.0" />
-            <TextField layoutX="222.0" layoutY="429.0" prefHeight="26.0" prefWidth="62.0" />
+            <TextField fx:id="heightTextField" layoutX="138.0" layoutY="428.0" prefHeight="26.0" prefWidth="61.0" />
+            <TextField fx:id="widthTextField" layoutX="222.0" layoutY="429.0" prefHeight="26.0" prefWidth="62.0" />
             <TextField fx:id="depthTextField" layoutX="305.0" layoutY="429.0" prefHeight="26.0" prefWidth="62.0" />
             <Label layoutX="151.0" layoutY="410.0" text="Height" />
             <Label layoutX="237.0" layoutY="410.0" text="Width" />
             <Label fx:id="depthLabel" layoutX="320.0" layoutY="410.0" text="Depth" />
-            <TextField layoutX="138.0" layoutY="366.0" prefHeight="26.0" prefWidth="230.0" />
+            <TextField fx:id="typeSpecificTextField" layoutX="138.0" layoutY="366.0" prefHeight="26.0" prefWidth="230.0" />
             <ComboBox fx:id="artworkTypeComboBox" layoutX="138.0" layoutY="200.0" onAction="#artworkTypeComboBox" prefHeight="26.0" prefWidth="230.0" />
             <Label layoutX="95.0" layoutY="104.0" text="Title" />
             <Label layoutX="92.0" layoutY="138.0" text="Artist" />
