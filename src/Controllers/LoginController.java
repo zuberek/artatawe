@@ -49,7 +49,7 @@ public class LoginController {
 					MenuController menuController = fxmlLoader.getController();
 					menuController.initialize(currentUser);
 	
-					Scene newScene = new Scene(editRoot);
+					Scene newScene = new Scene(editRoot, CONSTANTS.BIG_WINDOW_WIDTH,CONSTANTS.BIG_WINDOW_HEIGHT);
 					Stage stage = (Stage) loginButton.getScene().getWindow();
 	
 					stage.setScene(newScene);
@@ -71,10 +71,10 @@ public class LoginController {
 	public void registerButtonClicked() {
 	    try{
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Register.fxml"));
-			AnchorPane editRoot = (AnchorPane) fxmlLoader.load();
+			BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
 
-			Scene newScene = new Scene(editRoot, Login.MAIN_WINDOW_WIDTH, Login.MAIN_WINDOW_HEIGHT);
+			Scene newScene = new Scene(editRoot, CONSTANTS.MEDIUM_WINDOW_WIDTH, CONSTANTS.MEDIUM_WINDOW_HEIGHT);
 			Stage editStagee = new Stage();
 			
 			RegisterController registerController = fxmlLoader.getController();

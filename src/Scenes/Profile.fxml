@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="rootPane" prefHeight="342.0" prefWidth="370.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.ProfileController">
+<BorderPane fx:id="rootPane" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.ProfileController">
    <top>
       <Label id="welcome-text" prefHeight="102.0" prefWidth="348.0" stylesheets="@../Styles/login.css" text="Edit User" BorderPane.alignment="CENTER">
          <padding>
@@ -33,7 +33,7 @@
       </HBox>
    </bottom>
    <center>
-      <GridPane hgap="10.0" prefHeight="185.0" prefWidth="223.0" vgap="10.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" maxWidth="200.0" prefWidth="200.0" />
             <ColumnConstraints />
@@ -69,9 +69,15 @@
                <image>
                   <Image url="@../Pictures/avatar1.png" />
                </image>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#editProfileImageButtonClicked" text="Edit" />
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </VBox>
    </left>
 </BorderPane>

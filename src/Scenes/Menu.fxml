@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.MenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.MenuController">
    <left>
       <VBox prefHeight="274.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
@@ -53,7 +53,12 @@
             <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="currentUserTextField" promptText="CurrentUser" />
-                  <ImageView fx:id="logoutButton" fitHeight="24.0" fitWidth="29.0" onMouseClicked="#handleLogoutButtonClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profileImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Pictures/avatar1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="logoutButton" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleLogoutButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Pictures/logout.png" />
                      </image>
