@@ -22,6 +22,7 @@ public class Painting extends Artwork {
     	try{
 			ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
 			while (rs.next()) {
+				super.setArtworkID(rs.getInt("artworkID"));
 				this.setUserID(rs.getInt("userID"));
 				this.setArtist(rs.getString("artist"));
 				this.setTitle(rs.getString("title"));
