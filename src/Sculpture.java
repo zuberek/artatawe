@@ -11,6 +11,8 @@ public class Sculpture extends Artwork{
     private double depth;
     private String material;
 
+    public Sculpture(){super.setPhotographPath("../Pictures/Painting.jpg");  }
+    
     public Sculpture(int userID, String title, String artist, String description, String photographPath, String dateCreated, double height, double width, double depth, String material) {
         setUserID(userID);
     	setTitle(title);

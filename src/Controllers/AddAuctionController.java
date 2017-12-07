@@ -3,6 +3,7 @@ package src.Controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
@@ -15,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import src.Artwork;
@@ -41,6 +43,7 @@ public class AddAuctionController {
 	@FXML TextField widthTextField;
 	@FXML TextField depthTextField;
 	@FXML TextField typeSpecificTextField;
+	@FXML ImageView artworkPhoto;
 
 	@FXML Label depthLabel;	
 	@FXML Label typeSpecificLabel;
@@ -51,9 +54,19 @@ public class AddAuctionController {
 	public void initialize(User currentUser) {
 		// TODO Auto-generated method stub
 		this.currentUser = currentUser;
+		this.artworkToCreate = new Sculpture();
 		//this.artworkToCreate = new Artwork();
 		artworkTypeComboBox.setValue("Sculpture");
 		artworkTypeComboBox.setItems(artworkChoiceList);
+
+		this.setArtworkImage();
+	}
+	
+	private void setArtworkImage(){
+		System.out.println(artworkToCreate.getPhotographPath());
+		InputStream stream = getClass().getResourceAsStream(artworkToCreate.getPhotographPath());
+		Image newImage = new Image(stream);
+		artworkPhoto.setImage(newImage);
 	}
 
 	@FXML
@@ -68,37 +81,39 @@ public class AddAuctionController {
 			typeSpecificLabel.setText("Painting Type");
 		}
 	}
-	
+
 	public void pictureChangeButtonClicked(){	
 		int artworkID = AuctionList.getNewestArtworkID()+1;
 		FileChooser fileChooser = new FileChooser();
 		configureFileChooser(fileChooser);
 		String nameAndPath = "./src/Resources/ArtworksImages/"+ currentUser.getUserID() + "." + artworkID + ".png";
-		
-	    File file = fileChooser.showOpenDialog(depthLabel.getScene().getWindow());
-	    
-        if (file != null) {
-            try {
-            	Image image = new Image(file.toURI().toString());
-                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", new File(nameAndPath));
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+
+		File file = fileChooser.showOpenDialog(depthLabel.getScene().getWindow());
+
+		if (file != null) {
+			try {
+				Image image = new Image(file.toURI().toString());
+				ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", new File(nameAndPath));
+				this.artworkToCreate.setPhotographPath("../Resources/ArtworksImages/"+ currentUser.getUserID() + "." + artworkID + ".png");
+			} catch (IOException ex) {
+				System.out.println(ex.getMessage());
+			}
+		}
+		this.setArtworkImage();
 	}
-	
+
 	private void configureFileChooser(
-	        final FileChooser fileChooser) {      
-	            fileChooser.setTitle("Open Resource File");
-	            fileChooser.setInitialDirectory(
-	                new File(System.getProperty("user.home"))
-	            );                 
-	            fileChooser.getExtensionFilters().addAll(
-	                new FileChooser.ExtensionFilter("All Images", "*.*"),
-	                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-	                new FileChooser.ExtensionFilter("PNG", "*.png")
-	            );
-	    }
+			final FileChooser fileChooser) {      
+		fileChooser.setTitle("Open Resource File");
+		fileChooser.setInitialDirectory(
+				new File(System.getProperty("user.home"))
+				);                 
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("All Images", "*.*"),
+				new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+				new FileChooser.ExtensionFilter("PNG", "*.png")
+				);
+	}
 
 	public void addAuctionButonClicked(){
 		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty()) {
@@ -108,10 +123,10 @@ public class AddAuctionController {
 		} else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
 			case "Painting":
-				Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());				
+				Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());				
 				break;
 			case "Sculpture":
-				Sculpture sculpture = new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()), typeSpecificTextField.getText());                  	
+				Sculpture sculpture = new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()), typeSpecificTextField.getText());                  	
 				break;
 			}
 			Auction auction = new Auction(currentUser.getUserID(), AuctionList.getNewestArtworkID(), Integer.parseInt(maxBidsTextField.getText()), Integer.parseInt(reservePriceTextField.getText()));

@@ -25,7 +25,7 @@
             <Button layoutX="633.0" layoutY="428.0" mnemonicParsing="false" onAction="#addAuctionButonClicked" text="Add Auction" />
             <TextField fx:id="artistTextField" layoutX="138.0" layoutY="134.0" prefHeight="25.0" prefWidth="230.0" />
             <Label layoutX="20.0" layoutY="433.0" text="Dimentions (cm)" />
-            <ImageView fitHeight="186.0" fitWidth="262.0" layoutX="444.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="artworkPhoto" fitHeight="186.0" fitWidth="262.0" layoutX="444.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Pictures/Painting.jpg" />
                </image>
