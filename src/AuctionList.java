@@ -27,9 +27,17 @@ public class AuctionList {
 
 	}
 
-	public static Auction getNewestAuction(){
-		String query = "SELECT `auctionID` from `auctions` WHERE `auctionID` = MAX(auctionID)";
-		return null;
+	public static int getNewestArtworkID(){
+		String query = "SELECT `auctionID` from `auctions` WHERE `auctionID` = (SELECT MAX(auctionID) from `auctions`)";
+		ResultSet rs = DB.select(query);
+		int artworkID = 0;
+		try {
+			artworkID = rs.getInt("artworkID");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return artworkID;
 	}
 
 	/**
