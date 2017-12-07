@@ -11,4 +11,8 @@ public class AddAuctionController {
 		this.currentUser = currentUser;
 	}
 
+	public void addAuctionButonClicked(){
+		
+	}
+
 }
