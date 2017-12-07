@@ -33,5 +33,6 @@ Main.java
 FXMLexample
 .gitignore
 out/
+Resources/
 .classpath
 .project
