@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import src.CONSTANTS;
 import src.Painting;
+import src.Sculpture;
 import src.User;
 
 public class AddAuctionController {
@@ -27,6 +28,7 @@ public class AddAuctionController {
 	@FXML TextField heightTextField;
 	@FXML TextField widthTextField;
 	@FXML TextField depthTextField;
+	@FXML TextField typeSpecificTextField;
 	
 	@FXML Label depthLabel;	
 	@FXML Label typeSpecificLabel;
@@ -61,10 +63,11 @@ public class AddAuctionController {
 		} else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
 			case "Painting":
-				Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()));
+				Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());
 				closeWindow();
 				break;
             case "Sculpture":
+            	Sculpture sculpture = new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()), typeSpecificTextField.getText());       
             	closeWindow();
             	break;
 			}
