@@ -36,7 +36,7 @@ public class Painting extends Artwork {
     }
     
     public void savePainting() {
-    	DB.query("INSERT INTO `artworks` (`userID`, `type`, `artist`, `title`, `width`, `height`, `paintingType`, `dateCreated`, `description`) VALUES ('"+ this.getUserID() + "',  'painting', '" + this.getArtist() + ", '" + this.getTitle() + ", '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getPaintingType() + "', '" + this.getDateCreated() + "', '" + this.getDescription() + "');");
+    	DB.query("INSERT INTO `artworks` (`userID`, `type`, `artist`, `title`, `width`, `height`, `paintingType`, `dateCreated`, `description`) VALUES ('"+ this.getUserID() + "',  'painting', '" + this.getArtist() + "', '" + this.getTitle() + "', '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getPaintingType() + "', '" + this.getDateCreated() + "', '" + this.getDescription() + "');");
     }
 
     /**

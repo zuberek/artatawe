@@ -63,7 +63,6 @@ public class AddAuctionController {
 	}
 	
 	private void setArtworkImage(){
-		System.out.println(artworkToCreate.getPhotographPath());
 		InputStream stream = getClass().getResourceAsStream(artworkToCreate.getPhotographPath());
 		Image newImage = new Image(stream);
 		artworkPhoto.setImage(newImage);
@@ -78,6 +77,7 @@ public class AddAuctionController {
 		} else {
 			depthLabel.setVisible(false);
 			depthTextField.setVisible(false);
+			depthTextField.clear();
 			typeSpecificLabel.setText("Painting Type");
 		}
 	}
