@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import src.CONSTANTS;
 import src.User;
-
+import src.DrawingTool.DrawingCanvas;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -59,6 +59,19 @@ public class ProfileController {
 		Image newImage = new Image(stream);
 		profileImage.setImage(newImage);
 	}
+	
+	public void drawButtonClicked(){
+
+        Stage newStage = new Stage();
+
+        DrawingCanvas newCanvas = new DrawingCanvas();
+        Scene newScene = newCanvas.initialise(userBeingEdited);
+
+        newStage.setScene(newScene);
+        newStage.showAndWait();
+        
+        this.initialize(userBeingEdited);
+    }
 
 	/**
 	 * Handle the cancel button.
