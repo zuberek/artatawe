@@ -28,7 +28,7 @@ public class AuctionList {
 	}
 
 	public static int getNewestArtworkID(){
-		String query = "SELECT `auctionID` from `auctions` WHERE `auctionID` = (SELECT MAX(auctionID) from `auctions`)";
+		String query = "SELECT `artworkID` from `artworks` WHERE `artworkID` = (SELECT MAX(artworkID) from `artworks`)";
 		ResultSet rs = DB.select(query);
 		int artworkID = 0;
 		try {

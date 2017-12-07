@@ -71,7 +71,6 @@ public class AddAuctionController {
 				Sculpture sculpture = new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()), typeSpecificTextField.getText());                  	
 				break;
 			}
-			System.out.println("broke here");
 			Auction auction = new Auction(currentUser.getUserID(), AuctionList.getNewestArtworkID(), Integer.parseInt(maxBidsTextField.getText()), Integer.parseInt(reservePriceTextField.getText()));
 			this.closeWindow();
 		}
