@@ -27,6 +27,7 @@ import src.User;
 
 /**
  * @author Borislav Koynin
+ * @author Joshua Blackman
  *
  */
 public class ViewAuctionController {
@@ -88,7 +89,7 @@ public class ViewAuctionController {
 	
 	public void submitBid() {
 		float bid;
-				
+
 		if((!CONSTANTS.isNumeric(bidAmount.getText()) || bidAmount.getText().isEmpty())) {
 			CONSTANTS.makeAlertWindow("warning", "Please enter a numerical value");
 		} else {
