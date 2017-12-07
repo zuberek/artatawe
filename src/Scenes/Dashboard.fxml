@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.DashboardController">
+   <children>
+      <AnchorPane prefHeight="415.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="welcomeLabel" layoutX="473.0" layoutY="53.0" text="Welcome user" />
+            <Button fx:id="logoutButton" layoutX="473.0" layoutY="349.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="25.0" prefWidth="104.0" text="Logout" />
+            <Button fx:id="editProfileButton" layoutX="473.0" layoutY="81.0" mnemonicParsing="false" onAction="#editProfileClicked" prefHeight="25.0" prefWidth="104.0" text="Edit Profile" />
+            <Button fx:id="sellArtworkButton" layoutX="473.0" layoutY="116.0" mnemonicParsing="false" onAction="#sellArtworkClicked" prefHeight="25.0" prefWidth="104.0" text="Sell Artwork" />
+            <Button fx:id="bidHistoryButton" layoutX="473.0" layoutY="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Your Bid History" />
+            <Button fx:id="auctionHistoryButton" layoutX="473.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Sold History" />
+            <Label layoutX="36.0" layoutY="62.0" text="Current Auctions" />
+            <ListView fx:id="browseAuctions" layoutX="36.0" layoutY="84.0" onMouseClicked="#browseAuctionClicked" prefHeight="289.0" prefWidth="422.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

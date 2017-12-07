@@ -1,16 +1,41 @@
 package src;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Painting extends Artwork {
     private String paintingType;
 
-    public Painting(String title, String artist, String description, String photographPath, String dateCreated, double height, double width) {
-        setTitle(title);
+    public Painting(int userID, String title, String artist, String description, String photographPath, String dateCreated, double height, double width) {
+        setUserID(userID);
+    	setTitle(title);
         setArtist(artist);
         setDescription(description);
         setPhotographPath(photographPath);
         setDateCreated(dateCreated);
         setDimensions(height, width);
         setPaintingType(paintingType);
+        savePainting();
+    }
+    
+    public Painting(int artworkID) {
+    	try{
+			ResultSet rs = DB.select("SELECT * FROM `artwork` WHERE artworkID = '" + artworkID + "'");
+			while (rs.next()) {
+				this.setUserID(rs.getInt("userID"));
+				this.setArtist(rs.getString("artist"));
+				this.setTitle(rs.getString("title"));
+				this.setDimensions(rs.getDouble("height"), rs.getDouble("width"));
+				this.setPaintingType(rs.getString("paintingType"));
+				this.setDateCreated(rs.getString("dateCreated"));
+	        }
+		} catch(SQLException ex){
+			ex.getMessage();
+		}
+    }
+    
+    public void savePainting() {
+    	DB.query("INSERT INTO `artwork` (`userID`, `type`, `artist`, `title`, `width`, `height`, `paintingType`, `dateCreated`) VALUES ('"+ this.getUserID() + "',  'painting', '" + this.getArtist() + ", '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getPaintingType() + "', '" + this.getDateCreated() +"');");
     }
 
     /**

@@ -2,17 +2,26 @@ package src.Controllers;
 
 
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import src.Auction;
 import src.Bid;
 import src.CONSTANTS;
+import src.Login;
 import src.User;
 
 /**
@@ -21,12 +30,14 @@ import src.User;
  */
 public class ViewAuctionController {
 	
-	@FXML private Button placeBidButton;
-	@FXML private TextField newBidAmountTextField;
-	@FXML private Label artworkNameLabel;
+
+	@FXML VBox rootPane;
+	@FXML Label auctionNameLabel;
+	@FXML TextArea auctionDescriptionTextBox;
+	@FXML Label currentBidLabel;
 	
 	
-	Auction auctionViewed;
+	Auction auction;
 	User currentUser;
 	
 	/**
@@ -34,42 +45,48 @@ public class ViewAuctionController {
 	 * When this window is closed, the changes will be set in this user object.
 	 * @param The user to be edited.
 	 */
-	public void initialize(User userLoggedIn, Auction auctionToBeViewed) {
-		// Keep a reference to the user that we are editing.
-		this.auctionViewed = auctionToBeViewed;
+	public void initialize(User currentUser, Auction auction) {
+		this.currentUser = currentUser;
+		this.auction = auction;
+		
+		auctionNameLabel.setText(auction.getArtwork().getTitle());
+		auctionDescriptionTextBox.setText(auction.getDescription());
+		
+		Bid currentBid = new Bid(auction.getLastBidID());
+		currentBidLabel.setText(String.valueOf(currentBid.getAmount()));
+	}
+	
 
-		// Update the GUI to show the existing data.
-		artworkNameLabel.setText(Integer.toString(auctionToBeViewed.getAuctionID()));
-		
-		
-//		InputStream stream = getClass().getResourceAsStream(userBeingEdited.getDefaultAvatar());
-//		Image newImage = new Image(stream);
-//		profileImage.setImage(newImage);
+	public void viewSellerProfile() {
+        try {
+        	
+        	User userToView = new User(auction.getSellerID());
+        	
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewProfile.fxml"));
+            Parent editRoot = (Parent) fxmlLoader.load();
+
+            ViewProfileController vcp = fxmlLoader.getController();
+            vcp.initialize(userToView, currentUser);
+
+            Scene newScene = new Scene(editRoot);
+            Stage editStagee = new Stage();
+            editStagee.setScene(newScene);
+            editStagee.setTitle("Artatawe | View Profile");
+
+            editStagee.initModality(Modality.APPLICATION_MODAL);
+
+            editStagee.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Quit the program (with an error code)
+            System.exit(-1);
+        }
+
 	}
 	
-	public void placeBidButtonClicked() {
-		
-		String bidString = newBidAmountTextField.getText();
-		float lastAuctionBidAmount = this.auctionViewed.getAuctionLastBidAmount();
-		if(!isNumeric(bidString)) {
-			CONSTANTS.makeAlertWindow("warning", "Please fill field amount with numbers");
-		} else {
-			float amount = Float.valueOf(bidString);
-			if(amount <= 0) {
-				CONSTANTS.makeAlertWindow("warning", "Please fill field amount");
-			} else if(amount <= lastAuctionBidAmount){
-				CONSTANTS.makeAlertWindow("warning", "Please fill field amount that is bigger than the last bid");
-			} else {
-				Bid newBid = new Bid(currentUser.getUserID(), auctionViewed.getAuctionID(), amount);
-				auctionViewed.setLastBidID(newBid.getBidID());				
-			}
-		}
+	public void close() {
+		Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
 	}
-	
-	private boolean isNumeric(String str)
-    {
-      return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
-    }
-	
 
 }

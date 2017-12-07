@@ -1,7 +1,11 @@
 package src;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * @author Bryn Waterhouse
+ * @author Joshua Blackman
  */
 
 public abstract class Artwork {
@@ -10,9 +14,39 @@ public abstract class Artwork {
     private String description;
     private String photographPath;
     private String dateCreated;
-    protected double height;
+    private int UserID;
+
+	protected double height;
     protected double width;
 
+    
+    public static String checkType(int artworkID) {
+		ResultSet rs = DB.select("SELECT * FROM `artwork` WHERE artworkID = '" + artworkID + "'");
+		try {
+			while(rs.next()) {
+				return rs.getString("type");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+    }
+    
+    /**
+	 * @return the userID
+	 */
+	public int getUserID() {
+		return UserID;
+	}
+
+	/**
+	 * @param userID the userID to set
+	 */
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+    
     /**
      *
      * @return the title of the artwork

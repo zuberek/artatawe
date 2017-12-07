@@ -9,7 +9,6 @@ import javafx.scene.paint.Color;
  */
 
 public class Line extends LinearElement{
-
     private final double LINE_WIDTH_OFFSET = 3; // Used to erase the line using a slightly larger white line
     private double x2; // End x coordinate of the line
     private double y2; // End y coordinate of the line
@@ -98,5 +97,6 @@ public class Line extends LinearElement{
         gc.setLineWidth(width+LINE_WIDTH_OFFSET);
         gc.strokeLine(getX(), getY(), getX2(), getY2());
         gc.setLineWidth(startingWidth);
+
     }
 }

@@ -1,6 +1,7 @@
 package src.Controllers;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -43,11 +44,11 @@ public class LoginController {
 				if(user.userExists(loginUserName.getText())) {
 					User currentUser = new User(loginUserName.getText());
 	
-					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Menu.fxml"));
-					BorderPane editRoot = (BorderPane) fxmlLoader.load();
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Dashboard.fxml"));
+					Parent editRoot = (Parent) fxmlLoader.load();
 	
-					MenuController menuController = fxmlLoader.getController();
-					menuController.initialize(currentUser);
+					DashboardController dc = fxmlLoader.getController();
+					dc.initialize(currentUser);
 	
 					Scene newScene = new Scene(editRoot, CONSTANTS.BIG_WINDOW_WIDTH,CONSTANTS.BIG_WINDOW_HEIGHT);
 					Stage stage = (Stage) loginButton.getScene().getWindow();

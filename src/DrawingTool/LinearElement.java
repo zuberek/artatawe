@@ -29,3 +29,4 @@ public abstract class LinearElement extends DrawingElement {
         super.draw(gc);
     }
 }
+

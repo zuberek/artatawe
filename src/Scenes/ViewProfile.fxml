@@ -18,11 +18,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="rootPane" prefHeight="342.0" prefWidth="370.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.ViewProfileController">
+<BorderPane fx:id="rootPane" prefHeight="342.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.ViewProfileController">
    <bottom>
       <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="cancelButton" text="Close" />
+            <Button fx:id="cancelButton" onAction="#close" text="Close" />
             <Button id="favouriteButton" fx:id="favouriteButton" mnemonicParsing="false" onAction="#favouriteUser" text="Favourite" />
          </children>
          <padding>
