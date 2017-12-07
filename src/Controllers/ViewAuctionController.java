@@ -98,6 +98,8 @@ public class ViewAuctionController {
 					CONSTANTS.makeAlertWindow("warning", "Please enter a bid above the reserve price");
 				} else if(bid < new Bid(auction.getLastBidID()).getAmount()) {
 					CONSTANTS.makeAlertWindow("warning", "Please enter a bid higher than the previous bid");
+				} else if(currentUser.getUserName().equals(new User(new Bid(auction.getLastBidID()).getBidderID()).getUserName())) {
+					CONSTANTS.makeAlertWindow("warning", "You are already the highest bidder!");
 				}
 			} else {
 				CONSTANTS.makeAlertWindow("warning", "Sorry! Someone else has won this auction.");
