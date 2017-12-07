@@ -9,11 +9,23 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+//imports for file saving
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.stage.FileChooser;
+import javafx.scene.image.WritableImage;
 
 /**
  * A canvas used to draw a custom user image
  * @author Petar Radovanovic (888633)
+ * @author Jan Dabrowski (916434)
  * @version 1.0
  */
 public class DrawingCanvas extends Application{
@@ -37,7 +49,7 @@ public class DrawingCanvas extends Application{
     private static final int SLIDER_INCREMENT = 1;
 
     private Canvas canvas;
-    private Stage thisStage;
+    private Stage primaryStage;
 
     public static void main(String[] args){
         launch(args);
@@ -49,11 +61,11 @@ public class DrawingCanvas extends Application{
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         scene.getStylesheets().add(getClass().getResource("../Styles/drawing-canvas.css").toExternalForm());
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
+       
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
 
-        thisStage = primaryStage;
+        this.primaryStage = primaryStage;
         primaryStage.show();
     }
 
@@ -67,7 +79,7 @@ public class DrawingCanvas extends Application{
     }
 
     private void closeWindow(){
-        thisStage.close();
+        primaryStage.close();
     }
 
     /**
@@ -144,6 +156,13 @@ public class DrawingCanvas extends Application{
         HBox.setHgrow(undoButton, Priority.ALWAYS);
         clearUndo.getChildren().addAll(undoButton, clearButton); // Add the buttons to the HBox
         sidebar.getChildren().add(clearUndo); // Add the HBox to the VBox
+        
+        /*
+        The button used to save the image
+       */
+        Button buttonSave = new Button("Save");
+    
+        sidebar.getChildren().add(buttonSave);
 
         /*
           Sets the maximum width scaling for the elements of the VBox
@@ -235,6 +254,31 @@ public class DrawingCanvas extends Application{
             if(!shapeStack.isEmpty()){
                 shapeStack.pop().erase(gc);
             }
+        });
+        
+        buttonSave.setOnAction(e ->{
+        		FileChooser fileChooser = new FileChooser();
+                
+                //Set extension filter
+                FileChooser.ExtensionFilter extFilter = 
+                        new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+                fileChooser.getExtensionFilters().add(extFilter);
+               
+                //Show save file dialog
+                File file = fileChooser.showSaveDialog(primaryStage);
+                 
+                if(file != null){
+                    try {
+                        WritableImage writableImage = new WritableImage(CANVAS_WIDTH, CANVAS_HEIGHT);
+                        canvas.snapshot(null, writableImage);
+                        RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                        ImageIO.write(renderedImage, "png", file);
+                        this.primaryStage.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(DrawingCanvas.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+        	
         });
 
         /*
