@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class Painting extends Artwork {
     private String paintingType;
 
-    public Painting(int userID, String title, String artist, String description, String photographPath, String dateCreated, double height, double width) {
+    public Painting(int userID, String title, String artist, String description, String photographPath, String dateCreated, double height, double width, String paintingType) {
         setUserID(userID);
     	setTitle(title);
         setArtist(artist);
