@@ -12,8 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import src.Artwork;
 import src.Auction;
 import src.AuctionList;
 import src.Login;
@@ -62,7 +64,45 @@ public class DashboardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    System.out.println("clicked on " + browseAuctions.getSelectionModel().getSelectedItem());
+	   
+	}
+	
+	public void editProfileClicked() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Profile.fxml"));
+            BorderPane editRoot = (BorderPane) fxmlLoader.load();
+
+            ProfileController profileController = fxmlLoader.getController();
+            profileController.initialize(currentUser);
+
+            Scene newScene = new Scene(editRoot);
+            Stage editStagee = new Stage();
+            editStagee.setScene(newScene);
+            editStagee.setTitle("Artatawe | Edit User");
+
+            editStagee.initModality(Modality.APPLICATION_MODAL);
+
+            editStagee.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Quit the program (with an error code)
+            System.exit(-1);
+        }
+	}
+	
+	public void logoutClicked() {
+        try {
+            Stage stage = (Stage)editProfileButton.getScene().getWindow();
+
+            Login login = new Login();
+            login.start(stage);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Quit the program (with an error code)
+            System.exit(-1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public void sellArtworkClicked() {
