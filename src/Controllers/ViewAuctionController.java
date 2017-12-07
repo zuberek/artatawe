@@ -88,7 +88,7 @@ public class ViewAuctionController {
 	
 	public void submitBid() {
 		float bid;
-				
+
 		if((!CONSTANTS.isNumeric(bidAmount.getText()) || bidAmount.getText().isEmpty())) {
 			CONSTANTS.makeAlertWindow("warning", "Please enter a numerical value");
 		} else {
