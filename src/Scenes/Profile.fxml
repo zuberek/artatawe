@@ -38,7 +38,7 @@
       </HBox>
    </bottom>
    <center>
-      <GridPane hgap="10.0" prefHeight="185.0" prefWidth="223.0" vgap="10.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" maxWidth="200.0" minWidth="83.0" prefWidth="83.0" />
             <ColumnConstraints maxWidth="107.0" minWidth="75.0" prefWidth="107.0" />
@@ -74,9 +74,15 @@
                <image>
                   <Image url="@../Pictures/avatar1.png" />
                </image>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#editProfileImageButtonClicked" text="Edit" />
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </VBox>
    </left>
 </BorderPane>

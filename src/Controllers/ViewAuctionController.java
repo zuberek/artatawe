@@ -30,6 +30,7 @@ import src.User;
  */
 public class ViewAuctionController {
 	
+
 	@FXML VBox rootPane;
 	@FXML Label auctionNameLabel;
 	@FXML TextArea auctionDescriptionTextBox;
@@ -55,6 +56,7 @@ public class ViewAuctionController {
 		currentBidLabel.setText(String.valueOf(currentBid.getAmount()));
 	}
 	
+
 	public void viewSellerProfile() {
         try {
         	
@@ -79,6 +81,7 @@ public class ViewAuctionController {
             // Quit the program (with an error code)
             System.exit(-1);
         }
+
 	}
 	
 	public void close() {

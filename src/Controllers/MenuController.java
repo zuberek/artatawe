@@ -4,12 +4,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.*;
 
+
+import javafx.scene.image.ImageView;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -21,6 +25,7 @@ public class MenuController {
     @FXML Button editProfileButton;
     @FXML Label bidListLabel;
     @FXML TextField addAuctionTextField;
+    @FXML ImageView profileImage;
 
     @FXML TextField newBidAmountTextField;
 
@@ -33,6 +38,11 @@ public class MenuController {
     public void initialize(User userToSet){
         setCurrentUser(userToSet);
         currentUserTextField.setText(currentUser.getUserName());
+
+        InputStream stream = getClass().getResourceAsStream(currentUser.getDefaultAvatar());
+        Image newImage = new Image(stream);
+        profileImage.setImage(newImage);
+
         refreshLists();
     }
 
@@ -154,7 +164,7 @@ public class MenuController {
             ProfileController profileController = fxmlLoader.getController();
             profileController.initialize(currentUser);
 
-            Scene newScene = new Scene(editRoot, Login.MAIN_WINDOW_WIDTH, Login.MAIN_WINDOW_HEIGHT);
+            Scene newScene = new Scene(editRoot, CONSTANTS.MEDIUM_WINDOW_WIDTH, CONSTANTS.MEDIUM_WINDOW_HEIGHT);
             Stage editStagee = new Stage();
             editStagee.setScene(newScene);
             editStagee.setTitle("Artatawe | Edit User");
@@ -162,6 +172,8 @@ public class MenuController {
             editStagee.initModality(Modality.APPLICATION_MODAL);
 
             editStagee.showAndWait();
+            this.initialize(currentUser);
+
         } catch (IOException e) {
             e.printStackTrace();
             // Quit the program (with an error code)

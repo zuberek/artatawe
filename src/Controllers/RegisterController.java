@@ -3,7 +3,7 @@ package src.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.CONSTANTS;
+import src.DrawingTool.DrawingCanvas;
 import src.User;
 
 import java.io.IOException;
@@ -37,6 +38,8 @@ public class RegisterController {
 
     @FXML Pane rootPane;
 
+    @FXML Button drawButton;
+
     //User to be added to the database
     private User userToCreate;
 
@@ -46,6 +49,17 @@ public class RegisterController {
 
         Image newImage = new Image(stream);
         profileImage.setImage(newImage);
+    }
+
+    public void drawButtonClicked(){
+
+        Stage newStage = new Stage();
+
+        DrawingCanvas newCanvas = new DrawingCanvas();
+        Scene newScene = newCanvas.initialise();
+
+        newStage.setScene(newScene);
+        newStage.show();
     }
 
     /**
