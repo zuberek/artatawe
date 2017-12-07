@@ -9,6 +9,7 @@ import java.sql.SQLException;
  */
 
 public abstract class Artwork {
+	private int artworkID;
     private String title;
     private String artist;
     private String description;
@@ -31,8 +32,24 @@ public abstract class Artwork {
 		}
 		return "";
     }
+	
+	
     
     /**
+	 * @return the artworkID
+	 */
+	public int getArtworkID() {
+		return artworkID;
+	}
+
+	/**
+	 * @param artworkID the artworkID to set
+	 */
+	public void setArtworkID(int artworkID) {
+		this.artworkID = artworkID;
+	}
+
+	/**
 	 * @return the userID
 	 */
 	public int getUserID() {
