@@ -52,14 +52,14 @@ public class RegisterController {
     }
 
     public void drawButtonClicked(){
-        Stage currentStage = (Stage) drawButton.getScene().getWindow();
+
+        Stage newStage = new Stage();
 
         DrawingCanvas newCanvas = new DrawingCanvas();
-        try {
-            newCanvas.start(currentStage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Scene newScene = newCanvas.initialise();
+
+        newStage.setScene(newScene);
+        newStage.show();
     }
 
     /**

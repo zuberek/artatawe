@@ -37,6 +37,7 @@ public class DrawingCanvas extends Application{
     private static final int SLIDER_INCREMENT = 1;
 
     private Canvas canvas;
+    private Stage thisStage;
 
     public static void main(String[] args){
         launch(args);
@@ -51,9 +52,22 @@ public class DrawingCanvas extends Application{
 
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
+
+        thisStage = primaryStage;
         primaryStage.show();
+    }
 
+    public Scene initialise(){
+        Pane root = buildGUI();
+        Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+        scene.getStylesheets().add(getClass().getResource("../Styles/drawing-canvas.css").toExternalForm());
+        GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        return scene;
+    }
+
+    private void closeWindow(){
+        thisStage.close();
     }
 
     /**
