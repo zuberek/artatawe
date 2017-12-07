@@ -11,9 +11,9 @@ import src.CONSTANTS;
 import src.User;
 
 public class AddAuctionController {
-	
+
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("Painting", "Sculpture");
-	
+
 	@FXML ChoiceBox artworkTypeChoiceBox;
 	@FXML TextField titleTextField;
 	@FXML TextField artistTextField;
@@ -23,7 +23,7 @@ public class AddAuctionController {
 	@FXML TextField maxBidsTextField;
 
 	User currentUser;
-	
+
 	public void initialize(User currentUser) {
 		// TODO Auto-generated method stub
 		this.currentUser = currentUser;
@@ -33,20 +33,26 @@ public class AddAuctionController {
 
 	public void addAuctionButonClicked(){
 		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty()) {
-            CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-        } else if(CONSTANTS.isNumeric(yearTextField.getText()) || CONSTANTS.isNumeric(reservePriceTextField.getText()) || CONSTANTS.isNumeric(maxBidsTextField.getText())) {
-            CONSTANTS.makeAlertWindow("warning", "Please input a valid number.");
-        } else {
-        	//here will be creation of artwork one the drop down menu is done
+			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
+		} else if(CONSTANTS.isNumeric(yearTextField.getText()) || CONSTANTS.isNumeric(reservePriceTextField.getText()) || CONSTANTS.isNumeric(maxBidsTextField.getText())) {
+			CONSTANTS.makeAlertWindow("warning", "Please input a valid number.");
+		} else {
+			switch(artworkTypeChoiceBox.getSelectionModel().getSelectedItem().toString()) {
+			case "Painting":
+				closeWindow();
+				break;
+            case "Sculpture":
+            	closeWindow();
+            	break;
+			}
+		}
+		//System.out.println(user.getFirstName());
+	} 
 
-    		closeWindow();
-            //System.out.println(user.getFirstName());
-        } 
+
+	private void closeWindow() {
+		Stage stage = (Stage)titleTextField.getScene().getWindow();
+		stage.close();
 	}
-	
-    private void closeWindow() {
-        Stage stage = (Stage)titleTextField.getScene().getWindow();
-        stage.close();
-    }
 
 }
