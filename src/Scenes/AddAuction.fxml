@@ -7,30 +7,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.AddAuctionController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.AddAuctionController">
    <children>
       <AnchorPane prefHeight="526.0" prefWidth="465.0">
          <children>
             <TextField fx:id="titleTextField" layoutX="138.0" layoutY="100.0" prefHeight="25.0" prefWidth="230.0" />
-            <Label layoutX="95.0" layoutY="104.0" text="Title" />
-            <Label layoutX="92.0" layoutY="138.0" text="Artist" />
             <TextField fx:id="reservePriceTextField" layoutX="484.0" layoutY="334.0" prefHeight="25.0" prefWidth="230.0" />
             <TextArea fx:id="descriptionTextField" layoutX="138.0" layoutY="232.0" prefHeight="102.0" prefWidth="230.0" />
             <Label layoutX="61.0" layoutY="231.0" text="Description" />
             <TextField fx:id="yearTextField" layoutX="138.0" layoutY="169.0" prefHeight="25.0" prefWidth="230.0" />
-            <Label layoutX="95.0" layoutY="173.0" text="Year" />
             <Label layoutX="388.0" layoutY="338.0" text="Reserve Price" />
             <Label layoutX="410.0" layoutY="372.0" text="Max Bids" />
             <TextField fx:id="maxBidsTextField" layoutX="484.0" layoutY="368.0" prefHeight="25.0" prefWidth="230.0" />
             <Button layoutX="633.0" layoutY="428.0" mnemonicParsing="false" onAction="#addAuctionButonClicked" text="Add Auction" />
             <TextField fx:id="artistTextField" layoutX="138.0" layoutY="134.0" prefHeight="25.0" prefWidth="230.0" />
-            <Label layoutX="95.0" layoutY="204.0" text="Type" />
             <Label layoutX="20.0" layoutY="433.0" text="Dimentions (cm)" />
             <ImageView fitHeight="186.0" fitWidth="262.0" layoutX="444.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -46,21 +39,10 @@
             <Label fx:id="depthLabel" layoutX="320.0" layoutY="410.0" text="Depth" />
             <TextField layoutX="138.0" layoutY="366.0" prefHeight="26.0" prefWidth="230.0" />
             <ComboBox fx:id="artworkTypeComboBox" layoutX="138.0" layoutY="200.0" onAction="#artworkTypeComboBox" prefHeight="26.0" prefWidth="230.0" />
-            <TextField layoutX="149.0" layoutY="64.0" prefHeight="25.0" prefWidth="230.0" />
-            <Label layoutX="106.0" layoutY="68.0" text="Title" />
-            <Label layoutX="106.0" layoutY="102.0" text="Artist" />
-            <TextField layoutX="151.0" layoutY="341.0" prefHeight="25.0" prefWidth="230.0" />
-            <TextArea layoutX="149.0" layoutY="195.0" prefHeight="76.0" prefWidth="230.0" />
-            <Label layoutX="72.0" layoutY="195.0" text="Description" />
-            <TextField layoutX="149.0" layoutY="133.0" prefHeight="25.0" prefWidth="230.0" />
-            <Label layoutX="106.0" layoutY="137.0" text="Year" />
-            <Label layoutX="67.0" layoutY="345.0" text="Reserve Price" />
-            <Label layoutX="91.0" layoutY="379.0" text="Max Bids" />
-            <TextField layoutX="151.0" layoutY="375.0" prefHeight="25.0" prefWidth="230.0" />
-            <Button layoutX="298.0" layoutY="424.0" mnemonicParsing="false" text="Add Auction" />
-            <TextField layoutX="149.0" layoutY="98.0" prefHeight="25.0" prefWidth="230.0" />
-            <Label layoutX="106.0" layoutY="168.0" text="Type" />
-            <TextField layoutX="149.0" layoutY="164.0" prefHeight="25.0" prefWidth="230.0" />
+            <Label layoutX="95.0" layoutY="104.0" text="Title" />
+            <Label layoutX="92.0" layoutY="138.0" text="Artist" />
+            <Label layoutX="94.0" layoutY="173.0" text="Year" />
+            <Label layoutX="93.0" layoutY="205.0" text="Type" />
          </children>
       </AnchorPane>
    </children>
