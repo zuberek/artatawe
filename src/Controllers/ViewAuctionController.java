@@ -89,7 +89,7 @@ public class ViewAuctionController {
 	public void submitBid() {
 		double bid;
 				
-		if((!CONSTANTS.isNumerical(bidAmount.getText()) || bidAmount.getText().isEmpty())) {
+		if((!CONSTANTS.isNumeric(bidAmount.getText()) || bidAmount.getText().isEmpty())) {
 			CONSTANTS.makeAlertWindow("warning", "Please enter a numerical value");
 		} else {
 			bid = Double.parseDouble(bidAmount.getText());
