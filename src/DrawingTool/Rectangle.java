@@ -9,6 +9,9 @@ import javafx.scene.paint.Color;
  */
 public class Rectangle extends ShapeElement{
 
+    private static double ERASER_POSITION_OFFSET = 3; // Used to fully erase the drawn rectangle
+    private static double ERASER_SIZE_OFFSET = 5; // Used to fully erase the drawn rectangle
+
     /**
      * Constructor for the rectangle
      * @param x coordinate of the rectangle
@@ -41,6 +44,7 @@ public class Rectangle extends ShapeElement{
      * @param gc GraphicsContext of the canvas
      */
     public void erase(GraphicsContext gc){
-        gc.clearRect(getX(), getY(), getWidth(), getHeight());
+        gc.clearRect(getX()-ERASER_POSITION_OFFSET, getY()-ERASER_POSITION_OFFSET,
+                getWidth()+ERASER_SIZE_OFFSET, getHeight()+ERASER_SIZE_OFFSET);
     }
 }

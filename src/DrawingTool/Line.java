@@ -14,7 +14,7 @@ public class Line extends LinearElement{
     private double x2; // End x coordinate of the line
     private double y2; // End y coordinate of the line
     private double width;
-
+    private double startingWidth;
     /**
      * Constructor for the line
      * @param x1 start x coordinate of the line
@@ -39,6 +39,7 @@ public class Line extends LinearElement{
      */
     public void draw(GraphicsContext gc){
         gc.setStroke(getColor());
+        startingWidth = gc.getLineWidth();
         gc.setLineWidth(width);
         gc.strokeLine(getX(), getY(), x2, y2);
     }
@@ -85,6 +86,7 @@ public class Line extends LinearElement{
         this.x2 = x2;
         this.y2 = y2;
         gc.strokeLine(getX(), getY(), x2, y2);
+        gc.setLineWidth(startingWidth);
     }
 
     /**
@@ -95,5 +97,6 @@ public class Line extends LinearElement{
         gc.setStroke(Color.WHITE);
         gc.setLineWidth(width+LINE_WIDTH_OFFSET);
         gc.strokeLine(getX(), getY(), getX2(), getY2());
+        gc.setLineWidth(startingWidth);
     }
 }
