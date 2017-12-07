@@ -20,7 +20,7 @@ public class Painting extends Artwork {
     
     public Painting(int artworkID) {
     	try{
-			ResultSet rs = DB.select("SELECT * FROM `artwork` WHERE artworkID = '" + artworkID + "'");
+			ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
 			while (rs.next()) {
 				this.setUserID(rs.getInt("userID"));
 				this.setArtist(rs.getString("artist"));
@@ -35,7 +35,7 @@ public class Painting extends Artwork {
     }
     
     public void savePainting() {
-    	DB.query("INSERT INTO `artwork` (`userID`, `type`, `artist`, `title`, `width`, `height`, `paintingType`, `dateCreated`) VALUES ('"+ this.getUserID() + "',  'painting', '" + this.getArtist() + ", '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getPaintingType() + "', '" + this.getDateCreated() +"');");
+    	DB.query("INSERT INTO `artworks` (`userID`, `type`, `artist`, `title`, `width`, `height`, `paintingType`, `dateCreated`) VALUES ('"+ this.getUserID() + "',  'painting', '" + this.getArtist() + ", '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getPaintingType() + "', '" + this.getDateCreated() +"');");
     }
 
     /**

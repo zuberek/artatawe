@@ -42,7 +42,7 @@ public class DB {
 	 */
 	private void init() {
 		String sql =
-				"CREATE TABLE IF NOT EXISTS `artwork` (\r\n" +
+				"CREATE TABLE IF NOT EXISTS `artworks` (\r\n" +
 						" `artworkID` INTEGER PRIMARY KEY,\r\n" +
 						" `userID` int(11) NOT NULL,\r\n" +
 						" `artist` text NOT NULL,\r\n" + 

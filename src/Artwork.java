@@ -18,10 +18,18 @@ public abstract class Artwork {
 
 	protected double height;
     protected double width;
+ 
+    /**
+	 * @param title
+	 * @param artist
+	 * @param description
+	 * @param photographPath
+	 * @param dateCreated
+	 * @param userID
+	 */
 
-    
-    public static String checkType(int artworkID) {
-		ResultSet rs = DB.select("SELECT * FROM `artwork` WHERE artworkID = '" + artworkID + "'");
+	public static String checkType(int artworkID) {
+		ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
 		try {
 			while(rs.next()) {
 				return rs.getString("type");
