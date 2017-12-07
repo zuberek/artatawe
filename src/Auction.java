@@ -52,7 +52,7 @@ public class Auction {
 				setDescription(rs.getString("description"));
 				setMaxBids(rs.getInt("maxBids"));
 				setReservePrice(rs.getDouble("reservePrice"));
-				//setLastBidID(rs.getInt("lastBidID"));
+				setLastBidID(rs.getInt("lastBidID"));
 				//setTimeAdded(rs.getDate(("timeAdded")));		
 				
 				artworkID = rs.getInt("artworkID");
