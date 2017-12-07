@@ -24,7 +24,12 @@ public class AuctionList {
 	 * Initialise the connection
 	 */
 	public AuctionList(){
-		
+
+	}
+
+	public static Auction getNewestAuction(){
+		String query = "SELECT `auctionID` from `auctions` WHERE `auctionID` = MAX(auctionID)";
+		return null;
 	}
 
 	/**
@@ -51,7 +56,7 @@ public class AuctionList {
 		return auctionList;
 	}
 
-	
+
 	/**
 	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
 	 *
@@ -67,7 +72,7 @@ public class AuctionList {
 
 		return auctionList;
 	}
-	
+
 	/**
 	 * @param userList
 	 * @return list of auctions created by user in lists
@@ -84,12 +89,12 @@ public class AuctionList {
 					whereClause += " OR ";
 				}
 			}
-			
+
 			String query = "SELECT * from `auctions` WHERE" + whereClause;
 			System.out.println(query);
 			populateArray(query, auctionList);
 		}
-		
+
 		return auctionList;
 	}
 
