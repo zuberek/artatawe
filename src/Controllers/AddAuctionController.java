@@ -1,13 +1,23 @@
 package src.Controllers;
 
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import src.Artwork;
 import src.Auction;
 import src.AuctionList;
 import src.CONSTANTS;
@@ -36,10 +46,12 @@ public class AddAuctionController {
 	@FXML Label typeSpecificLabel;
 
 	User currentUser;
+	Artwork artworkToCreate;
 
 	public void initialize(User currentUser) {
 		// TODO Auto-generated method stub
 		this.currentUser = currentUser;
+		//this.artworkToCreate = new Artwork();
 		artworkTypeComboBox.setValue("Sculpture");
 		artworkTypeComboBox.setItems(artworkChoiceList);
 	}
@@ -56,6 +68,37 @@ public class AddAuctionController {
 			typeSpecificLabel.setText("Painting Type");
 		}
 	}
+	
+	public void pictureChangeButtonClicked(){	
+		int artworkID = AuctionList.getNewestArtworkID()+1;
+		FileChooser fileChooser = new FileChooser();
+		configureFileChooser(fileChooser);
+		String nameAndPath = "./src/Resources/ArtworksImages/"+ currentUser.getUserID() + "." + artworkID + ".png";
+		
+	    File file = fileChooser.showOpenDialog(depthLabel.getScene().getWindow());
+	    
+        if (file != null) {
+            try {
+            	Image image = new Image(file.toURI().toString());
+                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", new File(nameAndPath));
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+	}
+	
+	private void configureFileChooser(
+	        final FileChooser fileChooser) {      
+	            fileChooser.setTitle("Open Resource File");
+	            fileChooser.setInitialDirectory(
+	                new File(System.getProperty("user.home"))
+	            );                 
+	            fileChooser.getExtensionFilters().addAll(
+	                new FileChooser.ExtensionFilter("All Images", "*.*"),
+	                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+	                new FileChooser.ExtensionFilter("PNG", "*.png")
+	            );
+	    }
 
 	public void addAuctionButonClicked(){
 		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty()) {

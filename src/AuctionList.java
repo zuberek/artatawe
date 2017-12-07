@@ -32,9 +32,10 @@ public class AuctionList {
 		ResultSet rs = DB.select(query);
 		int artworkID = 0;
 		try {
-			artworkID = rs.getInt("artworkID");
+			if(rs.isBeforeFirst()){
+					artworkID = rs.getInt("artworkID");
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return artworkID;

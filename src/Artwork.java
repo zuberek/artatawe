@@ -19,6 +19,8 @@ public abstract class Artwork {
 
 	protected double height;
     protected double width;
+    
+    public Artwork(){this.photographPath = "../Pictures/Painting.jpg"; }
 
 	public static String checkType(int artworkID) {
 		ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
