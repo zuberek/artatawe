@@ -63,7 +63,7 @@ public class AddAuctionController {
 		} else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
 			case "Painting":
-				//Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());
+				Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), "../Pictures/Painting.png", "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());
 				closeWindow();
 				break;
             case "Sculpture":
