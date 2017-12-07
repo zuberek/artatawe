@@ -76,6 +76,7 @@ public class Auction {
 	public int getCurrentBids(int auctionID) {
 		int counter = 0;
 		try {
+			
 			ResultSet rs = DB.select("SELECT * FROM `bids` WHERE auctionID = '" + auctionID + "'");
 			while (rs.next()) {
 				counter++;
