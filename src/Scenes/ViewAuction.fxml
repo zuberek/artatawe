@@ -11,7 +11,7 @@
    <children>
       <AnchorPane prefHeight="429.0" prefWidth="600.0">
          <children>
-            <Button fx:id="viewSellerProfileButton" layoutX="475.0" layoutY="104.0" mnemonicParsing="false" text="View Seller Profile" />
+            <Button fx:id="viewSellerProfileButton" layoutX="475.0" layoutY="104.0" mnemonicParsing="false" onAction="#viewSellerProfile" text="View Seller Profile" />
             <Label fx:id="auctionNameLabel" layoutX="154.0" layoutY="71.0" text="Auction Name" />
             <TextArea fx:id="auctionDescriptionTextBox" editable="false" layoutX="154.0" layoutY="104.0" prefHeight="90.0" prefWidth="255.0" />
             <ImageView fx:id="auctionImage" fitHeight="110.0" fitWidth="111.0" layoutX="21.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
