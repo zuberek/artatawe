@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import src.CONSTANTS;
@@ -13,11 +14,11 @@ public class AddAuctionController {
 	
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("Painting", "Sculpture");
 	
-	@FXML private ChoiceBox artworkTypeChoiceBox;
+	@FXML ChoiceBox artworkTypeChoiceBox;
 	@FXML TextField titleTextField;
 	@FXML TextField artistTextField;
 	@FXML TextField yearTextField;
-	@FXML TextField descriptionTextField;
+	@FXML TextArea descriptionTextField;
 	@FXML TextField reservePriceTextField;
 	@FXML TextField maxBidsTextField;
 
