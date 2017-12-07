@@ -72,7 +72,7 @@ public class LoginController {
 	public void registerButtonClicked() {
 	    try{
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/Register.fxml"));
-			BorderPane editRoot = (BorderPane) fxmlLoader.load();
+			Parent editRoot = (Parent) fxmlLoader.load();
 
 
 			Scene newScene = new Scene(editRoot, CONSTANTS.MEDIUM_WINDOW_WIDTH, CONSTANTS.MEDIUM_WINDOW_HEIGHT);
