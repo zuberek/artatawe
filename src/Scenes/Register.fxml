@@ -69,6 +69,11 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="drawButton" mnemonicParsing="false" onAction="#drawButtonClicked" text="Draw">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
          </children>
          <BorderPane.margin>
             <Insets left="5.0" right="5.0" />
