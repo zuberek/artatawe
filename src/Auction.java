@@ -76,6 +76,11 @@ public class Auction {
 		
 	}
 	
+	public int getCurrentBids() {
+		return 0;
+		
+	}
+	
 	private String description;
 	/**
 	 * @return the description

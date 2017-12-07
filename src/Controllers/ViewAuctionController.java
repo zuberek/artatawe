@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.Auction;
@@ -35,6 +36,7 @@ public class ViewAuctionController {
 	@FXML Label auctionNameLabel;
 	@FXML TextArea auctionDescriptionTextBox;
 	@FXML Label currentBidLabel;
+	@FXML TextField bidAmount;
 	
 	
 	Auction auction;
@@ -82,6 +84,26 @@ public class ViewAuctionController {
             System.exit(-1);
         }
 
+	}
+	
+	public void submitBid() {
+		double bid;
+				
+		if((!CONSTANTS.isNumerical(bidAmount.getText()) || bidAmount.getText().isEmpty())) {
+			CONSTANTS.makeAlertWindow("warning", "Please enter a numerical value");
+		} else {
+			bid = Double.parseDouble(bidAmount.getText());
+			if(auction.getMaxBids() != auction.getCurrentBids()) {
+				if(bid < auction.getReservePrice()) {
+					CONSTANTS.makeAlertWindow("warning", "Please enter a bid above the reserve price");
+				} else if(bid < new Bid(auction.getLastBidID()).getAmount()) {
+					CONSTANTS.makeAlertWindow("warning", "Please enter a bid higher than the previous bid");
+				}
+			} else {
+				CONSTANTS.makeAlertWindow("warning", "Sorry! Someone else has won this auction.");
+			}
+		}
+		
 	}
 	
 	public void close() {
