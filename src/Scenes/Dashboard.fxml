@@ -10,8 +10,8 @@
       <AnchorPane prefHeight="415.0" prefWidth="600.0">
          <children>
             <Label fx:id="welcomeLabel" layoutX="473.0" layoutY="53.0" text="Welcome user" />
-            <Button fx:id="logoutButton" layoutX="473.0" layoutY="349.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Logout" />
-            <Button fx:id="editProfileButton" layoutX="473.0" layoutY="81.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Edit Profile" />
+            <Button fx:id="logoutButton" layoutX="473.0" layoutY="349.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="25.0" prefWidth="104.0" text="Logout" />
+            <Button fx:id="editProfileButton" layoutX="473.0" layoutY="81.0" mnemonicParsing="false" onAction="#editProfileClicked" prefHeight="25.0" prefWidth="104.0" text="Edit Profile" />
             <Button fx:id="sellArtworkButton" layoutX="473.0" layoutY="116.0" mnemonicParsing="false" onAction="#sellArtworkClicked" prefHeight="25.0" prefWidth="104.0" text="Sell Artwork" />
             <Button fx:id="bidHistoryButton" layoutX="473.0" layoutY="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Your Bid History" />
             <Button fx:id="auctionHistoryButton" layoutX="473.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Sold History" />
