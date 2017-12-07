@@ -14,6 +14,20 @@ public class UserList {
 	
 	ArrayList<User> userList;
 	
+	public static int getNewestUserkID(){
+		String query = "SELECT `userID` from `users` WHERE `userID` = (SELECT MAX(userID) from `users`)";
+		ResultSet rs = DB.select(query);
+		int userID = 0;
+		try {
+			if(rs.isBeforeFirst()){
+				userID = rs.getInt("userID");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return userID;
+	}
+	
 	public UserList() {
 		
 	}

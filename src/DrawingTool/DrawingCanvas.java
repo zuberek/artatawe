@@ -9,6 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import src.AuctionList;
+import src.User;
+import src.UserList;
 
 //imports for file saving
 import java.awt.image.RenderedImage;
@@ -20,6 +23,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.stage.FileChooser;
+import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
 /**
@@ -50,6 +54,7 @@ public class DrawingCanvas extends Application{
 
     private Canvas canvas;
     private Stage primaryStage;
+    User editedUSer;
 
     public static void main(String[] args){
         launch(args);
@@ -69,17 +74,15 @@ public class DrawingCanvas extends Application{
         primaryStage.show();
     }
 
-    public Scene initialise(){
+    public Scene initialise(User editedUser){
+    	this.editedUSer = editedUser;
+    	
         Pane root = buildGUI();
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         scene.getStylesheets().add(getClass().getResource("../Styles/drawing-canvas.css").toExternalForm());
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         return scene;
-    }
-
-    private void closeWindow(){
-        primaryStage.close();
     }
 
     /**
@@ -264,21 +267,20 @@ public class DrawingCanvas extends Application{
                         new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
                 fileChooser.getExtensionFilters().add(extFilter);
                
-                //Show save file dialog
-                File file = fileChooser.showSaveDialog(primaryStage);
-                 
-                if(file != null){
+                int userID = UserList.getNewestUserkID()+1;
+                String nameAndPath = "./src/Resources/UsersImages/"+ userID + ".png";
+
                     try {
                         WritableImage writableImage = new WritableImage(CANVAS_WIDTH, CANVAS_HEIGHT);
                         canvas.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                        ImageIO.write(renderedImage, "png", file);
-                        this.primaryStage.close();
+                        ImageIO.write(renderedImage, "png", new File(nameAndPath));
+                        editedUSer.setAvatarPath("../Resources/UsersImages/"+ userID + ".png");
+                        Stage stage = (Stage)buttonSave.getScene().getWindow();
+                        stage.close();
                     } catch (IOException ex) {
                         Logger.getLogger(DrawingCanvas.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-        	
+                    }	
         });
 
         /*

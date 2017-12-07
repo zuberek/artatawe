@@ -56,10 +56,12 @@ public class RegisterController {
         Stage newStage = new Stage();
 
         DrawingCanvas newCanvas = new DrawingCanvas();
-        Scene newScene = newCanvas.initialise();
+        Scene newScene = newCanvas.initialise(userToCreate);
 
         newStage.setScene(newScene);
-        newStage.show();
+        newStage.showAndWait();
+        
+        this.initialize(userToCreate);
     }
 
     /**
