@@ -15,6 +15,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import src.Artwork;
 import src.Auction;
 import src.AuctionList;
@@ -31,6 +33,8 @@ public class SearchAuctionController {
 
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("All","Painting", "Sculpture");
 
+	@FXML Pane rootPane;
+	
 	@FXML ComboBox<String> artworkTypeComboBox;
 	@FXML Label navigationLabel;
 
@@ -166,10 +170,12 @@ public class SearchAuctionController {
 	}
 
 	public void backPageButtonClicked(){
-		count = count - 7;
-		this.clearDisplayedAuctions();
-		this.updateNavigationLabel();
-		this.updateDisplayedAuctions();
+		if(count - 7 > 0){
+			count = count - 7;
+			this.clearDisplayedAuctions();
+			this.updateNavigationLabel();
+			this.updateDisplayedAuctions();
+		}
 	}
 
 	private void refreshDisplayedAuctions(){
@@ -208,7 +214,7 @@ public class SearchAuctionController {
 
 	private void updateNavigationLabel(){
 		int size = auctionsToDisplay.size();
-		
+
 		int auctionsOnScreen = count + 6;
 		if(size > auctionsOnScreen){
 			auctionsOnScreen = 6;
@@ -217,6 +223,11 @@ public class SearchAuctionController {
 		}
 
 		navigationLabel.setText(count + " - " + auctionsOnScreen + " of " + size);
+	}
+	
+	public void goBackButtonClicked(){
+		Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
 	}
 
 	@FXML

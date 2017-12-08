@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.SearchAuctionController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.SearchAuctionController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -59,7 +59,7 @@
                </VBox.margin>
             </Label>
             <Line endX="50.0" startX="-100.0" />
-            <Button mnemonicParsing="false" text="Go back to Menu">
+            <Button mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go back to Menu">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
