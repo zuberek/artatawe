@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.SearchAuctionController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.SearchAuctionController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -40,20 +40,20 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" text="Next Window">
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </Button>
-            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="201.0">
+            <HBox alignment="CENTER" prefHeight="31.0" prefWidth="164.0">
                <children>
-                  <Label text="On this window:" />
-                  <Label text="Label" />
+                  <Button mnemonicParsing="false" text="Next" />
+                  <Button mnemonicParsing="false" text="Button" />
                </children>
-               <padding>
-                  <Insets bottom="5.0" top="5.0" />
-               </padding>
+               <opaqueInsets>
+                  <Insets right="5.0" />
+               </opaqueInsets>
             </HBox>
+            <Label text="1/5">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
             <Line endX="50.0" startX="-100.0" />
             <Button mnemonicParsing="false" text="Go back to Menu">
                <VBox.margin>
@@ -79,7 +79,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -115,7 +115,11 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField1" prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="descriptionTextField1" prefHeight="200.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
                            </children>
                         </VBox>
                      </children>
@@ -124,7 +128,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -137,7 +141,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel2" text="Label">
+                              <Label fx:id="artworkTitleLabel6" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -160,7 +164,11 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField6" prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="descriptionTextField6" prefHeight="200.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
                            </children>
                         </VBox>
                      </children>
@@ -169,7 +177,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto2" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -205,7 +213,11 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField2" prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="descriptionTextField2" prefHeight="200.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
                            </children>
                         </VBox>
                      </children>
@@ -214,7 +226,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto3" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -250,7 +262,11 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField3" prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="descriptionTextField3" prefHeight="200.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
                            </children>
                         </VBox>
                      </children>
@@ -259,7 +275,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto4" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -295,7 +311,11 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField4" prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="descriptionTextField4" prefHeight="200.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
                            </children>
                         </VBox>
                      </children>
@@ -304,7 +324,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto5" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -317,7 +337,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel6" text="Label">
+                              <Label fx:id="artworkTitleLabel5" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -340,7 +360,11 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField5" prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="descriptionTextField5" prefHeight="200.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
                            </children>
                         </VBox>
                      </children>
