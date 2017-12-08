@@ -40,10 +40,6 @@ public class DashboardController {
 		this.currentUser = currentUser;
 		welcomeLabel.setText("Welcome " + currentUser.getFirstName());
 		
-		for(Auction a : AuctionList.getAuctions()) {
-			browseAuctions.getItems().add(String.valueOf(a.getDescriptionForList()));
-		}
-		
 	}
 	
 	public void soldArtworkHistory(){
@@ -93,30 +89,6 @@ public class DashboardController {
 		}
 	}
 
-	public void browseAuctionClicked(MouseEvent arg0) {
-		if(browseAuctions.getSelectionModel().getSelectedItem() != null) {
-			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewAuction.fxml"));
-				Parent editRoot = (Parent) fxmlLoader.load();
-		
-				ViewAuctionController ctrl = fxmlLoader.getController();
-				Auction auction =  new Auction(Integer.parseInt(browseAuctions.getSelectionModel().getSelectedItem()));
-				ctrl.initialize(currentUser, auction);
-		
-				Scene newScene = new Scene(editRoot);
-	            Stage stage = new Stage();
-	            stage.setScene(newScene);
-	            stage.setTitle("Artatawe |  View Auction");
-	
-	            stage.initModality(Modality.APPLICATION_MODAL);
-	            stage.showAndWait();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	   
-	}
 	
 	public void editProfileClicked() {
         try {
