@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import src.Artwork;
 import src.Auction;
 import src.AuctionList;
+import src.Bid;
+import src.BidList;
 import src.Login;
 import src.User;
 
@@ -42,6 +44,31 @@ public class DashboardController {
 			browseAuctions.getItems().add(String.valueOf(a.getAuctionID()));
 		}
 		
+	}
+	
+	public void bidHistoryClicked(){
+		ArrayList<Bid> bidList = new ArrayList<>();
+		BidList bl = new BidList();
+		bidList = bl.getUserBidList(currentUser.getUserID());
+		
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewBidHistory.fxml"));
+			Parent editRoot = (Parent) fxmlLoader.load();
+	
+			ViewBidHistoryController ctrl = fxmlLoader.getController();
+			ctrl.initialize(bidList);
+	
+			Scene newScene = new Scene(editRoot);
+            Stage stage = new Stage();
+            stage.setScene(newScene);
+            stage.setTitle("Artatawe |  Your Bid History");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void browseAuctionClicked(MouseEvent arg0) {
