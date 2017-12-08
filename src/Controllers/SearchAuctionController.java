@@ -3,15 +3,19 @@
  */
 package src.Controllers;
 
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import src.Sculpture;
 import src.User;
+import src.Auction;
 
 /**
  * @author Borislav Koynin
+ * @author Jan Dabrowski
  *
  */
 public class SearchAuctionController {
@@ -19,8 +23,9 @@ public class SearchAuctionController {
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("All","Painting", "Sculpture");
 
 	@FXML ComboBox artworkTypeComboBox;
+	ArrayList<Auction> auctionsToDisplay  = new ArrayList<>();
 
-	public void initialize(User currentUser) {
+	public void initialize() {
 		// TODO Auto-generated method stub
 		//		this.currentUser = currentUser;
 		//		this.artworkToCreate = new Sculpture();
@@ -30,6 +35,7 @@ public class SearchAuctionController {
 
 		//		this.setArtworkImage();
 	}
+	
 
 	@FXML
 	private void artworkTypeComboBox() {
@@ -48,4 +54,8 @@ public class SearchAuctionController {
 		}
 
 	}
+	
+	
+	
+	
 }
