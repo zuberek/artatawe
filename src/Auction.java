@@ -47,26 +47,21 @@ public class Auction {
 			ResultSet rs = DB.select("SELECT * FROM `auctions` WHERE auctionID = '" + auctionID + "'");
 			int artworkID = 0;
 			while (rs.next()) {
-
 				setAuctionID(rs.getInt("auctionID"));
 				setSellerID(rs.getInt("sellerID"));
-				setDescription(rs.getString("description"));
 				setMaxBids(rs.getInt("maxBids"));
 				setReservePrice(rs.getDouble("reservePrice"));
 				setLastBidID(rs.getInt("lastBidID"));
-				//setTimeAdded(rs.getDate(("timeAdded")));		
-				
+				//setTimeAdded(rs.getDate(("timeAdded")));	
 				artworkID = rs.getInt("artworkID");
 				
 			}
-			System.out.println(artworkID);
 
 			Artwork artwork = null;
-			if(Artwork.checkType(artworkID).equals("painting")) {
+			if(Artwork.checkType(artworkID) == "painting") {
 				artwork = new Painting(artworkID);
 			} else  {
 				artwork = new Sculpture(artworkID);
-				
 			}
 			setArtwork(artwork);
 		} catch(SQLException ex) {
