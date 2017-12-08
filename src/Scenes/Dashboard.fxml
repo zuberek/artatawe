@@ -50,7 +50,7 @@
             <Button fx:id="nextPageButton" layoutX="415.0" layoutY="361.0" mnemonicParsing="false" text="Next Page" />
             <Button fx:id="prevPageButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Prev Page" />
             <Label fx:id="pageNumberLabel" layoutX="238.0" layoutY="366.0" text="1/5" />
-            <Button layoutX="514.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Browse Auctions" />   
+            <Button layoutX="514.0" layoutY="78.0" fx:id="browseAuctionsButton" onAction="#browseAuctionsClicked" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Browse Auctions" />   
          </children>
       </AnchorPane>
    </children>
