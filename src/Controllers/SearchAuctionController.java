@@ -14,8 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import src.Sculpture;
-import src.User;
 import src.Artwork;
 import src.Auction;
 import src.AuctionList;
@@ -27,7 +25,8 @@ import src.AuctionList;
  */
 public class SearchAuctionController {
 
-	ArrayList<Auction> auctionsToDisplay  = new ArrayList<>();
+	private ArrayList<Auction> auctionsToDisplay  = new ArrayList<>();
+	private int count;
 
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("All","Painting", "Sculpture");
 
@@ -65,70 +64,78 @@ public class SearchAuctionController {
 
 	public void initialize() {
 		auctionsToDisplay = AuctionList.getAuctions();
-		int count = 0;
-		
+		count = 0;
+
 		String[] input = this.getInfo(count);
-		artworkTitleLabel1.setText(input[0]);
-		lastBidAmountLabel1.setText(input[1]);
-		descriptionTextField1.setText(input[2]);
-		artworkPhoto1.setImage(this.getImage(count));
-		
-		System.out.println(input[2]);
-		
-		count ++;
-		input = this.getInfo(count);
-		System.out.println(input[0]);
-		
-		artworkTitleLabel2.setText(input[0]);
-		lastBidAmountLabel2.setText(input[1]);
-		descriptionTextField2.setText(input[2]);
-		artworkPhoto2.setImage(this.getImage(0));
+		if(input != null){
+			artworkTitleLabel1.setText(input[0]);
+			lastBidAmountLabel1.setText(input[1]);
+			descriptionTextField1.setText(input[2]);
+			artworkPhoto1.setImage(this.getImage(count));		
 
-		count ++;
-		input = this.getInfo(count);
-		artworkTitleLabel3.setText(input[0]);
-		lastBidAmountLabel3.setText(input[1]);
-		descriptionTextField3.setText(input[2]);
-		artworkPhoto3.setImage(this.getImage(count));
+			count ++;
+			input = this.getInfo(count);	
+			if (input[0] != null){
+				artworkTitleLabel2.setText(input[0]);
+				lastBidAmountLabel2.setText(input[1]);
+				descriptionTextField2.setText(input[2]);
+				artworkPhoto2.setImage(this.getImage(0));
 
-		count ++;
-		input = this.getInfo(count);
-		artworkTitleLabel4.setText(input[0]);
-		lastBidAmountLabel4.setText(input[1]);
-		descriptionTextField4.setText(input[2]);
-		artworkPhoto4.setImage(this.getImage(count));
+				count ++;
+				input = this.getInfo(count);
+				if (input[0] != null){
+					artworkTitleLabel3.setText(input[0]);
+					lastBidAmountLabel3.setText(input[1]);
+					descriptionTextField3.setText(input[2]);
+					artworkPhoto3.setImage(this.getImage(count));
 
-		count ++;
-		input = this.getInfo(count);
-		artworkTitleLabel5.setText(input[0]);
-		lastBidAmountLabel5.setText(input[1]);
-		descriptionTextField5.setText(input[2]);
-		artworkPhoto5.setImage(this.getImage(count));
-	
-		count ++;
-		input = this.getInfo(count);
-		artworkTitleLabel6.setText(input[0]);
-		lastBidAmountLabel6.setText(input[1]);
-		descriptionTextField6.setText(input[2]);
-		artworkPhoto6.setImage(this.getImage(count));
+					count ++;
+					input = this.getInfo(count);
+					if (input[0] != null){
+						artworkTitleLabel4.setText(input[0]);
+						lastBidAmountLabel4.setText(input[1]);
+						descriptionTextField4.setText(input[2]);
+						artworkPhoto4.setImage(this.getImage(count));
+
+						count ++;
+						input = this.getInfo(count);
+						if (input[0] != null){
+							artworkTitleLabel5.setText(input[0]);
+							lastBidAmountLabel5.setText(input[1]);
+							descriptionTextField5.setText(input[2]);
+							artworkPhoto5.setImage(this.getImage(count));
+
+							count ++;
+							input = this.getInfo(count);
+							System.out.println(input[0]);
+							if (input[0] != null){
+								artworkTitleLabel6.setText(input[0]);
+								lastBidAmountLabel6.setText(input[1]);
+								descriptionTextField6.setText(input[2]);
+								artworkPhoto6.setImage(this.getImage(count));
+							}}}}}}
 		
 		artworkTypeComboBox.setValue("All");
 		artworkTypeComboBox.setItems(artworkChoiceList);
 	}
-	
+
+	public void nextPageButtonClicked(){
+
+	}
+
 	private String[] getInfo(int count){
 		Auction displayedAuction = auctionsToDisplay.get(count);
 		Artwork displayedArtwork = displayedAuction.getArtwork();
-		
+
 		String[] result = new String[3];
-		
+
 		result[0] = displayedArtwork.getTitle();
 		result[1] = "£" + String.valueOf(displayedAuction.getAuctionLastBidAmount());
 		result[2] = displayedArtwork.getDescription();
-		
+
 		return result;
 	}
-	
+
 	private Image getImage(int count){
 		InputStream stream = getClass().getResourceAsStream(auctionsToDisplay.get(count).getArtwork().getPhotographPath());
 		Image newImage = new Image(stream);

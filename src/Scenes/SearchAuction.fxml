@@ -42,8 +42,12 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="31.0" prefWidth="164.0">
                <children>
-                  <Button mnemonicParsing="false" text="Next" />
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Back">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#nextPageButtonClicked" text="Next" />
                </children>
                <opaqueInsets>
                   <Insets right="5.0" />
@@ -115,7 +119,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField1" prefHeight="200.0" prefWidth="200.0">
+                              <TextArea fx:id="descriptionTextField1" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -164,7 +168,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField6" prefHeight="200.0" prefWidth="200.0">
+                              <TextArea fx:id="descriptionTextField6" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -213,7 +217,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField2" prefHeight="200.0" prefWidth="200.0">
+                              <TextArea fx:id="descriptionTextField2" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -262,7 +266,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField3" prefHeight="200.0" prefWidth="200.0">
+                              <TextArea fx:id="descriptionTextField3" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -311,7 +315,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField4" prefHeight="200.0" prefWidth="200.0">
+                              <TextArea fx:id="descriptionTextField4" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -360,7 +364,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField5" prefHeight="200.0" prefWidth="200.0">
+                              <TextArea fx:id="descriptionTextField5" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
