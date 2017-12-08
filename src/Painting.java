@@ -26,6 +26,7 @@ public class Painting extends Artwork {
 				this.setUserID(rs.getInt("userID"));
 				this.setArtist(rs.getString("artist"));
 				this.setTitle(rs.getString("title"));
+				this.setDescription(rs.getString("description"));
 				this.setDimensions(rs.getDouble("height"), rs.getDouble("width"));
 				this.setPaintingType(rs.getString("paintingType"));
 				this.setPhotographPath(rs.getString("photographPath"));
