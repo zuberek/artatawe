@@ -2,6 +2,7 @@ package src;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -70,8 +71,9 @@ public class User {
 				this.setPhoneNo(rs.getString("phoneNo"));
 				this.setUserAddress(rs.getString("userAddress"));
 				this.setDefaultAvatar(rs.getString("avatarPath"));
-				this.setLastLogin(rs.getTimestamp("lastLogin"));
+				//this.setLastLogin(rs.getTimestamp("lastLogin"));
 	        }
+			this.saveUserLogout();
 		} catch(SQLException ex){
 			ex.getMessage();
 		}
@@ -139,8 +141,9 @@ public class User {
 	 */
 	public void saveUserLogout(){
 		// Update last logout of the user
-		String query = "UPDATE `users` SET `lastLogin` = '" + this.getLastLogin() + "' WHERE `userID` = " + this.getUserID();
-		//System.out.println(query);
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		String query = "UPDATE `users` SET `lastLogin` = '" + timestamp.getTime()/1000 + "' WHERE `userID` = " + this.getUserID();
+		System.out.println(query);
 		DB.query(query);
 	}
 	
