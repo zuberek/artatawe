@@ -39,6 +39,7 @@ public class ViewAuctionController {
 	@FXML Label auctionNameLabel;
 	@FXML TextArea auctionDescriptionTextBox;
 	@FXML Label currentBidLabel;
+	@FXML Label reservePrice;
 	@FXML TextField bidAmount;
 	
 	
@@ -56,14 +57,14 @@ public class ViewAuctionController {
 		
 		auctionNameLabel.setText(auction.getArtwork().getTitle());
 		auctionDescriptionTextBox.setText(auction.getArtwork().getDescription());
-		
+		reservePrice.setText("£"+auction.getReservePrice());
 		InputStream stream = getClass().getResourceAsStream(auction.getArtwork().getPhotographPath());
 		Image newImage = new Image(stream);
 		auctionImage.setImage(newImage);
 		
 		
 		Bid currentBid = new Bid(auction.getLastBidID());
-		currentBidLabel.setText(String.valueOf(currentBid.getAmount()));
+		currentBidLabel.setText("£"+String.valueOf(currentBid.getAmount()));
 	}
 	
 
