@@ -74,7 +74,6 @@ public class SearchAuctionController {
 	public void initialize() {
 		auctionsToDisplay = AuctionList.getAuctions();
 		int size = auctionsToDisplay.size();
-		int numberOfPages = size/6+1;
 
 		int auctionsOnScreen = 0;
 		if(size > 6){
@@ -161,13 +160,15 @@ public class SearchAuctionController {
 	public void nextPageButtonClicked(){
 		if(checkIfMore(count)){
 			this.clearDisplayedAuctions();
+			this.updateNavigationLabel();
 			this.updateDisplayedAuctions();
 		}
 	}
 
 	public void backPageButtonClicked(){
-		count = count - 6;
+		count = count - 7;
 		this.clearDisplayedAuctions();
+		this.updateNavigationLabel();
 		this.updateDisplayedAuctions();
 	}
 
@@ -205,6 +206,18 @@ public class SearchAuctionController {
 		return newImage;
 	}
 
+	private void updateNavigationLabel(){
+		int size = auctionsToDisplay.size();
+		
+		int auctionsOnScreen = count + 6;
+		if(size > auctionsOnScreen){
+			auctionsOnScreen = 6;
+		} else {
+			auctionsOnScreen = size;
+		}
+
+		navigationLabel.setText(count + " - " + auctionsOnScreen + " of " + size);
+	}
 
 	@FXML
 	private void artworkTypeComboBox() {
