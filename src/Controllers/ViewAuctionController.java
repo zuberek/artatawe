@@ -108,7 +108,8 @@ public class ViewAuctionController {
 				} else if(bid <= new Bid(auction.getLastBidID()).getAmount()) {
 					CONSTANTS.makeAlertWindow("warning", "Please enter a bid higher than the previous bid");
 				} else if(currentUser.getUserName().equals(new User(auction.getSellerID()).getUserName())){
-					CONSTANTS.makeAlertWindow("warning", "You can not bid on your own auction.");					
+					CONSTANTS.makeAlertWindow("warning", "You can not bid on your own auction.");		
+					// this works, dont touch it, or youll get shot up
 				} else if(currentUser.getUserName().equals(new User(new Bid(auction.getLastBidID()).getBidderID()).getUserName())) {
 					CONSTANTS.makeAlertWindow("warning", "You are already the highest bidder!");
 				} else {
