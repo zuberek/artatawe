@@ -64,8 +64,21 @@ public class DashboardController {
 		}		
 	}
 	public void browseAuctionsClicked(){
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/SearchAuction.fxml"));
+			Parent editRoot = (Parent) fxmlLoader.load();
 		
-		
+			Scene newScene = new Scene(editRoot);
+            Stage stage = new Stage();
+            stage.setScene(newScene);
+            stage.setTitle("Artatawe | Auction Search");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
 	}
 	
 	public void bidHistoryClicked(){
