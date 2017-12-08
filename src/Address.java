@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author Joshua Blackman
+ * @author Hefin Johnson
  *
  */
 public class Address {
