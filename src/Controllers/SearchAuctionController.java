@@ -107,7 +107,6 @@ public class SearchAuctionController {
 	}
 
 	private void updateDisplayedAuctions(){
-		this.prontArray(auctionsToDisplay);
 		String[] input = this.getInfo(count);
 		artworkTitleLabel1.setText(input[0]);
 		lastBidAmountLabel1.setText(input[1]);
@@ -245,10 +244,7 @@ public class SearchAuctionController {
 
 			refreshDisplayedAuctions();
 		} else  if(artworkTypeComboBox.getValue().equals("Painting")){
-			//			depthLabel.setVisible(false);
-			//			depthTextField.setVisible(false);
-			//			depthTextField.clear();
-			//			typeSpecificLabel.setText("Painting Type");
+			
 		}
 
 	}
@@ -285,15 +281,12 @@ public class SearchAuctionController {
 	
 	public void mouseClickHBox5Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
-		System.out.println("Count: " + count + "Index: " + index);
 		Auction clikedAuction = auctionsToDisplay.get(index + 5);
 		this.bringViewAuctionSceneForAuction(clikedAuction);		
 	}
 
 	private void bringViewAuctionSceneForAuction(Auction auction){
 		try {
-			System.out.println(count);
-			System.out.println(auction.getAuctionID());
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewAuction.fxml"));
 			Parent editRoot = (Parent) fxmlLoader.load();
 	
@@ -309,12 +302,6 @@ public class SearchAuctionController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-	
-	private void prontArray(ArrayList<Auction> list){
-		for (Auction fruit : list) {
-		    System.out.println(fruit.getDescriptionForList());
 		}
 	}
 }
