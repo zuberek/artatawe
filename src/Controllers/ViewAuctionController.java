@@ -115,6 +115,19 @@ public class ViewAuctionController {
 				} else {
 					Bid newBid = new Bid(currentUser.getUserID(), auction.getAuctionID(), bid);
 					auction.setLastBidID(newBid.getBidID());
+					
+					auction = new Auction(auction.getAuctionID());
+					auctionNameLabel.setText(auction.getArtwork().getTitle());
+					auctionDescriptionTextBox.setText(auction.getArtwork().getDescription());
+					reservePrice.setText("£"+auction.getReservePrice());
+					InputStream stream = getClass().getResourceAsStream(auction.getArtwork().getPhotographPath());
+					Image newImage = new Image(stream);
+					auctionImage.setImage(newImage);
+					
+					
+					Bid currentBid = new Bid(auction.getLastBidID());
+					currentBidLabel.setText("£"+String.valueOf(currentBid.getAmount()));
+				
 					CONSTANTS.makeAlertWindow("success", "You have placed a bid.");
 				}
 			} else {
