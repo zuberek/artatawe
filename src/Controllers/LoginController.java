@@ -52,6 +52,7 @@ public class LoginController {
 	
 					Scene newScene = new Scene(editRoot);
 					Stage stage = (Stage) loginButton.getScene().getWindow();
+					stage.setTitle("Artatawe | Dashboard");
 	
 					stage.setScene(newScene);
 				} else {
