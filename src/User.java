@@ -71,7 +71,7 @@ public class User {
 				this.setPhoneNo(rs.getString("phoneNo"));
 				this.setUserAddress(rs.getString("userAddress"));
 				this.setDefaultAvatar(rs.getString("avatarPath"));
-				//this.setLastLogin(rs.getTimestamp("lastLogin"));
+				this.setLastLogin(rs.getTimestamp("lastLogin"));
 	        }
 			this.saveUserLogout();
 		} catch(SQLException ex){
@@ -143,7 +143,6 @@ public class User {
 		// Update last logout of the user
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		String query = "UPDATE `users` SET `lastLogin` = '" + timestamp.getTime()/1000 + "' WHERE `userID` = " + this.getUserID();
-		System.out.println(query);
 		DB.query(query);
 	}
 	

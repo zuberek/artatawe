@@ -121,7 +121,7 @@ public class Auction {
 	 * @return A short description of the auction.
 	 */
 	public String getDescriptionForList() {
-		return auctionID + " lastBid: " + lastBidID + " - " + new Bid(lastBidID).getAmount();
+		return "Title: " + this.getArtwork().getTitle() + " | Description: " + this.getArtwork().getDescription();
 	}
 
 	public Artwork getArtwork() {

@@ -15,7 +15,7 @@
             <Button fx:id="editProfileButton" layoutX="473.0" layoutY="81.0" mnemonicParsing="false" onAction="#editProfileClicked" prefHeight="25.0" prefWidth="104.0" text="Edit Profile" />
             <Button fx:id="sellArtworkButton" layoutX="473.0" layoutY="116.0" mnemonicParsing="false" onAction="#sellArtworkClicked" prefHeight="25.0" prefWidth="104.0" text="Sell Artwork" />
             <Button fx:id="bidHistoryButton" layoutX="473.0" layoutY="150.0" mnemonicParsing="false" onAction="#bidHistoryClicked" prefHeight="25.0" prefWidth="104.0" text="Your Bid History" />
-            <Button fx:id="auctionHistoryButton" layoutX="473.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Sold History" />
+            <Button fx:id="auctionHistoryButton" layoutX="473.0" layoutY="184.0" mnemonicParsing="false" onAction="#soldArtworkHistory" prefHeight="25.0" prefWidth="104.0" text="Sold History" />
             <Label layoutX="36.0" layoutY="62.0" text="Current Auctions" />
             <ListView fx:id="browseAuctions" layoutX="36.0" layoutY="84.0" onMouseClicked="#browseAuctionClicked" prefHeight="289.0" prefWidth="422.0" />
          </children>
