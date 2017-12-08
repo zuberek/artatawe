@@ -143,6 +143,12 @@ public class SearchAuctionController {
 		this.updateDisplayedAuctions();
 	}
 	
+	public void backPageButtonClicked(){
+		count = count - 5;
+		this.clearDisplayedAuctions();
+		this.updateDisplayedAuctions();
+	}
+	
 	private void clearDisplayedAuctions(){
 		HBox1.setVisible(false);
 		HBox2.setVisible(false);

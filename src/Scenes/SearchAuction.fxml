@@ -42,7 +42,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="31.0" prefWidth="164.0">
                <children>
-                  <Button mnemonicParsing="false" text="Back">
+                  <Button mnemonicParsing="false" onAction="#backPageButtonClicked" text="Back">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
