@@ -162,7 +162,7 @@ public class Bid {
 	 * @return A short description of the bid.
 	 */
 	public String getDescriptionForList() {
-		return "BidderID " + bidderID + " - AuctionID " + auctionID + " - amount: " + amount;
+		return "Auction Title: " + new Auction(auctionID).getArtwork().getTitle() + " - Amount: £" + amount;
 	}
 
 }
