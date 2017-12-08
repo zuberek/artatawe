@@ -41,7 +41,7 @@ public class DashboardController {
 		welcomeLabel.setText("Welcome " + currentUser.getFirstName());
 		
 		for(Auction a : AuctionList.getAuctions()) {
-			browseAuctions.getItems().add(String.valueOf(a.getAuctionID()));
+			browseAuctions.getItems().add(String.valueOf(a.getDescriptionForList()));
 		}
 		
 	}
