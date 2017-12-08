@@ -81,7 +81,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox fx:id="HBox1" alignment="CENTER" onMouseClicked="#mouseClickHBox1Handler" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="HBox1" alignment="CENTER" onMouseClicked="#mouseClickHBox0Handler" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="artworkPhoto1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -130,7 +130,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox fx:id="HBox4" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <HBox fx:id="HBox4" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox3Handler" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <ImageView fx:id="artworkPhoto4" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -179,7 +179,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox fx:id="HBox3" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <HBox fx:id="HBox3" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox2Handler" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <ImageView fx:id="artworkPhoto3" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -228,7 +228,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox fx:id="HBox5" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <HBox fx:id="HBox5" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox4Handler" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
                   <ImageView fx:id="artworkPhoto5" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -277,7 +277,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox fx:id="HBox6" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox fx:id="HBox6" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox5Handler" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <ImageView fx:id="artworkPhoto6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -326,7 +326,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox fx:id="HBox2" alignment="CENTER" layoutX="10.0" layoutY="142.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <HBox fx:id="HBox2" alignment="CENTER" layoutX="10.0" layoutY="142.0" onMouseClicked="#mouseClickHBox1Handler" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <ImageView fx:id="artworkPhoto2" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>

@@ -37,6 +37,7 @@ public class SearchAuctionController {
 	User currentUser;
 	private ArrayList<Auction> auctionsToDisplay  = new ArrayList<>();
 	private int count;
+	private final int AUCTIONS_PER_WINDOW = 6;
 
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("All","Painting", "Sculpture");
 
@@ -88,8 +89,8 @@ public class SearchAuctionController {
 		int size = auctionsToDisplay.size();
 
 		int auctionsOnScreen = 0;
-		if(size > 6){
-			auctionsOnScreen = 6;
+		if(size > AUCTIONS_PER_WINDOW){
+			auctionsOnScreen = AUCTIONS_PER_WINDOW;
 		} else {
 			auctionsOnScreen = size;
 		}
@@ -106,6 +107,7 @@ public class SearchAuctionController {
 	}
 
 	private void updateDisplayedAuctions(){
+		this.prontArray(auctionsToDisplay);
 		String[] input = this.getInfo(count);
 		artworkTitleLabel1.setText(input[0]);
 		lastBidAmountLabel1.setText(input[1]);
@@ -113,17 +115,15 @@ public class SearchAuctionController {
 		artworkPhoto1.setImage(this.getImage(count));
 		HBox1.setVisible(true);
 
-		count ++;
-		if (checkIfMore(count)){
+		if (checkIfMoreAndIncrease()){
 			input = this.getInfo(count);
 			artworkTitleLabel2.setText(input[0]);
 			lastBidAmountLabel2.setText(input[1]);
 			descriptionTextField2.setText(input[2]);
-			artworkPhoto2.setImage(this.getImage(0));
+			artworkPhoto2.setImage(this.getImage(count));
 			HBox2.setVisible(true);
 
-			count ++;
-			if (checkIfMore(count)){
+			if (checkIfMoreAndIncrease()){
 				input = this.getInfo(count);
 				artworkTitleLabel3.setText(input[0]);
 				lastBidAmountLabel3.setText(input[1]);
@@ -131,8 +131,7 @@ public class SearchAuctionController {
 				artworkPhoto3.setImage(this.getImage(count));
 				HBox3.setVisible(true);
 
-				count ++;
-				if (checkIfMore(count)){
+				if (checkIfMoreAndIncrease()){
 					input = this.getInfo(count);
 					artworkTitleLabel4.setText(input[0]);
 					lastBidAmountLabel4.setText(input[1]);
@@ -140,8 +139,7 @@ public class SearchAuctionController {
 					artworkPhoto4.setImage(this.getImage(count));
 					HBox4.setVisible(true);
 
-					count ++;
-					if (checkIfMore(count)){
+					if (checkIfMoreAndIncrease()){
 						input = this.getInfo(count);
 						artworkTitleLabel5.setText(input[0]);
 						lastBidAmountLabel5.setText(input[1]);
@@ -149,28 +147,28 @@ public class SearchAuctionController {
 						artworkPhoto5.setImage(this.getImage(count));
 						HBox5.setVisible(true);
 
-						count ++;
-						if (checkIfMore(count)){
+
+						if (checkIfMoreAndIncrease()){
 							input = this.getInfo(count);
 							artworkTitleLabel6.setText(input[0]);
 							lastBidAmountLabel6.setText(input[1]);
 							descriptionTextField6.setText(input[2]);
 							artworkPhoto6.setImage(this.getImage(count));
 							HBox6.setVisible(true);
-							count++;
 						}}}}}}
 
 
-	private boolean checkIfMore(int count){
+	private boolean checkIfMoreAndIncrease(){
 		boolean result = false;
-		if(count<auctionsToDisplay.size()){
+		if(count<auctionsToDisplay.size()-1){
 			result = true;
+			count++;
 		}
 		return result;
 	}
 
 	public void nextPageButtonClicked(){
-		if(checkIfMore(count)){
+		if(checkIfMoreAndIncrease()){
 			this.clearDisplayedAuctions();
 			this.updateNavigationLabel();
 			this.updateDisplayedAuctions();
@@ -178,8 +176,8 @@ public class SearchAuctionController {
 	}
 
 	public void backPageButtonClicked(){
-		if((auctionsToDisplay.size()/6-1)*6 >= 0){
-			count = (auctionsToDisplay.size()/6-1)*6;
+		if((count/AUCTIONS_PER_WINDOW-1)*AUCTIONS_PER_WINDOW >= 0){
+			count = (count/AUCTIONS_PER_WINDOW-1)*AUCTIONS_PER_WINDOW;
 			this.clearDisplayedAuctions();
 			this.updateNavigationLabel();
 			this.updateDisplayedAuctions();
@@ -223,14 +221,16 @@ public class SearchAuctionController {
 	private void updateNavigationLabel(){
 		int size = auctionsToDisplay.size();
 
-		int auctionsOnScreen = count + 6;
+		int auctionsOnScreen = count + AUCTIONS_PER_WINDOW;
 		if(size > auctionsOnScreen){
-			auctionsOnScreen = 6;
+			auctionsOnScreen = AUCTIONS_PER_WINDOW;
 		} else {
 			auctionsOnScreen = size;
 		}
 
-		navigationLabel.setText(count + " - " + auctionsOnScreen + " of " + size);
+		//fake meaning the real index of those objects is one less
+		int fakeCount = count+1;
+		navigationLabel.setText(fakeCount + " - " + auctionsOnScreen + " of " + size);
 	}
 
 	public void goBackButtonClicked(){
@@ -253,17 +253,52 @@ public class SearchAuctionController {
 
 	}
 
-	public void mouseClickHBox1Handler(){
-		
-		int clickedAuctionPosition = count - 5;
-		Auction clikedAuction = auctionsToDisplay.get(clickedAuctionPosition);
-		
+	public void mouseClickHBox0Handler(){	
+		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
+		Auction clikedAuction = auctionsToDisplay.get(index);
+		this.bringViewAuctionSceneForAuction(clikedAuction);		
+	}
+	
+	public void mouseClickHBox1Handler(){		
+		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
+		Auction clikedAuction = auctionsToDisplay.get(index + 1);
+		this.bringViewAuctionSceneForAuction(clikedAuction);		
+	}
+	
+	public void mouseClickHBox2Handler(){		
+		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
+		Auction clikedAuction = auctionsToDisplay.get(index + 2);
+		this.bringViewAuctionSceneForAuction(clikedAuction);		
+	}
+	
+	public void mouseClickHBox3Handler(){		
+		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
+		Auction clikedAuction = auctionsToDisplay.get(index + 3);
+		this.bringViewAuctionSceneForAuction(clikedAuction);		
+	}
+	
+	public void mouseClickHBox4Handler(){	
+		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
+		Auction clikedAuction = auctionsToDisplay.get(index + 4);
+		this.bringViewAuctionSceneForAuction(clikedAuction);		
+	}
+	
+	public void mouseClickHBox5Handler(){		
+		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
+		System.out.println("Count: " + count + "Index: " + index);
+		Auction clikedAuction = auctionsToDisplay.get(index + 5);
+		this.bringViewAuctionSceneForAuction(clikedAuction);		
+	}
+
+	private void bringViewAuctionSceneForAuction(Auction auction){
 		try {
+			System.out.println(count);
+			System.out.println(auction.getAuctionID());
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewAuction.fxml"));
 			Parent editRoot = (Parent) fxmlLoader.load();
 	
 			ViewAuctionController ctrl = fxmlLoader.getController();
-			ctrl.initialize(currentUser, clikedAuction);
+			ctrl.initialize(currentUser, auction);
 	
 			Scene newScene = new Scene(editRoot);
             Stage stage = new Stage();
@@ -276,6 +311,10 @@ public class SearchAuctionController {
 			e.printStackTrace();
 		}
 	}
-
-
+	
+	private void prontArray(ArrayList<Auction> list){
+		for (Auction fruit : list) {
+		    System.out.println(fruit.getDescriptionForList());
+		}
+	}
 }
