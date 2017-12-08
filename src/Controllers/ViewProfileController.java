@@ -36,6 +36,7 @@ public class ViewProfileController{
 			favouriteButton.setText("Unfavourite");
 			favourited = true;
 		} else  {
+			favouriteButton.setText("Favourite");
 			favourited  = false;
 		}
 		InputStream stream = getClass().getResourceAsStream(userToView.getAvatarPath());
