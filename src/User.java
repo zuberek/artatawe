@@ -71,7 +71,7 @@ public class User {
 				this.setPhoneNo(rs.getString("phoneNo"));
 				this.setUserAddress(rs.getString("userAddress"));
 				this.setDefaultAvatar(rs.getString("avatarPath"));
-				//this.setLastLogin(rs.getTimestamp("lastLogin"));
+				this.setLastLogin(rs.getTimestamp("lastLogin"));
 	        }
 			this.saveUserLogout();
 		} catch(SQLException ex){
