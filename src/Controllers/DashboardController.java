@@ -119,6 +119,7 @@ public class DashboardController {
 	
 	public void logoutClicked() {
         try {
+        	currentUser.saveUserLogout();
             Stage stage = (Stage)editProfileButton.getScene().getWindow();
 
             Login login = new Login();
