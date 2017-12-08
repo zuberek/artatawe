@@ -10,7 +10,7 @@ import src.Auction;
 import src.AuctionList;
 import src.User;
 
-public class ViewSoldHistoryControllers {
+public class ViewSoldHistoryController {
 
 	@FXML AnchorPane rootPane;
 	@FXML ListView soldListView;
@@ -22,7 +22,7 @@ public class ViewSoldHistoryControllers {
 		AuctionList al = new AuctionList();
 		ArrayList<Auction> auctions = al.getUserSellingAuctionList(currentUser.getUserID());
 		for(Auction a:auctions){
-			soldListView.getItems().add(a.toString());
+			soldListView.getItems().add(a.getDescriptionForList());
 		}
 	}
 	
