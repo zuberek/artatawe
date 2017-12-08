@@ -71,7 +71,7 @@ public class DB {
 					" `userName` text UNIQUE NOT NULL,\r\n" + 
 					" `firstName` text,\r\n" +
 					" `lastName` text,\r\n" +
-					" `phoneNo` int(11),\r\n" +
+					" `phoneNo` text,\r\n" +
 					" `userAddress` text,\r\n" +
 					" `avatarPath` text,\r\n" +
 					" `lastLogin` DATETIME DEFAULT CURRENT_TIMESTAMP\r\n" +
