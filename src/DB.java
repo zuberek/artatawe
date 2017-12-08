@@ -54,6 +54,7 @@ public class DB {
 						" `width` double NOT NULL,\r\n" +
 						" `height` double NOT NULL,\r\n" +
 						" `depth` double,\r\n" +
+						" `photographPath` text NOT NULL,\r\n" +
 						" `dateCreated` int(11)\r\n" +
 						");\r\n" +
 				"CREATE TABLE IF NOT EXISTS `auctions` (\r\n" +

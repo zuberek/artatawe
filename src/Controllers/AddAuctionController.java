@@ -129,7 +129,8 @@ public class AddAuctionController {
 				Sculpture sculpture = new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), "132", Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()), typeSpecificTextField.getText());                  	
 				break;
 			}
-			Auction auction = new Auction(currentUser.getUserID(), AuctionList.getNewestArtworkID(), Integer.parseInt(maxBidsTextField.getText()), Integer.parseInt(reservePriceTextField.getText()));
+			int artworkID = AuctionList.getNewestArtworkID();
+			Auction auction = new Auction(currentUser.getUserID(), artworkID, Integer.parseInt(maxBidsTextField.getText()), Integer.parseInt(reservePriceTextField.getText()));
 			this.closeWindow();
 		}
 	} 

@@ -29,12 +29,13 @@ public class Sculpture extends Artwork{
     	try{
 			ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
 			while (rs.next()) {
-				super.setArtworkID(rs.getInt("artworkID"));
+				this.setArtworkID(rs.getInt("artworkID"));
 				this.setUserID(rs.getInt("userID"));
 				this.setArtist(rs.getString("artist"));
 				this.setTitle(rs.getString("title"));
 				this.setDimensions(rs.getDouble("height"), rs.getDouble("width"), rs.getDouble("depth"));
 				this.setMaterial((rs.getString("material")));
+				this.setPhotographPath(rs.getString("photographPath"));
 				this.setDateCreated(rs.getString("dateCreated"));
 	        }
 		} catch(SQLException ex){
@@ -43,7 +44,7 @@ public class Sculpture extends Artwork{
     }
     
     public void saveSculpture() {
-    	DB.query("INSERT INTO `artworks` (`userID`, `type`, `artist`, `title`, `material`, `width`, `height`, `depth`, `dateCreated`, `description`) VALUES ('"+ this.getUserID() + "',  'sculpture', '" + this.getArtist() + "', '"  + this.getTitle() + "', '" + this.getMaterial() + "', '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getDimensions()[2] + "', '" + this.getDateCreated() + "', '" + this.getDescription() + "');");
+    	DB.query("INSERT INTO `artworks` (`userID`, `type`, `artist`, `title`, `material`, `width`, `height`, `depth`, `photographPath`, `dateCreated`, `description`) VALUES ('"+ this.getUserID() + "',  'sculpture', '" + this.getArtist() + "', '"  + this.getTitle() + "', '" + this.getMaterial() + "', '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getDimensions()[2] + "', '" + this.getPhotographPath() + "', '" + this.getDateCreated() + "', '" + this.getDescription() + "');");
     }
 
     /**

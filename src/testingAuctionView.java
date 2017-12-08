@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.Controllers.ProfileController;
@@ -37,11 +38,17 @@ public class testingAuctionView extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		try {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scenes/AuctionViewer.fxml"));
-           BorderPane editRoot = (BorderPane) fxmlLoader.load();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scenes/ViewAuction.fxml"));
+           VBox editRoot = (VBox) fxmlLoader.load();
            
            ViewAuctionController viewAuctionController = fxmlLoader.getController();
-           viewAuctionController.initialize(new User(1),new Auction(1));
+           
+           Auction auction1 = new Auction(1);
+           User user1 = new User(1);
+           
+           System.out.println(user1.getDefaultAvatar());
+           System.out.println(auction1.getArtwork().getArtist());
+           viewAuctionController.initialize(user1, auction1);
        
 		
 		Scene newScene = new Scene(editRoot);
