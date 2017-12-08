@@ -63,6 +63,10 @@ public class DashboardController {
 			e.printStackTrace();
 		}		
 	}
+	public void browseAuctionsClicked(){
+		
+		
+	}
 	
 	public void bidHistoryClicked(){
 		ArrayList<Bid> bidList = new ArrayList<>();
