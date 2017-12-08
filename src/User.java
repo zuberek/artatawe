@@ -28,19 +28,10 @@ public class User {
 	public User() {
 		this.setDefaultAvatar("../Pictures/avatar1.png");
 	}
-	
-	public User(User newUser){
-		this.userName = newUser.getUserName();
-		this.firstName = newUser.getFirstName();
-		this.lastName = newUser.getLastName();
-		this.phoneNo = newUser.getPhoneNo();
-		this.userAddress = newUser.getUserAddress();
-		this.avatarPath = newUser.getAvatarPath();
-		this.lastLogin = newUser.getLastLogin();
-		saveUser();
-	}
+
 
 	/**
+	 * This constructor creates a new user and stores in dataase
 	 * @param userName
 	 * @param firstName
 	 * @param lastName
@@ -58,6 +49,7 @@ public class User {
 	}
 	
 	/**
+	 * This construtor uses username to get all user data
 	 * @param userName
 	 */
 	public User(String userName){
@@ -81,6 +73,7 @@ public class User {
 	
 
 	/**
+	 * This constructor uses the id to retrieve all user information
 	 * @param userID
 	 */
 	public User(int userID){

@@ -19,8 +19,13 @@ public class Auction {
 	private Date timeAdded;
 	private int lastBidID;
 
+
 	/**
-	 * This constructor is used for when you want to create a new bid
+	 * Constructor is used when you want to create a new auction
+	 * @param sellerID
+	 * @param artworkID
+	 * @param maxBids
+	 * @param reservePrice
 	 */
 	public Auction(int sellerID, int artworkID, int maxBids, double reservePrice){
 		Artwork artwork = null;
@@ -70,6 +75,10 @@ public class Auction {
 		
 	}
 	
+	/**
+	 * @param auctionID id of the auction to retrieve
+	 * @return the amount of bids placed on given auction
+	 */
 	public int getCurrentBids(int auctionID) {
 		int counter = 0;
 		try {
@@ -99,11 +108,17 @@ public class Auction {
 	}
 
 	
+	/**
+	 * Saves the current bid object into the database
+	 */
 	private void saveAuction(){
 		// Insert user into database
 		DB.query("INSERT INTO `auctions` (`sellerID`, `artworkID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getArtwork().getArtworkID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() + "); ");
 	}
 
+	/**
+	 * Updates the auction after a bid has been made
+	 */
 	public void saveAuctionAfterBidding(){
 		// Insert user into database
 		String query = "UPDATE `auctions` SET `lastBidID` = '" + this.getLastBidID() + "' WHERE `auctionID` = " + this.getAuctionID();
@@ -111,6 +126,9 @@ public class Auction {
 		DB.query(query);
 	}
 
+	/**
+	 * @return an double of the last bid amount
+	 */
 	public float getAuctionLastBidAmount(){
 		Bid lastAuctionBid = new Bid(this.getLastBidID());
 		return lastAuctionBid.getAmount();
