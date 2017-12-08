@@ -27,6 +27,10 @@ import src.Painting;
 import src.Sculpture;
 import src.User;
 
+/**
+ * @author Jan Dabrowski
+ *
+ */
 public class AddAuctionController {
 
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("Painting", "Sculpture");

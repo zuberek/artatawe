@@ -81,7 +81,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="HBox1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="artworkPhoto1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -130,154 +130,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-               <children>
-                  <ImageView fx:id="artworkPhoto6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                     <image>
-                        <Image url="@../Pictures/Painting.jpg" />
-                     </image>
-                  </ImageView>
-                  <VBox prefHeight="111.0" prefWidth="146.0">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel6" text="Label">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel6" text="Label">
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField6" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin>
-                              </TextArea>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-               <children>
-                  <ImageView fx:id="artworkPhoto2" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                     <image>
-                        <Image url="@../Pictures/Painting.jpg" />
-                     </image>
-                  </ImageView>
-                  <VBox prefHeight="111.0" prefWidth="146.0">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel2" text="Label">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel2" text="Label">
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField2" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin>
-                              </TextArea>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <ImageView fx:id="artworkPhoto3" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                     <image>
-                        <Image url="@../Pictures/Painting.jpg" />
-                     </image>
-                  </ImageView>
-                  <VBox prefHeight="111.0" prefWidth="146.0">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel3" text="Label">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel3" text="Label">
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="Description" />
-                              <TextArea fx:id="descriptionTextField3" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin>
-                              </TextArea>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <HBox fx:id="HBox4" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <ImageView fx:id="artworkPhoto4" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -326,7 +179,56 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox fx:id="HBox3" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="artworkPhoto3" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../Pictures/Painting.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="111.0" prefWidth="146.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Title: " />
+                              <Label fx:id="artworkTitleLabel3" text="Label">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Amount" />
+                              <Label fx:id="lastBidAmountLabel3" text="Label">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Description" />
+                              <TextArea fx:id="descriptionTextField3" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox fx:id="HBox5" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
                   <ImageView fx:id="artworkPhoto5" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -365,6 +267,104 @@
                            <children>
                               <Label text="Description" />
                               <TextArea fx:id="descriptionTextField5" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox fx:id="HBox6" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fx:id="artworkPhoto6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../Pictures/Painting.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="111.0" prefWidth="146.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Title: " />
+                              <Label fx:id="artworkTitleLabel6" text="Label">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Amount" />
+                              <Label fx:id="lastBidAmountLabel6" text="Label">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Description" />
+                              <TextArea fx:id="descriptionTextField6" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox fx:id="HBox2" alignment="CENTER" layoutX="10.0" layoutY="142.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <ImageView fx:id="artworkPhoto2" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../Pictures/Painting.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="111.0" prefWidth="146.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Title: " />
+                              <Label fx:id="artworkTitleLabel2" text="Label">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Amount" />
+                              <Label fx:id="lastBidAmountLabel2" text="Label">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Description" />
+                              <TextArea fx:id="descriptionTextField2" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>

@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import src.Artwork;
 import src.Auction;
 import src.AuctionList;
@@ -61,17 +62,34 @@ public class SearchAuctionController {
 	@FXML Label lastBidAmountLabel6;
 	@FXML TextArea descriptionTextField6;
 	@FXML ImageView artworkPhoto6;
+	
+	@FXML HBox HBox1;
+	@FXML HBox HBox2;
+	@FXML HBox HBox3;
+	@FXML HBox HBox4;
+	@FXML HBox HBox5;
+	@FXML HBox HBox6;
 
 	public void initialize() {
 		auctionsToDisplay = AuctionList.getAuctions();
 		count = 0;
-
+		
+		this.clearDisplayedAuctions();
+		this.updateDisplayedAuctions();
+		
+		
+		artworkTypeComboBox.setValue("All");
+		artworkTypeComboBox.setItems(artworkChoiceList);
+	}
+	
+	private void updateDisplayedAuctions(){
 		String[] input = this.getInfo(count);
-		if(input != null){
+		if(input[0] != null){
 			artworkTitleLabel1.setText(input[0]);
 			lastBidAmountLabel1.setText(input[1]);
 			descriptionTextField1.setText(input[2]);
-			artworkPhoto1.setImage(this.getImage(count));		
+			artworkPhoto1.setImage(this.getImage(count));
+			HBox1.setVisible(true);
 
 			count ++;
 			input = this.getInfo(count);	
@@ -80,6 +98,7 @@ public class SearchAuctionController {
 				lastBidAmountLabel2.setText(input[1]);
 				descriptionTextField2.setText(input[2]);
 				artworkPhoto2.setImage(this.getImage(0));
+				HBox2.setVisible(true);
 
 				count ++;
 				input = this.getInfo(count);
@@ -88,6 +107,7 @@ public class SearchAuctionController {
 					lastBidAmountLabel3.setText(input[1]);
 					descriptionTextField3.setText(input[2]);
 					artworkPhoto3.setImage(this.getImage(count));
+					HBox3.setVisible(true);
 
 					count ++;
 					input = this.getInfo(count);
@@ -96,6 +116,7 @@ public class SearchAuctionController {
 						lastBidAmountLabel4.setText(input[1]);
 						descriptionTextField4.setText(input[2]);
 						artworkPhoto4.setImage(this.getImage(count));
+						HBox4.setVisible(true);
 
 						count ++;
 						input = this.getInfo(count);
@@ -104,23 +125,31 @@ public class SearchAuctionController {
 							lastBidAmountLabel5.setText(input[1]);
 							descriptionTextField5.setText(input[2]);
 							artworkPhoto5.setImage(this.getImage(count));
+							HBox5.setVisible(true);
 
 							count ++;
 							input = this.getInfo(count);
-							System.out.println(input[0]);
 							if (input[0] != null){
 								artworkTitleLabel6.setText(input[0]);
 								lastBidAmountLabel6.setText(input[1]);
 								descriptionTextField6.setText(input[2]);
 								artworkPhoto6.setImage(this.getImage(count));
+								HBox6.setVisible(true);
 							}}}}}}
-		
-		artworkTypeComboBox.setValue("All");
-		artworkTypeComboBox.setItems(artworkChoiceList);
 	}
 
 	public void nextPageButtonClicked(){
-
+		this.clearDisplayedAuctions();
+		this.updateDisplayedAuctions();
+	}
+	
+	private void clearDisplayedAuctions(){
+		HBox1.setVisible(false);
+		HBox2.setVisible(false);
+		HBox3.setVisible(false);
+		HBox4.setVisible(false);
+		HBox5.setVisible(false);
+		HBox6.setVisible(false);
 	}
 
 	private String[] getInfo(int count){
