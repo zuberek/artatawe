@@ -33,6 +33,7 @@ public class Sculpture extends Artwork{
 				this.setUserID(rs.getInt("userID"));
 				this.setArtist(rs.getString("artist"));
 				this.setTitle(rs.getString("title"));
+				this.setDescription(rs.getString("description"));
 				this.setDimensions(rs.getDouble("height"), rs.getDouble("width"), rs.getDouble("depth"));
 				this.setMaterial((rs.getString("material")));
 				this.setPhotographPath(rs.getString("photographPath"));
