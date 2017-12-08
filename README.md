@@ -16,11 +16,12 @@ You must make sure that your IDE supports JavaFX 2 for the GUI classes to work. 
 
 # ToDo
 
-- Main menu UI
-- Browse Auction UI
-- Bid UI
-- Browse Favourite Users UI
-- View Auction UI (Borislav)
+###Josh
+- Validate Address using new Class
+- Dashboard items need to work
+- Maybe multiple photo upload
+- Testing
+- Video demo's
 
 # Software Requirements
 ## Account with account information 
