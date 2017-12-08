@@ -16,7 +16,7 @@ public class ViewProfileController{
 	
 	@FXML BorderPane rootPane;
 	@FXML Label userLabel;
-	@FXML ImageView userImage;
+	@FXML ImageView profileImage;
 	@FXML Button favouriteButton;
 	
 	private boolean favourited;
@@ -38,9 +38,9 @@ public class ViewProfileController{
 		} else  {
 			favourited  = false;
 		}
-		//InputStream stream = getClass().getResourceAsStream(userToView.getDefaultAvatar());
-		//Image newImage = new Image(stream);
-		//userImage.setImage(newImage);
+		InputStream stream = getClass().getResourceAsStream(userToView.getAvatarPath());
+		Image newImage = new Image(stream);
+		profileImage.setImage(newImage);
 	}
 	
 
