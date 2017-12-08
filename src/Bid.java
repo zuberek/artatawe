@@ -2,7 +2,7 @@ package src;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -58,7 +58,8 @@ public class Bid {
 	private void saveBid(){
 		// Insert bid into database
 		// TODO: need to make sure these inputs are sanitized to avoid sql injection
-		DB.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", "  + this.getAmount() + "); ");
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		DB.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", "  + this.getAmount() + ", " + timestamp.getTime()/1000 + ")");
 		
 		//Updating last bid for the auction we're bidding on
 		//TODO: Find some smarter way of doing it
@@ -162,7 +163,8 @@ public class Bid {
 	 * @return A short description of the bid.
 	 */
 	public String getDescriptionForList() {
-		return "Auction Title: " + new Auction(auctionID).getArtwork().getTitle() + " - Amount: £" + amount;
+		Date date = new Date((long)this.getTimePlaced().getTime()*1000);
+		return "Auction Title: " + new Auction(auctionID).getArtwork().getTitle() + " - Amount: £" + amount + " - Placed at: " + date.toString();
 	}
 
 }
