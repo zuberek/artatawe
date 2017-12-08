@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -34,6 +35,7 @@ public class ViewAuctionController {
 	
 
 	@FXML VBox rootPane;
+	@FXML ImageView auctionImage;
 	@FXML Label auctionNameLabel;
 	@FXML TextArea auctionDescriptionTextBox;
 	@FXML Label currentBidLabel;
@@ -53,7 +55,12 @@ public class ViewAuctionController {
 		this.auction = auction;
 		
 		auctionNameLabel.setText(auction.getArtwork().getTitle());
-		auctionDescriptionTextBox.setText(auction.getDescription());
+		auctionDescriptionTextBox.setText(auction.getArtwork().getDescription());
+		
+		InputStream stream = getClass().getResourceAsStream(auction.getArtwork().getPhotographPath());
+		Image newImage = new Image(stream);
+		auctionImage.setImage(newImage);
+		
 		
 		Bid currentBid = new Bid(auction.getLastBidID());
 		currentBidLabel.setText(String.valueOf(currentBid.getAmount()));
