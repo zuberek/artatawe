@@ -64,6 +64,16 @@ public class AuctionList {
 
 		return auctionList;
 	}
+	
+	public static ArrayList<Auction> getPaintingAuctions(){
+		auctionList = new ArrayList<Auction>();
+
+		String query = "SELECT * from `auctions` WHERE `sellerID` = 'something'";
+		populateArray(query, auctionList);
+
+		//`type` 'painting'
+		return auctionList;
+	}
 
 
 	/**

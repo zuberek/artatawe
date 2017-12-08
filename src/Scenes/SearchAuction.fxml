@@ -53,7 +53,7 @@
                   <Insets right="5.0" />
                </opaqueInsets>
             </HBox>
-            <Label text="1/5">
+            <Label fx:id="navigationLabel" text="1/5">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
