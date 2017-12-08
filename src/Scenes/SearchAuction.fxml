@@ -190,7 +190,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel3" text="Label">
+                              <Label fx:id="artworkTitleLabel2" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -239,7 +239,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel4" text="Label">
+                              <Label fx:id="artworkTitleLabel3" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -288,7 +288,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabelartworkTitleLabel54" text="Label">
+                              <Label fx:id="artworkTitleLabel4" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>

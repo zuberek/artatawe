@@ -77,7 +77,8 @@ public class SearchAuctionController {
 		
 		count ++;
 		input = this.getInfo(count);
-		system.out.println(input[2]);
+		System.out.println(input[0]);
+		
 		artworkTitleLabel2.setText(input[0]);
 		lastBidAmountLabel2.setText(input[1]);
 		descriptionTextField2.setText(input[2]);
@@ -122,7 +123,7 @@ public class SearchAuctionController {
 		String[] result = new String[3];
 		
 		result[0] = displayedArtwork.getTitle();
-		result[1] = String.valueOf(displayedAuction.getLastBidID());
+		result[1] = "£" + String.valueOf(displayedAuction.getAuctionLastBidAmount());
 		result[2] = displayedArtwork.getDescription();
 		
 		return result;
