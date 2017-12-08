@@ -81,7 +81,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox fx:id="HBox1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="HBox1" alignment="CENTER" onMouseClicked="#mouseClickHBox1Handler" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="artworkPhoto1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>

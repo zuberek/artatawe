@@ -43,7 +43,7 @@ public class TestingSearchAuctionController extends Application {
            BorderPane editRoot = (BorderPane) fxmlLoader.load();
            
            SearchAuctionController searchAuctionController = fxmlLoader.getController();
-           searchAuctionController.initialize();
+           searchAuctionController.initialize(new User(1));
            
        
 		

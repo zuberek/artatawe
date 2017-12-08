@@ -67,6 +67,9 @@ public class DashboardController {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/SearchAuction.fxml"));
 			Parent editRoot = (Parent) fxmlLoader.load();
+			
+			SearchAuctionController ctrl = fxmlLoader.getController();
+			ctrl.initialize(currentUser);
 		
 			Scene newScene = new Scene(editRoot);
             Stage stage = new Stage();

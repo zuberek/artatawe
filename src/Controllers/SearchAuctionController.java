@@ -3,12 +3,16 @@
  */
 package src.Controllers;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -16,10 +20,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.Artwork;
 import src.Auction;
 import src.AuctionList;
+import src.User;
 
 /**
  * @author Borislav Koynin
@@ -28,13 +34,14 @@ import src.AuctionList;
  */
 public class SearchAuctionController {
 
+	User currentUser;
 	private ArrayList<Auction> auctionsToDisplay  = new ArrayList<>();
 	private int count;
 
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("All","Painting", "Sculpture");
 
 	@FXML Pane rootPane;
-	
+
 	@FXML ComboBox<String> artworkTypeComboBox;
 	@FXML Label navigationLabel;
 
@@ -75,7 +82,8 @@ public class SearchAuctionController {
 	@FXML HBox HBox5;
 	@FXML HBox HBox6;
 
-	public void initialize() {
+	public void initialize(User user) {
+		this.currentUser = user;
 		auctionsToDisplay = AuctionList.getAuctions();
 		int size = auctionsToDisplay.size();
 
@@ -170,8 +178,8 @@ public class SearchAuctionController {
 	}
 
 	public void backPageButtonClicked(){
-		if(count - 7 > 0){
-			count = count - 7;
+		if((auctionsToDisplay.size()/6-1)*6 >= 0){
+			count = (auctionsToDisplay.size()/6-1)*6;
 			this.clearDisplayedAuctions();
 			this.updateNavigationLabel();
 			this.updateDisplayedAuctions();
@@ -224,10 +232,10 @@ public class SearchAuctionController {
 
 		navigationLabel.setText(count + " - " + auctionsOnScreen + " of " + size);
 	}
-	
+
 	public void goBackButtonClicked(){
 		Stage stage = (Stage) rootPane.getScene().getWindow();
-        stage.close();
+		stage.close();
 	}
 
 	@FXML
@@ -245,7 +253,29 @@ public class SearchAuctionController {
 
 	}
 
-
+	public void mouseClickHBox1Handler(){
+		
+		int clickedAuctionPosition = count - 5;
+		Auction clikedAuction = auctionsToDisplay.get(clickedAuctionPosition);
+		
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewAuction.fxml"));
+			Parent editRoot = (Parent) fxmlLoader.load();
+	
+			ViewAuctionController ctrl = fxmlLoader.getController();
+			ctrl.initialize(currentUser, clikedAuction);
+	
+			Scene newScene = new Scene(editRoot);
+            Stage stage = new Stage();
+            stage.setScene(newScene);
+            stage.setTitle("Artatawe | View Auction");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
 }
