@@ -3,6 +3,7 @@
  */
 package src.Controllers;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import src.Sculpture;
 import src.User;
@@ -47,6 +49,10 @@ public class SearchAuctionController {
 		this.artworkTitleLabel.setText(displayedArtwork.getTitle());
 		this.lastBidAmountLabel.setText(String.valueOf(displayedAuction.getAuctionLastBidAmount()));
 		this.descriptionTextField.setText(displayedArtwork.getDescription());
+		
+		InputStream stream = getClass().getResourceAsStream(displayedArtwork.getPhotographPath());
+		Image newImage = new Image(stream);
+		artworkPhoto.setImage(newImage);
 	}
 	
 
