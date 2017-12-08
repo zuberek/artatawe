@@ -52,6 +52,8 @@ public class DrawingCanvas extends Application{
     private static final int SLIDER_MINORTICK = 10;
     private static final int SLIDER_INCREMENT = 1;
 
+    private static final int TEXTFIELD_COLUMN_COUNT = 11;
+
     private Canvas canvas;
     private Stage primaryStage;
     User editedUSer;
@@ -148,6 +150,15 @@ public class DrawingCanvas extends Application{
         slider.setBlockIncrement(SLIDER_INCREMENT);
         sidebar.getChildren().add(slider);
 
+        HBox textInput = new HBox(); // HBox used to store the text field and its label
+
+        Label textLabel = new Label("Text: ");
+        TextField textField = new TextField();
+        textField.setPrefColumnCount(TEXTFIELD_COLUMN_COUNT);
+        textInput.getChildren().addAll(textLabel, textField);
+        sidebar.getChildren().add(textInput);
+
+
         HBox clearUndo = new HBox(); // HBox used to store two buttons used to clear and undo
 
         /*
@@ -195,6 +206,10 @@ public class DrawingCanvas extends Application{
                     // Constructs the Square and pushes it to the shape stack, sets the square center position to the cursor position
                     shapeStack.push(new Rectangle(e.getX()-(slider.getValue()/2), e.getY()-(slider.getValue()/2),
                             slider.getValue(), slider.getValue(), colorPicker.getValue(),shapeFill.isSelected(), gc));
+                    break;
+                case "Text":
+                    // Constructs the Text and paints it onto the canvas
+                    new Text(e.getX(), e.getY(), textField.getText(), colorPicker.getValue(), slider.getValue(), gc);
                     break;
                 default:
                     break;
