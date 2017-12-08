@@ -46,6 +46,28 @@ public class DashboardController {
 		
 	}
 	
+	public void soldArtworkHistory(){
+		
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewSoldHistory.fxml"));
+			Parent editRoot = (Parent) fxmlLoader.load();
+	
+			ViewSoldHistoryController ctrl = fxmlLoader.getController();
+			ctrl.initialize(currentUser);
+	
+			Scene newScene = new Scene(editRoot);
+            Stage stage = new Stage();
+            stage.setScene(newScene);
+            stage.setTitle("Artatawe |  Your Sold History");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
 	public void bidHistoryClicked(){
 		ArrayList<Bid> bidList = new ArrayList<>();
 		BidList bl = new BidList();
