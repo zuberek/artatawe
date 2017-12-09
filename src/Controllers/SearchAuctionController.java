@@ -102,10 +102,10 @@ public class SearchAuctionController {
 	private void refresh(){
 		count = 0;
 		this.clearDisplayedAuctions();
+		this.updateNavigationLabel();
 		if(!auctionsToDisplay.isEmpty()){
 			this.updateDisplayedAuctions();
 		}
-		this.updateNavigationLabel();
 	}
 
 	private void updateDisplayedAuctions(){
@@ -237,10 +237,10 @@ public class SearchAuctionController {
 	private void artworkTypeComboBox() {
 		if(artworkTypeComboBox.getValue().equals("Painting")) {			
 			auctionsToDisplay = AuctionList.getPaintingAuctions();
-
 			this.refresh();
 		} else  if(artworkTypeComboBox.getValue().equals("Sculpture")){
-			System.out.println("kupa");
+			auctionsToDisplay = AuctionList.getSculptureAuctions();
+			this.refresh();
 		} else  if(artworkTypeComboBox.getValue().equals("All")){
 			auctionsToDisplay = AuctionList.getAuctions();
 			this.refresh();

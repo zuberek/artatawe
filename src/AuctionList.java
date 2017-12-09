@@ -75,6 +75,16 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	public static ArrayList<Auction> getSculptureAuctions(){
+		auctionList = new ArrayList<Auction>();
+
+		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.type = 'sculpture'\n";
+		populateArray(query, auctionList);
+
+		//`type` 'painting'
+		return auctionList;
+	}
+
 
 	/**
 	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
