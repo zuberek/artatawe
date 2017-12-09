@@ -122,6 +122,8 @@ public class AddAuctionController {
 	public void addAuctionButonClicked(){
 		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty() || widthTextField.getText().isEmpty() || heightTextField.getText().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
+		} else if(!CONSTANTS.isAlpha(artistTextField.getText()) || !CONSTANTS.isAlpha(titleTextField.getText())){
+			CONSTANTS.makeAlertWindow("warning","Please input valid basic artwork description (artist,title)\nno numbers");
 		} else if(!validateAuction()) {
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid maxBid (Range " + CONSTANTS.MIN_BID + " - " + CONSTANTS.MAX_BID + ")\n and reserved price (" + CONSTANTS.MIN_PRICE + " - " + CONSTANTS.MAX_PRICE + ")");
 		} else if (!validateYear()){
