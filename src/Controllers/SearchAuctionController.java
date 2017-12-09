@@ -154,9 +154,15 @@ public class SearchAuctionController {
 	public void submitButtonClicked(){
 		if(contemporaryCheckBox.isSelected()){
 			auctionsToDisplay = AuctionList.getContemporaryAuctions();
+			contemporaryCheckBox.setSelected(false);
 			this.refresh();
 		} else if(modernCheckBox.isSelected()){
 			auctionsToDisplay = AuctionList.getModernAuctions();
+			modernCheckBox.setSelected(false);
+			this.refresh();
+		} else if(antiqueCheckBox.isSelected()){
+			auctionsToDisplay = AuctionList.getAntiqueAuctions();
+			antiqueCheckBox.setSelected(false);
 			this.refresh();
 		}
 	}
