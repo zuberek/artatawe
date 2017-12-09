@@ -68,7 +68,7 @@ public class AuctionList {
 	public static ArrayList<Auction> getPaintingAuctions(){
 		auctionList = new ArrayList<Auction>();
 
-		String query = "SELECT * from `auctions` WHERE `sellerID` = 'something'";
+		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.type = 'painting'\n";
 		populateArray(query, auctionList);
 
 		//`type` 'painting'
