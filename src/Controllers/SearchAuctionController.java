@@ -23,10 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import src.Artwork;
-import src.Auction;
-import src.AuctionList;
-import src.User;
+import src.*;
 
 /**
  * @author Borislav Koynin
@@ -47,7 +44,7 @@ public class SearchAuctionController {
 
 	private IntegerBinding numCheckBoxesSelected = Bindings.size(selectedCheckBoxes);
 
-	private final int maxNumSelected = 1;
+	private final int maxNumOfCheckBoxes = 1;
 
 	@FXML Pane rootPane;
 
@@ -58,6 +55,9 @@ public class SearchAuctionController {
 	@FXML private CheckBox modernCheckBox;
 	@FXML private CheckBox antiqueCheckBox;
 	@FXML private Button submitButton;
+
+	@FXML private TextField minTextField;
+	@FXML private TextField maxTextField;
 
 	@FXML Label artworkTitleLabel1;
 	@FXML Label lastBidAmountLabel1;
@@ -110,7 +110,7 @@ public class SearchAuctionController {
 		submitButton.setDisable(true);
 
 		numCheckBoxesSelected.addListener((obs, oldSelectedCount, newSelectedCount) -> {
-			if (newSelectedCount.intValue() >= maxNumSelected) {
+			if (newSelectedCount.intValue() >= maxNumOfCheckBoxes) {
 				unselectedCheckBoxes.forEach(cb -> cb.setDisable(true));
 				submitButton.setDisable(false);
 			} else {
@@ -149,6 +149,21 @@ public class SearchAuctionController {
 			}
 
 		});
+	}
+
+	public void priceSearchButtonClicked(){
+		int minPrice = -1;
+		int maxPrice = -1;
+
+		if (CONSTANTS.isNumeric(minTextField.getText()) && Integer.parseInt(minTextField.getText()) >= 0){
+			minPrice = Integer.parseInt(minTextField.getText());
+		}
+		if (CONSTANTS.isNumeric(maxTextField.getText()) && Integer.parseInt(maxTextField.getText()) >= 0){
+			maxPrice = Integer.parseInt(maxTextField.getText());
+		}
+
+		auctionsToDisplay = AuctionList.getPriceRangeAuctions(minPrice, maxPrice);
+		this.refresh();
 	}
 
 	public void submitButtonClicked(){

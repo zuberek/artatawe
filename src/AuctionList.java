@@ -110,6 +110,21 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	public static ArrayList<Auction> getPriceRangeAuctions(int rangeMin, int rangeMax){
+		auctionList = new ArrayList<Auction>();
+		String query = "";
+		if (rangeMax >= 0 && rangeMin >= 0){
+			query = "SELECT * FROM bids INNER JOIN auctions ON bids.bidID = auctions.lastBidID AND bids.auctionID = auctions.auctionID where bids.amount > " + rangeMin + " and bids.amount < " + rangeMax + "\n";
+		} else if (rangeMax > 0 && rangeMin < 0){
+			query = "SELECT * FROM bids INNER JOIN auctions ON bids.bidID = auctions.lastBidID AND bids.auctionID = auctions.auctionID where bids.amount < " + rangeMax + "\n";
+		} else if (rangeMax < 0 && rangeMin >= 0){
+			query = "SELECT * FROM bids INNER JOIN auctions ON bids.bidID = auctions.lastBidID AND bids.auctionID = auctions.auctionID where bids.amount > " + rangeMin + "\n";
+		}
+		populateArray(query, auctionList);
+
+		return auctionList;
+	}
+
 
 	/**
 	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
