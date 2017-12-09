@@ -86,7 +86,16 @@ public class AuctionList {
 	public static ArrayList<Auction> getContemporaryAuctions(){
 		auctionList = new ArrayList<Auction>();
 
-		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.dateCreated > 1980 AND artworks.dateCreated <=" + CONSTANTS.CURRENT_YEAR +"\n";
+		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.dateCreated >= 1980 AND artworks.dateCreated <=" + CONSTANTS.CURRENT_YEAR +"\n";
+		populateArray(query, auctionList);
+
+		return auctionList;
+	}
+
+	public static ArrayList<Auction> getModernAuctions(){
+		auctionList = new ArrayList<Auction>();
+
+		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.dateCreated > 1900 AND artworks.dateCreated < 1980\n";
 		populateArray(query, auctionList);
 
 		return auctionList;

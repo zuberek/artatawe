@@ -156,7 +156,8 @@ public class SearchAuctionController {
 			auctionsToDisplay = AuctionList.getContemporaryAuctions();
 			this.refresh();
 		} else if(modernCheckBox.isSelected()){
-			auctionsToDisplay = AuctionList.getAuctions();
+			auctionsToDisplay = AuctionList.getModernAuctions();
+			this.refresh();
 		}
 	}
 
