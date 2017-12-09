@@ -71,7 +71,6 @@ public class AuctionList {
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.type = 'painting'\n";
 		populateArray(query, auctionList);
 
-		//`type` 'painting'
 		return auctionList;
 	}
 
@@ -81,7 +80,15 @@ public class AuctionList {
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.type = 'sculpture'\n";
 		populateArray(query, auctionList);
 
-		//`type` 'painting'
+		return auctionList;
+	}
+
+	public static ArrayList<Auction> getContemporaryAuctions(){
+		auctionList = new ArrayList<Auction>();
+
+		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.dateCreated > 1980 AND artworks.dateCreated <=" + CONSTANTS.CURRENT_YEAR +"\n";
+		populateArray(query, auctionList);
+
 		return auctionList;
 	}
 

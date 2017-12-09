@@ -13,7 +13,10 @@ public class CONSTANTS {
 	//menu
 	public static final int BIG_WINDOW_WIDTH = 800;
 	public static final int BIG_WINDOW_HEIGHT = 600;
-    
+
+	//for auction search
+	public static final int CURRENT_YEAR = 2017;
+
     public static void makeAlertWindow(String type, String content){
     	Alert alert;
     	switch(type) {

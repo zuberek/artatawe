@@ -54,9 +54,9 @@ public class SearchAuctionController {
 	@FXML ComboBox<String> artworkTypeComboBox;
 	@FXML Label navigationLabel;
 
-	@FXML private CheckBox yearCheckBox1;
-	@FXML private CheckBox yearCheckBox2;
-	@FXML private CheckBox yearCheckBox3;
+	@FXML private CheckBox contemporaryCheckBox;
+	@FXML private CheckBox modernCheckBox;
+	@FXML private CheckBox antiqueCheckBox;
 	@FXML private Button submitButton;
 
 	@FXML Label artworkTitleLabel1;
@@ -98,11 +98,14 @@ public class SearchAuctionController {
 
 	public void initialize(User user) {
 		this.currentUser = user;
-		auctionsToDisplay = AuctionList.getAuctions();
 
-		configureCheckBox(yearCheckBox1);
-		configureCheckBox(yearCheckBox2);
-		configureCheckBox(yearCheckBox3);
+		//this part configures the search auction search tools
+		artworkTypeComboBox.setValue("All");
+		artworkTypeComboBox.setItems(artworkChoiceList);
+
+		configureCheckBox(contemporaryCheckBox);
+		configureCheckBox(modernCheckBox);
+		configureCheckBox(antiqueCheckBox);
 
 		submitButton.setDisable(true);
 
@@ -116,6 +119,8 @@ public class SearchAuctionController {
 			}
 		});
 
+		//this part brings all the auctions to the screen
+		auctionsToDisplay = AuctionList.getAuctions();
 		this.updateNavigationLabel();
 		count = 0;
 
@@ -123,8 +128,7 @@ public class SearchAuctionController {
 		if(!auctionsToDisplay.isEmpty()){
 			this.updateDisplayedAuctions();
 		}
-		artworkTypeComboBox.setValue("All");
-		artworkTypeComboBox.setItems(artworkChoiceList);
+
 	}
 
 	private void configureCheckBox(CheckBox checkBox) {
@@ -145,6 +149,30 @@ public class SearchAuctionController {
 			}
 
 		});
+	}
+
+	public void submitButtonClicked(){
+		if(contemporaryCheckBox.isSelected()){
+			auctionsToDisplay = AuctionList.getContemporaryAuctions();
+			this.refresh();
+		} else if(modernCheckBox.isSelected()){
+			auctionsToDisplay = AuctionList.getAuctions();
+		}
+	}
+
+	@FXML
+	private void artworkTypeComboBox() {
+		if(artworkTypeComboBox.getValue().equals("Painting")) {
+			auctionsToDisplay = AuctionList.getPaintingAuctions();
+			this.refresh();
+		} else  if(artworkTypeComboBox.getValue().equals("Sculpture")){
+			auctionsToDisplay = AuctionList.getSculptureAuctions();
+			this.refresh();
+		} else  if(artworkTypeComboBox.getValue().equals("All")){
+			auctionsToDisplay = AuctionList.getAuctions();
+			this.refresh();
+		}
+
 	}
 
 	private void refresh(){
@@ -279,21 +307,6 @@ public class SearchAuctionController {
 	public void goBackButtonClicked(){
 		Stage stage = (Stage) rootPane.getScene().getWindow();
 		stage.close();
-	}
-
-	@FXML
-	private void artworkTypeComboBox() {
-		if(artworkTypeComboBox.getValue().equals("Painting")) {			
-			auctionsToDisplay = AuctionList.getPaintingAuctions();
-			this.refresh();
-		} else  if(artworkTypeComboBox.getValue().equals("Sculpture")){
-			auctionsToDisplay = AuctionList.getSculptureAuctions();
-			this.refresh();
-		} else  if(artworkTypeComboBox.getValue().equals("All")){
-			auctionsToDisplay = AuctionList.getAuctions();
-			this.refresh();
-		}
-
 	}
 
 	public void mouseClickHBox0Handler(){	

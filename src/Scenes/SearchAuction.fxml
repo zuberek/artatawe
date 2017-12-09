@@ -68,15 +68,15 @@
                         <Label text="Date of creation" />
                      </children>
                   </HBox>
-                  <CheckBox fx:id="yearCheckBox1" mnemonicParsing="false" text="Contemporary (1980-Now)" />
-                  <CheckBox fx:id="yearCheckBox2" mnemonicParsing="false" text="Modern (1900-79)" />
-                  <CheckBox fx:id="yearCheckBox3" mnemonicParsing="false" text="Antique (pre-1900)" />
+                  <CheckBox fx:id="contemporaryCheckBox" mnemonicParsing="false" text="Contemporary (1980-Now)" />
+                  <CheckBox fx:id="modernCheckBox" mnemonicParsing="false" text="Modern (1900-79)" />
+                  <CheckBox fx:id="antiqueCheckBox" mnemonicParsing="false" text="Antique (pre-1900)" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
-            <Button fx:id="submitButton" mnemonicParsing="false" text="Search!">
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonClicked" text="Search!">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
