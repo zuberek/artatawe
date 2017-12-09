@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.SearchAuctionController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.SearchAuctionController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +24,7 @@
          </children></HBox>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="290.0" prefWidth="164.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="423.0" prefWidth="184.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Search Options:">
                <VBox.margin>
@@ -58,6 +59,28 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
+            <Line endX="50.0" layoutX="118.0" layoutY="144.0" startX="-100.0" />
+            <Label text="Advanced " />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label text="Date of creation" />
+                     </children>
+                  </HBox>
+                  <CheckBox fx:id="yearCheckBox1" mnemonicParsing="false" text="Contemporary (1980-Now)" />
+                  <CheckBox fx:id="yearCheckBox2" mnemonicParsing="false" text="Modern (1900-79)" />
+                  <CheckBox fx:id="yearCheckBox3" mnemonicParsing="false" text="Antique (pre-1900)" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+            <Button fx:id="submitButton" mnemonicParsing="false" text="Search!">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
             <Line endX="50.0" startX="-100.0" />
             <Button mnemonicParsing="false" onAction="#goBackButtonClicked" text="Go back to Menu">
                <VBox.margin>
@@ -83,7 +106,7 @@
          <children>
             <HBox fx:id="HBox1" alignment="CENTER" onMouseClicked="#mouseClickHBox0Handler" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="artworkPhoto1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -132,7 +155,7 @@
             </HBox>
             <HBox fx:id="HBox4" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox3Handler" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ImageView fx:id="artworkPhoto4" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto4" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -181,7 +204,7 @@
             </HBox>
             <HBox fx:id="HBox3" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox2Handler" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <ImageView fx:id="artworkPhoto3" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -230,7 +253,7 @@
             </HBox>
             <HBox fx:id="HBox5" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox4Handler" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <ImageView fx:id="artworkPhoto5" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto5" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -277,9 +300,9 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox fx:id="HBox6" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox5Handler" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox fx:id="HBox6" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClickHBox5Handler" prefHeight="146.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <ImageView fx:id="artworkPhoto6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto6" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -328,7 +351,7 @@
             </HBox>
             <HBox fx:id="HBox2" alignment="CENTER" layoutX="10.0" layoutY="142.0" onMouseClicked="#mouseClickHBox1Handler" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <ImageView fx:id="artworkPhoto2" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="artworkPhoto2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>

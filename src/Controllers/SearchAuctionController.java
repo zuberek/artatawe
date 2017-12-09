@@ -7,15 +7,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.IntegerBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -41,10 +42,22 @@ public class SearchAuctionController {
 
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("All","Painting", "Sculpture");
 
+	private ObservableSet<CheckBox> selectedCheckBoxes = FXCollections.observableSet();
+	private ObservableSet<CheckBox> unselectedCheckBoxes = FXCollections.observableSet();
+
+	private IntegerBinding numCheckBoxesSelected = Bindings.size(selectedCheckBoxes);
+
+	private final int maxNumSelected = 1;
+
 	@FXML Pane rootPane;
 
 	@FXML ComboBox<String> artworkTypeComboBox;
 	@FXML Label navigationLabel;
+
+	@FXML private CheckBox yearCheckBox1;
+	@FXML private CheckBox yearCheckBox2;
+	@FXML private CheckBox yearCheckBox3;
+	@FXML private Button submitButton;
 
 	@FXML Label artworkTitleLabel1;
 	@FXML Label lastBidAmountLabel1;
@@ -86,7 +99,22 @@ public class SearchAuctionController {
 	public void initialize(User user) {
 		this.currentUser = user;
 		auctionsToDisplay = AuctionList.getAuctions();
-		int size = auctionsToDisplay.size();
+
+		configureCheckBox(yearCheckBox1);
+		configureCheckBox(yearCheckBox2);
+		configureCheckBox(yearCheckBox3);
+
+		submitButton.setDisable(true);
+
+		numCheckBoxesSelected.addListener((obs, oldSelectedCount, newSelectedCount) -> {
+			if (newSelectedCount.intValue() >= maxNumSelected) {
+				unselectedCheckBoxes.forEach(cb -> cb.setDisable(true));
+				submitButton.setDisable(false);
+			} else {
+				unselectedCheckBoxes.forEach(cb -> cb.setDisable(false));
+				submitButton.setDisable(true);
+			}
+		});
 
 		this.updateNavigationLabel();
 		count = 0;
@@ -97,6 +125,26 @@ public class SearchAuctionController {
 		}
 		artworkTypeComboBox.setValue("All");
 		artworkTypeComboBox.setItems(artworkChoiceList);
+	}
+
+	private void configureCheckBox(CheckBox checkBox) {
+
+		if (checkBox.isSelected()) {
+			selectedCheckBoxes.add(checkBox);
+		} else {
+			unselectedCheckBoxes.add(checkBox);
+		}
+
+		checkBox.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
+			if (isNowSelected) {
+				unselectedCheckBoxes.remove(checkBox);
+				selectedCheckBoxes.add(checkBox);
+			} else {
+				selectedCheckBoxes.remove(checkBox);
+				unselectedCheckBoxes.add(checkBox);
+			}
+
+		});
 	}
 
 	private void refresh(){
