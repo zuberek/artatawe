@@ -77,10 +77,12 @@ public class AddAuctionController {
 		if(artworkTypeComboBox.getValue().equals("Sculpture")) {
 			depthLabel.setVisible(true);
 			depthTextField.setVisible(true);
+			depthTextField.setDisable(false);
 			typeSpecificLabel.setText("Material");
 		} else {
 			depthLabel.setVisible(false);
 			depthTextField.setVisible(false);
+			depthTextField.setDisable(true);
 			depthTextField.clear();
 			typeSpecificLabel.setText("Painting Type");
 		}
@@ -127,17 +129,22 @@ public class AddAuctionController {
 		} else if(!validateAuction()) {
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid maxBid (Range " + CONSTANTS.MIN_BID + " - " + CONSTANTS.MAX_BID + ")\n and reserved price (" + CONSTANTS.MIN_PRICE + " - " + CONSTANTS.MAX_PRICE + ")");
 		} else if (!validateYear()){
-			CONSTANTS.makeAlertWindow("warning","Please input a valid year within a range: " + CONSTANTS.SMALLEST_YEAR + " - " + CONSTANTS.MAX_YEAR);
-		} else if(!validateSize()){
-			CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
-		}
-		else {
+			CONSTANTS.makeAlertWindow("warning","Please input a valid year within a range:\n " + CONSTANTS.SMALLEST_YEAR + " - " + CONSTANTS.MAX_YEAR);
+		} else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
 			case "Painting":
-				Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), yearTextField.getText(), Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());
+				if(!validateSize()){
+					CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter\n within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
+				} else {
+					Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), yearTextField.getText(), Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());
+				}
 				break;
 			case "Sculpture":
-				Sculpture sculpture = new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), yearTextField.getText(), Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()), typeSpecificTextField.getText());
+				if(!validateDimensions()){
+					CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter\n within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
+				} else {
+					Sculpture sculpture = new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), yearTextField.getText(), Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()), typeSpecificTextField.getText());
+				}
 				break;
 			}
 			int artworkID = AuctionList.getNewestArtworkID();
@@ -180,7 +187,7 @@ public class AddAuctionController {
 		return result;
 	}
 
-	private boolean validateSize(){
+	private boolean validateDimensions(){
 		boolean result = false;
 		if(CONSTANTS.isNumeric(widthTextField.getText()) && CONSTANTS.isNumeric(depthTextField.getText()) && CONSTANTS.isNumeric(heightTextField.getText())){
 			int max = CONSTANTS.MAX_SIZE;
@@ -196,6 +203,23 @@ public class AddAuctionController {
 		}
 		return result;
 	}
+
+	private boolean validateSize(){
+		boolean result = false;
+		if(CONSTANTS.isNumeric(widthTextField.getText()) &&  CONSTANTS.isNumeric(heightTextField.getText())){
+			int max = CONSTANTS.MAX_SIZE;
+			int min = CONSTANTS.MIN_SIZE;
+
+			int width = Integer.parseInt(widthTextField.getText());
+			int height = Integer.parseInt(heightTextField.getText());
+
+			if(isRight(max,min,width) && isRight(max,min,height)){
+				result = true;
+			}
+		}
+		return result;
+	}
+
 
 	private boolean isRight(int max, int min, int par){
 		boolean result = false;
