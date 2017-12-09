@@ -122,10 +122,12 @@ public class AddAuctionController {
 	public void addAuctionButonClicked(){
 		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty() || widthTextField.getText().isEmpty() || heightTextField.getText().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-		} else if(!CONSTANTS.isNumeric(reservePriceTextField.getText()) || !CONSTANTS.isNumeric(maxBidsTextField.getText()) || !CONSTANTS.isNumeric(heightTextField.getText()) || !CONSTANTS.isNumeric(widthTextField.getText()) || !CONSTANTS.isNumeric(depthTextField.getText())) {
+		} else if(!CONSTANTS.isNumeric(reservePriceTextField.getText()) || !CONSTANTS.isNumeric(maxBidsTextField.getText())) {
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid number.");
 		} else if (!CONSTANTS.isNumeric(yearTextField.getText()) || Integer.parseInt(yearTextField.getText()) >= CONSTANTS.MAX_YEAR || Integer.parseInt(yearTextField.getText()) <= CONSTANTS.SMALLEST_YEAR){
 			CONSTANTS.makeAlertWindow("warning","Please input a valid year within a range: " + CONSTANTS.SMALLEST_YEAR + " - " + CONSTANTS.MAX_YEAR);
+		} else if(!CONSTANTS.isNumeric(widthTextField.getText()) || !CONSTANTS.isNumeric(depthTextField.getText()) || !CONSTANTS.isNumeric(heightTextField.getText()) || Integer.parseInt(widthTextField.getText()) < CONSTANTS.MIN_SIZE ){
+			CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
 		}
 		else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
@@ -142,6 +144,30 @@ public class AddAuctionController {
 		}
 	} 
 
+	private boolean validateSize(){
+		boolean result = false;
+		if(CONSTANTS.isNumeric(widthTextField.getText()) || CONSTANTS.isNumeric(depthTextField.getText()) || CONSTANTS.isNumeric(heightTextField.getText())){
+			int max = CONSTANTS.MAX_SIZE;
+			int min = CONSTANTS.MIN_SIZE;
+
+			int width = Integer.parseInt(widthTextField.getText());
+			int height = Integer.parseInt(heightTextField.getText());
+			int depth = Integer.parseInt(depthTextField.getText());
+
+			if(isRight(max,min,width) && isRight(max,min,height) && isRight(max,min,depth)){
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	private boolean isRight(int max, int min, int par){
+		boolean result = false;
+		if(par >= min && par <= max){
+			result = true;
+		}
+		return result;
+	}
 
 	private void closeWindow() {
 		Stage stage = (Stage)titleTextField.getScene().getWindow();

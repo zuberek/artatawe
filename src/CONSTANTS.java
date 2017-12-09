@@ -14,10 +14,16 @@ public class CONSTANTS {
 	public static final int BIG_WINDOW_WIDTH = 800;
 	public static final int BIG_WINDOW_HEIGHT = 600;
 
-	//for auction validation, you cannot add an auction that was created after it
+	//for auction validation
+	// You cannot add an auction that was created after it
 	public static final int MAX_YEAR = 2017;
 	//you cannot add an auction that was placed before it
 	public static final int SMALLEST_YEAR = 1500;
+	//you cannot add an auction with size parameter above it
+	public static final int MAX_SIZE = 2000;
+	//you cannot add an auction with size parameter under it
+	public static final int MIN_SIZE = 0;
+
 
     public static void makeAlertWindow(String type, String content){
     	Alert alert;
@@ -41,5 +47,9 @@ public class CONSTANTS {
     {
       return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
+
+	public static boolean isAlpha(String name) {
+		return name.matches("[a-zA-Z]+");
+	}
 
 }
