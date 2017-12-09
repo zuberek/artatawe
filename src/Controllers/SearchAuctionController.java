@@ -88,14 +88,7 @@ public class SearchAuctionController {
 		auctionsToDisplay = AuctionList.getAuctions();
 		int size = auctionsToDisplay.size();
 
-		int auctionsOnScreen = 0;
-		if(size > AUCTIONS_PER_WINDOW){
-			auctionsOnScreen = AUCTIONS_PER_WINDOW;
-		} else {
-			auctionsOnScreen = size;
-		}
-
-		navigationLabel.setText("1" + " - " + auctionsOnScreen + " of " + size);
+		this.updateNavigationLabel();
 		count = 0;
 
 		this.clearDisplayedAuctions();
@@ -104,6 +97,15 @@ public class SearchAuctionController {
 		}
 		artworkTypeComboBox.setValue("All");
 		artworkTypeComboBox.setItems(artworkChoiceList);
+	}
+
+	private void refresh(){
+		count = 0;
+		this.clearDisplayedAuctions();
+		if(!auctionsToDisplay.isEmpty()){
+			this.updateDisplayedAuctions();
+		}
+		this.updateNavigationLabel();
 	}
 
 	private void updateDisplayedAuctions(){
@@ -183,12 +185,6 @@ public class SearchAuctionController {
 		}
 	}
 
-	private void refreshDisplayedAuctions(){
-		count = count - 5;
-		this.clearDisplayedAuctions();
-		this.updateDisplayedAuctions();
-	}
-
 	private void clearDisplayedAuctions(){
 		HBox1.setVisible(false);
 		HBox2.setVisible(false);
@@ -205,7 +201,7 @@ public class SearchAuctionController {
 		String[] result = new String[3];
 
 		result[0] = displayedArtwork.getTitle();
-		result[1] = "£" + String.valueOf(displayedAuction.getAuctionLastBidAmount());
+		result[1] = "ï¿½" + String.valueOf(displayedAuction.getAuctionLastBidAmount());
 		result[2] = displayedArtwork.getDescription();
 
 		return result;
@@ -242,9 +238,12 @@ public class SearchAuctionController {
 		if(artworkTypeComboBox.getValue().equals("Painting")) {			
 			auctionsToDisplay = AuctionList.getPaintingAuctions();
 
-			refreshDisplayedAuctions();
-		} else  if(artworkTypeComboBox.getValue().equals("Painting")){
-			
+			this.refresh();
+		} else  if(artworkTypeComboBox.getValue().equals("Sculpture")){
+			System.out.println("kupa");
+		} else  if(artworkTypeComboBox.getValue().equals("All")){
+			auctionsToDisplay = AuctionList.getAuctions();
+			this.refresh();
 		}
 
 	}
