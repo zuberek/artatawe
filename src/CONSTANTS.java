@@ -14,8 +14,10 @@ public class CONSTANTS {
 	public static final int BIG_WINDOW_WIDTH = 800;
 	public static final int BIG_WINDOW_HEIGHT = 600;
 
-	//for auction search
-	public static final int CURRENT_YEAR = 2017;
+	//for auction validation, you cannot add an auction that was created after it
+	public static final int MAX_YEAR = 2017;
+	//you cannot add an auction that was placed before it
+	public static final int SMALLEST_YEAR = 1500;
 
     public static void makeAlertWindow(String type, String content){
     	Alert alert;

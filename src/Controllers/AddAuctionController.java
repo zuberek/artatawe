@@ -120,11 +120,14 @@ public class AddAuctionController {
 	}
 
 	public void addAuctionButonClicked(){
-		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty()) {
+		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty() || widthTextField.getText().isEmpty() || heightTextField.getText().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-		} else if(!CONSTANTS.isNumeric(yearTextField.getText()) || !CONSTANTS.isNumeric(reservePriceTextField.getText()) || !CONSTANTS.isNumeric(maxBidsTextField.getText())) {
+		} else if(!CONSTANTS.isNumeric(reservePriceTextField.getText()) || !CONSTANTS.isNumeric(maxBidsTextField.getText()) || !CONSTANTS.isNumeric(heightTextField.getText()) || !CONSTANTS.isNumeric(widthTextField.getText()) || !CONSTANTS.isNumeric(depthTextField.getText())) {
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid number.");
-		} else {
+		} else if (!CONSTANTS.isNumeric(yearTextField.getText()) || Integer.parseInt(yearTextField.getText()) >= CONSTANTS.MAX_YEAR || Integer.parseInt(yearTextField.getText()) <= CONSTANTS.SMALLEST_YEAR){
+			CONSTANTS.makeAlertWindow("warning","Please input a valid year within a range: " + CONSTANTS.SMALLEST_YEAR + " - " + CONSTANTS.MAX_YEAR);
+		}
+		else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
 			case "Painting":
 				Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), yearTextField.getText(), Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());
