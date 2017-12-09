@@ -112,15 +112,31 @@ public class AuctionList {
 
 	public static ArrayList<Auction> getPriceRangeAuctions(int rangeMin, int rangeMax){
 		auctionList = new ArrayList<Auction>();
-		String query = "";
+		String query;
 		if (rangeMax >= 0 && rangeMin >= 0){
+			//this part returns all auctions that haven't been bid at yet but have a reserved price within the range
+			query = "SELECT * FROM auctions where auctions.reservePrice > " + rangeMin + " and auctions.reservePrice < " + rangeMax + " and auctions.lastBidID = -1\n";
+			populateArray(query,auctionList);
+			//this part returns the auctions that have been bid at and have the last bid amount within the range
 			query = "SELECT * FROM bids INNER JOIN auctions ON bids.bidID = auctions.lastBidID AND bids.auctionID = auctions.auctionID where bids.amount > " + rangeMin + " and bids.amount < " + rangeMax + "\n";
+			ArrayList<Auction> addAuctionList = new ArrayList<Auction>();
+			populateArray(query,addAuctionList);
+			auctionList.addAll(addAuctionList);
 		} else if (rangeMax > 0 && rangeMin < 0){
+			query = "SELECT * FROM auctions where auctions.reservePrice < " + rangeMax + " and auctions.lastBidID = -1\n";
+			populateArray(query,auctionList);
 			query = "SELECT * FROM bids INNER JOIN auctions ON bids.bidID = auctions.lastBidID AND bids.auctionID = auctions.auctionID where bids.amount < " + rangeMax + "\n";
+			ArrayList<Auction> addAuctionList = new ArrayList<Auction>();
+			populateArray(query,addAuctionList);
+			auctionList.addAll(addAuctionList);
 		} else if (rangeMax < 0 && rangeMin >= 0){
+			query = "SELECT * FROM auctions where auctions.reservePrice > " + rangeMin + " and auctions.lastBidID = -1\n";
+			populateArray(query,auctionList);
 			query = "SELECT * FROM bids INNER JOIN auctions ON bids.bidID = auctions.lastBidID AND bids.auctionID = auctions.auctionID where bids.amount > " + rangeMin + "\n";
+			ArrayList<Auction> addAuctionList = new ArrayList<Auction>();
+			populateArray(query,addAuctionList);
+			auctionList.addAll(addAuctionList);
 		}
-		populateArray(query, auctionList);
 
 		return auctionList;
 	}
