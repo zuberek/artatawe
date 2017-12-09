@@ -76,16 +76,16 @@ public class RegisterController {
             CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
         } else if(userToCreate.userExists(registerUserName.getText())) {      
             CONSTANTS.makeAlertWindow("warning", "That username is already taken.");
-    	} else {
+    	} else if(!CONSTANTS.isAlpha(registerFirstName.getText()) || !CONSTANTS.isAlpha(registerLastName.getText())){
+		    CONSTANTS.makeAlertWindow("warning","Please input valid personal details (no numbers)");
+        } else {
     		User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText(), userToCreate.getDefaultAvatar());
     		CONSTANTS.makeAlertWindow("success", "Your account has been registered.");
     		closeWindow();
-            //System.out.println(user.getFirstName());
         } 
     }
 
     public void backLoginButtonClicked(){
-        //this part brings back the log in scene
         closeWindow();
     }
 
