@@ -59,6 +59,10 @@ public class SearchAuctionController {
 	@FXML private TextField minTextField;
 	@FXML private TextField maxTextField;
 
+	@FXML private TextField bidsToFinishTextField;
+
+	@FXML private Label auctionSearchLabel;
+
 	@FXML Label artworkTitleLabel1;
 	@FXML Label lastBidAmountLabel1;
 	@FXML TextArea descriptionTextField1;
@@ -121,6 +125,7 @@ public class SearchAuctionController {
 
 		//this part brings all the auctions to the screen
 		auctionsToDisplay = AuctionList.getAuctions();
+		auctionSearchLabel.setText("All artworks");
 		this.updateNavigationLabel();
 		count = 0;
 
@@ -151,6 +156,19 @@ public class SearchAuctionController {
 		});
 	}
 
+	public void bidsToFinishButtonClicked(){
+		int bidsToFinish = -1;
+
+		if (CONSTANTS.isNumeric(bidsToFinishTextField.getText()) && Integer.parseInt(bidsToFinishTextField.getText()) >= 0){
+			bidsToFinish = Integer.parseInt(bidsToFinishTextField.getText());
+		}
+
+		auctionSearchLabel.setText("Auctions with " + bidsToFinish + " bids to finish");
+		auctionsToDisplay = AuctionList.getBidsToFinishAuction(bidsToFinish);
+		bidsToFinishTextField.clear();
+		this.refresh();
+	}
+
 	public void priceSearchButtonClicked(){
 		int minPrice = -1;
 		int maxPrice = -1;
@@ -162,6 +180,18 @@ public class SearchAuctionController {
 			maxPrice = Integer.parseInt(maxTextField.getText());
 		}
 
+		String minPriceText = minTextField.getText();
+		String maxPriceText = maxTextField.getText();
+
+		if (minPrice == -1) {
+			minPriceText = "MIN";
+		}
+		if (maxPrice == -1) {
+			maxPriceText = "MAX";
+		}
+		auctionSearchLabel.setText("Auctions within a range of: " + minPriceText + " to " + maxPriceText);
+		minTextField.clear();
+		maxTextField.clear();
 		auctionsToDisplay = AuctionList.getPriceRangeAuctions(minPrice, maxPrice);
 		this.refresh();
 	}
@@ -170,14 +200,17 @@ public class SearchAuctionController {
 		if(contemporaryCheckBox.isSelected()){
 			auctionsToDisplay = AuctionList.getContemporaryAuctions();
 			contemporaryCheckBox.setSelected(false);
+			auctionSearchLabel.setText("Contemporary artworks");
 			this.refresh();
 		} else if(modernCheckBox.isSelected()){
 			auctionsToDisplay = AuctionList.getModernAuctions();
 			modernCheckBox.setSelected(false);
+			auctionSearchLabel.setText("Modern artworks");
 			this.refresh();
 		} else if(antiqueCheckBox.isSelected()){
 			auctionsToDisplay = AuctionList.getAntiqueAuctions();
 			antiqueCheckBox.setSelected(false);
+			auctionSearchLabel.setText("Antique artworks");
 			this.refresh();
 		}
 	}
@@ -186,12 +219,15 @@ public class SearchAuctionController {
 	private void artworkTypeComboBox() {
 		if(artworkTypeComboBox.getValue().equals("Painting")) {
 			auctionsToDisplay = AuctionList.getPaintingAuctions();
+			auctionSearchLabel.setText("All paintings");
 			this.refresh();
 		} else  if(artworkTypeComboBox.getValue().equals("Sculpture")){
 			auctionsToDisplay = AuctionList.getSculptureAuctions();
+			auctionSearchLabel.setText("All sculptures");
 			this.refresh();
 		} else  if(artworkTypeComboBox.getValue().equals("All")){
 			auctionsToDisplay = AuctionList.getAuctions();
+			auctionSearchLabel.setText("All artworks");
 			this.refresh();
 		}
 

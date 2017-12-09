@@ -86,7 +86,7 @@ public class AuctionList {
 	public static ArrayList<Auction> getContemporaryAuctions(){
 		auctionList = new ArrayList<Auction>();
 
-		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.dateCreated >= 1980 AND artworks.dateCreated <=" + CONSTANTS.CURRENT_YEAR +"\n";
+		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.dateCreated >= 1980 AND artworks.dateCreated <=" + CONSTANTS.MAX_YEAR +"\n";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -107,6 +107,22 @@ public class AuctionList {
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = auctions.artworkID where artworks.dateCreated < 1900\n";
 		populateArray(query, auctionList);
 
+		return auctionList;
+	}
+
+	public static ArrayList<Auction> getBidsToFinishAuction(int bidsToFinish){
+		auctionList = new ArrayList<Auction>();
+		String query;
+
+		if (bidsToFinish >= 0){
+			//return all the artworks that have that many bids to finish but haven't been bid on yet
+			query = "SELECT * FROM auctions where auctions.maxBids < " + bidsToFinish + " and auctions.lastBidID = -1\n";
+			populateArray(query,auctionList);
+			query = "SELECT * FROM bids INNER JOIN auctions ON bids.auctionID = auctions.auctionID GROUP BY auctions.auctionID HAVING (auctions.maxBids - COUNT(bids.bidID) < " + bidsToFinish + ")\n";
+			ArrayList<Auction> addAuctionList = new ArrayList<Auction>();
+			populateArray(query,addAuctionList);
+			auctionList.addAll(addAuctionList);
+		}
 		return auctionList;
 	}
 

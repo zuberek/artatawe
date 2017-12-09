@@ -21,7 +21,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label id="welcome-text" text="Auction Search" />
+            <Label id="welcome-text" fx:id="auctionSearchLabel" text="Auction Search" />
          </children></HBox>
    </top>
    <left>
@@ -62,7 +62,7 @@
             </Label>
             <Line endX="50.0" layoutX="118.0" layoutY="144.0" startX="-100.0" />
             <Label text="Advanced " />
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefWidth="100.0">
                <children>
                   <HBox alignment="CENTER">
                      <children>
@@ -85,6 +85,23 @@
                         <Button mnemonicParsing="false" onAction="#priceSearchButtonClicked" text="GO!" />
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" prefWidth="174.0">
+                     <children>
+                        <Label text="Bids to Finish">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="bidsToFinishTextField" prefHeight="25.0" prefWidth="39.0" promptText="Bids">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></TextField>
+                        <Button mnemonicParsing="false" onAction="#bidsToFinishButtonClicked" text="GO!" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
                   <HBox alignment="CENTER">
                      <children>
                         <Label text="Date of creation">
@@ -93,6 +110,9 @@
                            </HBox.margin>
                         </Label>
                      </children>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
                   </HBox>
                   <CheckBox fx:id="contemporaryCheckBox" mnemonicParsing="false" text="Contemporary (1980-Now)" />
                   <CheckBox fx:id="modernCheckBox" mnemonicParsing="false" text="Modern (1900-79)" />

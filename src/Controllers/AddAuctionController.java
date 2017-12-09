@@ -122,11 +122,11 @@ public class AddAuctionController {
 	public void addAuctionButonClicked(){
 		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty() || widthTextField.getText().isEmpty() || heightTextField.getText().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-		} else if(!CONSTANTS.isNumeric(reservePriceTextField.getText()) || !CONSTANTS.isNumeric(maxBidsTextField.getText())) {
-			CONSTANTS.makeAlertWindow("warning", "Please input a valid number.");
-		} else if (!CONSTANTS.isNumeric(yearTextField.getText()) || Integer.parseInt(yearTextField.getText()) >= CONSTANTS.MAX_YEAR || Integer.parseInt(yearTextField.getText()) <= CONSTANTS.SMALLEST_YEAR){
+		} else if(!validateAuction()) {
+			CONSTANTS.makeAlertWindow("warning", "Please input a valid maxBid (Range " + CONSTANTS.MIN_BID + " - " + CONSTANTS.MAX_BID + ")\n and reserved price (" + CONSTANTS.MIN_PRICE + " - " + CONSTANTS.MAX_PRICE + ")");
+		} else if (!validateYear()){
 			CONSTANTS.makeAlertWindow("warning","Please input a valid year within a range: " + CONSTANTS.SMALLEST_YEAR + " - " + CONSTANTS.MAX_YEAR);
-		} else if(!CONSTANTS.isNumeric(widthTextField.getText()) || !CONSTANTS.isNumeric(depthTextField.getText()) || !CONSTANTS.isNumeric(heightTextField.getText()) || Integer.parseInt(widthTextField.getText()) < CONSTANTS.MIN_SIZE ){
+		} else if(!validateSize()){
 			CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
 		}
 		else {
@@ -142,11 +142,45 @@ public class AddAuctionController {
 			Auction auction = new Auction(currentUser.getUserID(), artworkID, Integer.parseInt(maxBidsTextField.getText()), Integer.parseInt(reservePriceTextField.getText()));
 			this.closeWindow();
 		}
-	} 
+	}
+
+	private boolean validateAuction(){
+		boolean result = false;
+		if(CONSTANTS.isNumeric(reservePriceTextField.getText()) && CONSTANTS.isNumeric(maxBidsTextField.getText())){
+			int max1 = CONSTANTS.MAX_BID;
+			int min1 = CONSTANTS.MIN_BID;
+
+			int max2 = CONSTANTS.MAX_PRICE;
+			int min2 = CONSTANTS.MIN_PRICE;
+
+			int maxBid = Integer.parseInt(maxBidsTextField.getText());
+			int price = Integer.parseInt(reservePriceTextField.getText());
+
+			if(isRight(max1,min1,maxBid) && isRight(max2, min2, price)){
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	private boolean validateYear(){
+		boolean result = false;
+		if(CONSTANTS.isNumeric(yearTextField.getText())){
+			int max = CONSTANTS.MAX_YEAR;
+			int min = CONSTANTS.SMALLEST_YEAR;
+
+			int year = Integer.parseInt(yearTextField.getText());
+
+			if(isRight(max,min,year)){
+				result = true;
+			}
+		}
+		return result;
+	}
 
 	private boolean validateSize(){
 		boolean result = false;
-		if(CONSTANTS.isNumeric(widthTextField.getText()) || CONSTANTS.isNumeric(depthTextField.getText()) || CONSTANTS.isNumeric(heightTextField.getText())){
+		if(CONSTANTS.isNumeric(widthTextField.getText()) && CONSTANTS.isNumeric(depthTextField.getText()) && CONSTANTS.isNumeric(heightTextField.getText())){
 			int max = CONSTANTS.MAX_SIZE;
 			int min = CONSTANTS.MIN_SIZE;
 

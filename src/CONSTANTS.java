@@ -15,14 +15,22 @@ public class CONSTANTS {
 	public static final int BIG_WINDOW_HEIGHT = 600;
 
 	//for auction validation
-	// You cannot add an auction that was created after it
+	// You cannot add an artwork that was created after it
 	public static final int MAX_YEAR = 2017;
-	//you cannot add an auction that was placed before it
+	//you cannot add an artwork that was created before it
 	public static final int SMALLEST_YEAR = 1500;
-	//you cannot add an auction with size parameter above it
+	//you cannot add an artwork with size parameter above it
 	public static final int MAX_SIZE = 2000;
-	//you cannot add an auction with size parameter under it
+	//you cannot add an artwork with size parameter under it
 	public static final int MIN_SIZE = 0;
+	//you cannot add an auction with maxBid above it
+	public static final int MAX_BID = 50;
+	//you cannot add an auction with maxBid under it
+	public static final int MIN_BID = 5;
+	//you cannot add an auction with reserved price above it
+	public static final int MAX_PRICE = 1000;
+	//you cannot add an auction with reserved price under it
+	public static final int MIN_PRICE = 1;
 
 
     public static void makeAlertWindow(String type, String content){
