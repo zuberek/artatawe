@@ -1,48 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.DashboardController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.DashboardController">
    <children>
-      <AnchorPane prefHeight="415.0" prefWidth="600.0">
+      <AnchorPane prefHeight="539.0" prefWidth="785.0" styleClass="root" stylesheets="@../Styles/login.css">
          <children>
-            <Label fx:id="welcomeLabel" layoutX="514.0" layoutY="52.0" text="Welcome user" />
-            <Button fx:id="logoutButton" layoutX="514.0" layoutY="242.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="25.0" prefWidth="104.0" text="Logout" />
-            <Button fx:id="editProfileButton" layoutX="514.0" layoutY="109.0" mnemonicParsing="false" onAction="#editProfileClicked" prefHeight="25.0" prefWidth="104.0" text="Edit Profile" />
-            <Button fx:id="sellArtworkButton" layoutX="514.0" layoutY="141.0" mnemonicParsing="false" onAction="#sellArtworkClicked" prefHeight="25.0" prefWidth="104.0" text="Sell Artwork" />
-            <Button fx:id="bidHistoryButton" layoutX="514.0" layoutY="175.0" mnemonicParsing="false" onAction="#bidHistoryClicked" prefHeight="25.0" prefWidth="104.0" text="Your Bid History" />
-            <Button fx:id="auctionHistoryButton" layoutX="514.0" layoutY="209.0" mnemonicParsing="false" onAction="#soldArtworkHistory" prefHeight="25.0" prefWidth="104.0" text="Sold History" />
-            <Label layoutX="12.0" layoutY="44.0" text="Auctions from your favourite users" />
+            <Label layoutX="71.0" layoutY="45.0" text="Auctions from your favourite users" />
             <ImageView fx:id="auctionImage1" fitHeight="89.0" fitWidth="89.0" layoutX="14.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="auctionLabel1" layoutX="113.0" layoutY="86.0" text="Label" />
-            <TextArea fx:id="auctionDesc1" editable="false" layoutX="113.0" layoutY="110.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
+            <Label fx:id="auctionLabel1" layoutX="76.0" layoutY="86.0" text="Label" />
+            <TextArea fx:id="auctionDesc1" editable="false" layoutX="70.0" layoutY="110.0" prefHeight="89.0" prefWidth="161.0" wrapText="true" />
             <ImageView fx:id="auctionImage2" fitHeight="89.0" fitWidth="89.0" layoutX="269.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="auctionLabel2" layoutX="368.0" layoutY="85.0" text="Label" />
-            <TextArea fx:id="auctionDesc2" editable="false" layoutX="368.0" layoutY="109.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
-            <Button fx:id="auctionButton1" layoutX="179.0" layoutY="175.0" mnemonicParsing="false" onAction="#auctionButton1Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
-            <Button fx:id="auctionButton2" layoutX="434.0" layoutY="175.0" mnemonicParsing="false" onAction="#auctionButton2Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
+            <Label fx:id="auctionLabel2" layoutX="331.0" layoutY="86.0" text="Label" />
+            <TextArea fx:id="auctionDesc2" editable="false" layoutX="325.0" layoutY="109.0" prefHeight="89.0" prefWidth="161.0" wrapText="true" />
+            <Button fx:id="auctionButton1" layoutX="178.0" layoutY="202.0" mnemonicParsing="false" onAction="#auctionButton1Clicked" prefHeight="17.0" text="View" />
+            <Button fx:id="auctionButton2" layoutX="426.0" layoutY="206.0" mnemonicParsing="false" onAction="#auctionButton2Clicked" prefHeight="17.0" text="View" />
             <ImageView fx:id="auctionImage3" fitHeight="89.0" fitWidth="89.0" layoutX="20.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="auctionLabel3" layoutX="119.0" layoutY="225.0" text="Label" />
-            <TextArea fx:id="auctionDesc3" editable="false" layoutX="119.0" layoutY="249.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
-            <Button fx:id="auctionButton3" layoutX="186.0" layoutY="316.0" mnemonicParsing="false" onAction="#auctionButton3Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
+            <Label fx:id="auctionLabel3" layoutX="76.0" layoutY="259.0" text="Label" />
+            <TextArea fx:id="auctionDesc3" editable="false" layoutX="76.0" layoutY="289.0" prefHeight="89.0" prefWidth="161.0" wrapText="true" />
+            <Button fx:id="auctionButton3" layoutX="186.0" layoutY="386.0" mnemonicParsing="false" onAction="#auctionButton3Clicked" prefHeight="17.0" text="View" />
             <ImageView fx:id="auctionImage4" fitHeight="89.0" fitWidth="89.0" layoutX="275.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="auctionLabel4" layoutX="374.0" layoutY="226.0" text="Label" />
-            <TextArea fx:id="auctionDesc4" editable="false" layoutX="374.0" layoutY="250.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
-            <Button fx:id="auctionButton4" layoutX="440.0" layoutY="316.0" mnemonicParsing="false" onAction="#auctionButton4Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
-            <Button fx:id="nextPageButton" layoutX="415.0" layoutY="361.0" mnemonicParsing="false" text="Next Page" />
-            <Button fx:id="prevPageButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Prev Page" />
-            <Label fx:id="pageNumberLabel" layoutX="238.0" layoutY="366.0" text="1/5" />
-            <Button fx:id="browseAuctionsButton" layoutX="514.0" layoutY="78.0" mnemonicParsing="false" onAction="#browseAuctionsClicked" prefHeight="25.0" prefWidth="104.0" text="Browse Auctions" />   
+            <Label fx:id="auctionLabel4" layoutX="331.0" layoutY="243.0" text="Label" />
+            <TextArea fx:id="auctionDesc4" editable="false" layoutX="325.0" layoutY="289.0" prefHeight="89.0" prefWidth="161.0" wrapText="true" />
+            <Button fx:id="auctionButton4" layoutX="439.0" layoutY="386.0" mnemonicParsing="false" onAction="#auctionButton4Clicked" prefHeight="17.0" text="View" />
+            <Button fx:id="nextPageButton" layoutX="426.0" layoutY="445.0" mnemonicParsing="false" text="Next Page" />
+            <Button fx:id="prevPageButton" layoutX="25.0" layoutY="445.0" mnemonicParsing="false" text="Prev Page" />
+            <Label fx:id="pageNumberLabel" layoutX="249.0" layoutY="450.0" text="1/5" />
+            <VBox alignment="CENTER" layoutX="605.0" layoutY="45.0">
+               <children>
+                  <Label fx:id="welcomeLabel" text="Welcome user" />
+                  <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileClicked" text="Edit Profile">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="sellArtworkButton" mnemonicParsing="false" onAction="#sellArtworkClicked" text="Sell Artwork">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="bidHistoryButton" mnemonicParsing="false" onAction="#bidHistoryClicked" text="Your Bid History">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="auctionHistoryButton" mnemonicParsing="false" onAction="#soldArtworkHistory" text="Sold History">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="browseAuctionsButton" mnemonicParsing="false" onAction="#browseAuctionsClicked" text="Browse Auctions">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutClicked" text="Logout">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <GridPane gridLinesVisible="true" layoutX="565.0" layoutY="363.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>   
          </children>
       </AnchorPane>
    </children>
