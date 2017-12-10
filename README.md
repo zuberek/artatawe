@@ -17,10 +17,7 @@ You must make sure that your IDE supports JavaFX 2 for the GUI classes to work. 
 # ToDo
 
 ### Josh
-- Validate Address using new Class
-- Dashboard items need to work
 - Maybe multiple photo upload
-- Testing
 - Video demo's
 
 # Software Requirements
