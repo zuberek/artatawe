@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import src.Address;
 import src.CONSTANTS;
 import src.DrawingTool.DrawingCanvas;
 import src.User;
@@ -33,7 +34,9 @@ public class RegisterController {
     @FXML TextField registerFirstName;
     @FXML TextField registerLastName;
     @FXML TextField registerPhoneNo;
-    @FXML TextField registerUserAddress;
+    @FXML TextField registerUserAddressLine;
+    @FXML TextField registerUserTown;
+    @FXML TextField registerUserPostcode;
     @FXML ImageView profileImage;
 
     @FXML Pane rootPane;
@@ -70,7 +73,7 @@ public class RegisterController {
     public void registerButtonClicked() {
     	
     	
-		if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddress.getText().isEmpty() || registerLastName.getText().isEmpty()) {
+		if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddressLine.getText().isEmpty() || registerUserTown.getText().isEmpty() || registerUserPostcode.getText().isEmpty() || registerLastName.getText().isEmpty()) {
             CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
         } else if(!isNumeric(registerPhoneNo.getText()) || registerPhoneNo.getLength() != 11) {
             CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
@@ -78,8 +81,11 @@ public class RegisterController {
             CONSTANTS.makeAlertWindow("warning", "That username is already taken.");
     	} else if(!CONSTANTS.isAlpha(registerFirstName.getText()) || !CONSTANTS.isAlpha(registerLastName.getText())){
 		    CONSTANTS.makeAlertWindow("warning","Please input valid personal details (no numbers)");
+        } else if(!Address.validatePostCode(registerUserPostcode.getText())){ 
+        	 CONSTANTS.makeAlertWindow("warning","Please input a valid UK postcode. (Must have a space)");
         } else {
-    		User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), registerUserAddress.getText(), userToCreate.getDefaultAvatar());
+        	String address = registerUserAddressLine.getText() + ", " + registerUserTown.getText() + ", " + registerUserPostcode.getText();
+    		User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), address, userToCreate.getDefaultAvatar());
     		CONSTANTS.makeAlertWindow("success", "Your account has been registered.");
     		closeWindow();
         } 
