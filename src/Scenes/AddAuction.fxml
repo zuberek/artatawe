@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.AddAuctionController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="737.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.AddAuctionController">
    <children>
       <AnchorPane prefHeight="526.0" prefWidth="465.0">
          <children>
@@ -43,7 +43,8 @@
             <Label layoutX="92.0" layoutY="138.0" text="Artist" />
             <Label layoutX="94.0" layoutY="173.0" text="Year" />
             <Label layoutX="93.0" layoutY="205.0" text="Type" />
-            <Button layoutX="549.0" layoutY="258.0" mnemonicParsing="false" onAction="#pictureChangeButtonClicked" text="Change" />
+            <Button layoutX="537.0" layoutY="251.0" mnemonicParsing="false" onAction="#pictureChangeButtonClicked" text="Change" />
+            <Label id="welcome-text" layoutX="146.0" layoutY="35.0" text="Add Auction" />
          </children>
       </AnchorPane>
    </children>

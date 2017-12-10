@@ -29,7 +29,7 @@ import src.User;
 
 /**
  * @author Jan Dabrowski
- *
+ * Controller for selling artworks
  */
 public class AddAuctionController {
 
@@ -54,6 +54,7 @@ public class AddAuctionController {
 
 	User currentUser;
 	Artwork artworkToCreate;
+
 
 	public void initialize(User currentUser) {
 		// TODO Auto-generated method stub
@@ -121,7 +122,7 @@ public class AddAuctionController {
 				);
 	}
 
-	public void addAuctionButonClicked(){
+	public void addAuctionButtonClicked(){
 		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty() || widthTextField.getText().isEmpty() || heightTextField.getText().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
 		} else if(!CONSTANTS.isAlpha(artistTextField.getText()) || !CONSTANTS.isAlpha(titleTextField.getText())){
@@ -148,7 +149,7 @@ public class AddAuctionController {
 				break;
 			}
 			int artworkID = AuctionList.getNewestArtworkID();
-			Auction auction = new Auction(currentUser.getUserID(), artworkID, Integer.parseInt(maxBidsTextField.getText()), Integer.parseInt(reservePriceTextField.getText()));
+			new Auction(currentUser.getUserID(), artworkID, Integer.parseInt(maxBidsTextField.getText()), Integer.parseInt(reservePriceTextField.getText()));
 			this.closeWindow();
 		}
 	}
