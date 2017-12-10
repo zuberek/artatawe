@@ -58,17 +58,20 @@ public class ProfileController {
 		Image newImage = new Image(stream);
 		profileImage.setImage(newImage);
 	}
-	
+
+	/**
+	 * Event handler for draw profile picture button
+	 */
 	public void drawButtonClicked(){
-
         Stage newStage = new Stage();
-
+        // Set up drawing canvas
         DrawingCanvas newCanvas = new DrawingCanvas();
         Scene newScene = newCanvas.initialise(userBeingEdited);
 
         newStage.setScene(newScene);
         newStage.showAndWait();
-        
+
+        //Reinitialise user profile
         this.initialize(userBeingEdited);
     }
 
@@ -86,14 +89,17 @@ public class ProfileController {
 	 */
 	public void handleConfirmButtonAction() {
 		
-		if(userNameTextField.getText().isEmpty() || firstNameTextField.getText().isEmpty() ||lastNameTextField.getText().isEmpty() || phoneNoTextField.getText().isEmpty() || addressTextField.getText().isEmpty()) {
+		if (userNameTextField.getText().isEmpty() || firstNameTextField.getText().isEmpty() ||
+				lastNameTextField.getText().isEmpty() || phoneNoTextField.getText().isEmpty() ||
+				addressTextField.getText().isEmpty()) {
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-		} 	//first checks if the username was changed,then check if the new user name is already used
-		else if (!userBeingEdited.getUserName().equals(userNameTextField.getText()) && userBeingEdited.userExists(userNameTextField.getText())){
-			CONSTANTS.makeAlertWindow("warning", "this username is already used!");
-			//goes back to previous username
+		} 	//First checks if the username was changed, then check if the new user name is already used
+		else if (!userBeingEdited.getUserName().equals(userNameTextField.getText()) &&
+				userBeingEdited.userExists(userNameTextField.getText())){
+			CONSTANTS.makeAlertWindow("warning", "This username is already in use!");
+			//Revert to previous username
 			userNameTextField.setText(userBeingEdited.getUserName());
-		} else if(!isNumeric(phoneNoTextField.getText()) || phoneNoTextField.getLength() != 11) {
+		} else if (!CONSTANTS.isNumeric(phoneNoTextField.getText()) || phoneNoTextField.getLength() != 11) {
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
 			phoneNoTextField.setText(userBeingEdited.getPhoneNo());
 		} else {
@@ -104,10 +110,12 @@ public class ProfileController {
 			userBeingEdited.setUserAddress(addressTextField.getText());
 			userBeingEdited.saveEditedUser();
 			closeWindow();
-			//System.out.println(user.getFirstName()); 
 		}
 	}
 
+	/**
+	 * Event handler for changing profile image.
+	 */
 	public void editProfileImageButtonClicked(){
 		try{
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/DefaultAvatar.fxml"));
@@ -132,12 +140,6 @@ public class ProfileController {
 			System.exit(-1);
 		}
 	}
-
-	private boolean isNumeric(String str)
-	{
-		return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
-	}
-
 
 	/**
 	 * Close the window.
