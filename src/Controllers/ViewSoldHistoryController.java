@@ -12,6 +12,7 @@ import src.User;
 
 /**
  * CLass for viewing past sold artwork history
+ * @author Joshua Blackman
  */
 public class ViewSoldHistoryController {
 
@@ -21,7 +22,7 @@ public class ViewSoldHistoryController {
 	private User currentUser;
 
 	/**
-	 * Initialise 
+	 * Initialise list of sold artworks by auction list
 	 * @param currentUser Current logged-in user
 	 */
 	public void initialize(User currentUser){
@@ -31,7 +32,10 @@ public class ViewSoldHistoryController {
 			soldListView.getItems().add(a.getDescriptionForList());
 		}
 	}
-	
+
+	/**
+	 * Close the window
+	 */
 	public void closeButtonClicked(){
 		Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();

@@ -21,7 +21,6 @@ public class User {
 	private int userID;
 	private Date lastLogin;
 	private String avatarPath;
-	private Avatar profilePicture;
 	private ArrayList<User>  favouriteUser;
 
 	//Default constructor to initialise the object
@@ -49,7 +48,7 @@ public class User {
 	}
 	
 	/**
-	 * This construtor uses username to get all user data
+	 * This constructor uses username to get all user data
 	 * @param userName
 	 */
 	public User(String userName){
@@ -262,19 +261,7 @@ public class User {
 		this.userID = userID;
 	}
 
-	/**
-	 * @return the profilePicture
-	 */
-	public Avatar getProfilePicture() {
-		return profilePicture;
-	}
 
-	/**
-	 * @param profilePicture the profilePicture to set
-	 */
-	public void setProfilePicture(Avatar profilePicture) {
-		this.profilePicture = profilePicture;
-	}
 
 	/**
 	 * @return the favouriteUser

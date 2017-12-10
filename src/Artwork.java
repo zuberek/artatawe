@@ -21,7 +21,12 @@ public abstract class Artwork {
 	protected double height;
     protected double width;
 
-	public static String checkType(int artworkID) {
+    /**
+     *
+     * @param artworkID The ID of the artwork
+     * @return Empty string if no artworks with the given ID exist, otherwise the artwork type
+     */
+	static String checkType(int artworkID) {
 		ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
 		try {
 			if(rs.next()) {
@@ -33,36 +38,34 @@ public abstract class Artwork {
 		}
 		return "";
     }
-	
-	
-    
+
     /**
-     * Get the artworkID
-	 * @return the artworkID
+     * Get the artwork ID
+	 * @return the artwork ID
 	 */
 	public int getArtworkID() {
 		return artworkID;
 	}
 
 	/**
-     * Set the artworkID
-	 * @param artworkID the artworkID to set
+     * Set the artwork ID
+	 * @param artworkID the artwork ID to set
 	 */
 	public void setArtworkID(int artworkID) {
 		this.artworkID = artworkID;
 	}
 
 	/**
-     * Get the userID
-	 * @return the userID
+     * Get the user ID
+	 * @return the user ID
 	 */
 	public int getUserID() {
 		return UserID;
 	}
 
 	/**
-     * Set the userID
-	 * @param userID the userID to set
+     * Set the user ID
+	 * @param userID the user ID to set
 	 */
 	public void setUserID(int userID) {
 		UserID = userID;

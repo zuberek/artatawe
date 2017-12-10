@@ -62,7 +62,7 @@ public class DrawingCanvas extends Application{
     private static final int TEXTFIELD_COLUMN_COUNT = 11;
 
     private Canvas canvas;
-    User editedUSer;
+    User editedUser;
 
     public static void main(String[] args){
         launch(args);
@@ -70,6 +70,9 @@ public class DrawingCanvas extends Application{
 
     @SuppressWarnings("unused")
     @Override
+    /**
+     * Builds the GUI for the interactive canvas
+     */
     public void start(Stage primaryStage) throws Exception {
         Pane root = buildGUI();
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -83,8 +86,13 @@ public class DrawingCanvas extends Application{
         primaryStage.show();
     }
 
+    /**
+     * Initialises the canvas for drawing on
+     * @param editedUser User to edit
+     * @return Canvas scene to produce
+     */
     public Scene initialise(User editedUser){
-    	this.editedUSer = editedUser;
+    	this.editedUser = editedUser;
     	
         Pane root = buildGUI();
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -132,6 +140,7 @@ public class DrawingCanvas extends Application{
 
         Label lineColorLabel = new Label("Line colour: ");
         lineColorLabel.setMinWidth(COLOR_LABEL_MIN_WIDTH);
+
         /*
           Basic colour picker used to get line colours.
          */
@@ -233,13 +242,13 @@ public class DrawingCanvas extends Application{
         /*
           Behaviour of the canvas for a users mouse click (Press & Release)
          */
-        canvas.setOnMouseClicked(e ->{
+        canvas.setOnMouseClicked(e -> {
             gc.setFill(lineColorPicker.getValue()); // Gets the colour value from colorPicker for filling
             gc.setStroke(lineColorPicker.getValue()); // Gets the colour value from colorPicker for the outline
             /*
               Switch case used to determine which tool is being used, checks the choiceBox for tool selection.
              */
-            switch(choiceBox.getSelectionModel().getSelectedItem().toString()) {
+            switch (choiceBox.getSelectionModel().getSelectedItem()) {
                 case "Circle":
                     // Constructs the circle and pushes it to the shape stack, sets the circle center position to the cursor position
                     shapeStack.push(new Ellipse(e.getX(), e.getY(), slider,
@@ -272,7 +281,7 @@ public class DrawingCanvas extends Application{
             gc.setFill(lineColorPicker.getValue());
             gc.setStroke(lineColorPicker.getValue());
 
-            switch(choiceBox.getSelectionModel().getSelectedItem().toString()){
+            switch(choiceBox.getSelectionModel().getSelectedItem()){
                 case "Freedraw": // Draws ellipses centered on the users mouse
                     new Ellipse(e.getX(), e.getY(), slider,
                             lineColorPicker.getValue(), lineColorPicker.getValue(),true, 1, gc);
@@ -291,7 +300,7 @@ public class DrawingCanvas extends Application{
         canvas.setOnMouseDragged(e ->{
             gc.setFill(lineColorPicker.getValue());
             gc.setStroke(lineColorPicker.getValue());
-            switch(choiceBox.getSelectionModel().getSelectedItem().toString()){
+            switch(choiceBox.getSelectionModel().getSelectedItem()){
                 case "Freedraw": // Draws ellipses centered on the users mouse
                     new Ellipse(e.getX(), e.getY(), slider,
                             lineColorPicker.getValue(), lineColorPicker.getValue(), true, 1, gc);
@@ -305,7 +314,7 @@ public class DrawingCanvas extends Application{
           Behaviour of the canvas for a users mouse release (Release from press)
          */
         canvas.setOnMouseReleased(e ->{
-            switch(choiceBox.getSelectionModel().getSelectedItem().toString()){
+            switch(choiceBox.getSelectionModel().getSelectedItem()){
                 case "Line": // Takes the previously constructed line and adds an end point for the line.
                     Line tempLine = (Line) shapeStack.peek();
                     tempLine.setEndPoint(e.getX(), e.getY(), gc);
@@ -339,7 +348,7 @@ public class DrawingCanvas extends Application{
                         canvas.snapshot(null, writableImage);
                         RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
                         ImageIO.write(renderedImage, "png", new File(nameAndPath));
-                        editedUSer.setAvatarPath("../Resources/UsersImages/"+ userID + ".png");
+                        editedUser.setAvatarPath("../Resources/UsersImages/"+ userID + ".png");
                         Stage stage = (Stage)buttonSave.getScene().getWindow();
                         stage.close();
                     } catch (IOException ex) {

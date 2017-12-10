@@ -177,13 +177,18 @@ public class ViewAuctionController {
 			bid = Float.parseFloat(bidAmount.getText());
 			if(auction.getMaxBids() >= auction.getCurrentBids(auction.getAuctionID())) {
 				if(bid < auction.getReservePrice()) {
-					CONSTANTS.makeAlertWindow("warning", "Please enter a bid above the reserve price");
+					CONSTANTS.makeAlertWindow("warning",
+							"Please enter a bid above the reserve price");
 				} else if(bid <= new Bid(auction.getLastBidID()).getAmount()) {
-					CONSTANTS.makeAlertWindow("warning", "Please enter a bid higher than the previous bid");
-				} else if(currentUser.getUserName().equals(new User(auction.getSellerID()).getUserName())){
-					CONSTANTS.makeAlertWindow("warning", "You can not bid on your own auction.");		
-					// this works, dont touch it, or youll get shot up
-				} else if(currentUser.getUserName().equals(new User(new Bid(auction.getLastBidID()).getBidderID()).getUserName())) {
+					CONSTANTS.makeAlertWindow("warning",
+							"Please enter a bid higher than the previous bid");
+				} else if(currentUser.getUserName().equals(
+						new User(auction.getSellerID()).getUserName())
+						) {
+					CONSTANTS.makeAlertWindow("warning", "You can not bid on your own auction.");
+				} else if(currentUser.getUserName().equals(
+						new User(new Bid(auction.getLastBidID()).getBidderID()).getUserName())
+						) {
 					CONSTANTS.makeAlertWindow("warning", "You are already the highest bidder!");
 				} else {
 					Bid newBid = new Bid(currentUser.getUserID(), auction.getAuctionID(), bid);
@@ -192,9 +197,12 @@ public class ViewAuctionController {
 					auction = new Auction(auction.getAuctionID());
 					auctionNameLabel.setText(auction.getArtwork().getTitle());
 					auctionDescriptionTextBox.setText(auction.getArtwork().getDescription());
-					bidsPlacedLabel.setText(auction.getCurrentBids(auction.getAuctionID()) + "/" + auction.getMaxBids());
+					bidsPlacedLabel.setText(auction.getCurrentBids(auction.getAuctionID()) +
+							"/" + auction.getMaxBids());
 					reservePrice.setText('\u00A3'+ String.valueOf(auction.getReservePrice()));
-					InputStream stream = getClass().getResourceAsStream(auction.getArtwork().getPhotographPath());
+					InputStream stream = getClass().getResourceAsStream(
+							auction.getArtwork().getPhotographPath()
+					);
 					Image newImage = new Image(stream);
 					auctionImage.setImage(newImage);
 					
@@ -204,7 +212,7 @@ public class ViewAuctionController {
 					currentBidLabel.setText('\u00A3'+String.valueOf(currentBid.getAmount()));
 					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
 						auction.finishAuction();
-						String musicFile = "youwon.mp3";
+						String musicFile = "../Resources/Audio/youwon.mp3";
 
 						Media sound = new Media(new File(musicFile).toURI().toString());
 						MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -222,7 +230,7 @@ public class ViewAuctionController {
 	}
 
 	/**
-	 * Close the window and reset scene to rootPane
+	 * Close the window
 	 */
 	public void close() {
 		Stage stage = (Stage) rootPane.getScene().getWindow();

@@ -10,12 +10,20 @@ import src.Auction;
 import src.AuctionList;
 import src.User;
 
+/**
+ * Class for viewing all won auctions
+ * @author Joshua Blackman
+ */
 public class ViewWonHistoryController {
 	@FXML AnchorPane rootPane;
 	@FXML ListView<String> wonListView;
 	
-	User currentUser;
-	
+	private User currentUser;
+
+	/**
+	 * Initialise list of auctions won
+	 * @param currentUser
+	 */
 	public void initialize(User currentUser){
 		this.currentUser = currentUser;
 		ArrayList<Auction> auctions = AuctionList.getUserWonAuctionList(currentUser.getUserID());
@@ -23,7 +31,10 @@ public class ViewWonHistoryController {
 			wonListView.getItems().add(a.getDescriptionForList());
 		}
 	}
-	
+
+	/**
+	 * Close the window
+	 */
 	public void closeButtonClicked(){
 		Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();

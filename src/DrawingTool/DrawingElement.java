@@ -13,22 +13,18 @@ public abstract class DrawingElement {
     private double y;
     private Color lineColor;
 
-    public Color getLineColor() {
+    Color getLineColor() {
         return lineColor;
     }
-
     public void setLineColor(Color lineColor) {
         this.lineColor = lineColor;
     }
-
-    public Color getFillColor() {
+    Color getFillColor() {
         return fillColor;
     }
-
     public void setFillColor(Color fillColor) {
         this.fillColor = fillColor;
     }
-
     private Color fillColor;
 
     /**
@@ -38,7 +34,7 @@ public abstract class DrawingElement {
      * @param lineColor is the colour of the shapes lines
      * @param fillColor is the colour of the shapes fill
      */
-    public DrawingElement(double x, double y, Color lineColor, Color fillColor){
+     DrawingElement(double x, double y, Color lineColor, Color fillColor){
         this.x = x;
         this.y = y;
         this.lineColor = lineColor;
@@ -51,14 +47,6 @@ public abstract class DrawingElement {
      */
     public void draw(GraphicsContext gc){
         gc.setFill(lineColor);
-    }
-
-    /**
-     * Erases the shape
-     * @param gc GraphicsContext of the canvas
-     */
-    public void erase(GraphicsContext gc){
-
     }
 
     /**

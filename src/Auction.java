@@ -18,10 +18,11 @@ public class Auction {
 	private double reservePrice;
 	private Date timeAdded;
 	private int lastBidID;
+	private String description;
 
 
 	/**
-	 * Constructor is used when you want to create a new auction
+	 * Constructor is used when you want to create the auction
 	 * @param sellerID
 	 * @param artworkID
 	 * @param maxBids
@@ -29,7 +30,7 @@ public class Auction {
 	 */
 	public Auction(int sellerID, int artworkID, int maxBids, double reservePrice){
 		Artwork artwork = null;
-		if(Artwork.checkType(artworkID) == "painting") {
+		if(Artwork.checkType(artworkID).equalsIgnoreCase("painting")) {
 			artwork = new Painting(artworkID);
 		} else  {
 			artwork = new Sculpture(artworkID);
@@ -62,7 +63,7 @@ public class Auction {
 			}
 
 			Artwork artwork = null;
-			if(Artwork.checkType(artworkID) == "painting") {
+			if(Artwork.checkType(artworkID).equalsIgnoreCase("painting")) {
 				artwork = new Painting(artworkID);
 			} else  {
 				artwork = new Sculpture(artworkID);
@@ -73,12 +74,16 @@ public class Auction {
 		}
 		
 	}
-	
+
+	/**
+	 * Finish the auction
+	 */
 	public void finishAuction(){
 		DB.query("UPDATE `auctions` SET `active` = '0' WHERE `auctionID` = '" + this.getAuctionID() + "'");
 	}
 	
 	/**
+	 * Retrieve count of all bids currently placed
 	 * @param auctionID id of the auction to retrieve
 	 * @return the amount of bids placed on given auction
 	 */
@@ -95,8 +100,7 @@ public class Auction {
 		}
 		return counter;
 	}
-	
-	private String description;
+
 	/**
 	 * @return the description
 	 */
@@ -129,6 +133,7 @@ public class Auction {
 	}
 
 	/**
+	 * Retrieve highest bid amount
 	 * @return an double of the last bid amount
 	 */
 	public float getAuctionLastBidAmount(){
@@ -149,20 +154,23 @@ public class Auction {
 	}
 	
 	/**
-	 * @return the auction ID of the current auction object
+	 * Return the auction's ID
+	 * @return the auction ID
 	 */
 	public int getAuctionID() {
 		return this.auctionID;
 	}
 	
 	/**
-	 * @param auctionID the auctionID to set
+	 * Set the auction ID
+	 * @param auctionID the auction ID to set
 	 */
 	public void setAuctionID(int auctionID) {
 		this.auctionID = auctionID;
 	}
 
 	/**
+	 * Return the seller's userID
 	 * @return the sellerID
 	 */
 	public int getSellerID() {
@@ -170,6 +178,7 @@ public class Auction {
 	}
 
 	/**
+	 * Set the seller ID
 	 * @param sellerID the sellerID to set
 	 */
 	public void setSellerID(int sellerID) {
@@ -177,6 +186,7 @@ public class Auction {
 	}
 
 	/**
+	 * Return the maximum number of bids allowed
 	 * @return the maxBids
 	 */
 	public int getMaxBids() {
@@ -184,6 +194,7 @@ public class Auction {
 	}
 
 	/**
+	 * Set the maximum bid count
 	 * @param maxBids the maxBids to set
 	 */
 	public void setMaxBids(int maxBids) {
@@ -191,6 +202,7 @@ public class Auction {
 	}
 
 	/**
+	 * Retrieve the reserve price amount
 	 * @return the reservePrice
 	 */
 	public double getReservePrice() {
@@ -198,6 +210,7 @@ public class Auction {
 	}
 
 	/**
+	 * Set the reserve price
 	 * @param reservePrice the reservePrice to set
 	 */
 	public void setReservePrice(double reservePrice) {
@@ -205,6 +218,7 @@ public class Auction {
 	}
 
 	/**
+	 * Retrieve the time the auction started
 	 * @return the timeAdded
 	 */
 	public Date getTimeAdded() {
@@ -212,6 +226,7 @@ public class Auction {
 	}
 
 	/**
+	 * Set the added time
 	 * @param timeAdded the timeAdded to set
 	 */
 	public void setTimeAdded(Date timeAdded) {
@@ -219,6 +234,7 @@ public class Auction {
 	}
 
 	/**
+	 * Retrieve the ID of the last bid to be placed on the auction
 	 * @return the lastBidID
 	 */
 	public int getLastBidID() {
@@ -226,7 +242,7 @@ public class Auction {
 	}
 
 	/**
-	 * Sets a new ID for the last bid 
+	 * Sets the ID for the last bid
 	 * @param lastBidID the lastBidID to set
 	 */
 	public void setLastBidID(int lastBidID) {
@@ -234,7 +250,8 @@ public class Auction {
 	}	
 	
 	/**
-	 * @param artwork the artwork to set
+	 * Set the artwork being sold
+	 * @param artwork the artwork to be sold
 	 */
 	public void setArtwork(Artwork artwork) {
 		this.artwork = artwork;

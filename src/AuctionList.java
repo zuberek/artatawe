@@ -22,6 +22,10 @@ public class AuctionList {
 
 	}
 
+	/**
+	 * Retrieve the newest artwork to be put on auction
+	 * @return the ID of the newest artwork to be put on auction
+	 */
 	public static int getNewestArtworkID(){
 		String query = "SELECT `artworkID` from `artworks` WHERE `artworkID` = " +
 		"(SELECT MAX(artworkID) from `artworks`)";
@@ -38,8 +42,7 @@ public class AuctionList {
 	}
 
 	/**
-	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
-	 *
+	 * Returns an ArrayList of auctions made by the specified user
 	 * @param userId the user who created the auctions
 	 * @return an ArrayList of all auctions specified user has created
 	 */
@@ -51,7 +54,12 @@ public class AuctionList {
 
 		return auctionList;
 	}
-	
+
+	/**
+	 * Returns an ArrayList of auctions won by the specified user.
+	 * @param userId the user who created the auctions
+	 * @return an ArrayList of all auctions specified user has won
+	 */
 	public static ArrayList<Auction> getUserWonAuctionList(int userId) {
 		auctionList = new ArrayList<>();
 
@@ -61,7 +69,10 @@ public class AuctionList {
 		return auctionList;
 	}
 
-
+	/**
+	 * Returns an ArrayList of auctions
+	 * @return an ArrayList of all auctions created that are still active
+	 */
 	public static ArrayList<Auction> getAuctions() {
 		auctionList = new ArrayList<>();
 
@@ -70,7 +81,11 @@ public class AuctionList {
 
 		return auctionList;
 	}
-	
+
+	/**
+	 * Creates a list of auctions of paintings only
+	 * @return the list of all painting auctions
+	 */
 	public static ArrayList<Auction> getPaintingAuctions(){
 		auctionList = new ArrayList<>();
 
@@ -81,6 +96,10 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	/**
+	 * Creates a list of auctions of sculptures only
+	 * @return the list of all sculpture auctions
+	 */
 	public static ArrayList<Auction> getSculptureAuctions(){
 		auctionList = new ArrayList<>();
 
@@ -91,6 +110,10 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	/**
+	 * Creates a list of auctions of contemporary art only
+	 * @return the list of all contemporary art auctions
+	 */
 	public static ArrayList<Auction> getContemporaryAuctions(){
 		auctionList = new ArrayList<>();
 
@@ -102,6 +125,10 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	/**
+	 * Creates a list of auctions of modern art only
+	 * @return the list of all modern art auctions
+	 */
 	public static ArrayList<Auction> getModernAuctions(){
 		auctionList = new ArrayList<>();
 
@@ -112,6 +139,10 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	/**
+	 * Creates a list of auctions of antique art only
+	 * @return the list of all antique art auctions
+	 */
 	public static ArrayList<Auction> getAntiqueAuctions(){
 		auctionList = new ArrayList<>();
 

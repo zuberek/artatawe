@@ -35,6 +35,10 @@ public class Text extends DrawingElement {
         draw(gc);
     }
 
+    /**
+     * Draws the text
+     * @param gc GraphicsContext of the canvas
+     */
     public void draw(GraphicsContext gc){
 
         gc.setLineWidth(outLineThickness);
