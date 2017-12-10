@@ -108,14 +108,14 @@ public class DashboardController {
 							auctionDesc3.setText(auctions.get(auctionCounter).getArtwork().getDescription());
 							InputStream stream3 = getClass().getResourceAsStream(auctions.get(auctionCounter).getArtwork().getPhotographPath());
 							Image newImage3 = new Image(stream3);
-							auctionImage1.setImage(newImage3);
+							auctionImage3.setImage(newImage3);
 							break;
 						case 3:
 							auctionLabel4.setText(auctions.get(auctionCounter).getArtwork().getTitle());
 							auctionDesc4.setText(auctions.get(auctionCounter).getArtwork().getDescription());
 							InputStream stream4 = getClass().getResourceAsStream(auctions.get(auctionCounter).getArtwork().getPhotographPath());
 							Image newImage4 = new Image(stream4);
-							auctionImage1.setImage(newImage4);
+							auctionImage4.setImage(newImage4);
 							break;
 					}
 				}  else {
@@ -124,6 +124,31 @@ public class DashboardController {
 			}
 		} else {
 			auctionVisbility(-1);
+		}
+	}
+	
+	public void auctionButton1Clicked() {
+		int auctionIndex = 0 + counter;
+		openAuction(auctions.get(auctionIndex));
+	}
+	
+	public void openAuction(Auction auction) {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewAuction.fxml"));
+			Parent editRoot = (Parent) fxmlLoader.load();
+	
+			ViewAuctionController ctrl = fxmlLoader.getController();
+			ctrl.initialize(currentUser, auction);
+	
+			Scene newScene = new Scene(editRoot);
+            Stage stage = new Stage();
+            stage.setScene(newScene);
+            stage.setTitle("Artatawe | View Auction");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
