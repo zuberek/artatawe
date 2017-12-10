@@ -30,7 +30,8 @@ public class BidList {
 	public ArrayList<Bid> getUserBidList(int userId) {
 		bidList = new ArrayList<>();
 
-		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'  ORDER BY (`timePlaced`) DESC";
+		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId +
+				"'  ORDER BY (`timePlaced`) DESC";
 		populateArray(query, bidList);
 		return bidList;
 	}
@@ -44,7 +45,8 @@ public class BidList {
 	public ArrayList<Bid> getAuctionBidList(int auctionID){
 		bidList = new ArrayList<>();
 
-		String query = "SELECT * from `bids` WHERE `auctionID` = '" + auctionID + "'  ORDER BY (`timePlaced`) DESC";
+		String query = "SELECT * from `bids` WHERE `auctionID` = '" + auctionID +
+				"'  ORDER BY (`timePlaced`) DESC";
 		populateArray(query, bidList);
 
 		return bidList;
@@ -69,7 +71,7 @@ public class BidList {
 	/**
 	 *
 	 * @param query SQL db-search in standard format
-	 * @param bidList
+	 * @param bidList list of bids for query to search through
 	 * @return list of bids for other bid-retrieval methods through SQL queries
 	 */
 	private ArrayList<Bid> populateArray(String query, ArrayList<Bid> bidList) {

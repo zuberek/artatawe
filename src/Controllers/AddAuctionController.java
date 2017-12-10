@@ -125,7 +125,7 @@ public class AddAuctionController {
 	}
 
 	/**
-	 *
+	 * Configures the file selection involving uploading an artwork picture.
 	 * @param fileChooser Offshoot of explorer used for browsing files on disk,
 	 * in this case pictures
 	 */

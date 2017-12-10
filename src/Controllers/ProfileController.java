@@ -99,7 +99,8 @@ public class ProfileController {
 			CONSTANTS.makeAlertWindow("warning", "This username is already in use!");
 			//Revert to previous username
 			userNameTextField.setText(userBeingEdited.getUserName());
-		} else if (!CONSTANTS.isNumeric(phoneNoTextField.getText()) || phoneNoTextField.getLength() != 11) {
+		} else if (!CONSTANTS.isNumeric(phoneNoTextField.getText()) ||
+				phoneNoTextField.getLength() != 11) {
 			CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
 			phoneNoTextField.setText(userBeingEdited.getPhoneNo());
 		} else {

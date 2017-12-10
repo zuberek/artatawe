@@ -26,9 +26,9 @@ import src.CONSTANTS;
 import src.User;
 
 /**
+ * Controller for viewing a single auction and placing bids
  * @author Borislav Koynin
  * @author Joshua Blackman
- *
  */
 public class ViewAuctionController {
 	
@@ -77,12 +77,8 @@ public class ViewAuctionController {
 		} else {
 			viewSellerProfileButton.setText("View seller profile");
 		}
-		
-		
-		
+
 		double[] dimensions = auction.getArtwork().getDimensions();
-		//System.out.println(dimensions[0]);
-		//System.out.println(dimensions[1]);
 		heightTextField.setText(String.valueOf(dimensions[0]));
 		widthTextField.setText(String.valueOf(dimensions[1]));
 		if(dimensions[2] != 0) {
@@ -98,18 +94,21 @@ public class ViewAuctionController {
 		yearLabel.setText(auction.getArtwork().getDateCreated());
 		auctionNameLabel.setText(this.auction.getArtwork().getTitle());
 		auctionDescriptionTextBox.setText(this.auction.getArtwork().getDescription());
-		reservePrice.setText('£'+String.valueOf(this.auction.getReservePrice()));
+		reservePrice.setText('\u00A3'+String.valueOf(this.auction.getReservePrice()));
 		bidsPlacedLabel.setText(this.auction.getCurrentBids(this.auction.getAuctionID()) + "/" + this.auction.getMaxBids());
 		InputStream stream = getClass().getResourceAsStream(this.auction.getArtwork().getPhotographPath());
 		Image newImage = new Image(stream);
 		auctionImage.setImage(newImage);
-		
-		
-		Bid currentBid = new Bid(this.auction.getLastBidID());
-		currentBidLabel.setText('£'+String.valueOf(currentBid.getAmount()));
-	}
-	
 
+		Bid currentBid = new Bid(this.auction.getLastBidID());
+		currentBidLabel.setText('\u00A3'+String.valueOf(currentBid.getAmount()));
+	}
+
+	/**
+	 * Minor controller to open small view window
+	 * for the profile of the seller to favourite
+	 * or unfavourite them
+	 */
 	public void viewSellerProfile() {
 		if(this.currentUser.getUserID() == this.auction.getSellerID()) {
 			ArrayList<Bid> bidList = new ArrayList<>();
@@ -163,6 +162,9 @@ public class ViewAuctionController {
 
 	}
 
+	/**
+	 * Event handler for bid submit button
+	 */
 	public void submitBid() {
 		float bid;
 
@@ -188,7 +190,7 @@ public class ViewAuctionController {
 					auctionNameLabel.setText(auction.getArtwork().getTitle());
 					auctionDescriptionTextBox.setText(auction.getArtwork().getDescription());
 					bidsPlacedLabel.setText(auction.getCurrentBids(auction.getAuctionID()) + "/" + auction.getMaxBids());
-					reservePrice.setText('£'+ String.valueOf(auction.getReservePrice()));
+					reservePrice.setText('\u00A3'+ String.valueOf(auction.getReservePrice()));
 					InputStream stream = getClass().getResourceAsStream(auction.getArtwork().getPhotographPath());
 					Image newImage = new Image(stream);
 					auctionImage.setImage(newImage);
@@ -196,7 +198,7 @@ public class ViewAuctionController {
 					
 					
 					Bid currentBid = new Bid(auction.getLastBidID());
-					currentBidLabel.setText('£'+String.valueOf(currentBid.getAmount()));
+					currentBidLabel.setText('\u00A3'+String.valueOf(currentBid.getAmount()));
 					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
 						auction.finishAuction();
 						CONSTANTS.makeAlertWindow("success", "You have won the auction");
@@ -210,7 +212,10 @@ public class ViewAuctionController {
 		}
 		
 	}
-	
+
+	/**
+	 * Close the window and reset scene to rootPane
+	 */
 	public void close() {
 		Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();

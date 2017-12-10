@@ -10,7 +10,7 @@ import src.User;
  */
 public class DefaultAvatarController {
 
-    @FXML Pane rootPane;
+    @FXML private Pane rootPane;
     
     User user;
 

@@ -87,7 +87,8 @@ public class RegisterController {
 
             CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
 
-        } else if (!CONSTANTS.isNumeric(registerPhoneNo.getText()) || registerPhoneNo.getLength() != 11) {
+        } else if (!CONSTANTS.isNumeric(registerPhoneNo.getText()) ||
+                registerPhoneNo.getLength() != 11) {
             CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
         } else if (userToCreate.userExists(registerUserName.getText())) {
             CONSTANTS.makeAlertWindow("warning", "That username is already taken.");
@@ -99,8 +100,9 @@ public class RegisterController {
         } else {
         	String address = registerUserAddressLine.getText() + ", " + registerUserTown.getText() +
                     ", " + registerUserPostcode.getText();
-    		new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(),
-                    registerPhoneNo.getText(), address, userToCreate.getDefaultAvatar());
+    		new User(registerUserName.getText(), registerFirstName.getText(),
+                    registerLastName.getText(), registerPhoneNo.getText(),
+                    address, userToCreate.getDefaultAvatar());
     		CONSTANTS.makeAlertWindow("success", "Your account has been registered.");
     		closeWindow();
         } 

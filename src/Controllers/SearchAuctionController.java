@@ -29,17 +29,17 @@ import src.*;
  */
 public class SearchAuctionController {
 
-	User currentUser;
+	private User currentUser;
 	private ArrayList<Auction> auctionsToDisplay  = new ArrayList<>();
 	private int count;
 	private final int AUCTIONS_PER_WINDOW = 6;
 
-	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("All","Painting", "Sculpture");
+	private final ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("All","Painting", "Sculpture");
 
-	private ObservableSet<CheckBox> selectedCheckBoxes = FXCollections.observableSet();
-	private ObservableSet<CheckBox> unselectedCheckBoxes = FXCollections.observableSet();
+	private final ObservableSet<CheckBox> selectedCheckBoxes = FXCollections.observableSet();
+	private final ObservableSet<CheckBox> unselectedCheckBoxes = FXCollections.observableSet();
 
-	private IntegerBinding numCheckBoxesSelected = Bindings.size(selectedCheckBoxes);
+	private final IntegerBinding numCheckBoxesSelected = Bindings.size(selectedCheckBoxes);
 
 	private final int maxNumOfCheckBoxes = 1;
 
@@ -97,6 +97,10 @@ public class SearchAuctionController {
 	@FXML HBox HBox5;
 	@FXML HBox HBox6;
 
+	/**
+	 * Initialise and build the searchAuctions for the current user
+	 * @param user Set current user in controller
+	 */
 	public void initialize(User user) {
 		this.currentUser = user;
 
@@ -133,6 +137,10 @@ public class SearchAuctionController {
 
 	}
 
+	/**
+	 * 
+	 * @param checkBox Checkbox object from JavaFX
+	 */
 	private void configureCheckBox(CheckBox checkBox) {
 
 		if (checkBox.isSelected()) {
@@ -340,8 +348,7 @@ public class SearchAuctionController {
 
 	private Image getImage(int count){
 		InputStream stream = getClass().getResourceAsStream(auctionsToDisplay.get(count).getArtwork().getPhotographPath());
-		Image newImage = new Image(stream);
-		return newImage;
+		return new Image(stream);
 	}
 
 	private void updateNavigationLabel(){
@@ -366,38 +373,38 @@ public class SearchAuctionController {
 
 	public void mouseClickHBox0Handler(){	
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
-		Auction clikedAuction = auctionsToDisplay.get(index);
-		this.bringViewAuctionSceneForAuction(clikedAuction);		
+		Auction clickedAuction = auctionsToDisplay.get(index);
+		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
 	
 	public void mouseClickHBox1Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
-		Auction clikedAuction = auctionsToDisplay.get(index + 1);
-		this.bringViewAuctionSceneForAuction(clikedAuction);		
+		Auction clickedAuction = auctionsToDisplay.get(index + 1);
+		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
 	
 	public void mouseClickHBox2Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
-		Auction clikedAuction = auctionsToDisplay.get(index + 2);
-		this.bringViewAuctionSceneForAuction(clikedAuction);		
+		Auction clickedAuction = auctionsToDisplay.get(index + 2);
+		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
 	
 	public void mouseClickHBox3Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
-		Auction clikedAuction = auctionsToDisplay.get(index + 3);
-		this.bringViewAuctionSceneForAuction(clikedAuction);		
+		Auction clickedAuction = auctionsToDisplay.get(index + 3);
+		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
 	
 	public void mouseClickHBox4Handler(){	
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
-		Auction clikedAuction = auctionsToDisplay.get(index + 4);
-		this.bringViewAuctionSceneForAuction(clikedAuction);		
+		Auction clickedAuction = auctionsToDisplay.get(index + 4);
+		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
 	
 	public void mouseClickHBox5Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
-		Auction clikedAuction = auctionsToDisplay.get(index + 5);
-		this.bringViewAuctionSceneForAuction(clikedAuction);		
+		Auction clickedAuction = auctionsToDisplay.get(index + 5);
+		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
 
 	private void bringViewAuctionSceneForAuction(Auction auction){
