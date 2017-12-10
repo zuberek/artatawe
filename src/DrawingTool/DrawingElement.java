@@ -11,18 +11,38 @@ import javafx.scene.paint.Color;
 public abstract class DrawingElement {
     private double x;
     private double y;
-    private Color color;
+    private Color lineColor;
+
+    public Color getLineColor() {
+        return lineColor;
+    }
+
+    public void setLineColor(Color lineColor) {
+        this.lineColor = lineColor;
+    }
+
+    public Color getFillColor() {
+        return fillColor;
+    }
+
+    public void setFillColor(Color fillColor) {
+        this.fillColor = fillColor;
+    }
+
+    private Color fillColor;
 
     /**
      * Constructor for the DrawingElement
      * @param x is the x coordinate of the top-left bounding-box
      * @param y is the y coordinate of the top-left bounding-box
-     * @param color is the colour of the shape
+     * @param lineColor is the colour of the shapes lines
+     * @param fillColor is the colour of the shapes fill
      */
-    public DrawingElement(double x, double y, Color color){
+    public DrawingElement(double x, double y, Color lineColor, Color fillColor){
         this.x = x;
         this.y = y;
-        this.color = color;
+        this.lineColor = lineColor;
+        this.fillColor = fillColor;
     }
 
     /**
@@ -30,7 +50,7 @@ public abstract class DrawingElement {
      * @param gc GraphicsContext of the canvas
      */
     public void draw(GraphicsContext gc){
-        gc.setFill(color);
+        gc.setFill(lineColor);
     }
 
     /**
@@ -78,7 +98,7 @@ public abstract class DrawingElement {
      * @return the colour of the shape
      */
     public Color getColor() {
-        return color;
+        return lineColor;
     }
 
     /**
@@ -86,7 +106,7 @@ public abstract class DrawingElement {
      * @param color the colour of the shape
      */
     public void setColor(Color color) {
-        this.color = color;
+        this.lineColor = color;
     }
 }
 

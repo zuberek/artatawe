@@ -21,11 +21,12 @@ public class Line extends LinearElement{
      * @param x2 end x coordinate of the line
      * @param y2 end y coordinate of line
      * @param width of the line
-     * @param color of the line
+     * @param lineColor is the colour of the line
+     * @param fillColor is the colour of the fill
      * @param gc GraphicsContext of the canvas
      */
-    public Line(double x1, double y1, double x2, double y2, double width, Color color, GraphicsContext gc){
-        super(x1, y1, color);
+    public Line(double x1, double y1, double x2, double y2, double width, Color lineColor, Color fillColor, GraphicsContext gc){
+        super(x1, y1, lineColor, fillColor);
         this.x2 = x2;
         this.y2 = y2;
         this.width = width;

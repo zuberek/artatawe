@@ -12,6 +12,7 @@ public class ShapeElement extends LinearElement {
 	private boolean isFilled;
 	private double width;
 	private double height;
+	private double outLineThickness;
 
 	/**
 	 * Constructor for the shape
@@ -19,14 +20,17 @@ public class ShapeElement extends LinearElement {
 	 * @param y coordinate of the shape
 	 * @param width of the shape
 	 * @param height of the shape
-	 * @param color of the shape
+	 * @param fillColor is the colour of the fill
+	 * @param lineColor is the colour of the lines
 	 * @param isFilled Determines if the shape is filled or not
 	 */
-	public ShapeElement(double x, double y, double width, double height, Color color, boolean isFilled) {
-		super(x, y, color);
+	public ShapeElement(double x, double y, double width, double height,
+						Color lineColor, Color fillColor, boolean isFilled, double outLineThickness) {
+		super(x, y, lineColor, fillColor);
 		this.isFilled = isFilled;
 		this.width = width;
 		this.height = height;
+		this.outLineThickness = outLineThickness;
 	}
 
 	/**
@@ -70,7 +74,16 @@ public class ShapeElement extends LinearElement {
 		this.width = width;
 	}
 
+	public double getOutLineThickness() {
+		return outLineThickness;
+	}
+
+	public void setOutLineThickness(double outLineThickness) {
+		this.outLineThickness = outLineThickness;
+	}
+
 	/**
+
 	 * Gets the height of the shape
 	 * @return the height of the shape
 	 */

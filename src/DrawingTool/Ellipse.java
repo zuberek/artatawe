@@ -1,31 +1,35 @@
 package src.DrawingTool;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 /**
  * Represents an ellipse shape
- * @author
+ * @author David
+ * @author Petar Radovanovic (888633)
  * @version 1.0
  */
 public class Ellipse extends ShapeElement{
 
-    private static double ERASER_POSITION_OFFSET = 3; // Used to fully erase the drawn ellipse
-    private static double ERASER_SIZE_OFFSET = 5; // Used to fully erase the drawn ellipse
+    private static double ERASER_POSITION_OFFSET = 5; // Used to fully erase the drawn ellipse
+    private static double ERASER_SIZE_OFFSET = 3; // Used to fully erase the drawn ellipse
 
     /**
-     * Constructor for the ellipse
-     * @param x coordinate of the top-left bounding-box of the ellipse
-     * @param y coordinate of the top-left bounding-box of the ellipse
-     * @param width of the ellipse
-     * @param height of the ellipse
-     * @param color of the ellipse
-     * @param isFilled Determines if the ellipse will be filled or just an outline
-     * @param gc GraphicsContext needed to draw the shape
+     * Constructor for the Ellipse
+     * @param x coordinate of the top-left of the Ellipse
+     * @param y coordinate of the top-left of the Ellipse
+     * @param slider used to determine Ellipse size
+     * @param lineColor Outline color of the Ellipse
+     * @param fillColor Fill color of the Ellipse
+     * @param isFilled Determines if the Ellipse is filled or not
+     * @param gc GraphicsContext of the canvas
      */
-    public Ellipse(double x, double y, double width, double height,
-                   Color color, boolean isFilled, GraphicsContext gc) {
-        super(x, y, width, height, color, isFilled);
+    public Ellipse(double x, double y, Slider slider,
+                   Color lineColor, Color fillColor, boolean isFilled,
+                   double outLineThickness, GraphicsContext gc) {
+        super(x-(slider.getValue()/2), y-(slider.getValue()/2), slider.getValue(),
+                slider.getValue(), lineColor, fillColor, isFilled, outLineThickness);
         draw(gc);
     }
 
@@ -34,8 +38,14 @@ public class Ellipse extends ShapeElement{
      * @param gc GraphicsContext of the canvas
      */
     public void draw(GraphicsContext gc){
+
+        gc.setStroke(getLineColor());
+        gc.setLineWidth(getOutLineThickness());
+        gc.setFill(getFillColor());
+
         if (isFilled()){
             gc.fillOval(getX(), getY(), getWidth(), getHeight());
+            gc.strokeOval(getX(), getY(), getWidth(), getHeight());
         } else {
             gc.strokeOval(getX(), getY(), getWidth(), getHeight());
         }
@@ -47,8 +57,10 @@ public class Ellipse extends ShapeElement{
      * @param gc GraphicsContext of the canvas
      */
     public void erase(GraphicsContext gc){
+        gc.setLineWidth(getOutLineThickness()+1);
         gc.setFill(Color.WHITE);
-        gc.fillOval(getX()-ERASER_POSITION_OFFSET, getY()-ERASER_POSITION_OFFSET,
-                getWidth()+ERASER_SIZE_OFFSET, getHeight()+ERASER_SIZE_OFFSET);
+        gc.setStroke(Color.WHITE);
+        gc.fillOval(getX(), getY(), getWidth(), getHeight());
+        gc.strokeOval(getX(), getY(), getWidth(), getHeight());
     }
 }
