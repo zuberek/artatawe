@@ -13,22 +13,31 @@
    <children>
       <AnchorPane prefHeight="429.0" prefWidth="600.0">
          <children>
-            <Button fx:id="viewSellerProfileButton" layoutX="460.0" layoutY="118.0" mnemonicParsing="false" onAction="#viewSellerProfile" text="View Seller Profile" />
-            <Label fx:id="auctionNameLabel" layoutX="154.0" layoutY="71.0" text="Auction Name" />
-            <TextArea fx:id="auctionDescriptionTextBox" editable="false" layoutX="154.0" layoutY="104.0" prefHeight="90.0" prefWidth="255.0" wrapText="true" />
-            <ImageView fx:id="auctionImage" fitHeight="110.0" fitWidth="111.0" layoutX="21.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="viewSellerProfileButton" layoutX="333.0" layoutY="350.0" mnemonicParsing="false" onAction="#viewSellerProfile" text="View Seller Profile" />
+            <Label fx:id="auctionNameLabel" alignment="CENTER" layoutX="328.0" layoutY="30.0" prefHeight="20.0" prefWidth="255.0" text="Auction Name" />
+            <TextArea fx:id="auctionDescriptionTextBox" editable="false" layoutX="328.0" layoutY="185.0" prefHeight="153.0" prefWidth="255.0" wrapText="true" />
+            <ImageView fx:id="auctionImage" fitHeight="172.0" fitWidth="262.0" layoutX="39.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Pictures/Painting.jpg" />
                </image></ImageView>
-            <Button fx:id="closeButton" layoutX="475.0" layoutY="351.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="111.0" text="Close" />
-            <Label layoutX="154.0" layoutY="223.0" text="Current Bid:" />
-            <Label fx:id="currentBidLabel" alignment="CENTER_RIGHT" layoutX="219.0" layoutY="223.0" prefHeight="18.0" prefWidth="63.0" text="£10" />
-            <TextField fx:id="bidAmount" layoutX="156.0" layoutY="247.0" prefHeight="25.0" prefWidth="255.0" />
-            <Button fx:id="submitBidButton" layoutX="154.0" layoutY="286.0" mnemonicParsing="false" onAction="#submitBid" prefHeight="25.0" prefWidth="255.0" text="Submit Bid" />
-            <Label layoutX="156.0" layoutY="200.0" text="Reserve Price:" />
-            <Label fx:id="reservePrice" alignment="CENTER_RIGHT" layoutX="233.0" layoutY="200.0" prefHeight="18.0" prefWidth="54.0" text="Label" />
-            <Label layoutX="299.0" layoutY="200.0" text="Bids Placed:" />
-            <Label fx:id="bidsPlacedLabel" alignment="CENTER_RIGHT" layoutX="363.0" layoutY="200.0" prefHeight="18.0" prefWidth="46.0" text="0/10" />
+            <Button fx:id="closeButton" layoutX="469.0" layoutY="350.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="111.0" text="Close" />
+            <Label layoutX="45.0" layoutY="289.0" text="Current Bid:" />
+            <Label fx:id="currentBidLabel" alignment="CENTER" layoutX="145.0" layoutY="289.0" prefHeight="20.0" prefWidth="150.0" text="£10" />
+            <TextField fx:id="bidAmount" layoutX="44.0" layoutY="316.0" prefHeight="25.0" prefWidth="255.0" />
+            <Button fx:id="submitBidButton" layoutX="44.0" layoutY="350.0" mnemonicParsing="false" onAction="#submitBid" prefHeight="25.0" prefWidth="255.0" text="Submit Bid" />
+            <Label layoutX="44.0" layoutY="250.0" text="Reserve Price:" />
+            <Label fx:id="reservePrice" alignment="CENTER" layoutX="148.0" layoutY="250.0" prefHeight="20.0" prefWidth="150.0" text="Label" />
+            <Label layoutX="44.0" layoutY="269.0" text="Bids Placed:" />
+            <Label fx:id="bidsPlacedLabel" alignment="CENTER" layoutX="146.0" layoutY="269.0" prefHeight="20.0" prefWidth="150.0" text="0/10" />
+            <Button layoutX="43.0" layoutY="208.0" mnemonicParsing="false" onAction="#viewImages" prefHeight="25.0" prefWidth="255.0" text="View Images" />
+            <Label fx:id="authorLabel" alignment="CENTER" layoutX="324.0" layoutY="60.0" prefHeight="20.0" prefWidth="255.0" text="Aucthor" />
+            <Label fx:id="yearLabel" alignment="CENTER" layoutX="323.0" layoutY="89.0" prefHeight="20.0" prefWidth="255.0" text="Year" />
+            <Label layoutX="351.0" layoutY="117.0" text="Height" />
+            <TextField fx:id="heightTextField" layoutX="340.0" layoutY="145.0" prefHeight="26.0" prefWidth="68.0" />
+            <Label layoutX="508.0" layoutY="117.0" text="Depth" />
+            <TextField fx:id="depthTextField" layoutX="494.0" layoutY="145.0" prefHeight="26.0" prefWidth="68.0" />
+            <Label layoutX="430.0" layoutY="117.0" text="Width" />
+            <TextField fx:id="widthTextField" layoutX="416.0" layoutY="145.0" prefHeight="26.0" prefWidth="68.0" />
          </children>
       </AnchorPane>
    </children>
