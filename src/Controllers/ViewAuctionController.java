@@ -67,6 +67,8 @@ public class ViewAuctionController {
 		this.currentUser = currentUser;
 		this.auction = new Auction(auction.getAuctionID());
 		
+		authorLabel.setText(auction.getArtwork().getArtist());
+		yearLabel.setText(auction.getArtwork().getDateCreated());
 		auctionNameLabel.setText(this.auction.getArtwork().getTitle());
 		auctionDescriptionTextBox.setText(this.auction.getArtwork().getDescription());
 		reservePrice.setText("£"+this.auction.getReservePrice());
