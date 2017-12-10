@@ -50,6 +50,7 @@ public class ViewAuctionController {
 	@FXML TextField widthTextField;
 	@FXML Label depthLabel;
 	@FXML TextField depthTextField;
+	@FXML Button submitBidButton;
 	
 	public void viewImages() {
 		
@@ -71,6 +72,8 @@ public class ViewAuctionController {
 		
 		if(this.currentUser.getUserID() == this.auction.getSellerID()) {
 			viewSellerProfileButton.setText("View bid history");
+			bidAmount.setVisible(false);
+			submitBidButton.setVisible(false);
 		} else {
 			viewSellerProfileButton.setText("View seller profile");
 		}
