@@ -188,7 +188,7 @@ public class ViewAuctionController {
 					auctionNameLabel.setText(auction.getArtwork().getTitle());
 					auctionDescriptionTextBox.setText(auction.getArtwork().getDescription());
 					bidsPlacedLabel.setText(auction.getCurrentBids(auction.getAuctionID()) + "/" + auction.getMaxBids());
-					reservePrice.setText("Â£"+auction.getReservePrice());
+					reservePrice.setText('£'+ String.valueOf(auction.getReservePrice()));
 					InputStream stream = getClass().getResourceAsStream(auction.getArtwork().getPhotographPath());
 					Image newImage = new Image(stream);
 					auctionImage.setImage(newImage);
@@ -196,7 +196,7 @@ public class ViewAuctionController {
 					
 					
 					Bid currentBid = new Bid(auction.getLastBidID());
-					currentBidLabel.setText("ï¿½"+String.valueOf(currentBid.getAmount()));
+					currentBidLabel.setText('£'+String.valueOf(currentBid.getAmount()));
 					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
 						auction.finishAuction();
 						CONSTANTS.makeAlertWindow("success", "You have won the auction");
