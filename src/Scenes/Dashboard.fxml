@@ -35,7 +35,7 @@
                </image></ImageView>
             <Label fx:id="auctionLabel2" layoutX="368.0" layoutY="85.0" text="Label" />
             <TextArea fx:id="auctionDesc2" editable="false" layoutX="368.0" layoutY="109.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
-            <Button fx:id="auctionButton1" layoutX="179.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="52.0" text="View" />
+            <Button fx:id="auctionButton1" layoutX="179.0" layoutY="175.0" mnemonicParsing="false" onAction="#auctionButton1Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
             <Button fx:id="auctionButton2" layoutX="434.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="52.0" text="View" />
             <ImageView fx:id="auctionImage3" fitHeight="89.0" fitWidth="89.0" layoutX="20.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                <image>
