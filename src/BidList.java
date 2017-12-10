@@ -69,7 +69,7 @@ public class BidList {
 	/**
 	 *
 	 * @param query SQL db-search in standard format
-	 * @param bidList
+	 * @param bidList Arraylist of bids
 	 * @return list of bids for other bid-retrieval methods through SQL queries
 	 */
 	private ArrayList<Bid> populateArray(String query, ArrayList<Bid> bidList) {
