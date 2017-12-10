@@ -75,7 +75,7 @@ public class AddAuctionController {
 
 	@FXML
 	private void artworkTypeComboBox() {
-		if(artworkTypeComboBox.getValue().equals("Sculpture")) {
+		if (artworkTypeComboBox.getValue().equals("Sculpture")) {
 			depthLabel.setVisible(true);
 			depthTextField.setVisible(true);
 			depthTextField.setDisable(false);
@@ -93,7 +93,8 @@ public class AddAuctionController {
 		int artworkID = AuctionList.getNewestArtworkID()+1;
 		FileChooser fileChooser = new FileChooser();
 		configureFileChooser(fileChooser);
-		String nameAndPath = "./src/Resources/ArtworksImages/"+ currentUser.getUserID() + "." + artworkID + ".png";
+		String nameAndPath = "./src/Resources/ArtworksImages/" +
+				currentUser.getUserID() + "." + artworkID + ".png";
 
 		File file = fileChooser.showOpenDialog(depthLabel.getScene().getWindow());
 
@@ -101,7 +102,8 @@ public class AddAuctionController {
 			try {
 				Image image = new Image(file.toURI().toString());
 				ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", new File(nameAndPath));
-				this.artworkToCreate.setPhotographPath("../Resources/ArtworksImages/"+ currentUser.getUserID() + "." + artworkID + ".png");
+				this.artworkToCreate.setPhotographPath("../Resources/ArtworksImages/" +
+						currentUser.getUserID() + "." + artworkID + ".png");
 			} catch (IOException ex) {
 				System.out.println(ex.getMessage());
 			}
@@ -109,8 +111,7 @@ public class AddAuctionController {
 		this.setArtworkImage();
 	}
 
-	private void configureFileChooser(
-			final FileChooser fileChooser) {      
+	private void configureFileChooser(final FileChooser fileChooser) {
 		fileChooser.setTitle("Open Resource File");
 		fileChooser.setInitialDirectory(
 				new File(System.getProperty("user.home"))
@@ -123,40 +124,62 @@ public class AddAuctionController {
 	}
 
 	public void addAuctionButtonClicked(){
-		if(titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() || yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty() || widthTextField.getText().isEmpty() || heightTextField.getText().isEmpty()) {
+		StringBuilder textField = new StringBuilder();
+		if (titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() ||
+				yearTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() ||
+				reservePriceTextField.getText().isEmpty() || maxBidsTextField.getText().isEmpty() ||
+				widthTextField.getText().isEmpty() || heightTextField.getText().isEmpty()) {
+
 			CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-		} else if(!CONSTANTS.isAlpha(artistTextField.getText()) || !CONSTANTS.isAlpha(titleTextField.getText())){
-			CONSTANTS.makeAlertWindow("warning","Please input valid basic artwork description (artist,title)\nno numbers");
-		} else if(!validateAuction()) {
-			CONSTANTS.makeAlertWindow("warning", "Please input a valid maxBid (Range " + CONSTANTS.MIN_BID + " - " + CONSTANTS.MAX_BID + ")\n and reserved price (" + CONSTANTS.MIN_PRICE + " - " + CONSTANTS.MAX_PRICE + ")");
+
+		} else if (!CONSTANTS.isAlpha(artistTextField.getText()) || !CONSTANTS.isAlpha(titleTextField.getText())){
+			CONSTANTS.makeAlertWindow("warning", "Please input a valid basic artwork description: " +
+					"(Artist, Title, Description). \nNumbers are not allowed.");
+
+		} else if (!validateAuction()) {
+			CONSTANTS.makeAlertWindow("warning", "Please input a valid maxBid " +
+					"(Range " + CONSTANTS.MIN_BID + " - " + CONSTANTS.MAX_BID + ")\n " +
+					"and reserved price (" + CONSTANTS.MIN_PRICE + " - " + CONSTANTS.MAX_PRICE + ")");
+
 		} else if (!validateYear()){
-			CONSTANTS.makeAlertWindow("warning","Please input a valid year within a range:\n " + CONSTANTS.SMALLEST_YEAR + " - " + CONSTANTS.MAX_YEAR);
+			CONSTANTS.makeAlertWindow("warning","Please input a valid year within a range:\n " +
+					CONSTANTS.SMALLEST_YEAR + " - " + CONSTANTS.MAX_YEAR);
 		} else {
 			switch(artworkTypeComboBox.getSelectionModel().getSelectedItem().toString()) {
 			case "Painting":
-				if(!validateSize()){
-					CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter\n within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
+				if (!validateSize()){
+					CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter\n " +
+							"within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
 				} else {
-					Painting painting = new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), yearTextField.getText(), Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());
+					new Painting(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(),
+							descriptionTextField.getText(), artworkToCreate.getPhotographPath(),
+							yearTextField.getText(), Double.parseDouble(heightTextField.getText()),
+							Double.parseDouble(widthTextField.getText()), typeSpecificTextField.getText());
 				}
 				break;
 			case "Sculpture":
-				if(!validateDimensions()){
-					CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter\n within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
+				if (!validateDimensions()){
+					CONSTANTS.makeAlertWindow("warning","Please input a valid size parameter\n " +
+							"within the range: " + CONSTANTS.MIN_SIZE + " - " + CONSTANTS.MAX_SIZE);
 				} else {
-					Sculpture sculpture = new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(), descriptionTextField.getText(), artworkToCreate.getPhotographPath(), yearTextField.getText(), Double.parseDouble(heightTextField.getText()), Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()), typeSpecificTextField.getText());
+					new Sculpture(currentUser.getUserID(), titleTextField.getText(), artistTextField.getText(),
+							descriptionTextField.getText(), artworkToCreate.getPhotographPath(),
+							yearTextField.getText(), Double.parseDouble(heightTextField.getText()),
+							Double.parseDouble(widthTextField.getText()), Double.parseDouble(depthTextField.getText()),
+							typeSpecificTextField.getText());
 				}
 				break;
 			}
 			int artworkID = AuctionList.getNewestArtworkID();
-			new Auction(currentUser.getUserID(), artworkID, Integer.parseInt(maxBidsTextField.getText()), Integer.parseInt(reservePriceTextField.getText()));
+			new Auction(currentUser.getUserID(), artworkID, Integer.parseInt(maxBidsTextField.getText()),
+					Integer.parseInt(reservePriceTextField.getText()));
 			this.closeWindow();
 		}
 	}
 
 	private boolean validateAuction(){
 		boolean result = false;
-		if(CONSTANTS.isNumeric(reservePriceTextField.getText()) && CONSTANTS.isNumeric(maxBidsTextField.getText())){
+		if (CONSTANTS.isNumeric(reservePriceTextField.getText()) && CONSTANTS.isNumeric(maxBidsTextField.getText())) {
 			int max1 = CONSTANTS.MAX_BID;
 			int min1 = CONSTANTS.MIN_BID;
 
@@ -166,7 +189,7 @@ public class AddAuctionController {
 			int maxBid = Integer.parseInt(maxBidsTextField.getText());
 			int price = Integer.parseInt(reservePriceTextField.getText());
 
-			if(isRight(max1,min1,maxBid) && isRight(max2, min2, price)){
+			if (isRight(max1,min1,maxBid) && isRight(max2, min2, price)){
 				result = true;
 			}
 		}
@@ -175,13 +198,13 @@ public class AddAuctionController {
 
 	private boolean validateYear(){
 		boolean result = false;
-		if(CONSTANTS.isNumeric(yearTextField.getText())){
+		if (CONSTANTS.isNumeric(yearTextField.getText())){
 			int max = CONSTANTS.MAX_YEAR;
 			int min = CONSTANTS.SMALLEST_YEAR;
 
 			int year = Integer.parseInt(yearTextField.getText());
 
-			if(isRight(max,min,year)){
+			if (isRight(max,min,year)){
 				result = true;
 			}
 		}
@@ -190,7 +213,10 @@ public class AddAuctionController {
 
 	private boolean validateDimensions(){
 		boolean result = false;
-		if(CONSTANTS.isNumeric(widthTextField.getText()) && CONSTANTS.isNumeric(depthTextField.getText()) && CONSTANTS.isNumeric(heightTextField.getText())){
+		if (CONSTANTS.isNumeric(widthTextField.getText()) &&
+				CONSTANTS.isNumeric(depthTextField.getText()) &&
+				CONSTANTS.isNumeric(heightTextField.getText())){
+
 			int max = CONSTANTS.MAX_SIZE;
 			int min = CONSTANTS.MIN_SIZE;
 
@@ -198,7 +224,7 @@ public class AddAuctionController {
 			int height = Integer.parseInt(heightTextField.getText());
 			int depth = Integer.parseInt(depthTextField.getText());
 
-			if(isRight(max,min,width) && isRight(max,min,height) && isRight(max,min,depth)){
+			if (isRight(max,min,width) && isRight(max,min,height) && isRight(max,min,depth)){
 				result = true;
 			}
 		}
@@ -207,14 +233,16 @@ public class AddAuctionController {
 
 	private boolean validateSize(){
 		boolean result = false;
-		if(CONSTANTS.isNumeric(widthTextField.getText()) &&  CONSTANTS.isNumeric(heightTextField.getText())){
+		if (CONSTANTS.isNumeric(widthTextField.getText()) &&
+				CONSTANTS.isNumeric(heightTextField.getText())){
+
 			int max = CONSTANTS.MAX_SIZE;
 			int min = CONSTANTS.MIN_SIZE;
 
 			int width = Integer.parseInt(widthTextField.getText());
 			int height = Integer.parseInt(heightTextField.getText());
 
-			if(isRight(max,min,width) && isRight(max,min,height)){
+			if (isRight(max,min,width) && isRight(max,min,height)){
 				result = true;
 			}
 		}
@@ -231,7 +259,7 @@ public class AddAuctionController {
 	}
 
 	private void closeWindow() {
-		Stage stage = (Stage)titleTextField.getScene().getWindow();
+		Stage stage = (Stage) titleTextField.getScene().getWindow();
 		stage.close();
 	}
 

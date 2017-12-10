@@ -22,7 +22,7 @@
             <Label layoutX="388.0" layoutY="338.0" text="Reserve Price" />
             <Label layoutX="410.0" layoutY="372.0" text="Max Bids" />
             <TextField fx:id="maxBidsTextField" layoutX="484.0" layoutY="368.0" prefHeight="25.0" prefWidth="230.0" />
-            <Button layoutX="633.0" layoutY="428.0" mnemonicParsing="false" onAction="#addAuctionButonClicked" text="Add Auction" />
+            <Button layoutX="633.0" layoutY="428.0" mnemonicParsing="false" onAction="#addAuctionButtonClicked" text="Add Auction" />
             <TextField fx:id="artistTextField" layoutX="138.0" layoutY="134.0" prefHeight="25.0" prefWidth="230.0" />
             <Label layoutX="20.0" layoutY="433.0" text="Dimentions (cm)" />
             <ImageView fx:id="artworkPhoto" fitHeight="186.0" fitWidth="262.0" layoutX="444.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
