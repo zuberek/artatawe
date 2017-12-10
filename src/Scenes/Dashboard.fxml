@@ -88,7 +88,7 @@
                   </Button>
                </children>
             </VBox>
-            <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="628.0" layoutY="347.0" prefHeight="30.0" prefWidth="107.0">
+            <GridPane fx:id="gridPane" layoutX="628.0" layoutY="347.0" prefHeight="30.0" prefWidth="107.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="33.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="74.0" />
