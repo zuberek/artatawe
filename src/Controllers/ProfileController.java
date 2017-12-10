@@ -113,7 +113,7 @@ public class ProfileController {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/DefaultAvatar.fxml"));
 			BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
-			defaultAvatarController controller = fxmlLoader.getController();
+			DefaultAvatarController controller = fxmlLoader.getController();
 			controller.initialize(userBeingEdited);
 
 			Scene newScene = new Scene(editRoot);

@@ -100,7 +100,7 @@ public class RegisterController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/DefaultAvatar.fxml"));
             BorderPane editRoot = (BorderPane) fxmlLoader.load();
 
-            defaultAvatarController controller = fxmlLoader.getController();
+            DefaultAvatarController controller = fxmlLoader.getController();
             controller.initialize(userToCreate);
 
             Scene newScene = new Scene(editRoot);

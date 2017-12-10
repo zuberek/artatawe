@@ -8,7 +8,7 @@ import src.User;
 /**
  * Controller used to set a default avatar from a predefined list
  */
-public class defaultAvatarController {
+public class DefaultAvatarController {
 
     @FXML Pane rootPane;
     
@@ -49,7 +49,7 @@ public class defaultAvatarController {
     }
 
     /**
-     * Listener for cancel button, with window close.
+     * Action for cancel button, with window close.
      */
     public void cancelButtonClicked(){
         closeWindow();

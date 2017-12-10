@@ -100,7 +100,7 @@ public class AddAuctionController {
 	}
 
 	/**
-	 * Listener for change picture button
+	 * Action for change picture button
 	 */
 	public void pictureChangeButtonClicked(){	
 		int artworkID = AuctionList.getNewestArtworkID()+1;
@@ -142,7 +142,7 @@ public class AddAuctionController {
 	}
 
 	/**
-	 * Listener for auction add button, with validation for all auction detail input boxes
+	 * Action for auction add button, with validation for all auction detail input boxes
 	 */
 	public void addAuctionButtonClicked(){
 		StringBuilder textField = new StringBuilder();
