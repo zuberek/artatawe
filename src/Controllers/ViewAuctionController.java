@@ -4,6 +4,7 @@ package src.Controllers;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.Auction;
 import src.Bid;
+import src.BidList;
 import src.CONSTANTS;
 import src.User;
 
@@ -106,29 +108,55 @@ public class ViewAuctionController {
 	
 
 	public void viewSellerProfile() {
-        try {
-        	
-        	User userToView = new User(auction.getSellerID());
-        	
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewProfile.fxml"));
-            Parent editRoot = (Parent) fxmlLoader.load();
+		if(this.currentUser.getUserID() == this.auction.getSellerID()) {
+			ArrayList<Bid> bidList = new ArrayList<>();
+			BidList bl = new BidList();
+			bidList = bl.getUserBidList(currentUser.getUserID());
+			
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewBidHistory.fxml"));
+				Parent editRoot = (Parent) fxmlLoader.load();
+		
+				ViewBidHistoryController ctrl = fxmlLoader.getController();
+				ctrl.initialize(bidList);
+		
+				Scene newScene = new Scene(editRoot);
+	            Stage stage = new Stage();
+	            stage.setScene(newScene);
+	            stage.setTitle("Artatawe |  Your Bid History");
 
-            ViewProfileController vcp = fxmlLoader.getController();
-            vcp.initialize(userToView, currentUser);
+	            stage.initModality(Modality.APPLICATION_MODAL);
+	            stage.showAndWait();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+	        	
+	        	User userToView = new User(auction.getSellerID());
+	        	
+	            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewProfile.fxml"));
+	            Parent editRoot = (Parent) fxmlLoader.load();
 
-            Scene newScene = new Scene(editRoot);
-            Stage editStagee = new Stage();
-            editStagee.setScene(newScene);
-            editStagee.setTitle("Artatawe | View Profile");
+	            ViewProfileController vcp = fxmlLoader.getController();
+	            vcp.initialize(userToView, currentUser);
 
-            editStagee.initModality(Modality.APPLICATION_MODAL);
+	            Scene newScene = new Scene(editRoot);
+	            Stage editStagee = new Stage();
+	            editStagee.setScene(newScene);
+	            editStagee.setTitle("Artatawe | View Profile");
 
-            editStagee.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Quit the program (with an error code)
-            System.exit(-1);
-        }
+	            editStagee.initModality(Modality.APPLICATION_MODAL);
+
+	            editStagee.showAndWait();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            // Quit the program (with an error code)
+	            System.exit(-1);
+	        }
+		}
+        
 
 	}
 
