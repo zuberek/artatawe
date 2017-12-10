@@ -32,7 +32,6 @@ public class Auction {
 		if(Artwork.checkType(artworkID) == "painting") {
 			artwork = new Painting(artworkID);
 		} else  {
-			Sculpture sculpture = new Sculpture(artworkID);
 			artwork = new Sculpture(artworkID);
 		}
 		setSellerID(sellerID);
