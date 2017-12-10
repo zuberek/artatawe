@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * Class to represent and abstractly implement basic details shared by all artworks
  * @author Bryn Waterhouse
  * @author Joshua Blackman
  */
@@ -23,7 +24,7 @@ public abstract class Artwork {
 	public static String checkType(int artworkID) {
 		ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
 		try {
-			while(rs.next()) {
+			if(rs.next()) {
 				return rs.getString("type");
 			}
 		} catch (SQLException e) {
@@ -36,6 +37,7 @@ public abstract class Artwork {
 	
     
     /**
+     * Get the artworkID
 	 * @return the artworkID
 	 */
 	public int getArtworkID() {
@@ -43,6 +45,7 @@ public abstract class Artwork {
 	}
 
 	/**
+     * Set the artworkID
 	 * @param artworkID the artworkID to set
 	 */
 	public void setArtworkID(int artworkID) {
@@ -50,6 +53,7 @@ public abstract class Artwork {
 	}
 
 	/**
+     * Get the userID
 	 * @return the userID
 	 */
 	public int getUserID() {
@@ -57,6 +61,7 @@ public abstract class Artwork {
 	}
 
 	/**
+     * Set the userID
 	 * @param userID the userID to set
 	 */
 	public void setUserID(int userID) {
@@ -64,7 +69,7 @@ public abstract class Artwork {
 	}
     
     /**
-     *
+     * Get the artwork's title
      * @return the title of the artwork
      */
     public String getTitle() {
@@ -72,7 +77,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Set the artwork's title
      * @param title the title of the artwork to set
      */
     public void setTitle(String title) {
@@ -80,7 +85,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Get the artist's name
      * @return the artist's name
      */
     public String getArtist() {
@@ -88,7 +93,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Set the artist's name
      * @param artist the artist's name to set
      */
     public void setArtist(String artist) {
@@ -96,7 +101,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Get the artwork description
      * @return the artwork description
      */
     public String getDescription() {
@@ -104,15 +109,15 @@ public abstract class Artwork {
     }
 
     /**
-     *
-     * @param description the artwork description to set
+     * Get the artwork description
+     * @param description the artwork description to get
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     *
+     * Get the artwork photograph filepath
      * @return the filepath of a photograph of the artwork
      */
     public String getPhotographPath() {
@@ -120,7 +125,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Set the filepath for the photograph
      * @param photographPath the filepath to be set of a photograph of the artwork
      */
     public void setPhotographPath(String photographPath) {
@@ -128,7 +133,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Get the date of creation for the artwork
      * @return the creation date of the artwork
      */
     public String getDateCreated() {
@@ -136,7 +141,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Set the date of creation for the artwork
      * @param dateCreated the creation date to be set for the artwork
      */
     public void setDateCreated(String dateCreated) {
@@ -144,7 +149,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Get the artwork's dimensions
      * @return an array of the artwork's dimensions
      */
     public double[] getDimensions() {
@@ -152,7 +157,7 @@ public abstract class Artwork {
     }
 
     /**
-     *
+     * Set dimensions of the artwork
      * @param height the height of the artwork
      * @param width the width of the artwork
      */
