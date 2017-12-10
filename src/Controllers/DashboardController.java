@@ -75,11 +75,10 @@ public class DashboardController {
 		this.currentUser = currentUser;
 		welcomeLabel.setText("Welcome " + currentUser.getFirstName());
 		
-		UserList ul = new UserList();
 		
 		favourites = UserList.getFavouriteUsers(currentUser.getUserID());
 		
-		auctions = AuctionList.getUsersAuctions(ul.getFavouriteUsers(currentUser.getUserID()));
+		auctions = AuctionList.getUsersAuctions(favourites);
 		
 		this.dynamicFavoritesGridPane(gridPane, favourites);
 		
@@ -309,6 +308,7 @@ public class DashboardController {
 
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+            this.initialize(currentUser);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -395,6 +395,7 @@ public class DashboardController {
 
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+            this.initialize(currentUser);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
