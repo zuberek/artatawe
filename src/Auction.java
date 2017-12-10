@@ -75,6 +75,10 @@ public class Auction {
 		
 	}
 	
+	public void finishAuction(){
+		DB.query("UPDATE `auctions` SET `active` = '0' WHERE `auctionID` = '" + this.getAuctionID() + "'");
+	}
+	
 	/**
 	 * @param auctionID id of the auction to retrieve
 	 * @return the amount of bids placed on given auction
@@ -113,7 +117,7 @@ public class Auction {
 	 */
 	private void saveAuction(){
 		// Insert user into database
-		DB.query("INSERT INTO `auctions` (`sellerID`, `artworkID`, `maxBids`, `reservePrice`, `lastBidID`) VALUES (" + this.getSellerID() + ", " + this.getArtwork().getArtworkID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() + "); ");
+		DB.query("INSERT INTO `auctions` (`sellerID`, `artworkID`, `maxBids`, `reservePrice`, `lastBidID`, `active`) VALUES (" + this.getSellerID() + ", " + this.getArtwork().getArtworkID() + ", " + this.getMaxBids() + ", " + this.getReservePrice() + ", " + this.getLastBidID() + ", 1); ");
 	}
 
 	/**

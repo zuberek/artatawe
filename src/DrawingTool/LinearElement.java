@@ -14,10 +14,11 @@ public abstract class LinearElement extends DrawingElement {
      * Constructor for the shape
      * @param x the x coordinate of the shape
      * @param y the y coordinate of the shape
-     * @param color the colour of the shape
+     * @param lineColor is the colour of the shapes lines
+     * @param fillColor is the colour of the shapes fill
      */
-    public LinearElement(double x, double y, Color color) {
-        super(x, y, color);
+    public LinearElement(double x, double y, Color lineColor, Color fillColor) {
+        super(x, y, lineColor, fillColor);
     }
 
     /**

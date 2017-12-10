@@ -1,6 +1,8 @@
 package src.DrawingTool;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -34,7 +36,7 @@ import javafx.scene.image.WritableImage;
  */
 public class DrawingCanvas extends Application{
     // The dimensions of the window
-    private static final int WINDOW_WIDTH = 610;
+    private static final int WINDOW_WIDTH = 710;
     private static final int WINDOW_HEIGHT = 410;
 
     // The dimensions of the canvas
@@ -42,7 +44,16 @@ public class DrawingCanvas extends Application{
     private static final int CANVAS_HEIGHT = 400;
 
     // Dimensions of the VBox
-    private static final int VBOX_WIDTH = 200;
+    private static final int VBOX_WIDTH = 300;
+
+    // Minimum width of the lineColorPicker
+    private static final int COLOR_PICKER_MIN_WIDTH = 200;
+
+    // Minimum width of the color labels
+    private static final int COLOR_LABEL_MIN_WIDTH = 100;
+
+    // Maximum width of the outline thickness input box
+    private static final int OUTLINE_SIZE_MAX_WIDTH = 50;
 
     //Parameters for the slider
     private static final int SLIDER_MIN = 1;
@@ -120,12 +131,44 @@ public class DrawingCanvas extends Application{
         choiceBox.getSelectionModel().selectFirst();
         sidebar.getChildren().add(choiceBox);
 
+        HBox lineColorBox = new HBox();
+
+        Label lineColorLabel = new Label("Line colour: ");
+        lineColorLabel.setMinWidth(COLOR_LABEL_MIN_WIDTH);
         /*
-          Basic colour picker used in the shapes.
+          Basic colour picker used to get line colours.
          */
-        final ColorPicker colorPicker = new ColorPicker();
-        colorPicker.setValue(Color.BLACK);
-        sidebar.getChildren().add(colorPicker);
+        final ColorPicker lineColorPicker = new ColorPicker();
+        lineColorPicker.setValue(Color.BLACK);
+        lineColorPicker.setMinWidth(COLOR_PICKER_MIN_WIDTH);
+        lineColorBox.getChildren().addAll(lineColorLabel, lineColorPicker);
+        sidebar.getChildren().add(lineColorBox);
+
+        HBox fillColorBox = new HBox();
+
+        Label fillColorLabel = new Label("Fill colour: ");
+        fillColorLabel.setMinWidth(COLOR_LABEL_MIN_WIDTH);
+
+        final ColorPicker fillColorPicker = new ColorPicker();
+        fillColorPicker.setValue(Color.BLACK);
+        fillColorPicker.setMinWidth(COLOR_PICKER_MIN_WIDTH);
+        fillColorBox.getChildren().addAll(fillColorLabel, fillColorPicker);
+        sidebar.getChildren().add(fillColorBox);
+
+
+        HBox fillAndOutline = new HBox(); // HBox for the fill and outline thickness tools
+
+        TextField outlineSize = new TextField("1"); // Number input for the outline thickness
+        outlineSize.setMaxWidth(OUTLINE_SIZE_MAX_WIDTH);
+
+        /*
+        Numeric only textfield, courtesy of: https://stackoverflow.com/a/30796829
+         */
+        outlineSize.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                outlineSize.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
 
         /*
           Checkbox used to indicate whether or not a shape should be filled
@@ -134,7 +177,10 @@ public class DrawingCanvas extends Application{
         Label fillLabel = new Label("Fill");
         fillLabel.setGraphic(shapeFill);
         fillLabel.setContentDisplay(ContentDisplay.RIGHT);
-        sidebar.getChildren().addAll(shapeFill, fillLabel);
+
+        Label outlineSizeLabel = new Label ("Outline Thickness: ");
+        fillAndOutline.getChildren().addAll(shapeFill, fillLabel, outlineSizeLabel, outlineSize);
+        sidebar.getChildren().add(fillAndOutline);
 
         /*
           Slider and its associated options
@@ -182,7 +228,7 @@ public class DrawingCanvas extends Application{
           Sets the maximum width scaling for the elements of the VBox
          */
         choiceBox.setMaxWidth(VBOX_WIDTH);
-        colorPicker.setMaxWidth(VBOX_WIDTH);
+        lineColorPicker.setMaxWidth(VBOX_WIDTH);
         slider.setMaxWidth(VBOX_WIDTH);
         undoButton.setMaxWidth(VBOX_WIDTH/2);
         clearButton.setMaxWidth(VBOX_WIDTH/2);
@@ -191,25 +237,30 @@ public class DrawingCanvas extends Application{
           Behaviour of the canvas for a users mouse click (Press & Release)
          */
         canvas.setOnMouseClicked(e ->{
-            gc.setFill(colorPicker.getValue()); // Gets the colour value from colorPicker for filling
-            gc.setStroke(colorPicker.getValue()); // Gets the colour value from colorPicker for the outline
+            gc.setFill(lineColorPicker.getValue()); // Gets the colour value from colorPicker for filling
+            gc.setStroke(lineColorPicker.getValue()); // Gets the colour value from colorPicker for the outline
             /*
               Switch case used to determine which tool is being used, checks the choiceBox for tool selection.
              */
             switch(choiceBox.getSelectionModel().getSelectedItem().toString()) {
                 case "Circle":
                     // Constructs the circle and pushes it to the shape stack, sets the circle center position to the cursor position
-                    shapeStack.push(new Ellipse(e.getX()-(slider.getValue()/2), e.getY()-(slider.getValue()/2),
-                            slider.getValue(), slider.getValue(), colorPicker.getValue(),shapeFill.isSelected(), gc));
+                    shapeStack.push(new Ellipse(e.getX(), e.getY(), slider,
+                            lineColorPicker.getValue(), fillColorPicker.getValue(),
+                            shapeFill.isSelected(), Integer.parseInt(outlineSize.getText()), gc));
                     break;
                 case "Square":
                     // Constructs the Square and pushes it to the shape stack, sets the square center position to the cursor position
-                    shapeStack.push(new Rectangle(e.getX()-(slider.getValue()/2), e.getY()-(slider.getValue()/2),
-                            slider.getValue(), slider.getValue(), colorPicker.getValue(),shapeFill.isSelected(), gc));
+                    shapeStack.push(new Rectangle(e.getX(), e.getY(), slider,
+                            lineColorPicker.getValue(), fillColorPicker.getValue(),
+                            shapeFill.isSelected(), Integer.parseInt(outlineSize.getText()),  gc));
                     break;
                 case "Text":
                     // Constructs the Text and paints it onto the canvas
-                    new Text(e.getX(), e.getY(), textField.getText(), colorPicker.getValue(), slider.getValue(), gc);
+                    new Text(e.getX(), e.getY(), textField.getText(),
+                            lineColorPicker.getValue(), fillColorPicker.getValue(),
+                            slider.getValue(), shapeFill.isSelected(),
+                            Integer.parseInt(outlineSize.getText()), gc);
                     break;
                 default:
                     break;
@@ -221,16 +272,17 @@ public class DrawingCanvas extends Application{
           Behaviour of the canvas for a users mouse press (Press down)
          */
         canvas.setOnMousePressed(e ->{
-            gc.setFill(colorPicker.getValue());
-            gc.setStroke(colorPicker.getValue());
+            gc.setFill(lineColorPicker.getValue());
+            gc.setStroke(lineColorPicker.getValue());
 
             switch(choiceBox.getSelectionModel().getSelectedItem().toString()){
                 case "Freedraw": // Draws ellipses centered on the users mouse
-                    Ellipse asde = new Ellipse(e.getX()-(slider.getValue()/2), e.getY()-(slider.getValue()/2),
-                            slider.getValue(), slider.getValue(), colorPicker.getValue(),true, gc);
+                    new Ellipse(e.getX(), e.getY(), slider,
+                            lineColorPicker.getValue(), lineColorPicker.getValue(),true, 1, gc);
                     break;
                 case "Line": // Creates a transparent line on the pressed location as a placeholder.
-                    shapeStack.push(new Line(e.getX(), e.getY(), e.getX(), e.getY(), slider.getValue(), new Color(0,0,0,0), gc));
+                    shapeStack.push(new Line(e.getX(), e.getY(), e.getX(), e.getY(),
+                            slider.getValue(), Color.TRANSPARENT, Color.TRANSPARENT, gc));
                 default:
                     break;
             }
@@ -240,12 +292,12 @@ public class DrawingCanvas extends Application{
           Behaviour of the canvas for a users mouse when dragged (Pressed down & moved)
          */
         canvas.setOnMouseDragged(e ->{
-            gc.setFill(colorPicker.getValue());
-            gc.setStroke(colorPicker.getValue());
+            gc.setFill(lineColorPicker.getValue());
+            gc.setStroke(lineColorPicker.getValue());
             switch(choiceBox.getSelectionModel().getSelectedItem().toString()){
                 case "Freedraw": // Draws ellipses centered on the users mouse
-                    new Ellipse(e.getX()-(slider.getValue()/2), e.getY()-(slider.getValue()/2),
-                            slider.getValue(), slider.getValue(), colorPicker.getValue(),true, gc);
+                    new Ellipse(e.getX(), e.getY(), slider,
+                            lineColorPicker.getValue(), lineColorPicker.getValue(), true, 1, gc);
                     break;
                 default:
                     break;

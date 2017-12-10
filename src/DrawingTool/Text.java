@@ -13,23 +13,38 @@ public class Text extends DrawingElement {
 
     private String text;
     private double size;
+    private boolean isFilled;
+    private double outLineThickness;
     /**
      *
      * @param x will set the x position of the src.Text
      * @param y will set the y position of the src.Text
      */
 
-    public Text(double x, double y, String text, Color color, double size, GraphicsContext gc){
-        super(x, y, color);
+    public Text(double x, double y, String text, Color lineColor, Color fillColor,
+                double size, boolean isFilled, double outLineThickness,
+                GraphicsContext gc){
+
+        super(x, y, lineColor, fillColor);
         this.text = text;
         this.size = size;
+        this.isFilled = isFilled;
+        this.outLineThickness = outLineThickness;
         draw(gc);
     }
 
-
     public void draw(GraphicsContext gc){
-        gc.setStroke(getColor());
+
+        gc.setLineWidth(outLineThickness);
+        gc.setStroke(getLineColor());
+        gc.setFill(getFillColor());
         gc.setFont(Font.font("Verdana", size));
-        gc.strokeText(text, getX(), getY());
+
+        if(isFilled){
+            gc.fillText(text, getX(), getY());
+            gc.strokeText(text, getX(), getY());
+        } else {
+            gc.strokeText(text,getX(), getY());
+        }
     }
 }

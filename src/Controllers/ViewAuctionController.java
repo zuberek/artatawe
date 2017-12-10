@@ -143,10 +143,15 @@ public class ViewAuctionController {
 					auctionImage.setImage(newImage);
 					
 					
+					
 					Bid currentBid = new Bid(auction.getLastBidID());
-					currentBidLabel.setText("Â£"+String.valueOf(currentBid.getAmount()));
-				
-					CONSTANTS.makeAlertWindow("success", "You have placed a bid.");
+					currentBidLabel.setText("£"+String.valueOf(currentBid.getAmount()));
+					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
+						auction.finishAuction();
+						CONSTANTS.makeAlertWindow("success", "You have won the auction");
+					} else {
+						CONSTANTS.makeAlertWindow("success", "You have placed a bid.");
+					}
 				}
 			} else {
 				CONSTANTS.makeAlertWindow("warning", "Sorry! Someone else has won this auction.");

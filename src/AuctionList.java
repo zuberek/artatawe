@@ -54,7 +54,7 @@ public class AuctionList {
 	public static ArrayList<Auction> getUserSellingAuctionList(int userId) {
 		auctionList = new ArrayList<>();
 
-		String query = "SELECT * from `auctions` WHERE `sellerID` = '" + userId + "'";
+		String query = "SELECT * from `auctions` WHERE `sellerID` = '" + userId + "' AND WHERE `active` = '1'";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -63,7 +63,7 @@ public class AuctionList {
 	public static ArrayList<Auction> getAuctions() {
 		auctionList = new ArrayList<>();
 
-		String query = "SELECT * from `auctions`";
+		String query = "SELECT * from `auctions` WHERE active = '1'";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -73,7 +73,7 @@ public class AuctionList {
 		auctionList = new ArrayList<>();
 
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = " +
-				"auctions.artworkID where artworks.type = 'painting'\n";
+				"auctions.artworkID where artworks.type = 'painting' AND active = '1'\n";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -83,7 +83,7 @@ public class AuctionList {
 		auctionList = new ArrayList<>();
 
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = " +
-				"auctions.artworkID where artworks.type = 'sculpture'\n";
+				"auctions.artworkID where artworks.type = 'sculpture' AND active = '1'\n";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -94,7 +94,7 @@ public class AuctionList {
 
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = " +
 				"auctions.artworkID where artworks.dateCreated >= 1980 AND" +
-				"artworks.dateCreated <=" + CONSTANTS.MAX_YEAR +"\n";
+				"artworks.dateCreated <=" + CONSTANTS.MAX_YEAR +" AND active = '1'\n";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -104,7 +104,7 @@ public class AuctionList {
 		auctionList = new ArrayList<>();
 
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = " +
-				"auctions.artworkID where artworks.dateCreated >= 1900 AND artworks.dateCreated < 1980\n";
+				"auctions.artworkID where artworks.dateCreated >= 1900 AND artworks.dateCreated < 1980 AND active = '1'\n";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -114,7 +114,7 @@ public class AuctionList {
 		auctionList = new ArrayList<>();
 
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = " +
-		"auctions.artworkID where artworks.dateCreated < 1900\n";
+		"auctions.artworkID where artworks.dateCreated < 1900 AND active = '1'\n";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -191,7 +191,7 @@ public class AuctionList {
 		auctionList = new ArrayList<>();
 
 		String query = "SELECT * from `bids` WHERE `bidderID` = '" + userId + "'" +
-				"GROUP BY `auctionID` HAVING MAX(`amount`) ORDER BY (`amount`)";
+				"GROUP BY `auctionID` HAVING MAX(`amount`) ORDER BY (`amount`) AND active = '1'";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -215,7 +215,7 @@ public class AuctionList {
 				}
 			}
 
-			String query = "SELECT * from `auctions` WHERE" + whereClause + " ORDER BY auctionID ASC";
+			String query = "SELECT * from `auctions` WHERE" + whereClause + " AND active = '1' ORDER BY auctionID ASC";
 			populateArray(query, auctionList);
 		}
 
