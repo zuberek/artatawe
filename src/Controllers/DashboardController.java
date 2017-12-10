@@ -132,6 +132,21 @@ public class DashboardController {
 		openAuction(auctions.get(auctionIndex));
 	}
 	
+	public void auctionButton2Clicked() {
+		int auctionIndex = 1 + counter;
+		openAuction(auctions.get(auctionIndex));
+	}
+	
+	public void auctionButton3Clicked() {
+		int auctionIndex = 2 + counter;
+		openAuction(auctions.get(auctionIndex));
+	}
+	
+	public void auctionButton4Clicked() {
+		int auctionIndex = 3 + counter;
+		openAuction(auctions.get(auctionIndex));
+	}
+	
 	public void openAuction(Auction auction) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewAuction.fxml"));
