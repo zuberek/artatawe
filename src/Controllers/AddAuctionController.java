@@ -240,6 +240,10 @@ public class AddAuctionController {
 		return result;
 	}
 
+	/**
+	 * Validate sculpture dimensions
+	 * @return boolean with respect to whether the auction field values are allowed or rejected
+	 */
 	private boolean validateDimensions(){
 		boolean result = false;
 		if (CONSTANTS.isNumeric(widthTextField.getText()) &&
@@ -260,6 +264,10 @@ public class AddAuctionController {
 		return result;
 	}
 
+	/**
+	 * Validate painting dimensions
+	 * @return boolean with respect to whether the auction field values are allowed or rejected
+	 */
 	private boolean validateSize(){
 		boolean result = false;
 		if (CONSTANTS.isNumeric(widthTextField.getText()) &&
@@ -278,7 +286,13 @@ public class AddAuctionController {
 		return result;
 	}
 
-
+	/**
+	 * Sub-method used by validation to check if value is in prescribed limits
+	 * @param max maximum allowed value
+	 * @param min minimum allowed value
+	 * @param par value to
+	 * @return boolean with respect to whether the field value is between limits
+	 */
 	private boolean isRight(int max, int min, int par){
 		boolean result = false;
 		if(par >= min && par <= max){
@@ -287,6 +301,9 @@ public class AddAuctionController {
 		return result;
 	}
 
+	/**
+	 * Close FX GUI window and default to previous stage window
+	 */
 	private void closeWindow() {
 		Stage stage = (Stage) titleTextField.getScene().getWindow();
 		stage.close();

@@ -32,6 +32,7 @@ hs_err_pid*
 # Javadoc files #
 *.html
 
+# Everything else#
 Main.java
 FXMLexample
 .gitignore
