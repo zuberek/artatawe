@@ -13,14 +13,6 @@ import java.util.ArrayList;
  * @author Joshua Blackman
  */
 public class AuctionList {
-	private Artwork artwork;
-	private int maxBids;
-	private double reservePrice;
-	private int auctionID;
-	private int sellerID;
-	private int unixTimeAdded;
-	private int lastBidId;
-
 	private static ArrayList<Auction> auctionList;
 
 	/**
