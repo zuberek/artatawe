@@ -29,6 +29,9 @@ hs_err_pid*
 .idea
 *.db
 
+# Javadoc files #
+*.html
+
 Main.java
 FXMLexample
 .gitignore
@@ -36,3 +39,5 @@ out/
 Resources/
 .classpath
 .project
+*.png
+*.png
