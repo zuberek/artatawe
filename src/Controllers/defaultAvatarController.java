@@ -7,7 +7,8 @@ import src.User;
 
 public class defaultAvatarController {
 
-	//TODO:really need to come up with better idea for this
+
+    // TODO: Short Javadoc comments
     @FXML Pane rootPane;
     
     User user;
