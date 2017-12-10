@@ -1,6 +1,3 @@
-/**
- * 
- */
 package src.Controllers;
 
 import java.io.IOException;
@@ -26,9 +23,9 @@ import javafx.stage.Stage;
 import src.*;
 
 /**
+ * Controller used to search and filter-search all auctions.
  * @author Borislav Koynin
  * @author Jan Dabrowski
- *
  */
 public class SearchAuctionController {
 

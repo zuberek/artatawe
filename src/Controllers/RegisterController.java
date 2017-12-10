@@ -46,6 +46,10 @@ public class RegisterController {
     //User to be added to the database
     private User userToCreate;
 
+    /**
+     * Initialise user profile image
+     * @param newUser user to be created
+     */
     public void initialize(User newUser){
     	userToCreate = newUser;
         InputStream stream = getClass().getResourceAsStream(newUser.getDefaultAvatar());
@@ -54,6 +58,9 @@ public class RegisterController {
         profileImage.setImage(newImage);
     }
 
+    /**
+     * Event handler for draw button being clicked
+     */
     public void drawButtonClicked(){
 
         Stage newStage = new Stage();
@@ -73,32 +80,46 @@ public class RegisterController {
     public void registerButtonClicked() {
     	
     	
-		if(registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() || registerPhoneNo.getText().isEmpty() || registerUserAddressLine.getText().isEmpty() || registerUserTown.getText().isEmpty() || registerUserPostcode.getText().isEmpty() || registerLastName.getText().isEmpty()) {
+		if (registerUserName.getText().isEmpty() || registerFirstName.getText().isEmpty() ||
+                registerPhoneNo.getText().isEmpty() || registerUserAddressLine.getText().isEmpty() ||
+                registerUserTown.getText().isEmpty() || registerUserPostcode.getText().isEmpty() ||
+                registerLastName.getText().isEmpty()) {
+
             CONSTANTS.makeAlertWindow("warning", "Please fill in all fields.");
-        } else if(!isNumeric(registerPhoneNo.getText()) || registerPhoneNo.getLength() != 11) {
+
+        } else if (!CONSTANTS.isNumeric(registerPhoneNo.getText()) || registerPhoneNo.getLength() != 11) {
             CONSTANTS.makeAlertWindow("warning", "Please input a valid phone number.");
-        } else if(userToCreate.userExists(registerUserName.getText())) {      
+        } else if (userToCreate.userExists(registerUserName.getText())) {
             CONSTANTS.makeAlertWindow("warning", "That username is already taken.");
-    	} else if(!CONSTANTS.isAlpha(registerFirstName.getText()) || !CONSTANTS.isAlpha(registerLastName.getText())){
+    	} else if (!CONSTANTS.isAlpha(registerFirstName.getText()) ||
+                !CONSTANTS.isAlpha(registerLastName.getText())) {
 		    CONSTANTS.makeAlertWindow("warning","Please input valid personal details (no numbers)");
-        } else if(!Address.validatePostCode(registerUserPostcode.getText())){ 
+        } else if (!Address.validatePostCode(registerUserPostcode.getText())) {
         	 CONSTANTS.makeAlertWindow("warning","Please input a valid UK postcode. (Must have a space)");
         } else {
-        	String address = registerUserAddressLine.getText() + ", " + registerUserTown.getText() + ", " + registerUserPostcode.getText();
-    		User createdUser = new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(), registerPhoneNo.getText(), address, userToCreate.getDefaultAvatar());
+        	String address = registerUserAddressLine.getText() + ", " + registerUserTown.getText() +
+                    ", " + registerUserPostcode.getText();
+    		new User(registerUserName.getText(), registerFirstName.getText(), registerLastName.getText(),
+                    registerPhoneNo.getText(), address, userToCreate.getDefaultAvatar());
     		CONSTANTS.makeAlertWindow("success", "Your account has been registered.");
     		closeWindow();
         } 
     }
 
+    /**
+     * Event handler for "back" button clicked
+     */
     public void backLoginButtonClicked(){
         closeWindow();
     }
 
-    public void picEditButtonClicked(){
-        try{
+    /**
+     * Event handler for when user clicks the picture-edit button
+     */
+    public void picEditButtonClicked() {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/DefaultAvatar.fxml"));
-            BorderPane editRoot = (BorderPane) fxmlLoader.load();
+            BorderPane editRoot = fxmlLoader.load();
 
             DefaultAvatarController controller = fxmlLoader.getController();
             controller.initialize(userToCreate);
@@ -118,12 +139,6 @@ public class RegisterController {
             // Quit the program (with an error code)
             System.exit(-1);
         }
-    }
-    
-
-    private boolean isNumeric(String str)
-    {
-      return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
 
     /**
