@@ -38,6 +38,8 @@ public class DashboardController {
 	@FXML Label welcomeLabel;
 	@FXML ListView<String> browseAuctions;
 	
+	@FXML Label pageNumberLabel;
+	
 	@FXML Label auctionLabel1;
 	@FXML Label auctionLabel2;
 	@FXML Label auctionLabel3;
@@ -68,7 +70,16 @@ public class DashboardController {
 		
 		UserList ul = new UserList();
 		
+		
+		
 		auctions = AuctionList.getUsersAuctions(ul.getFavouriteUsers(currentUser.getUserID()));
+		
+		if((int)Math.ceil(auctions.size()/4) == 0){
+			pageNumberLabel.setText("1/1");
+		} else   {
+			pageNumberLabel.setText("1/" + String.valueOf((int)Math.ceil(auctions.size()/4)));
+		}
+		
 		populateAuctions();
 	}
 	
@@ -108,34 +119,59 @@ public class DashboardController {
 							break;
 					}
 				}  else {
-					switch(i) {
-						case 0:
-							auctionLabel1.setVisible(false);
-							auctionDesc1.setVisible(false);
-							auctionImage1.setVisible(false);
-							auctionButton1.setVisible(false);
-							break;
-						case 1:
-							auctionLabel2.setVisible(false);
-							auctionDesc2.setVisible(false);
-							auctionImage2.setVisible(false);
-							auctionButton2.setVisible(false);
-							break;
-						case 2:
-							auctionLabel3.setVisible(false);
-							auctionDesc3.setVisible(false);
-							auctionImage3.setVisible(false);
-							auctionButton3.setVisible(false);
-							break;
-						case 3:
-							auctionLabel4.setVisible(false);
-							auctionDesc4.setVisible(false);
-							auctionImage4.setVisible(false);
-							auctionButton4.setVisible(false);
-							break;
-					}
+					auctionVisbility(i);
 				}
 			}
+		} else {
+			auctionVisbility(-1);
+		}
+	}
+	
+	private void auctionVisbility(int i) {
+		switch(i) {
+			case 0:
+				auctionLabel1.setVisible(false);
+				auctionDesc1.setVisible(false);
+				auctionImage1.setVisible(false);
+				auctionButton1.setVisible(false);
+				break;
+			case 1:
+				auctionLabel2.setVisible(false);
+				auctionDesc2.setVisible(false);
+				auctionImage2.setVisible(false);
+				auctionButton2.setVisible(false);
+				break;
+			case 2:
+				auctionLabel3.setVisible(false);
+				auctionDesc3.setVisible(false);
+				auctionImage3.setVisible(false);
+				auctionButton3.setVisible(false);
+				break;
+			case 3:
+				auctionLabel4.setVisible(false);
+				auctionDesc4.setVisible(false);
+				auctionImage4.setVisible(false);
+				auctionButton4.setVisible(false);
+				break;
+			default:
+				auctionLabel1.setVisible(false);
+				auctionDesc1.setVisible(false);
+				auctionImage1.setVisible(false);
+				auctionButton1.setVisible(false);
+				auctionLabel2.setVisible(false);
+				auctionDesc2.setVisible(false);
+				auctionImage2.setVisible(false);
+				auctionButton2.setVisible(false);
+				auctionLabel3.setVisible(false);
+				auctionDesc3.setVisible(false);
+				auctionImage3.setVisible(false);
+				auctionButton3.setVisible(false);
+				auctionLabel4.setVisible(false);
+				auctionDesc4.setVisible(false);
+				auctionImage4.setVisible(false);
+				auctionButton4.setVisible(false);
+				break;
+			
 		}
 	}
 	
