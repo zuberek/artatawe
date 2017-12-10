@@ -18,7 +18,12 @@ public class Address {
 	public Address(){
 
 	}
-	 
+
+	/**
+	 *
+	 * @param code Postcode for validation
+	 * @return boolean depending if it matches the pattern provided
+	 */
 	public static boolean validatePostCode(String code){
 		
 		String regex = "^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$";
@@ -50,18 +55,21 @@ public class Address {
 	public String getAddressLine() {
 		return addressLine;
 	}
+
 	/**
 	 * @param addressLine the addressLine to set
 	 */
 	public void setAddressLine(String addressLine) {
 		this.addressLine = addressLine;
 	}
+
 	/**
 	 * @return the town
 	 */
 	public String getTown() {
 		return town;
 	}
+
 	/**
 	 * @param town the town to set
 	 */
@@ -75,6 +83,7 @@ public class Address {
 	public String getPostCode() {
 		return postCode;
 	}
+
 	/**
 	 * @param postCode the postCode to set
 	 */
