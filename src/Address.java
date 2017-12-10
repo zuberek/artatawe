@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Register and edit address validation and valid requiremenets
  * @author Joshua Blackman
  * @author Hefin Johnson
  *
