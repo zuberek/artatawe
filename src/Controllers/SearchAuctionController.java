@@ -403,7 +403,7 @@ public class SearchAuctionController {
 	private void bringViewAuctionSceneForAuction(Auction auction){
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewAuction.fxml"));
-			Parent editRoot = (Parent) fxmlLoader.load();
+			Parent editRoot = fxmlLoader.load();
 	
 			ViewAuctionController ctrl = fxmlLoader.getController();
 			ctrl.initialize(currentUser, auction);
