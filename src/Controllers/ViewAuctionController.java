@@ -43,7 +43,7 @@ public class ViewAuctionController {
 	@FXML Label authorLabel;
 	@FXML Label yearLabel;
 	@FXML TextField heightTextField;
-	@FXML TextField weightTextField;
+	@FXML TextField widthTextField;
 	
 	public void viewImages() {
 		
@@ -145,7 +145,7 @@ public class ViewAuctionController {
 					
 					
 					Bid currentBid = new Bid(auction.getLastBidID());
-					currentBidLabel.setText("£"+String.valueOf(currentBid.getAmount()));
+					currentBidLabel.setText("ï¿½"+String.valueOf(currentBid.getAmount()));
 					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
 						auction.finishAuction();
 						CONSTANTS.makeAlertWindow("success", "You have won the auction");
