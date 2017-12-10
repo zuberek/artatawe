@@ -184,7 +184,7 @@ public class AuctionList {
 			String whereClause = "";
 			for(int i = 0; i < userList.size();i++) {
 				whereClause += " `sellerID` = '" + userList.get(i).getUserID() + "'";
-				if(i == 0 && userList.size() > 0) {
+				if(i == 0 && userList.size() > 1) {
 					whereClause += " OR ";
 				} else if(i < userList.size()-1) {
 					whereClause += " OR ";
@@ -192,7 +192,6 @@ public class AuctionList {
 			}
 
 			String query = "SELECT * from `auctions` WHERE" + whereClause;
-			System.out.println(query);
 			populateArray(query, auctionList);
 		}
 

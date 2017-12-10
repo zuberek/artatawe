@@ -1,6 +1,7 @@
 package src.Controllers;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -11,6 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -22,6 +26,7 @@ import src.Bid;
 import src.BidList;
 import src.Login;
 import src.User;
+import src.UserList;
 
 public class DashboardController {
 	
@@ -33,13 +38,105 @@ public class DashboardController {
 	@FXML Label welcomeLabel;
 	@FXML ListView<String> browseAuctions;
 	
+	@FXML Label auctionLabel1;
+	@FXML Label auctionLabel2;
+	@FXML Label auctionLabel3;
+	@FXML Label auctionLabel4;
+	
+	@FXML ImageView auctionImage1;
+	@FXML ImageView auctionImage2;
+	@FXML ImageView auctionImage3;
+	@FXML ImageView auctionImage4;
+	
+	@FXML TextArea auctionDesc1;
+	@FXML TextArea auctionDesc2;
+	@FXML TextArea auctionDesc3;
+	@FXML TextArea auctionDesc4;
+	
+	@FXML Button auctionButton1;
+	@FXML Button auctionButton2;
+	@FXML Button auctionButton3;
+	@FXML Button auctionButton4;
+	
 	User currentUser;
 	ArrayList<Auction> auctions;
+	int counter = 0;
 	
 	public void initialize(User currentUser){
 		this.currentUser = currentUser;
 		welcomeLabel.setText("Welcome " + currentUser.getFirstName());
 		
+		UserList ul = new UserList();
+		
+		auctions = AuctionList.getUsersAuctions(ul.getFavouriteUsers(currentUser.getUserID()));
+		populateAuctions();
+	}
+	
+	public void populateAuctions() {
+		if(!auctions.isEmpty()) {
+			for(int i = 0; i <= 3;i++) {
+				int auctionCounter =  i + counter;
+				if(auctionCounter < auctions.size()) {
+					switch(i) {
+						case 0:
+							auctionLabel1.setText(auctions.get(auctionCounter).getArtwork().getTitle());
+							auctionDesc1.setText(auctions.get(auctionCounter).getArtwork().getDescription());
+							InputStream stream = getClass().getResourceAsStream(auctions.get(auctionCounter).getArtwork().getPhotographPath());
+							Image newImage = new Image(stream);
+							auctionImage1.setImage(newImage);
+							break;
+						case 1:
+							auctionLabel2.setText(auctions.get(auctionCounter).getArtwork().getTitle());
+							auctionDesc2.setText(auctions.get(auctionCounter).getArtwork().getDescription());
+							InputStream stream2 = getClass().getResourceAsStream(auctions.get(auctionCounter).getArtwork().getPhotographPath());
+							Image newImage2 = new Image(stream2);
+							auctionImage2.setImage(newImage2);
+							break;
+						case  2:
+							auctionLabel3.setText(auctions.get(auctionCounter).getArtwork().getTitle());
+							auctionDesc3.setText(auctions.get(auctionCounter).getArtwork().getDescription());
+							InputStream stream3 = getClass().getResourceAsStream(auctions.get(auctionCounter).getArtwork().getPhotographPath());
+							Image newImage3 = new Image(stream3);
+							auctionImage1.setImage(newImage3);
+							break;
+						case 3:
+							auctionLabel4.setText(auctions.get(auctionCounter).getArtwork().getTitle());
+							auctionDesc4.setText(auctions.get(auctionCounter).getArtwork().getDescription());
+							InputStream stream4 = getClass().getResourceAsStream(auctions.get(auctionCounter).getArtwork().getPhotographPath());
+							Image newImage4 = new Image(stream4);
+							auctionImage1.setImage(newImage4);
+							break;
+					}
+				}  else {
+					switch(i) {
+						case 0:
+							auctionLabel1.setVisible(false);
+							auctionDesc1.setVisible(false);
+							auctionImage1.setVisible(false);
+							auctionButton1.setVisible(false);
+							break;
+						case 1:
+							auctionLabel2.setVisible(false);
+							auctionDesc2.setVisible(false);
+							auctionImage2.setVisible(false);
+							auctionButton2.setVisible(false);
+							break;
+						case 2:
+							auctionLabel3.setVisible(false);
+							auctionDesc3.setVisible(false);
+							auctionImage3.setVisible(false);
+							auctionButton3.setVisible(false);
+							break;
+						case 3:
+							auctionLabel4.setVisible(false);
+							auctionDesc4.setVisible(false);
+							auctionImage4.setVisible(false);
+							auctionButton4.setVisible(false);
+							break;
+					}
+				}
+			}
+		}
 	}
 	
 	public void soldArtworkHistory(){
