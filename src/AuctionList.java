@@ -192,7 +192,6 @@ public class AuctionList {
 			}
 
 			String query = "SELECT * from `auctions` WHERE" + whereClause;
-			System.out.println(query);
 			populateArray(query, auctionList);
 		}
 
