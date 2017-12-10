@@ -22,6 +22,7 @@ import src.Bid;
 import src.BidList;
 import src.Login;
 import src.User;
+import src.UserList;
 
 public class DashboardController {
 	
@@ -33,13 +34,30 @@ public class DashboardController {
 	@FXML Label welcomeLabel;
 	@FXML ListView<String> browseAuctions;
 	
+	@FXML Label auctionLabel1;
+	
 	User currentUser;
 	ArrayList<Auction> auctions;
+	int counter = 4;
 	
 	public void initialize(User currentUser){
 		this.currentUser = currentUser;
 		welcomeLabel.setText("Welcome " + currentUser.getFirstName());
 		
+		UserList ul = new UserList();
+		
+		auctions = AuctionList.getUsersAuctions(ul.getFavouriteUsers(currentUser.getUserID()));
+		populateAuctions();
+	}
+	
+	public void populateAuctions() {
+		if(!auctions.isEmpty()) {
+			for(int i = 0 + counter; i + counter <= 3;i++) {
+				if(i < auctions.size()) {
+					System.out.println(auctions.get(i).getAuctionID());
+				}
+			}
+		}
 	}
 	
 	public void soldArtworkHistory(){
