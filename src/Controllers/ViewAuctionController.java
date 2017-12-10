@@ -60,7 +60,8 @@ public class ViewAuctionController {
 	/**
 	 * Set the user that is being edited.
 	 * When this window is closed, the changes will be set in this user object.
-	 * @param The user to be edited.
+	 * @param currentUser The user to be edited.
+	 * @param auction The auction to be initialised
 	 */
 	public void initialize(User currentUser, Auction auction) {
 		this.currentUser = currentUser;
@@ -68,7 +69,7 @@ public class ViewAuctionController {
 		
 		auctionNameLabel.setText(this.auction.getArtwork().getTitle());
 		auctionDescriptionTextBox.setText(this.auction.getArtwork().getDescription());
-		reservePrice.setText("£"+this.auction.getReservePrice());
+		reservePrice.setText("Â£"+this.auction.getReservePrice());
 		bidsPlacedLabel.setText(this.auction.getCurrentBids(this.auction.getAuctionID()) + "/" + this.auction.getMaxBids());
 		InputStream stream = getClass().getResourceAsStream(this.auction.getArtwork().getPhotographPath());
 		Image newImage = new Image(stream);
@@ -76,7 +77,7 @@ public class ViewAuctionController {
 		
 		
 		Bid currentBid = new Bid(this.auction.getLastBidID());
-		currentBidLabel.setText("£"+String.valueOf(currentBid.getAmount()));
+		currentBidLabel.setText("Â£"+String.valueOf(currentBid.getAmount()));
 	}
 	
 
