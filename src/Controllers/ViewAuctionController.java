@@ -145,7 +145,7 @@ public class ViewAuctionController {
 					
 					
 					Bid currentBid = new Bid(auction.getLastBidID());
-					currentBidLabel.setText("£"+String.valueOf(currentBid.getAmount()));
+					currentBidLabel.setText("Â£"+String.valueOf(currentBid.getAmount()));
 					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
 						auction.finishAuction();
 						CONSTANTS.makeAlertWindow("success", "You have won the auction");
