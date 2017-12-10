@@ -122,7 +122,6 @@ public class Auction {
 	public void saveAuctionAfterBidding(){
 		// Insert user into database
 		String query = "UPDATE `auctions` SET `lastBidID` = '" + this.getLastBidID() + "' WHERE `auctionID` = " + this.getAuctionID();
-		//System.out.println(query);
 		DB.query(query);
 	}
 
