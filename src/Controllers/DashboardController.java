@@ -63,8 +63,11 @@ public class DashboardController {
 	@FXML Button auctionButton3;
 	@FXML Button auctionButton4;
 	
+	@FXML GridPane gridPane;
+	
 	User currentUser;
 	ArrayList<Auction> auctions;
+	ArrayList<User> favourites;
 	int counter = 0;
 	
 	public void initialize(User currentUser){
@@ -73,9 +76,11 @@ public class DashboardController {
 		
 		UserList ul = new UserList();
 		
-		
+		favourites = UserList.getFavouriteUsers(currentUser.getUserID());
 		
 		auctions = AuctionList.getUsersAuctions(ul.getFavouriteUsers(currentUser.getUserID()));
+		
+		this.dynamicFavoritesGridPane(gridPane, favourites);
 		
 		if((int)Math.ceil(auctions.size()/4) == 0){
 			pageNumberLabel.setText("1/1");
