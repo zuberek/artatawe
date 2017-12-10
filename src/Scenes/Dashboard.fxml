@@ -35,7 +35,7 @@
             <Button fx:id="nextPageButton" layoutX="426.0" layoutY="445.0" mnemonicParsing="false" text="Next Page" />
             <Button fx:id="prevPageButton" layoutX="25.0" layoutY="445.0" mnemonicParsing="false" text="Prev Page" />
             <Label fx:id="pageNumberLabel" layoutX="249.0" layoutY="450.0" text="1/5" />
-            <VBox alignment="CENTER" layoutX="605.0" layoutY="45.0">
+            <VBox alignment="CENTER" layoutX="605.0" layoutY="45.0" prefHeight="292.0" prefWidth="121.0">
                <children>
                   <Label fx:id="welcomeLabel" text="Welcome user" />
                   <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileClicked" text="Edit Profile">
@@ -48,7 +48,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="bidHistoryButton" mnemonicParsing="false" onAction="#bidHistoryClicked" text="Your Bid History">
+                  <Button fx:id="browseAuctionsButton" mnemonicParsing="false" onAction="#browseAuctionsClicked" text="Browse Auctions">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="bidHistoryButton" mnemonicParsing="false" onAction="#bidHistoryClicked" text="Bid History">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -58,7 +63,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="browseAuctionsButton" mnemonicParsing="false" onAction="#browseAuctionsClicked" text="Browse Auctions">
+                  <Button fx:id="wonArtworksButton" mnemonicParsing="false" text="Won Artworks">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
