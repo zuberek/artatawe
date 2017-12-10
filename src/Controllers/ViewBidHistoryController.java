@@ -6,12 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import src.Auction;
 import src.Bid;
 
 public class ViewBidHistoryController {
 	@FXML AnchorPane rootPane;
-	@FXML ListView bidHistoryList;
+	@FXML ListView<String> bidHistoryList;
 	
 	public void initialize(ArrayList<Bid> bids){
 		for(Bid bid: bids){

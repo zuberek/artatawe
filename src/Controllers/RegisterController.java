@@ -13,8 +13,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.Address;
 import src.CONSTANTS;
-import src.DrawingTool.DrawingCanvas;
 import src.User;
+import src.DrawingTool.DrawingCanvas;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -35,7 +35,7 @@ public class AddAuctionController {
 
 	ObservableList<String> artworkChoiceList = FXCollections.observableArrayList("Painting", "Sculpture");
 
-	@FXML ComboBox artworkTypeComboBox;
+	@FXML ComboBox<String> artworkTypeComboBox;
 
 	@FXML TextField titleTextField;
 	@FXML TextField artistTextField;
@@ -144,6 +144,7 @@ public class AddAuctionController {
 	/**
 	 * Event handler for auction add button, with validation for all auction detail input boxes
 	 */
+	@SuppressWarnings("unused")
 	public void addAuctionButtonClicked(){
 		StringBuilder textField = new StringBuilder();
 		if (titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() ||

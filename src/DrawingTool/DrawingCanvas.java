@@ -1,8 +1,6 @@
 package src.DrawingTool;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -11,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import src.AuctionList;
 import src.User;
 import src.UserList;
 
@@ -25,7 +22,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.stage.FileChooser;
-import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
 /**
@@ -66,24 +62,24 @@ public class DrawingCanvas extends Application{
     private static final int TEXTFIELD_COLUMN_COUNT = 11;
 
     private Canvas canvas;
-    private Stage primaryStage;
     User editedUSer;
 
     public static void main(String[] args){
         launch(args);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = buildGUI();
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         scene.getStylesheets().add(getClass().getResource("../Styles/drawing-canvas.css").toExternalForm());
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+   
+		GraphicsContext gc = canvas.getGraphicsContext2D();
        
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
 
-        this.primaryStage = primaryStage;
         primaryStage.show();
     }
 
@@ -93,7 +89,8 @@ public class DrawingCanvas extends Application{
         Pane root = buildGUI();
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         scene.getStylesheets().add(getClass().getResource("../Styles/drawing-canvas.css").toExternalForm());
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        @SuppressWarnings("unused")
+		GraphicsContext gc = canvas.getGraphicsContext2D();
 
         return scene;
     }
@@ -126,7 +123,7 @@ public class DrawingCanvas extends Application{
         /*
           Choicebox used for tool selection
          */
-        ChoiceBox choiceBox = new ChoiceBox();
+        ChoiceBox<String> choiceBox = new ChoiceBox<String>();
         choiceBox.getItems().addAll("Circle", "Square", "Text", "Line", "Freedraw");
         choiceBox.getSelectionModel().selectFirst();
         sidebar.getChildren().add(choiceBox);

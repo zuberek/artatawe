@@ -22,6 +22,7 @@ public class Login extends Application {
 	private static final String WINDOW_TITLE = "Artatawe | Login";
 
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		DB db = new DB();
         launch(args);
     }

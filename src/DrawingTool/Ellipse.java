@@ -12,7 +12,9 @@ import javafx.scene.paint.Color;
  */
 public class Ellipse extends ShapeElement{
 
-    private static double ERASER_POSITION_OFFSET = 5; // Used to fully erase the drawn ellipse
+    @SuppressWarnings("unused")
+	private static double ERASER_POSITION_OFFSET = 5; // Used to fully erase the drawn ellipse
+    @SuppressWarnings("unused")
     private static double ERASER_SIZE_OFFSET = 3; // Used to fully erase the drawn ellipse
 
     /**

@@ -12,6 +12,7 @@ public class Rectangle extends ShapeElement{
 
 
     private static double ERASER_POSITION_OFFSET = 10; // Used to fully erase the drawn rectangle
+    @SuppressWarnings("unused")
     private static double ERASER_SIZE_OFFSET = 5; // Used to fully erase the drawn rectangle
 
     /**

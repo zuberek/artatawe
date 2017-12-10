@@ -13,14 +13,13 @@ import src.User;
 public class ViewSoldHistoryController {
 
 	@FXML AnchorPane rootPane;
-	@FXML ListView soldListView;
+	@FXML ListView<String> soldListView;
 	
 	User currentUser;
 	
 	public void initialize(User currentUser){
 		this.currentUser = currentUser;
-		AuctionList al = new AuctionList();
-		ArrayList<Auction> auctions = al.getUserSellingAuctionList(currentUser.getUserID());
+		ArrayList<Auction> auctions = AuctionList.getUserSellingAuctionList(currentUser.getUserID());
 		for(Auction a:auctions){
 			soldListView.getItems().add(a.getDescriptionForList());
 		}
