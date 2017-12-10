@@ -12,8 +12,6 @@ import java.util.ArrayList;
  */
 public class UserList {
 	
-	ArrayList<User> userList;
-	
 	/**
 	 * @return
 	 */
@@ -39,8 +37,8 @@ public class UserList {
 	 * @param userID
 	 * @return  arraylist of user objects that the given user has favourited
 	 */
-	public ArrayList<User> getFavouriteUsers(int userID){
-		userList = new ArrayList<>();
+	public static ArrayList<User> getFavouriteUsers(int userID){
+		ArrayList<User> userList = new ArrayList<>();
 		try {
 			ResultSet rs = DB.select("SELECT * from `favourites` WHERE `userID` = '" + userID + "'");
 			while(rs.next()) {
