@@ -23,34 +23,22 @@
             <Button fx:id="bidHistoryButton" layoutX="514.0" layoutY="175.0" mnemonicParsing="false" onAction="#bidHistoryClicked" prefHeight="25.0" prefWidth="104.0" text="Your Bid History" />
             <Button fx:id="auctionHistoryButton" layoutX="514.0" layoutY="209.0" mnemonicParsing="false" onAction="#soldArtworkHistory" prefHeight="25.0" prefWidth="104.0" text="Sold History" />
             <Label layoutX="12.0" layoutY="44.0" text="Auctions from your favourite users" />
-            <ImageView fx:id="auctionImage1" fitHeight="89.0" fitWidth="89.0" layoutX="14.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/ArtworksImages/1.1.png" />
-               </image></ImageView>
+            <ImageView fx:id="auctionImage1" fitHeight="89.0" fitWidth="89.0" layoutX="14.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="auctionLabel1" layoutX="113.0" layoutY="86.0" text="Label" />
             <TextArea fx:id="auctionDesc1" editable="false" layoutX="113.0" layoutY="110.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
-            <ImageView fx:id="auctionImage2" fitHeight="89.0" fitWidth="89.0" layoutX="269.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/ArtworksImages/1.1.png" />
-               </image></ImageView>
+            <ImageView fx:id="auctionImage2" fitHeight="89.0" fitWidth="89.0" layoutX="269.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="auctionLabel2" layoutX="368.0" layoutY="85.0" text="Label" />
             <TextArea fx:id="auctionDesc2" editable="false" layoutX="368.0" layoutY="109.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
             <Button fx:id="auctionButton1" layoutX="179.0" layoutY="175.0" mnemonicParsing="false" onAction="#auctionButton1Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
-            <Button fx:id="auctionButton2" layoutX="434.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="52.0" text="View" />
-            <ImageView fx:id="auctionImage3" fitHeight="89.0" fitWidth="89.0" layoutX="20.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/ArtworksImages/1.1.png" />
-               </image></ImageView>
+            <Button fx:id="auctionButton2" layoutX="434.0" layoutY="175.0" mnemonicParsing="false" onAction="#auctionButton2Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
+            <ImageView fx:id="auctionImage3" fitHeight="89.0" fitWidth="89.0" layoutX="20.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="auctionLabel3" layoutX="119.0" layoutY="225.0" text="Label" />
             <TextArea fx:id="auctionDesc3" editable="false" layoutX="119.0" layoutY="249.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
-            <Button fx:id="auctionButton3" layoutX="186.0" layoutY="316.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="52.0" text="View" />
-            <ImageView fx:id="auctionImage4" fitHeight="89.0" fitWidth="89.0" layoutX="275.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/ArtworksImages/1.1.png" />
-               </image></ImageView>
+            <Button fx:id="auctionButton3" layoutX="186.0" layoutY="316.0" mnemonicParsing="false" onAction="#auctionButton3Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
+            <ImageView fx:id="auctionImage4" fitHeight="89.0" fitWidth="89.0" layoutX="275.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="auctionLabel4" layoutX="374.0" layoutY="226.0" text="Label" />
             <TextArea fx:id="auctionDesc4" editable="false" layoutX="374.0" layoutY="250.0" prefHeight="62.0" prefWidth="118.0" wrapText="true" />
-            <Button fx:id="auctionButton4" layoutX="440.0" layoutY="316.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="52.0" text="View" />
+            <Button fx:id="auctionButton4" layoutX="440.0" layoutY="316.0" mnemonicParsing="false" onAction="#auctionButton4Clicked" prefHeight="17.0" prefWidth="52.0" text="View" />
             <Button fx:id="nextPageButton" layoutX="415.0" layoutY="361.0" mnemonicParsing="false" text="Next Page" />
             <Button fx:id="prevPageButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Prev Page" />
             <Label fx:id="pageNumberLabel" layoutX="238.0" layoutY="366.0" text="1/5" />
