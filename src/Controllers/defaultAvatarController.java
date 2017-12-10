@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import src.User;
 
-public class defautAvatarController {
+public class defaultAvatarController {
 
 	//TODO:really need to come up with better idea for this
     @FXML Pane rootPane;
