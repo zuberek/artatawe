@@ -10,13 +10,20 @@ import src.Auction;
 import src.AuctionList;
 import src.User;
 
+/**
+ * CLass for viewing past sold artwork history
+ */
 public class ViewSoldHistoryController {
 
 	@FXML AnchorPane rootPane;
 	@FXML ListView<String> soldListView;
-	
-	User currentUser;
-	
+
+	private User currentUser;
+
+	/**
+	 * Initialise 
+	 * @param currentUser Current logged-in user
+	 */
 	public void initialize(User currentUser){
 		this.currentUser = currentUser;
 		ArrayList<Auction> auctions = AuctionList.getUserSellingAuctionList(currentUser.getUserID());

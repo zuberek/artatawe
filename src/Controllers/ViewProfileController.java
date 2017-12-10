@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 import src.CONSTANTS;
 import src.User;
 
+/**
+ * Profile viewing controller, allowing favouriting and unfavouriting
+ * users so that their auctions are also displayed on your dashboard
+ */
 public class ViewProfileController{
 
 	
@@ -22,13 +26,22 @@ public class ViewProfileController{
 	
 	private boolean favourited;
 	
-	User currentUser;
-	User userToView;
-	
+	private User currentUser;
+	private User userToView;
+
+	/**
+	 * Construction for instantiation
+	 */
 	public ViewProfileController() {
 		
 	}
-	
+
+	/**
+	 * Initialise display for viewing/favouriting a specific user,
+	 * retrieving user profile image and details
+	 * @param userToView User to be viewed
+	 * @param currentUser current logged-in user
+	 */
 	public void initialize(User userToView, User currentUser) {
 		this.currentUser = currentUser;
 		this.userToView = userToView;
@@ -44,8 +57,10 @@ public class ViewProfileController{
 		Image newImage = new Image(stream);
 		profileImage.setImage(newImage);
 	}
-	
 
+	/**
+	 * Event handler for favouriting and unfavouriting user
+	 */
 	public void favouriteUser() {
 		if(favourited) {
 			currentUser.unfavouriteUser(userToView.getUserID());
@@ -59,7 +74,10 @@ public class ViewProfileController{
 			CONSTANTS.makeAlertWindow("warning","You can not favorite yourself!");
 		}
 	}
-	
+
+	/**
+	 * Close the profile view window
+	 */
 	public void close() {
 		Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();

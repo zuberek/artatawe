@@ -250,6 +250,9 @@ public class SearchAuctionController {
 
 	}
 
+	/**
+	 * Refresh auction list on screen
+	 */
 	private void refresh(){
 		count = 0;
 		this.clearDisplayedAuctions();
@@ -319,7 +322,7 @@ public class SearchAuctionController {
 
 	/**
 	 * Checks if there are more auctions to display when at the end of the page
-	 * @return
+	 * @return boolean depending on if there are more pages needed
 	 */
 	private boolean checkIfMoreAndIncrease(){
 		boolean result = false;
@@ -330,6 +333,9 @@ public class SearchAuctionController {
 		return result;
 	}
 
+	/**
+	 * Event handler on next page button click
+	 */
 	public void nextPageButtonClicked(){
 		if(checkIfMoreAndIncrease()){
 			this.clearDisplayedAuctions();
@@ -338,6 +344,9 @@ public class SearchAuctionController {
 		}
 	}
 
+	/**
+	 * Event handler on previous page button click
+	 */
 	public void backPageButtonClicked(){
 		if((count/AUCTIONS_PER_WINDOW-1) * AUCTIONS_PER_WINDOW >= 0){
 			count = (count/AUCTIONS_PER_WINDOW - 1) * AUCTIONS_PER_WINDOW;
@@ -347,6 +356,9 @@ public class SearchAuctionController {
 		}
 	}
 
+	/**
+	 * Clear all displayed auctions
+	 */
 	private void clearDisplayedAuctions(){
 		HBox1.setVisible(false);
 		HBox2.setVisible(false);
@@ -356,6 +368,11 @@ public class SearchAuctionController {
 		HBox6.setVisible(false);
 	}
 
+	/**
+	 * Return basic information about an auction
+	 * @param count Index of auction clicked to display
+	 * @return Array of basic artwork information
+	 */
 	private String[] getInfo(int count){
 		Auction displayedAuction = auctionsToDisplay.get(count);
 		Artwork displayedArtwork = displayedAuction.getArtwork();
@@ -369,11 +386,19 @@ public class SearchAuctionController {
 		return result;
 	}
 
+	/**
+	 * Retrieve image for artwork
+	 * @param count Index of displayed auction
+	 * @return Image stream of artwork image
+	 */
 	private Image getImage(int count){
 		InputStream stream = getClass().getResourceAsStream(auctionsToDisplay.get(count).getArtwork().getPhotographPath());
 		return new Image(stream);
 	}
 
+	/**
+	 * Updates navigation labels to change auction display
+	 */
 	private void updateNavigationLabel(){
 		int size = auctionsToDisplay.size();
 
@@ -389,47 +414,68 @@ public class SearchAuctionController {
 		navigationLabel.setText(fakeCount + " - " + auctionsOnScreen + " of " + size);
 	}
 
+	/**
+	 * Event handler to return to dashboard page
+	 */
 	public void goBackButtonClicked(){
 		Stage stage = (Stage) rootPane.getScene().getWindow();
 		stage.close();
 	}
 
+	/**
+	 * Event handler for clicking auction 1
+	 */
 	public void mouseClickHBox0Handler(){	
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
 		Auction clickedAuction = auctionsToDisplay.get(index);
 		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
-	
+	/**
+	 * Event handler for clicking auction 2
+	 */
 	public void mouseClickHBox1Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
 		Auction clickedAuction = auctionsToDisplay.get(index + 1);
 		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
-	
+	/**
+	 * Event handler for clicking auction 3
+	 */
 	public void mouseClickHBox2Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
 		Auction clickedAuction = auctionsToDisplay.get(index + 2);
 		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
-	
+	/**
+	 * Event handler for clicking auction 4
+	 */
 	public void mouseClickHBox3Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
 		Auction clickedAuction = auctionsToDisplay.get(index + 3);
 		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
-	
+	/**
+	 * Event handler for clicking auction 5
+	 */
 	public void mouseClickHBox4Handler(){	
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
 		Auction clickedAuction = auctionsToDisplay.get(index + 4);
 		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
-	
+	/**
+	 * Event handler for clicking auction 6
+	 */
 	public void mouseClickHBox5Handler(){		
 		int index = ((count)/AUCTIONS_PER_WINDOW)*AUCTIONS_PER_WINDOW;
 		Auction clickedAuction = auctionsToDisplay.get(index + 5);
 		this.bringViewAuctionSceneForAuction(clickedAuction);
 	}
 
+	/**
+	 * Event handler to bring full auction display for a single auction, allowing
+	 * interaction such as bidding and checking seller profile.
+	 * @param auction auction to be viewed by the method
+	 */
 	private void bringViewAuctionSceneForAuction(Auction auction){
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewAuction.fxml"));
