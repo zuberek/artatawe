@@ -55,7 +55,10 @@ public class AddAuctionController {
 	User currentUser;
 	Artwork artworkToCreate;
 
-
+	/**
+	 * Initialise the auction for a certain user, also setting userID hosting the auction
+	 * @param currentUser the user and all details to be used for the set-up auction
+	 */
 	public void initialize(User currentUser) {
 		// TODO Auto-generated method stub
 		this.currentUser = currentUser;
@@ -66,13 +69,20 @@ public class AddAuctionController {
 
 		this.setArtworkImage();
 	}
-	
+
+	/**
+	 * Setup the image for the artwork, changing from the default
+	 */
 	private void setArtworkImage(){
 		InputStream stream = getClass().getResourceAsStream(artworkToCreate.getPhotographPath());
 		Image newImage = new Image(stream);
 		artworkPhoto.setImage(newImage);
 	}
 
+	/**
+	 * Add dropdown box in FXML for changing the type of artwork between sculpture and painting,
+	 * changing label and entry-box visibility accordingly
+	 */
 	@FXML
 	private void artworkTypeComboBox() {
 		if (artworkTypeComboBox.getValue().equals("Sculpture")) {
@@ -89,6 +99,9 @@ public class AddAuctionController {
 		}
 	}
 
+	/**
+	 * Listener for change picture button
+	 */
 	public void pictureChangeButtonClicked(){	
 		int artworkID = AuctionList.getNewestArtworkID()+1;
 		FileChooser fileChooser = new FileChooser();
@@ -111,6 +124,11 @@ public class AddAuctionController {
 		this.setArtworkImage();
 	}
 
+	/**
+	 *
+	 * @param fileChooser Offshoot of explorer used for browsing files on disk,
+	 * in this case pictures
+	 */
 	private void configureFileChooser(final FileChooser fileChooser) {
 		fileChooser.setTitle("Open Resource File");
 		fileChooser.setInitialDirectory(
@@ -123,6 +141,9 @@ public class AddAuctionController {
 				);
 	}
 
+	/**
+	 * Listener for auction add button, with validation for all auction detail input boxes
+	 */
 	public void addAuctionButtonClicked(){
 		StringBuilder textField = new StringBuilder();
 		if (titleTextField.getText().isEmpty() || artistTextField.getText().isEmpty() ||
@@ -177,6 +198,10 @@ public class AddAuctionController {
 		}
 	}
 
+	/**
+	 * Validate the basic auction description field values
+	 * @return boolean with respect to whether the auction field values are allowed or rejected
+	 */
 	private boolean validateAuction(){
 		boolean result = false;
 		if (CONSTANTS.isNumeric(reservePriceTextField.getText()) && CONSTANTS.isNumeric(maxBidsTextField.getText())) {
@@ -196,6 +221,10 @@ public class AddAuctionController {
 		return result;
 	}
 
+	/**
+	 * Validate year of creation input field
+	 * @return boolean with respect to whether the auction field values are allowed or rejected
+	 */
 	private boolean validateYear(){
 		boolean result = false;
 		if (CONSTANTS.isNumeric(yearTextField.getText())){
