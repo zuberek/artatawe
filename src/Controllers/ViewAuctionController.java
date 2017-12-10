@@ -46,6 +46,8 @@ public class ViewAuctionController {
 	@FXML Label yearLabel;
 	@FXML TextField heightTextField;
 	@FXML TextField widthTextField;
+	@FXML Label depthLabel;
+	@FXML TextField depthTextField;
 	
 	public void viewImages() {
 		
@@ -72,11 +74,20 @@ public class ViewAuctionController {
 		}
 		
 		
+		
 		double[] dimensions = auction.getArtwork().getDimensions();
 		//System.out.println(dimensions[0]);
 		//System.out.println(dimensions[1]);
 		heightTextField.setText(String.valueOf(dimensions[0]));
 		widthTextField.setText(String.valueOf(dimensions[1]));
+		if(dimensions[2] != 0) {
+			depthTextField.setVisible(true);
+			depthTextField.setText(String.valueOf(dimensions[2]));
+			depthLabel.setVisible(true);
+		} else {
+			depthTextField.setVisible(false);
+			depthLabel.setVisible(false);
+		}
 		
 		authorLabel.setText(auction.getArtwork().getArtist());
 		yearLabel.setText(auction.getArtwork().getDateCreated());
