@@ -6,6 +6,8 @@ import javafx.scene.paint.Color;
 /**
  * Creates a src.Line object
  * @author Hefin Johnson
+ * @author Petar Radovanovic (88633)
+ * @version 1.0
  */
 
 public class Line extends LinearElement{

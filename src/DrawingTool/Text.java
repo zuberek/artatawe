@@ -7,6 +7,8 @@ import javafx.scene.text.Font;
 /**
  * Creates a src.Text object
  * @author Hefin Johnson
+ * @author Petar Radovanovic (888633)
+ * @version 1.0
  */
 
 public class Text extends DrawingElement {
