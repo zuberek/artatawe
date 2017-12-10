@@ -165,7 +165,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel1" text="Label">
+                              <Label fx:id="artworkTitleLabel1" alignment="CENTER_RIGHT" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -175,7 +175,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel1" text="Label">
+                              <Label fx:id="lastBidAmountLabel1" alignment="CENTER_RIGHT" text="Label">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
@@ -214,7 +214,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel4" text="Label">
+                              <Label fx:id="artworkTitleLabel4" alignment="CENTER_RIGHT" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -224,7 +224,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel4" text="Label">
+                              <Label fx:id="lastBidAmountLabel4" alignment="CENTER_RIGHT" text="Label">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
@@ -263,7 +263,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel3" text="Label">
+                              <Label fx:id="artworkTitleLabel3" alignment="CENTER_RIGHT" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -273,7 +273,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel3" text="Label">
+                              <Label fx:id="lastBidAmountLabel3" alignment="CENTER_RIGHT" text="Label">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
@@ -312,7 +312,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel5" text="Label">
+                              <Label fx:id="artworkTitleLabel5" alignment="CENTER_RIGHT" prefHeight="18.0" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -322,7 +322,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel5" text="Label">
+                              <Label fx:id="lastBidAmountLabel5" alignment="CENTER_RIGHT" prefHeight="18.0" text="Label">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
@@ -361,7 +361,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel6" text="Label">
+                              <Label fx:id="artworkTitleLabel6" alignment="CENTER_RIGHT" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -371,7 +371,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel6" text="Label">
+                              <Label fx:id="lastBidAmountLabel6" alignment="CENTER_RIGHT" text="Label">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
@@ -410,7 +410,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Title: " />
-                              <Label fx:id="artworkTitleLabel2" text="Label">
+                              <Label fx:id="artworkTitleLabel2" alignment="CENTER_RIGHT" text="Label">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -420,7 +420,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Amount" />
-                              <Label fx:id="lastBidAmountLabel2" text="Label">
+                              <Label fx:id="lastBidAmountLabel2" alignment="CENTER_RIGHT" text="Label">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>

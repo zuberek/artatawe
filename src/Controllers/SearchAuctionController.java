@@ -335,7 +335,7 @@ public class SearchAuctionController {
 		String[] result = new String[3];
 
 		result[0] = displayedArtwork.getTitle();
-		result[1] = "ï¿½" + String.valueOf(displayedAuction.getAuctionLastBidAmount());
+		result[1] = "£" + String.valueOf(displayedAuction.getAuctionLastBidAmount());
 		result[2] = displayedArtwork.getDescription();
 
 		return result;
