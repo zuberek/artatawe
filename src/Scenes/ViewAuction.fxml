@@ -4,19 +4,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.ViewAuctionController">
+<VBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controllers.ViewAuctionController">
    <children>
       <AnchorPane prefHeight="429.0" prefWidth="600.0">
          <children>
-            <Button fx:id="viewSellerProfileButton" layoutX="475.0" layoutY="104.0" mnemonicParsing="false" onAction="#viewSellerProfile" text="View Seller Profile" />
+            <Button fx:id="viewSellerProfileButton" layoutX="460.0" layoutY="118.0" mnemonicParsing="false" onAction="#viewSellerProfile" text="View Seller Profile" />
             <Label fx:id="auctionNameLabel" layoutX="154.0" layoutY="71.0" text="Auction Name" />
             <TextArea fx:id="auctionDescriptionTextBox" editable="false" layoutX="154.0" layoutY="104.0" prefHeight="90.0" prefWidth="255.0" wrapText="true" />
-            <ImageView fx:id="auctionImage" fitHeight="110.0" fitWidth="111.0" layoutX="21.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="closeButton" layoutX="475.0" layoutY="361.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="111.0" text="Close" />
+            <ImageView fx:id="auctionImage" fitHeight="110.0" fitWidth="111.0" layoutX="21.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Pictures/Painting.jpg" />
+               </image></ImageView>
+            <Button fx:id="closeButton" layoutX="475.0" layoutY="351.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="111.0" text="Close" />
             <Label layoutX="154.0" layoutY="223.0" text="Current Bid:" />
             <Label fx:id="currentBidLabel" alignment="CENTER_RIGHT" layoutX="219.0" layoutY="223.0" prefHeight="18.0" prefWidth="63.0" text="£10" />
             <TextField fx:id="bidAmount" layoutX="156.0" layoutY="247.0" prefHeight="25.0" prefWidth="255.0" />
