@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
@@ -17,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.Artwork;
@@ -61,19 +63,22 @@ public class DashboardController {
 	@FXML Button auctionButton3;
 	@FXML Button auctionButton4;
 	
+	@FXML GridPane gridPane;
+	
 	User currentUser;
 	ArrayList<Auction> auctions;
+	ArrayList<User> favourites;
 	int counter = 0;
 	
 	public void initialize(User currentUser){
 		this.currentUser = currentUser;
 		welcomeLabel.setText("Welcome " + currentUser.getFirstName());
 		
-		UserList ul = new UserList();
+		favourites = UserList.getFavouriteUsers(currentUser.getUserID());	
 		
-		
-		
-		auctions = AuctionList.getUsersAuctions(ul.getFavouriteUsers(currentUser.getUserID()));
+		auctions = AuctionList.getUsersAuctions(favourites);
+			
+		this.dynamicFavoritesGridPane(gridPane, favourites);
 		
 		if((int)Math.ceil(auctions.size()/4) == 0){
 			pageNumberLabel.setText("1/1");
@@ -82,6 +87,45 @@ public class DashboardController {
 		}
 		
 		populateAuctions();
+	}
+	
+	private void dynamicFavoritesGridPane(GridPane gridPane, ArrayList<User> favorites) {
+		final int IMAGE_COLUMN = 0;
+		final int PROFILE_COLUMN = 1;
+		final int FAVORITES_PROFILE_IMAGE = 20;
+		int row = 0;
+		Hyperlink favoriteUser;
+		ImageView profileImage;
+		gridPane.addRow(favorites.size());
+		for (User elem : favorites) {
+			profileImage = new ImageView();
+			profileImage.setFitHeight(FAVORITES_PROFILE_IMAGE);
+			profileImage.setFitWidth(FAVORITES_PROFILE_IMAGE);
+			try {
+		        InputStream stream = getClass().getResourceAsStream(elem.getDefaultAvatar());
+		        Image newImage = new Image(stream);
+		        profileImage.setImage(newImage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			favoriteUser = new Hyperlink();
+			favoriteUser.setText(elem.getUserName());
+//			favoriteUser.setOnAction(event -> {
+//				FXMLLoader loader = new FXMLLoader();
+//				loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
+//				try {
+//					BorderPane profileLayout = (BorderPane) loader.load();
+//					ProfileController controller = loader.getController();
+//					controller.initProfile(elem);
+//					Util.getHomeLayout().setCenter(profileLayout);
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			});
+			gridPane.add(favoriteUser, PROFILE_COLUMN, row);
+			gridPane.add(profileImage, IMAGE_COLUMN, row);
+			row++;
+		}
 	}
 	
 	public void populateAuctions() {
