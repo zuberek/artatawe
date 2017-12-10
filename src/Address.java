@@ -14,23 +14,11 @@ public class Address {
 	private String town;
 	private String postCode;
 
-	public Address(String houseNumber, String addressLine, String town, String postCode) {
-		if(this.validateHouseNumber(houseNumber)){
-			this.setHouseNumber(houseNumber);;;
-		}
-		this.setTown(town);
-		this.setAddressLine(addressLine);
-		if(this.validatePostCode(postCode)){
-			setPostCode(postCode);
-		}
+	public Address(){
+
 	}
-	
-	 private boolean isNumeric(String str)
-	    {
-	      return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
-	    }
 	 
-	private boolean validatePostCode(String code){
+	public static boolean validatePostCode(String code){
 		
 		String regex = "^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$";
 		
@@ -39,17 +27,6 @@ public class Address {
 		
 		return matcher.matches();
 	}
-
-	 private boolean validateHouseNumber(String code){
-		 
-		boolean result = false;
-				
-		if (isNumeric(code)) {
-			result = true;
-		} 
-				 
-		return result;
-	 }
 	 
 	 
 	/**
