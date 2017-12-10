@@ -67,18 +67,18 @@ public class ViewAuctionController {
 	 */
 	public void initialize(User currentUser, Auction auction) {
 		this.currentUser = currentUser;
-		this.auction = auction;
+		this.auction = new Auction(auction.getAuctionID());
 		
-		auctionNameLabel.setText(auction.getArtwork().getTitle());
-		auctionDescriptionTextBox.setText(auction.getArtwork().getDescription());
-		reservePrice.setText("£"+auction.getReservePrice());
-		bidsPlacedLabel.setText(auction.getCurrentBids(auction.getAuctionID()) + "/" + auction.getMaxBids());
-		InputStream stream = getClass().getResourceAsStream(auction.getArtwork().getPhotographPath());
+		auctionNameLabel.setText(this.auction.getArtwork().getTitle());
+		auctionDescriptionTextBox.setText(this.auction.getArtwork().getDescription());
+		reservePrice.setText("£"+this.auction.getReservePrice());
+		bidsPlacedLabel.setText(this.auction.getCurrentBids(this.auction.getAuctionID()) + "/" + this.auction.getMaxBids());
+		InputStream stream = getClass().getResourceAsStream(this.auction.getArtwork().getPhotographPath());
 		Image newImage = new Image(stream);
 		auctionImage.setImage(newImage);
 		
 		
-		Bid currentBid = new Bid(auction.getLastBidID());
+		Bid currentBid = new Bid(this.auction.getLastBidID());
 		currentBidLabel.setText("£"+String.valueOf(currentBid.getAmount()));
 	}
 	
