@@ -51,6 +51,16 @@ public class AuctionList {
 
 		return auctionList;
 	}
+	
+	public static ArrayList<Auction> getUserWonAuctionList(int userId) {
+		auctionList = new ArrayList<>();
+
+		String query = "SELECT * FROM auctions INNER JOIN bids ON auctions.lastBidID = bids.bidID WHERE auctions.active = 0 AND bids.bidderID = " + userId +"";
+		populateArray(query, auctionList);
+
+		return auctionList;
+	}
+
 
 	public static ArrayList<Auction> getAuctions() {
 		auctionList = new ArrayList<>();

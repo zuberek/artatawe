@@ -76,7 +76,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="wonArtworksButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="214.0" text="Won Artworks">
+                  <Button fx:id="wonArtworksButton" mnemonicParsing="false" onAction="#wonArtworks" prefHeight="35.0" prefWidth="214.0" text="Won Artworks">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
