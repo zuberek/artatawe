@@ -43,6 +43,16 @@ public class ViewAuctionController {
 	@FXML Label bidsPlacedLabel;
 	@FXML TextField bidAmount;
 	
+	// make functionality for them:
+	@FXML Label authorLabel;
+	@FXML Label yearLabel;
+	@FXML TextField heightTextField;
+	@FXML TextField weightTextField;
+	
+	public void viewImages() {
+		
+	}
+	
 	
 	Auction auction;
 	User currentUser;
