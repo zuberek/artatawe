@@ -268,6 +268,27 @@ public class DashboardController {
 		}
 	}
 	
+	public void wonArtworks(){
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewWonHistory.fxml"));
+			Parent editRoot = (Parent) fxmlLoader.load();
+	
+			ViewWonHistoryController ctrl = fxmlLoader.getController();
+			ctrl.initialize(currentUser);
+	
+			Scene newScene = new Scene(editRoot);
+            Stage stage = new Stage();
+            stage.setScene(newScene);
+            stage.setTitle("Artatawe |  Your Won History");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
 	public void soldArtworkHistory(){
 		
 		try {
