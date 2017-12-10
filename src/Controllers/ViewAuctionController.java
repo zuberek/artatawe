@@ -19,6 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 import src.Auction;
 import src.Bid;
 import src.BidList;
@@ -202,6 +205,12 @@ public class ViewAuctionController {
 					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
 						auction.finishAuction();
 						CONSTANTS.makeAlertWindow("success", "You have won the auction");
+						
+						String musicFile = "youwon.mp3";
+
+						Media sound = new Media(new File(musicFile).toURI().toString());
+						MediaPlayer mediaPlayer = new MediaPlayer(sound);
+						mediaPlayer.play();
 					} else {
 						CONSTANTS.makeAlertWindow("success", "You have placed a bid.");
 					}
