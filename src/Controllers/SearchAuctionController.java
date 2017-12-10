@@ -138,7 +138,7 @@ public class SearchAuctionController {
 	}
 
 	/**
-	 * 
+	 * Checkbox handler for searching by creation year and art era
 	 * @param checkBox Checkbox object from JavaFX
 	 */
 	private void configureCheckBox(CheckBox checkBox) {
@@ -161,6 +161,9 @@ public class SearchAuctionController {
 		});
 	}
 
+	/**
+	 * Event handler for searching by how many bids remain on an auction.
+	 */
 	public void bidsToFinishButtonClicked(){
 		int bidsToFinish = -1;
 
@@ -174,6 +177,9 @@ public class SearchAuctionController {
 		this.refresh();
 	}
 
+	/**
+	 * Event handler for searching by price range
+	 */
 	public void priceSearchButtonClicked(){
 		int minPrice = -1;
 		int maxPrice = -1;
@@ -201,6 +207,9 @@ public class SearchAuctionController {
 		this.refresh();
 	}
 
+	/**
+	 * Event handler for submitting a search by art era/creation year
+	 */
 	public void submitButtonClicked(){
 		if(contemporaryCheckBox.isSelected()){
 			auctionsToDisplay = AuctionList.getContemporaryAuctions();
@@ -221,6 +230,9 @@ public class SearchAuctionController {
 	}
 
 	@FXML
+	/**
+	 * Dropdown box for searching by artwork type
+	 */
 	private void artworkTypeComboBox() {
 		if(artworkTypeComboBox.getValue().equals("Painting")) {
 			auctionsToDisplay = AuctionList.getPaintingAuctions();
@@ -247,7 +259,10 @@ public class SearchAuctionController {
 		}
 	}
 
-	private void updateDisplayedAuctions(){
+	/**
+	 * Update all auctions displayed and check if extra display pages are needed
+	 */
+	private void updateDisplayedAuctions() {
 		String[] input = this.getInfo(count);
 		artworkTitleLabel1.setText(input[0]);
 		lastBidAmountLabel1.setText(input[1]);
@@ -255,7 +270,7 @@ public class SearchAuctionController {
 		artworkPhoto1.setImage(this.getImage(count));
 		HBox1.setVisible(true);
 
-		if (checkIfMoreAndIncrease()){
+		if (checkIfMoreAndIncrease()) {
 			input = this.getInfo(count);
 			artworkTitleLabel2.setText(input[0]);
 			lastBidAmountLabel2.setText(input[1]);
@@ -263,7 +278,7 @@ public class SearchAuctionController {
 			artworkPhoto2.setImage(this.getImage(count));
 			HBox2.setVisible(true);
 
-			if (checkIfMoreAndIncrease()){
+			if (checkIfMoreAndIncrease()) {
 				input = this.getInfo(count);
 				artworkTitleLabel3.setText(input[0]);
 				lastBidAmountLabel3.setText(input[1]);
@@ -271,7 +286,7 @@ public class SearchAuctionController {
 				artworkPhoto3.setImage(this.getImage(count));
 				HBox3.setVisible(true);
 
-				if (checkIfMoreAndIncrease()){
+				if (checkIfMoreAndIncrease()) {
 					input = this.getInfo(count);
 					artworkTitleLabel4.setText(input[0]);
 					lastBidAmountLabel4.setText(input[1]);
@@ -279,7 +294,7 @@ public class SearchAuctionController {
 					artworkPhoto4.setImage(this.getImage(count));
 					HBox4.setVisible(true);
 
-					if (checkIfMoreAndIncrease()){
+					if (checkIfMoreAndIncrease()) {
 						input = this.getInfo(count);
 						artworkTitleLabel5.setText(input[0]);
 						lastBidAmountLabel5.setText(input[1]);
@@ -288,19 +303,27 @@ public class SearchAuctionController {
 						HBox5.setVisible(true);
 
 
-						if (checkIfMoreAndIncrease()){
+						if (checkIfMoreAndIncrease()) {
 							input = this.getInfo(count);
 							artworkTitleLabel6.setText(input[0]);
 							lastBidAmountLabel6.setText(input[1]);
 							descriptionTextField6.setText(input[2]);
 							artworkPhoto6.setImage(this.getImage(count));
 							HBox6.setVisible(true);
-						}}}}}}
+						}
+					}
+				}
+			}
+		}
+	}
 
-
+	/**
+	 * Checks if there are more auctions to display when at the end of the page
+	 * @return
+	 */
 	private boolean checkIfMoreAndIncrease(){
 		boolean result = false;
-		if(count<auctionsToDisplay.size()-1){
+		if(count < auctionsToDisplay.size() - 1){
 			result = true;
 			count++;
 		}
@@ -316,8 +339,8 @@ public class SearchAuctionController {
 	}
 
 	public void backPageButtonClicked(){
-		if((count/AUCTIONS_PER_WINDOW-1)*AUCTIONS_PER_WINDOW >= 0){
-			count = (count/AUCTIONS_PER_WINDOW-1)*AUCTIONS_PER_WINDOW;
+		if((count/AUCTIONS_PER_WINDOW-1) * AUCTIONS_PER_WINDOW >= 0){
+			count = (count/AUCTIONS_PER_WINDOW - 1) * AUCTIONS_PER_WINDOW;
 			this.clearDisplayedAuctions();
 			this.updateNavigationLabel();
 			this.updateDisplayedAuctions();
@@ -340,7 +363,7 @@ public class SearchAuctionController {
 		String[] result = new String[3];
 
 		result[0] = displayedArtwork.getTitle();
-		result[1] = "£" + String.valueOf(displayedAuction.getAuctionLastBidAmount());
+		result[1] = "\u00A3" + String.valueOf(displayedAuction.getAuctionLastBidAmount());
 		result[2] = displayedArtwork.getDescription();
 
 		return result;
