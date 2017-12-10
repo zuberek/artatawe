@@ -191,7 +191,7 @@ public class AuctionList {
 				}
 			}
 
-			String query = "SELECT * from `auctions` WHERE" + whereClause;
+			String query = "SELECT * from `auctions` WHERE" + whereClause + " ORDER BY auctionID ASC";
 			populateArray(query, auctionList);
 		}
 
