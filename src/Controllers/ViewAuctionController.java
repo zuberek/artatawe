@@ -204,13 +204,12 @@ public class ViewAuctionController {
 					currentBidLabel.setText('\u00A3'+String.valueOf(currentBid.getAmount()));
 					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
 						auction.finishAuction();
-						CONSTANTS.makeAlertWindow("success", "You have won the auction");
-						
 						String musicFile = "youwon.mp3";
 
 						Media sound = new Media(new File(musicFile).toURI().toString());
 						MediaPlayer mediaPlayer = new MediaPlayer(sound);
 						mediaPlayer.play();
+						CONSTANTS.makeAlertWindow("success", "You have won the auction");						
 					} else {
 						CONSTANTS.makeAlertWindow("success", "You have placed a bid.");
 					}
