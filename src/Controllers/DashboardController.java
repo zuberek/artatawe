@@ -26,6 +26,7 @@ import src.Auction;
 import src.AuctionList;
 import src.Bid;
 import src.BidList;
+import src.CONSTANTS;
 import src.Login;
 import src.User;
 import src.UserList;
@@ -112,18 +113,28 @@ public class DashboardController {
 			}
 			favoriteUser = new Hyperlink();
 			favoriteUser.setText(elem.getUserName());
-//			favoriteUser.setOnAction(event -> {
-//				FXMLLoader loader = new FXMLLoader();
-//				loader.setLocation(Main.class.getResource("/layouts/profile_layout.fxml"));
-//				try {
-//					BorderPane profileLayout = (BorderPane) loader.load();
-//					ProfileController controller = loader.getController();
-//					controller.initProfile(elem);
-//					Util.getHomeLayout().setCenter(profileLayout);
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			});
+			favoriteUser.setOnAction(event -> {
+		        try {
+		        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewProfile.fxml"));
+		            Parent editRoot = (Parent) fxmlLoader.load();
+
+		            ViewProfileController vcp = fxmlLoader.getController();
+		            vcp.initialize(elem, currentUser);
+
+		            Scene newScene = new Scene(editRoot);
+		            Stage editStagee = new Stage();
+		            editStagee.setScene(newScene);
+		            editStagee.setTitle("Artatawe | View Profile");
+
+		            editStagee.initModality(Modality.APPLICATION_MODAL);
+
+		            editStagee.showAndWait();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		            // Quit the program (with an error code)
+		            System.exit(-1);
+		        }
+			});
 			gridPane.add(favoriteUser, PROFILE_COLUMN, row);
 			gridPane.add(profileImage, IMAGE_COLUMN, row);
 			row++;
