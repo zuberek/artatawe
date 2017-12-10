@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -38,6 +39,7 @@ public class ViewAuctionController {
 	@FXML Label reservePrice;
 	@FXML Label bidsPlacedLabel;
 	@FXML TextField bidAmount;
+	@FXML Button viewSellerProfileButton;
 	
 	// make functionality for them:
 	@FXML Label authorLabel;
@@ -62,6 +64,13 @@ public class ViewAuctionController {
 	public void initialize(User currentUser, Auction auction) {
 		this.currentUser = currentUser;
 		this.auction = new Auction(auction.getAuctionID());
+		
+		if(this.currentUser.getUserID() == this.auction.getSellerID()) {
+			viewSellerProfileButton.setText("View bid history");
+		} else {
+			viewSellerProfileButton.setText("View seller profile");
+		}
+		
 		
 		double[] dimensions = auction.getArtwork().getDimensions();
 		//System.out.println(dimensions[0]);
