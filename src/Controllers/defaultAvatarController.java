@@ -5,10 +5,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import src.User;
 
+/**
+ * Controller used to set a default avatar from a predefined list
+ */
 public class defaultAvatarController {
 
-
-    // TODO: Short Javadoc comments
     @FXML Pane rootPane;
     
     User user;
@@ -37,12 +38,19 @@ public class defaultAvatarController {
         finishPicking("../Pictures/avatar5.png");
     }
 
+    /**
+     * Set chosen image as profile image
+     * @param imagePath chosen image path
+     */
     private void finishPicking(String imagePath){
     	user.setDefaultAvatar(imagePath);
     	
         closeWindow();
     }
 
+    /**
+     * Listener for cancel button, with window close.
+     */
     public void cancelButtonClicked(){
         closeWindow();
     }

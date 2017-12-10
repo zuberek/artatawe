@@ -29,6 +29,7 @@ import src.User;
 import src.UserList;
 
 public class DashboardController {
+	// TODO: Javadoc
 	
 	@FXML Button editProfileButton;
 	@FXML Button sellArtworkButton;
