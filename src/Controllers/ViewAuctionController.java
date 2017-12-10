@@ -75,14 +75,14 @@ public class ViewAuctionController {
 		double[] dimensions = auction.getArtwork().getDimensions();
 		//System.out.println(dimensions[0]);
 		//System.out.println(dimensions[1]);
-		//heightTextField.setText(String.valueOf(dimensions[0]));
-		//weightTextField.setText(String.valueOf(dimensions[1]));
+		heightTextField.setText(String.valueOf(dimensions[0]));
+		widthTextField.setText(String.valueOf(dimensions[1]));
 		
 		authorLabel.setText(auction.getArtwork().getArtist());
 		yearLabel.setText(auction.getArtwork().getDateCreated());
 		auctionNameLabel.setText(this.auction.getArtwork().getTitle());
 		auctionDescriptionTextBox.setText(this.auction.getArtwork().getDescription());
-		reservePrice.setText("Â£"+this.auction.getReservePrice());
+		reservePrice.setText('£'+String.valueOf(this.auction.getReservePrice()));
 		bidsPlacedLabel.setText(this.auction.getCurrentBids(this.auction.getAuctionID()) + "/" + this.auction.getMaxBids());
 		InputStream stream = getClass().getResourceAsStream(this.auction.getArtwork().getPhotographPath());
 		Image newImage = new Image(stream);
@@ -90,7 +90,7 @@ public class ViewAuctionController {
 		
 		
 		Bid currentBid = new Bid(this.auction.getLastBidID());
-		currentBidLabel.setText("Â£"+String.valueOf(currentBid.getAmount()));
+		currentBidLabel.setText('£'+String.valueOf(currentBid.getAmount()));
 	}
 	
 
