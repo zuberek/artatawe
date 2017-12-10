@@ -29,7 +29,6 @@ public class Bid {
 		setBidderID(bidderID);
 		setAuctionID(auctionID);
 		setAmount(amount);
-
 		saveBid();
 	}
 
@@ -69,14 +68,15 @@ public class Bid {
 		
 		try{
 			lastBidID = rs.getInt("bidID");
+			
+			Auction biddedAuction = new Auction(this.getAuctionID());
+			biddedAuction.setLastBidID(lastBidID);
+			biddedAuction.saveAuctionAfterBidding();
 		} catch(SQLException ex){
 			ex.getMessage();
 		}
 		
-		Auction biddedAuction = new Auction(this.auctionID);
-		biddedAuction.setLastBidID(lastBidID);
-		biddedAuction.saveAuctionAfterBidding();
-		}
+	}
 
 	/**
 	 * Gets the current BidID
