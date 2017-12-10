@@ -51,12 +51,12 @@
             <VBox alignment="CENTER" layoutX="621.0" layoutY="31.0" prefHeight="292.0" prefWidth="121.0">
                <children>
                   <Label fx:id="welcomeLabel" text="Welcome user" />
-                  <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileClicked" text="Edit Profile">
+                  <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfileClicked" prefHeight="35.0" prefWidth="335.0" text="Edit Profile">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="sellArtworkButton" mnemonicParsing="false" onAction="#sellArtworkClicked" text="Sell Artwork">
+                  <Button fx:id="sellArtworkButton" mnemonicParsing="false" onAction="#sellArtworkClicked" prefHeight="35.0" prefWidth="147.0" text="Sell Artwork">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -66,22 +66,22 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="bidHistoryButton" mnemonicParsing="false" onAction="#bidHistoryClicked" text="Bid History">
+                  <Button fx:id="bidHistoryButton" mnemonicParsing="false" onAction="#bidHistoryClicked" prefHeight="35.0" prefWidth="314.0" text="Bid History">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="auctionHistoryButton" mnemonicParsing="false" onAction="#soldArtworkHistory" text="Sold History">
+                  <Button fx:id="auctionHistoryButton" mnemonicParsing="false" onAction="#soldArtworkHistory" prefHeight="35.0" prefWidth="214.0" text="Sold History">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="wonArtworksButton" mnemonicParsing="false" text="Won Artworks">
+                  <Button fx:id="wonArtworksButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="214.0" text="Won Artworks">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutClicked" text="Logout">
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="35.0" prefWidth="273.0" text="Logout">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
