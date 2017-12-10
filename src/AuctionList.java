@@ -133,7 +133,8 @@ public class AuctionList {
 		auctionList = new ArrayList<>();
 
 		String query = "SELECT * FROM artworks INNER JOIN auctions ON artworks.artworkID = " +
-				"auctions.artworkID where artworks.dateCreated >= 1900 AND artworks.dateCreated < 1980 AND active = '1'\n";
+				"auctions.artworkID where artworks.dateCreated >= 1900 AND " +
+				"artworks.dateCreated < 1980 AND active = '1'\n";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -153,6 +154,11 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	/**
+	 * Creates a list of auctions with more than a certain number of bids remaining
+	 * @param bidsToFinish Number of bids remaining as searched for by the user
+	 * @return a list of auctions with less than the specified number of bids
+	 */
 	public static ArrayList<Auction> getBidsToFinishAuction(int bidsToFinish){
 		auctionList = new ArrayList<>();
 		String query;
@@ -162,7 +168,9 @@ public class AuctionList {
 			query = "SELECT * FROM auctions where auctions.maxBids < " + bidsToFinish +
 					" and auctions.lastBidID = -1\n";
 			populateArray(query,auctionList);
-			query = "SELECT * FROM bids INNER JOIN auctions ON bids.auctionID = auctions.auctionID GROUP BY auctions.auctionID HAVING (auctions.maxBids - COUNT(bids.bidID) < " + bidsToFinish + ")\n";
+			query = "SELECT * FROM bids INNER JOIN auctions" +
+					"ON bids.auctionID = auctions.auctionID GROUP BY auctions.auctionID" +
+					"HAVING (auctions.maxBids - COUNT(bids.bidID) < " + bidsToFinish + ")\n";
 			ArrayList<Auction> addAuctionList = new ArrayList<>();
 			populateArray(query,addAuctionList);
 			auctionList.addAll(addAuctionList);
@@ -170,6 +178,13 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	/**
+	 * Creates a list of auctions with a reserve price (only if not bid on) or
+	 * most recent bid between two values
+	 * @param rangeMin Lower bound for the price range
+	 * @param rangeMax Upper bound for the price range
+	 * @return List of specified auctions passing criteria
+	 */
 	public static ArrayList<Auction> getPriceRangeAuctions(int rangeMin, int rangeMax){
 		auctionList = new ArrayList<>();
 		String query;
@@ -215,8 +230,7 @@ public class AuctionList {
 
 
 	/**
-	 * Returns an ArrayList of Auction objects that then can be used to populate a listview.
-	 *
+	 * Returns an ArrayList of auctions in which the given user is participating
 	 * @param userId the user who is searched
 	 * @return an ArrayList of all auctions that specified user is involved in
 	 */
@@ -255,6 +269,11 @@ public class AuctionList {
 		return auctionList;
 	}
 
+	/**
+	 * Create an array of auctions using the given query
+	 * @param query SQL query used to select the auctions
+	 * @param auctionList a list of auctions to be appended, sometimes starting empty
+	 */
 	private static void populateArray(String query, ArrayList<Auction> auctionList) {
 		try {
 			ResultSet rs = DB.select(query);

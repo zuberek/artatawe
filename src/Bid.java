@@ -52,17 +52,18 @@ public class Bid {
 	}
 
 	/**
-	 * This method the current bid into the database
+	 * Saves the bid in the database
 	 */
 	private void saveBid(){
 		// Insert bid into database
-		// TODO: need to make sure these inputs are sanitized to avoid sql injection
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		DB.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES (" + this.getBidderID() + ", " + this.getAuctionID() + ", "  + this.getAmount() + ", " + timestamp.getTime()/1000 + ")");
+		DB.query("INSERT INTO `bids` (`bidderID`, `auctionID`, `amount`, `timePlaced`) VALUES ("
+				+ this.getBidderID() + ", " + this.getAuctionID() + ", "  + this.getAmount() + ", "
+				+ timestamp.getTime()/1000 + ")");
 		
 		//Updating last bid for the auction we're bidding on
-		//TODO: Find some smarter way of doing it
-		ResultSet rs = DB.select("SELECT `bidID` FROM `bids` WHERE `bidID` = (SELECT MAX(`bidID`) FROM `bids`)");
+		ResultSet rs = DB.select("SELECT `bidID` FROM `bids` WHERE `bidID` = " +
+				"(SELECT MAX(`bidID`) FROM `bids`)");
 		
 		int lastBidID = 0;
 		
@@ -164,7 +165,7 @@ public class Bid {
 	 */
 	public String getDescriptionForList() {
 		Date date = new Date((long)this.getTimePlaced().getTime()*1000);
-		return "Auction Title: " + new Auction(auctionID).getArtwork().getTitle() + " - Amount: £" + amount + " - Placed at: " + date.toString();
+		return "Auction Title: " + new Auction(auctionID).getArtwork().getTitle() + " - Amount: \u00A3" + amount + " - Placed at: " + date.toString();
 	}
 
 }

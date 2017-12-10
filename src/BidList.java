@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * This class generates ArrayLists of src.Bid objects.
+ * This class generates ArrayLists of Bid objects.
  * @author Joshua Blackman
  *
  */

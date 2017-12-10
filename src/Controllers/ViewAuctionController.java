@@ -209,7 +209,7 @@ public class ViewAuctionController {
 					
 					
 					Bid currentBid = new Bid(auction.getLastBidID());
-					currentBidLabel.setText('\u00A3'+String.valueOf(currentBid.getAmount()));
+					currentBidLabel.setText('\u00A3' + String.valueOf(currentBid.getAmount()));
 					if(auction.getMaxBids() == auction.getCurrentBids(auction.getAuctionID())){
 						auction.finishAuction();
 						String musicFile = "../Resources/Audio/youwon.mp3";

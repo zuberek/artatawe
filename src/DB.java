@@ -39,7 +39,6 @@ public class DB {
 	
 	/**
 	 * This method sets up all the tables
-	 * TODO: Move to external file to make cleaner
 	 */
 	private void init() {
 		String sql =
@@ -89,8 +88,6 @@ public class DB {
 				"`userID` int(11) NOT NULL,\r\n"+
 				"`favouriteID` int(11) NOT NULL\r\n" +
 				");";
-		//for debugging
-		//System.out.println(sql);
 		query(sql);
 	}
 	
@@ -110,7 +107,7 @@ public class DB {
 	
 	
 	/**
-	 * This method exectues a query on the database and returns the ResultSet of the query
+	 * This method executes a query on the database and returns the ResultSet of the query
 	 * @return ArrayList of objects from the select query
 	 */
 	public static ResultSet select(String sql) {
@@ -124,6 +121,9 @@ public class DB {
 	    return rs;
 	}
 
+	/**
+	 * Closes the window
+	 */
 	public void close() {
 		try {
 			if (conn != null) {

@@ -2,6 +2,11 @@ package src;
 
 import javafx.scene.control.Alert;
 
+/**
+ * @author Joshua Blackman
+ * @author Jan Dabrowski
+ * @author Borislav Koynin
+ */
 public class CONSTANTS {
     public static int BID_INCREASE = 5;
     //login
@@ -32,7 +37,11 @@ public class CONSTANTS {
 	//you cannot add an auction with reserved price under it
 	public static final int MIN_PRICE = 1;
 
-
+	/**
+	 * Creates a popup alert window
+	 * @param type The type of alert window to be displayed
+	 * @param content The text written in the alert window
+	 */
     public static void makeAlertWindow(String type, String content){
     	Alert alert;
     	switch(type) {
@@ -50,12 +59,22 @@ public class CONSTANTS {
 	        break;
     	}
     }
-    
-    public static boolean isNumeric(String str)
+
+	/**
+	 * Checks to see if the given string is entirely numeric
+	 * @param str Given string to check
+	 * @return boolean of if the string is numeric
+	 */
+	public static boolean isNumeric(String str)
     {
       return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
 
+	/**
+	 * Checks to see if the given string is entirely letters
+	 * @param name Given string to check
+	 * @return boolean of if the string is solely letters
+	 */
 	public static boolean isAlpha(String name) {
 		return name.matches("[a-zA-Z]+");
 	}

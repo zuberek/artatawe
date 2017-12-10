@@ -10,9 +10,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * This the main class, first  point of contact for the user.
- * It asks for user log in or links to registration scene.
- * @author  Joshua Blackman 
+ * This the main class, first point of contact for the user.
+ * It asks for user log in and links to registration scene.
+ * @author Joshua Blackman
  * @author Jan Dabrowski
  *
  */
@@ -26,8 +26,11 @@ public class Login extends Application {
         launch(args);
     }
 
-	/* (non-Javadoc)
-	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	//see javafx.application.Application#start(javafx.stage.Stage)
+	/**
+	 * Starts the entire FXML stage for the login page
+	 * @param stage
+	 * @throws Exception
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
