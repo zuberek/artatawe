@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import src.CONSTANTS;
 import src.User;
 
 public class ViewProfileController{
@@ -50,10 +51,12 @@ public class ViewProfileController{
 			currentUser.unfavouriteUser(userToView.getUserID());
 			favouriteButton.setText("Favourite");
 			favourited = false;
-		}  else {
+		}  else if(currentUser.getUserID() != userToView.getUserID()){
 			currentUser.favouriteUser(userToView.getUserID());
 			favouriteButton.setText("Unfavourite");
 			favourited = true;
+		} else {
+			CONSTANTS.makeAlertWindow("warning","You can not favorite yourself!");
 		}
 	}
 	
