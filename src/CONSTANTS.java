@@ -26,7 +26,7 @@ public class CONSTANTS {
 	//you cannot add an auction with maxBid above it
 	public static final int MAX_BID = 50;
 	//you cannot add an auction with maxBid under it
-	public static final int MIN_BID = 5;
+	public static final int MIN_BID = 1;
 	//you cannot add an auction with reserved price above it
 	public static final int MAX_PRICE = 1000;
 	//you cannot add an auction with reserved price under it
