@@ -46,7 +46,7 @@ public class AuctionList {
 	public static ArrayList<Auction> getUserSellingAuctionList(int userId) {
 		auctionList = new ArrayList<>();
 
-		String query = "SELECT * from `auctions` WHERE `sellerID` = '" + userId + "' AND WHERE `active` = '1'";
+		String query = "SELECT * from `auctions` WHERE `sellerID` = '" + userId + "' AND `active` = '1'";
 		populateArray(query, auctionList);
 
 		return auctionList;
@@ -217,10 +217,10 @@ public class AuctionList {
 	private static void populateArray(String query, ArrayList<Auction> auctionList) {
 		try {
 			ResultSet rs = DB.select(query);
-			while (rs.next()) {
-				Auction auction = new Auction(rs.getInt("auctionID"));
-				auctionList.add(auction);
-			}
+				while (rs.next()) {
+					Auction auction = new Auction(rs.getInt("auctionID"));
+					auctionList.add(auction);
+				}
 		} catch (SQLException ex) {
 			ex.getMessage();
 		}
