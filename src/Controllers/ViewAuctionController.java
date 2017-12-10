@@ -111,7 +111,7 @@ public class ViewAuctionController {
 		if(this.currentUser.getUserID() == this.auction.getSellerID()) {
 			ArrayList<Bid> bidList = new ArrayList<>();
 			BidList bl = new BidList();
-			bidList = bl.getUserBidList(currentUser.getUserID());
+			bidList = bl.getAuctionBidList(this.auction.getAuctionID());
 			
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Scenes/ViewBidHistory.fxml"));
