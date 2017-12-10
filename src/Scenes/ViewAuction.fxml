@@ -18,13 +18,13 @@
             <ImageView fx:id="auctionImage" fitHeight="110.0" fitWidth="111.0" layoutX="21.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="closeButton" layoutX="475.0" layoutY="361.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="111.0" text="Close" />
             <Label layoutX="154.0" layoutY="223.0" text="Current Bid:" />
-            <Label fx:id="currentBidLabel" layoutX="219.0" layoutY="223.0" prefHeight="17.0" prefWidth="111.0" text="£10" />
+            <Label fx:id="currentBidLabel" alignment="CENTER_RIGHT" layoutX="219.0" layoutY="223.0" prefHeight="18.0" prefWidth="63.0" text="£10" />
             <TextField fx:id="bidAmount" layoutX="156.0" layoutY="247.0" prefHeight="25.0" prefWidth="255.0" />
             <Button fx:id="submitBidButton" layoutX="154.0" layoutY="286.0" mnemonicParsing="false" onAction="#submitBid" prefHeight="25.0" prefWidth="255.0" text="Submit Bid" />
             <Label layoutX="156.0" layoutY="200.0" text="Reserve Price:" />
-            <Label fx:id="reservePrice" layoutX="230.0" layoutY="200.0" text="Label" />
+            <Label fx:id="reservePrice" alignment="CENTER_RIGHT" layoutX="233.0" layoutY="200.0" prefHeight="18.0" prefWidth="54.0" text="Label" />
             <Label layoutX="299.0" layoutY="200.0" text="Bids Placed:" />
-            <Label fx:id="bidsPlacedLabel" layoutX="365.0" layoutY="200.0" text="0/10" />
+            <Label fx:id="bidsPlacedLabel" alignment="CENTER_RIGHT" layoutX="363.0" layoutY="200.0" prefHeight="18.0" prefWidth="46.0" text="0/10" />
          </children>
       </AnchorPane>
    </children>
