@@ -11,12 +11,11 @@ root {
 }
 
 .root {
--fx-background-image: url("lightBackground.jpg");
--fx-background-size: cover;
+-fx-background-image: url("background.jpg");
 }
 
 #welcome-text {
-   -fx-font-size: 32px;
+   -fx-font-size: 64px;
    -fx-font-family: "Arial Black";
    -fx-fill: #818181;
    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
