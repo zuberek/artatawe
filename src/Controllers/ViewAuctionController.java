@@ -63,6 +63,12 @@ public class ViewAuctionController {
 		this.currentUser = currentUser;
 		this.auction = new Auction(auction.getAuctionID());
 		
+		double[] dimensions = auction.getArtwork().getDimensions();
+		//System.out.println(dimensions[0]);
+		//System.out.println(dimensions[1]);
+		//heightTextField.setText(String.valueOf(dimensions[0]));
+		//weightTextField.setText(String.valueOf(dimensions[1]));
+		
 		authorLabel.setText(auction.getArtwork().getArtist());
 		yearLabel.setText(auction.getArtwork().getDateCreated());
 		auctionNameLabel.setText(this.auction.getArtwork().getTitle());
