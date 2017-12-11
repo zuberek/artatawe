@@ -340,7 +340,7 @@ public class DrawingCanvas extends Application{
                         new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
                 fileChooser.getExtensionFilters().add(extFilter);
                
-                int userID = UserList.getNewestUserkID()+1;
+                int userID = UserList.getNewestUserID()+1;
                 String nameAndPath = "./src/Resources/UsersImages/"+ userID + ".png";
 
                     try {

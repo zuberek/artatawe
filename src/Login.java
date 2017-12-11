@@ -21,16 +21,19 @@ public class Login extends Application {
 	// Constants for the main window
 	private static final String WINDOW_TITLE = "Artatawe | Login";
 
+	/**
+	 * Creates a database and launches the application
+	 */
 	public static void main(String[] args) {
-		DB db = new DB();
+		new DB();
         launch(args);
     }
 
 	//see javafx.application.Application#start(javafx.stage.Stage)
 	/**
 	 * Starts the entire FXML stage for the login page
-	 * @param stage
-	 * @throws Exception
+	 * @param stage The stage on which the Login page is set
+	 * @throws Exception error when FXML fails to load
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {

@@ -1,21 +1,21 @@
 package src;
 
-import src.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * This class is used to generate ArrayList's of User objects
+ * This class is used to generate ArrayLists of User objects
  * @author Joshua Blackman
  *
  */
 public class UserList {
 	
 	/**
-	 * @return
+	 * Gets the ID of the newest user to be created
+	 * @return the ID of the newest user
 	 */
-	public static int getNewestUserkID(){
+	public static int getNewestUserID(){
 		String query = "SELECT `userID` from `users` WHERE `userID` = (SELECT MAX(userID) from `users`)";
 		ResultSet rs = DB.select(query);
 		int userID = 0;
@@ -28,14 +28,18 @@ public class UserList {
 		}
 		return userID;
 	}
-	
+
+	/**
+	 * Creates the UserList object
+	 */
 	public UserList() {
 		
 	}
 	
 	/**
-	 * @param userID
-	 * @return  arraylist of user objects that the given user has favourited
+	 * Retrieves a list of favourited users
+	 * @param userID ID of user for whom their favourites are being searched
+	 * @return  ArrayList of user objects that the given user has favourited
 	 */
 	public static ArrayList<User> getFavouriteUsers(int userID){
 		ArrayList<User> userList = new ArrayList<>();
@@ -51,26 +55,4 @@ public class UserList {
 		
 		return userList;
 	}
-	
-//	/**
-//	 * Returns an ArrayList of src.User objects that then can be used to populate a listview.
-//	 * 
-//	 * @param userId
-//	 * @return an ArrayList of all bids specified user has made
-//	 */
-//	public ArrayList<src.Bid> getUserBidList(int userId) {
-//		bidList = new ArrayList<src.Bid>();
-//		try {
-//			ResultSet rs = db.select("SELECT * from `bids` WHERE `bidderID` = '" + userId + "'");
-//			while (rs.next()) {
-//				src.Bid bid = new src.Bid(rs.getInt("bidID"));
-//				bidList.add(bid);
-//	        }
-//		} catch (SQLException ex) {
-//			ex.getMessage();
-//		}
-//		return bidList;
-//	}
-	
-
 }

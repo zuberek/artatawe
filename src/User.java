@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * Class representing a user
  * @author Jan Dabrowski 916434
  * @author Joshua Blackman
- *
  */
 public class User {
 
@@ -23,19 +23,21 @@ public class User {
 	private String avatarPath;
 	private ArrayList<User>  favouriteUser;
 
-	//Default constructor to initialise the object
+	/**
+	 * Default constructor to initialise the object
+	 */
 	public User() {
 		this.setDefaultAvatar("../Pictures/avatar1.png");
 	}
 
 
 	/**
-	 * This constructor creates a new user and stores in dataase
-	 * @param userName
-	 * @param firstName
-	 * @param lastName
-	 * @param phoneNo
-	 * @param userAddress
+	 * This constructor creates a new user and stores in database
+	 * @param userName The user's username
+	 * @param firstName The forename of the user
+	 * @param lastName The surname of the user
+	 * @param phoneNo The user's phone number
+	 * @param userAddress The user's address
 	 */
 	public User(String userName, String firstName, String lastName, String phoneNo, String userAddress, String avatarPath) {
 		setUserName(userName);
@@ -49,7 +51,7 @@ public class User {
 	
 	/**
 	 * This constructor uses username to get all user data
-	 * @param userName
+	 * @param userName username stored in database for data to be retrieved from
 	 */
 	public User(String userName){
 		try{
@@ -73,7 +75,7 @@ public class User {
 
 	/**
 	 * This constructor uses the id to retrieve all user information
-	 * @param userID
+	 * @param userID user ID in database for data to be retrieved from
 	 */
 	public User(int userID){
 		try{
@@ -94,7 +96,8 @@ public class User {
 	}
 	
 	/**
-	 * @param userName
+	 * Check if the user specified by the username exists
+	 * @param userName username of the user being checked
 	 * @return boolean value if the user exists, true if exists, false if not
 	 */
 	public boolean userExists(String userName) {
@@ -104,7 +107,6 @@ public class User {
 				return true;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -129,7 +131,7 @@ public class User {
 	}
 
 	/**
-	 * Updating the edited user to the database
+	 * Updating the edited user's last logout time to the database
 	 */
 	public void saveUserLogout(){
 		// Update last logout of the user
@@ -139,8 +141,8 @@ public class User {
 	}
 	
 	/**
-	 * Marks an user as a favourite
-	 * @param favouriteID   the id of the user to favourite
+	 * Marks a user as a favourite
+	 * @param favouriteID the id of the user to favourite
 	 */
 	public void favouriteUser(int favouriteID) {
 		DB.query("INSERT INTO `favourites` (`userID`, `favouriteID`) VALUES ('" + this.getUserID() + "', '" + favouriteID + "'); ");
@@ -148,8 +150,8 @@ public class User {
 
 	/**
 	 * Check if user has favourited another user
-	 * @param favouriteID
-	 * @return boolean is user has favourited user
+	 * @param favouriteID the id of the user to be checked
+	 * @return boolean showing if user has favourited user
 	 */
 	public boolean isFavourite(int favouriteID) {
 		ResultSet rs = DB.select("SELECT * FROM `favourites` WHERE `userID` = '" + this.getUserID() + "' AND `favouriteID` = '" + favouriteID + "'");
@@ -158,12 +160,15 @@ public class User {
 				return true;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Deletes a user from their list of favourites
+	 * @param favouriteID ID of the user to unfavourite
+	 */
 	public void unfavouriteUser(int favouriteID) {
 		DB.query("DELETE FROM `favourites` WHERE `userID` = '" + this.getUserID() + "' AND `favouriteID` = '" + favouriteID + "'");
 	}
@@ -261,8 +266,6 @@ public class User {
 		this.userID = userID;
 	}
 
-
-
 	/**
 	 * @return the favouriteUser
 	 */
@@ -304,23 +307,25 @@ public class User {
 	public void setDefaultAvatar(String defaultAvatar) {
 		this.avatarPath = defaultAvatar;
 	}
-	
-	
-	
+
 	/**
-	 * @return
+	 * @return path to the user's avatar image
 	 */
 	public String getAvatarPath() {
 		return avatarPath;
 	}
 
 	/**
-	 * @param avatarPath
+	 * @param avatarPath path to the user's avatar or new avatar
 	 */
 	public void setAvatarPath(String avatarPath) {
 		this.avatarPath = avatarPath;
 	}
 
+	/**
+	 * Returns a simple string description of the user
+	 * @return the string of basic user information
+	 */
 	@Override
 	public String toString(){
 		String result = "";

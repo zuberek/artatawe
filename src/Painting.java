@@ -3,9 +3,26 @@ package src;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class to represent a painting
+ * @author Bryn Waterhouse
+ * @author Joshua Blackman
+ */
 public class Painting extends Artwork {
     private String paintingType;
 
+    /**
+     * Constructor for instantiation of the painting object
+     * @param userID User ID of the seller
+     * @param title Title of the painting
+     * @param artist The painting's artist
+     * @param description A short description of the painting
+     * @param photographPath the filepath for a picture of the painting
+     * @param dateCreated the year the painting was created
+     * @param height The height of the painting
+     * @param width The width of the painting
+     * @param paintingType The type of painting
+     */
     public Painting(int userID, String title, String artist, String description, String photographPath, String dateCreated, double height, double width, String paintingType) {
         setUserID(userID);
     	setTitle(title);
@@ -17,7 +34,11 @@ public class Painting extends Artwork {
         setPaintingType(paintingType);
         savePainting();
     }
-    
+
+    /**
+     * Creates an Painting object from the database
+     * @param artworkID The artwork ID of the painting
+     */
     public Painting(int artworkID) {
     	try{
 			ResultSet rs = DB.select("SELECT * FROM `artworks` WHERE artworkID = '" + artworkID + "'");
@@ -36,7 +57,10 @@ public class Painting extends Artwork {
 			ex.getMessage();
 		}
     }
-    
+
+    /**
+     * Saves the painting to the database
+     */
     public void savePainting() {
     	DB.query("INSERT INTO `artworks` (`userID`, `type`, `artist`, `title`, `width`, `height`, `paintingType`, `photographPath`, `dateCreated`, `description`) VALUES ('"+ this.getUserID() + "',  'painting', '" + this.getArtist() + "', '" + this.getTitle() + "', '" + this.getDimensions()[1] + "', '" + this.getDimensions()[0] + "', '" + this.getPaintingType() + "', '" + this.getPhotographPath() + "', '" + this.getDateCreated() + "', '" + this.getDescription() + "');");
     }
