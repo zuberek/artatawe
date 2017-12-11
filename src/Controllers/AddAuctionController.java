@@ -28,6 +28,7 @@ import src.Sculpture;
 import src.User;
 
 /**
+ * @author Borislav Koynin
  * @author Jan Dabrowski
  * Controller for selling artworks
  */
