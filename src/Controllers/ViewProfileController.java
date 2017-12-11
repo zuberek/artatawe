@@ -13,6 +13,7 @@ import src.CONSTANTS;
 import src.User;
 
 /**
+ * @author Joshua Blackman
  * Profile viewing controller, allowing favouriting and unfavouriting
  * users so that their auctions are also displayed on your dashboard
  */

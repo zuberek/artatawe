@@ -328,7 +328,7 @@ public class DrawingCanvas extends Application{
          */
         undoButton.setOnAction(e ->{
             if(!shapeStack.isEmpty()){
-                shapeStack.pop().erase(gc);
+                ((Ellipse) shapeStack.pop()).erase(gc);
             }
         });
         

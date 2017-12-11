@@ -23,10 +23,14 @@ import src.Auction;
 import src.AuctionList;
 import src.Bid;
 import src.BidList;
-import src.Login;
+import src.Main;
 import src.User;
 import src.UserList;
 
+/**
+ * @author Joshua Blackman
+ *
+ */
 public class DashboardController {
 	// TODO: Javadoc
 	
@@ -386,7 +390,7 @@ public class DashboardController {
         	currentUser.saveUserLogout();
             Stage stage = (Stage)editProfileButton.getScene().getWindow();
 
-            Login login = new Login();
+            Main login = new Main();
             login.start(stage);
         } catch (IOException e) {
             e.printStackTrace();

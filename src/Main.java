@@ -16,7 +16,7 @@ import java.io.IOException;
  * @author Jan Dabrowski
  *
  */
-public class Login extends Application {
+public class Main extends Application {
 
 	// Constants for the main window
 	private static final String WINDOW_TITLE = "Artatawe | Login";

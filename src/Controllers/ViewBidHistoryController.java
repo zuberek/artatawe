@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import src.Bid;
 
 /**
+ * @author Joshua Blackman
  * Button for viewing history of bids, displayed in simple list
  */
 public class ViewBidHistoryController {
